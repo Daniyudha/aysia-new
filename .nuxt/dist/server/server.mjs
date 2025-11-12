@@ -1,0 +1,1 @@
+export { default } from "file:///Users/macbookpro/Downloads/nuxt-source-code_20251003_210957%202/node_modules/.pnpm/@nuxt+vite-builder@4.1.3_eslint@9.37.0_jiti@2.6.1__lightningcss@1.30.1_magicast@0.3.5_o_8cc567f3edf2ae3c0173a365640937ea/node_modules/@nuxt/vite-builder/dist/runtime/vite-node.mjs"

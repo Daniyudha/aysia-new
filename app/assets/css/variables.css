@@ -1,0 +1,49 @@
+:root {
+  /** Primary colors */
+  --dashboard-primary-50: #ede8d5;
+  --dashboard-primary-100: #c1bdae;
+  --dashboard-primary-200: #979488;
+  --dashboard-primary-300: #6f6d65;
+  --dashboard-primary-400: #4a4843;
+  --dashboard-primary-500: #272624;
+
+  /** Accent colors */
+  --dashboard-accent-50: #543b1c;
+  --dashboard-accent-100: #463219;
+  --dashboard-accent-200: #392916;
+  --dashboard-accent-300: #2c2012;
+  --dashboard-accent-400: #20180e;
+  --dashboard-accent-500: #140f07;
+
+  /** Danger colors */
+  --dashboard-danger-50: #b41c2b;
+  --dashboard-danger-100: #851d22;
+  --dashboard-danger-200: #581919;
+  --dashboard-danger-300: #2f1310;
+
+  /** Success colors */
+  --dashboard-success-50: #009f42;
+  --dashboard-success-100: #167533;
+  --dashboard-success-200: #184d25;
+  --dashboard-success-300: #132916;
+
+  /** Warning colors */
+  --dashboard-warning-50: #f0ad4e;
+  --dashboard-warning-100: #af7f3c;
+  --dashboard-warning-200: #71532a;
+  --dashboard-warning-300: #392b19;
+
+  /** Info colors */
+  --dashboard-info-50: #388cfa;
+  --dashboard-info-100: #3267b5;
+  --dashboard-info-200: #284475;
+  --dashboard-info-300: #1a253b;
+
+  /** Neutral colors */
+  --dashboard-neutral-50: #ffffff;
+  --dashboard-neutral-100: #c6c6c6;
+  --dashboard-neutral-200: #919191;
+  --dashboard-neutral-300: #5e5e5e;
+  --dashboard-neutral-400: #303030;
+  --dashboard-neutral-500: #000000;
+}

@@ -1,0 +1,74 @@
+import { A as API_URL_LIST } from './constant-D5BqL6of.mjs';
+import { b as useNuxtApp } from './server.mjs';
+
+function journeyRepository(fetch) {
+  return {
+    async getAll(params) {
+      return fetch(API_URL_LIST.JOURNEY_DETAIL, {
+        method: "GET",
+        params
+      });
+    },
+    async create(payload) {
+      const formData = new FormData();
+      formData.append("journey_id", payload.journey_id);
+      formData.append("title", payload.title);
+      formData.append("content", payload.content);
+      formData.append("description", payload.description);
+      formData.append("is_video", payload.is_video ? 1 : 0);
+      formData.append("video_url", payload.video_url);
+      if (payload?.thumbnail) {
+        formData.append("thumbnail", payload.thumbnail);
+      }
+      return fetch(API_URL_LIST.JOURNEY_DETAIL, {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "multipart/form-data"
+        },
+        body: formData
+      });
+    },
+    async updateById(journeyDetailId, payload) {
+      const formData = new FormData();
+      formData.append("journey_id", payload.journey_id);
+      formData.append("title", payload.title);
+      formData.append("content", payload.content);
+      formData.append("description", payload.description);
+      formData.append("is_video", payload.is_video);
+      formData.append("video_url", payload.video_url);
+      if (payload?.thumbnail) {
+        formData.append("thumbnail", payload.thumbnail);
+      }
+      return fetch(API_URL_LIST.JOURNEY_DETAIL_BY_ID(journeyDetailId), {
+        method: "PUT",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "multipart/form-data"
+        },
+        body: formData
+      });
+    },
+    async deleteById(journeyDetailId) {
+      return fetch(API_URL_LIST.JOURNEY_DETAIL_BY_ID(journeyDetailId), {
+        method: "DELETE"
+      });
+    },
+    async getByJourneyId({
+      journeyId,
+      ...params
+    }) {
+      return fetch(API_URL_LIST.JOURNEY_DETAIL_BY_JOURNEY_ID(journeyId), {
+        method: "GET",
+        params
+      });
+    }
+  };
+}
+function journeyDetailFetcher() {
+  const { $api } = useNuxtApp();
+  return journeyRepository($api);
+}
+
+export { journeyDetailFetcher as j };
+//# sourceMappingURL=journey-detail-DrgFQ8dR.mjs.map

@@ -1,0 +1,36 @@
+<script lang="ts" setup>
+import type { PrimitiveProps } from "reka-ui";
+
+import { Primitive, useForwardProps } from "reka-ui";
+
+const props = withDefaults(
+  defineProps<
+    PrimitiveProps & {
+      /** Custom class(es) to add to the parent */
+      class?: any;
+      /** Whether the navbar should be sticky */
+      sticky?: boolean;
+    }
+    >(),
+  {
+    as: "header",
+  },
+);
+
+const forwarded = useForwardProps(reactiveOmit(props, "class", "sticky"));
+
+const styles = tv({
+  base: "z-20 border-b bg-background/90 backdrop-blur",
+  variants: {
+    sticky: {
+      true: "sticky top-0",
+    },
+  },
+});
+</script>
+
+<template>
+  <Primitive :class="styles({ sticky, class: props.class })" v-bind="forwarded">
+    <slot />
+  </Primitive>
+</template>

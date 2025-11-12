@@ -1,0 +1,261 @@
+@import "tailwindcss";
+@import "./variables.css";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --font-sans: "Poppins", sans-serif;
+  --font-serif: "Geist", "Geist Fallback", ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+  --font-mono:
+    "Geist Mono", "Geist Mono Fallback", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+    "Courier New", monospace;
+  --font-alumni-sans: "Alumni Sans", sans-serif;
+  --font-cinzel-decorative: "Cinzel Decorative", serif;
+
+  --radius: 0.625rem;
+
+  --shadow-2xs: 0 1px 3px 0px oklch(0 0 0 / 0.05);
+  --shadow-xs: 0 1px 3px 0px oklch(0 0 0 / 0.05);
+  --shadow-sm: 0 1px 3px 0px oklch(0 0 0 / 0.1), 0 1px 2px -1px oklch(0 0 0 / 0.1);
+  --shadow: 0 1px 3px 0px oklch(0 0 0 / 0.1), 0 1px 2px -1px oklch(0 0 0 / 0.1);
+  --shadow-md: 0 1px 3px 0px oklch(0 0 0 / 0.1), 0 2px 4px -1px oklch(0 0 0 / 0.1);
+  --shadow-lg: 0 1px 3px 0px oklch(0 0 0 / 0.1), 0 4px 6px -1px oklch(0 0 0 / 0.1);
+  --shadow-xl: 0 1px 3px 0px oklch(0 0 0 / 0.1), 0 8px 10px -1px oklch(0 0 0 / 0.1);
+  --shadow-2xl: 0 1px 3px 0px oklch(0 0 0 / 0.25);
+
+  /* Colors */
+  --app-primary: oklch(0.9301 0.0245 94.08);
+  --app-secondary: oklch(0.40 0.07 90);
+  --app-text-primary: oklch(0.9301 0.0245 94.08);
+
+  /* Sizes */
+  --app-container-width: 80vw;
+  --app-container-mobile-width: 90vw;
+}
+
+.dark {
+  --shadow-2xs: 0 1px 3px 0px oklch(0 0 0 / 0.05);
+  --shadow-xs: 0 1px 3px 0px oklch(0 0 0 / 0.05);
+  --shadow-sm: 0 1px 3px 0px oklch(0 0 0 / 0.1), 0 1px 2px -1px oklch(0 0 0 / 0.1);
+  --shadow: 0 1px 3px 0px oklch(0 0 0 / 0.1), 0 1px 2px -1px oklch(0 0 0 / 0.1);
+  --shadow-md: 0 1px 3px 0px oklch(0 0 0 / 0.1), 0 2px 4px -1px oklch(0 0 0 / 0.1);
+  --shadow-lg: 0 1px 3px 0px oklch(0 0 0 / 0.1), 0 4px 6px -1px oklch(0 0 0 / 0.1);
+  --shadow-xl: 0 1px 3px 0px oklch(0 0 0 / 0.1), 0 8px 10px -1px oklch(0 0 0 / 0.1);
+  --shadow-2xl: 0 1px 3px 0px oklch(0 0 0 / 0.25);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--dashboard-danger-50);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+
+  /* Custom colors */
+  --color-app-primary: var(--app-primary);
+  --color-app-secondary: var(--app-secondary);
+  --color-app-text-primary: var(--app-text-primary);
+
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-mono);
+  --font-serif: var(--font-serif);
+  --font-alumni-sans: var(--font-alumni-sans);
+  --font-cinzel-decorative: var(--font-cinzel-decorative);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  --shadow-2xs: var(--shadow-2xs);
+  --shadow-xs: var(--shadow-xs);
+  --shadow-sm: var(--shadow-sm);
+  --shadow: var(--shadow);
+  --shadow-md: var(--shadow-md);
+  --shadow-lg: var(--shadow-lg);
+  --shadow-xl: var(--shadow-xl);
+  --shadow-2xl: var(--shadow-2xl);
+
+  /* custom color for apps */
+  --color-dashboard-primary-50: var(--dashboard-primary-50);
+  --color-dashboard-primary-100: var(--dashboard-primary-100);
+  --color-dashboard-primary-200: var(--dashboard-primary-200);
+  --color-dashboard-primary-300: var(--dashboard-primary-300);
+  --color-dashboard-primary-400: var(--dashboard-primary-400);
+  --color-dashboard-primary-500: var(--dashboard-primary-500);
+
+  --color-dashboard-accent-50: var(--dashboard-accent-50);
+  --color-dashboard-accent-100: var(--dashboard-accent-100);
+  --color-dashboard-accent-200: var(--dashboard-accent-200);
+  --color-dashboard-accent-300: var(--dashboard-accent-300);
+  --color-dashboard-accent-400: var(--dashboard-accent-400);
+  --color-dashboard-accent-500: var(--dashboard-accent-500);
+
+  --color-dashboard-danger-50: var(--dashboard-danger-50);
+  --color-dashboard-danger-100: var(--dashboard-danger-100);
+  --color-dashboard-danger-200: var(--dashboard-danger-200);
+  --color-dashboard-danger-300: var(--dashboard-danger-300);
+
+  --color-dashboard-success-50: var(--dashboard-success-50);
+  --color-dashboard-success-100: var(--dashboard-success-100);
+  --color-dashboard-success-200: var(--dashboard-success-200);
+  --color-dashboard-success-300: var(--dashboard-success-300);
+
+  --color-dashboard-warning-50: var(--dashboard-warning-50);
+  --color-dashboard-warning-100: var(--dashboard-warning-100);
+  --color-dashboard-warning-200: var(--dashboard-warning-200);
+  --color-dashboard-warning-300: var(--dashboard-warning-300);
+
+  --color-dashboard-info-50: var(--dashboard-info-50);
+  --color-dashboard-info-100: var(--dashboard-info-100);
+  --color-dashboard-info-200: var(--dashboard-info-200);
+  --color-dashboard-info-300: var(--dashboard-info-300);
+
+  --color-dashboard-neutral-50: var(--dashboard-neutral-50);
+  --color-dashboard-neutral-100: var(--dashboard-neutral-100);
+  --color-dashboard-neutral-200: var(--dashboard-neutral-200);
+  --color-dashboard-neutral-300: var(--dashboard-neutral-300);
+  --color-dashboard-neutral-400: var(--dashboard-neutral-400);
+  --color-dashboard-neutral-500: var(--dashboard-neutral-500);
+
+  --color-sidebar: red;
+}
+
+@layer components {
+  html.custom-font {
+    @apply text-base lg:text-[1vw];
+  }
+  body,
+  #__nuxt {
+    @apply min-h-screen;
+  }
+  html.custom-font body {
+    @apply bg-app-primary;
+  }
+  body {
+    @apply font-alumni-sans overflow-x-hidden;
+  }
+  .dashboard-layout body {
+    @apply font-sans text-base;
+  }
+  #__nuxt {
+    @apply flex flex-col;
+  }
+  [aria-invalid="true"] .tiptap.ProseMirror,
+  .form-item input[aria-invalid="true"] {
+    @apply ring-dashboard-danger-50 focus:ring-dashboard-danger-50 focus:shadow-dashboard-danger-50 focus-visible:!shadow-dashboard-danger-50 !ring-2;
+  }
+  .tiptap.ProseMirror {
+    @apply min-h-[350px] w-full ring-dashboard-neutral-100 ring-1 pl-4 pr-4 py-2 rounded-md focus:ring-2 focus:ring-dashboard-warning-50 outline-none focus:border-0 transition-all text-app-secondary focus:shadow-dashboard-warning-50 focus-visible:ring-dashboard-warning-50;
+  }
+  .tiptap.ProseMirror[contenteditable="false"] {
+    @apply bg-black/10;
+  }
+  .tiptap h1 {
+    @apply text-5xl font-bold tracking-tight mb-4;
+  }
+
+  .tiptap h2 {
+    @apply text-4xl font-bold tracking-tight mb-3;
+  }
+
+  .tiptap h3 {
+    @apply text-3xl font-bold tracking-tight mb-2;
+  }
+
+  .tiptap h4 {
+    @apply text-2xl font-bold tracking-tight mb-2;
+  }
+
+  .tiptap h5 {
+    @apply text-xl font-bold tracking-tight mb-1;
+  }
+
+  .tiptap h6 {
+    @apply text-lg font-bold tracking-tight mb-1;
+  }
+
+  .tiptap p {
+    @apply text-base font-normal tracking-normal mb-4;
+  }
+
+  .tiptap ul,
+  .tiptap ol {
+    @apply list-inside mb-4 pl-4; /* Adjust padding as needed */
+  }
+
+  .tiptap li {
+    @apply mb-1;
+  }
+
+  .tiptap a {
+    @apply text-blue-600 hover:underline;
+  }
+
+  .tiptap blockquote {
+    @apply border-l-4 border-gray-300 pl-4 py-1 italic text-gray-600 mb-4 leading-[1];
+  }
+
+  .tiptap pre {
+    @apply bg-gray-800 text-white p-4 rounded-md overflow-x-auto text-sm mb-4 font-mono;
+  }
+
+  .tiptap code {
+    @apply bg-gray-200 px-1 py-0.5 rounded text-red-700;
+  }
+
+  .tiptap p code,
+  .tiptap li code {
+    @apply bg-gray-200 px-1 py-0.5 rounded text-red-700;
+  }
+
+  /* Image styling */
+  .tiptap img {
+    @apply max-w-full h-auto block mx-auto my-4 rounded-lg shadow-md;
+  }
+  .tiptap mark {
+    @apply bg-dashboard-warning-50/50;
+  }
+
+  .app-container {
+    @apply max-w-[var(--app-container-mobile-width)] md:max-w-[var(--app-container-width)] mx-auto px-4;
+  }
+
+  .link-with-icon {
+    @apply inline-flex py-1;
+  }
+
+  .link-with-icon svg {
+    @apply w-5 h-5;
+  }
+
+  .table-action-button {
+    @apply opacity-80 hover:opacity-100 cursor-pointer text-lg;
+  }
+
+  .PopoverContentFullWidth {
+    width: var(--reka-popover-trigger-width) !important;
+    max-height: var(--reka-popover-content-available-height) !important;
+  }
+}
+
+button {
+  @apply cursor-pointer;
+}
