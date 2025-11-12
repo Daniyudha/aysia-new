@@ -41,9 +41,9 @@ const sharedData = inject<SocialMediaResponse | null>("socialMedia");
             <p>Use the tabs below to read about what it&quot;s like to shoot with me, frequently asked questions, my pricing, and more so you know what you&quot;re getting yourself into. Please don&quot;t hesitate to ask any additional questions!</p>
           </div>
           <ul class="flex items-center space-x-6 flex-wrap mb-6">
-            <li v-if="!!sharedData?.instagram?.link?.length">
+            <li v-if="!!sharedData?.instagram1?.link?.length">
               <NuxtLink
-                :to="sharedData?.instagram?.link"
+                :to="sharedData?.instagram1?.link"
                 external
                 target="_blank"
                 class="link-with-icon"
@@ -51,9 +51,9 @@ const sharedData = inject<SocialMediaResponse | null>("socialMedia");
                 <IconInstagram1 fill="#533A1B" />
               </NuxtLink>
             </li>
-            <li v-if="!!sharedData?.instagram?.link?.length">
+            <li v-if="!!sharedData?.instagram2?.link?.length">
               <NuxtLink
-                :to="sharedData?.instagram?.link"
+                :to="sharedData?.instagram2?.link"
                 external
                 target="_blank"
                 class="link-with-icon"
@@ -61,9 +61,9 @@ const sharedData = inject<SocialMediaResponse | null>("socialMedia");
                 <IconInstagram2 fill="#533A1B" />
               </NuxtLink>
             </li>
-            <li v-if="!!sharedData?.instagram?.link?.length">
+            <li v-if="!!sharedData?.instagram3?.link?.length">
               <NuxtLink
-                :to="sharedData?.instagram?.link"
+                :to="sharedData?.instagram3?.link"
                 external
                 target="_blank"
                 class="link-with-icon"

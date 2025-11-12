@@ -112,6 +112,18 @@ export type SocialMediaResponse = {
     title: string;
     link: string;
   };
+  instagram1: {
+    title: string;
+    link: string;
+  };
+  instagram2: {
+    title: string;
+    link: string;
+  };
+  instagram3: {
+    title: string;
+    link: string;
+  };
   tiktok: {
     title: string;
     link: string;

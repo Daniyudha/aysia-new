@@ -96,7 +96,7 @@ const onSaveCategory = handleSubmit((values) => {
               />
             </UiFormItem>
           </Field>
-          <Field v-slot="{ componentField }" name="instagram">
+          <Field v-slot="{ componentField }" name="instagram1">
             <UiFormItem label="Instagram URL 1" class="mb-6">
               <UiInput
                 v-bind="componentField"
@@ -106,7 +106,7 @@ const onSaveCategory = handleSubmit((values) => {
               />
             </UiFormItem>
           </Field>
-          <Field v-slot="{ componentField }" name="instagram">
+          <Field v-slot="{ componentField }" name="instagram2">
             <UiFormItem label="Instagram URL 2" class="mb-6">
               <UiInput
                 v-bind="componentField"
@@ -116,7 +116,7 @@ const onSaveCategory = handleSubmit((values) => {
               />
             </UiFormItem>
           </Field>
-          <Field v-slot="{ componentField }" name="instagram">
+          <Field v-slot="{ componentField }" name="instagram3">
             <UiFormItem label="Instagram URL 3" class="mb-6">
               <UiInput
                 v-bind="componentField"
