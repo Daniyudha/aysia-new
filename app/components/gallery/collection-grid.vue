@@ -63,37 +63,41 @@ const groupedGalleries = computed((): JourneyResponse[][] => {
           </div>
         </div>
       </div>
-      <div class="app-container hidden md:block">
-        <div class="masonry-grid">
-          <div
-            v-for="(item, index) in collections"
-            :key="index"
-            class="masonry-item p-4"
-          >
-            <NuxtLink
-              :to="{
-                name: 'galleries-galleryId',
-                params: { galleryId: item?.id },
-              }"
-              class="group block text-app-secondary"
+      <div
+        v-for="(groupedGallery, index) in groupedGalleries"
+        :key="index"
+        class="grouped-collection-row hidden md:block"
+      >
+        <div class="app-container">
+          <div class="collection-grid">
+            <div
+              v-for="(item, indexItem) in groupedGallery"
+              :key="indexItem"
+              class="collection-grid-item"
             >
-              <div class="relative overflow-hidden rounded-lg mb-4">
+              <NuxtLink
+                :to="{
+                  name: 'galleries-galleryId',
+                  params: { galleryId: item?.id },
+                }"
+                class="group flex flex-col items-end w-full text-app-secondary"
+              >
                 <img
                   :src="`${useRuntimeConfig().public.apiBase}${item?.thumbnail}`"
                   :alt="item.title"
-                  class="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-105"
-                  loading="lazy"
+                  class="w-full h-auto object-cover object-top mb-3 aspect-square"
+                  lazy="true"
                 >
-              </div>
-              <p class="text-base font-light text-right mb-2">
-                {{ item?.gallery_category_name }}
-              </p>
-              <p
-                class="font-medium text-4xl text-right relative after:content-[''] after:absolute after:left-0 after:bottom-0 after:right-0 after:h-1 after:bg-app-secondary after:hidden after:transition-all group-hover:after:block"
-              >
-                {{ item?.title }}
-              </p>
-            </NuxtLink>
+                <p class="text-base font-light text-right">
+                  {{ item?.gallery_category_name }}
+                </p>
+                <p
+                  class="font-medium text-4xl text-right relative after:content-[''] after:absolute after:left-0 after:bottom-0 after:right-0 after:h-1 after:bg-app-secondary after:hidden after:transition-all group-hover:after:block"
+                >
+                  {{ item?.title }}
+                </p>
+              </NuxtLink>
+            </div>
           </div>
         </div>
       </div>
@@ -103,31 +107,6 @@ const groupedGalleries = computed((): JourneyResponse[][] => {
 
 <style scoped>
 @reference "../../assets/css/main.css";
-
-.masonry-grid {
-  column-count: 2;
-  column-gap: 2rem;
-}
-
-.masonry-item {
-  break-inside: avoid;
-  display: inline-block;
-  width: 100%;
-  margin-bottom: 2rem;
-}
-
-/* Responsive masonry columns */
-@media (min-width: 1024px) {
-  .masonry-grid {
-    column-count: 3;
-  }
-}
-
-@media (min-width: 1280px) {
-  .masonry-grid {
-    column-count: 4;
-  }
-}
 
 .grouped-collection-row {
   @apply border-b;

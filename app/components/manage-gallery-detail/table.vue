@@ -23,6 +23,17 @@ async function handleDeleteDetailJourney(title: string, id: string) {
     emits("onRefreshData");
   }
 }
+
+function getEmbedUrl(url: string): string {
+  const idMatch = url.match(
+    /(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/|v\/|shorts\/))([\w-]{11})/
+  )
+  const id = idMatch ? idMatch[1] : ""
+  return id
+    ? `https://www.youtube.com/embed/${id}?autoplay=0&mute=1&playsinline=1&loop=1&playlist=${id}`
+    : url
+}
+
 </script>
 
 <template>
@@ -53,9 +64,34 @@ async function handleDeleteDetailJourney(title: string, id: string) {
           <UiTableRow class="last:[&>td]:!border-0">
             <UiTableData>{{ index + 1 }}</UiTableData>
             <UiTableData>
-              <img :src="`${useRuntimeConfig().public.apiBase}${item?.thumbnail_url}`" alt="Thumbnail"
-                class="w-36 h-36 object-cover rounded-md" />
+              <div class="w-24 h-24 flex items-center justify-center">
+                <template v-if="item.is_video && item.video_url">
+
+                  <!-- 🎬 YouTube -->
+                  <iframe v-if="/youtu\.be|youtube\.com/.test(item.video_url)" :src="getEmbedUrl(item.video_url)"
+                    frameborder="0" allow="autoplay; encrypted-media; picture-in-picture"
+                    class="w-full h-full rounded-md"></iframe>
+
+                  <!-- 📹 MP4 / WEBM / OGG -->
+                  <video v-else-if="/\.(mp4|webm|ogg)$/i.test(item.video_url)" :src="item.video_url" autoplay muted loop
+                    playsinline preload="metadata" class="w-full h-full object-cover rounded-md">
+                  </video>
+
+                </template>
+
+                <!-- 🖼️ Thumbnail fallback -->
+                <template v-else-if="item.thumbnail_url">
+                  <img :src="`${useRuntimeConfig().public.apiBase}${item.thumbnail_url}`" alt="Thumbnail"
+                    class="w-full h-full object-cover rounded-md" />
+                </template>
+
+                <!-- ❌ Fallback jika kosong -->
+                <template v-else>
+                  <span class="text-gray-400 italic">No media</span>
+                </template>
+              </div>
             </UiTableData>
+
             <UiTableData>
               <div class="flex gap-2">
                 <button type="button" class="table-action-button group"

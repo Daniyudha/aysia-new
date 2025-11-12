@@ -53,7 +53,7 @@ function getYouTubeId(url?: string | null): string | null {
   }
   // fallback cari 11-char id
   const fallback = url.match(/([a-zA-Z0-9_-]{11})/)
-  return fallback ? fallback[1] : null
+  return fallback && fallback[1] ? fallback[1] : null
 }
 
 function getYouTubeType(url?: string | null): 'short' | 'video' {
@@ -111,8 +111,8 @@ const selectedEmbedUrl = computed(() => {
 
       <!-- Grid -->
       <template v-else-if="!props?.pending && !!props?.journeyDetailItems?.length">
-        <div class="columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6">
-          <div v-for="(item, index) in props.journeyDetailItems" :key="item.id" class="break-inside-avoid">
+        <div class="masonry-grid">
+          <div v-for="(item, index) in props.journeyDetailItems" :key="item.id" class="masonry-item">
             <!-- ===== VIDEO (YouTube or MP4) ===== -->
             <template v-if="item.is_video">
               <div class="relative block w-full rounded-lg overflow-hidden">
@@ -165,11 +165,11 @@ const selectedEmbedUrl = computed(() => {
 
             <!-- ===== IMAGE (non-video) ===== -->
             <template v-else>
-              <div class="relative">
+              <div class="relative rounded-lg overflow-hidden shadow cursor-pointer">
                 <img
                   :src="`${apiBase}${item.thumbnail_url}`"
                   alt=""
-                  class="w-full h-[30vh] object-cover rounded-lg shadow cursor-pointer"
+                  class="w-full h-auto object-cover"
                 />
                 <!-- overlay clickable -->
                 <button
@@ -236,6 +236,37 @@ const selectedEmbedUrl = computed(() => {
 
 <style scoped>
 @reference "../../assets/css/main.css";
+
+.masonry-grid {
+  column-count: 1;
+  column-gap: 1.5rem;
+}
+
+.masonry-item {
+  break-inside: avoid;
+  display: inline-block;
+  width: 100%;
+  margin-bottom: 1.5rem;
+}
+
+/* Responsive masonry columns */
+@media (min-width: 768px) {
+  .masonry-grid {
+    column-count: 2;
+    column-gap: 2rem;
+  }
+  
+  .masonry-item {
+    margin-bottom: 2rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .masonry-grid {
+    column-count: 3;
+    column-gap: 2rem;
+  }
+}
 
 /* overlay button default tanpa visual, hanya agar clickable area penuh */
 button[aria-label="Open gallery item"],
