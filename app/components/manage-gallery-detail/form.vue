@@ -6,7 +6,7 @@ import { JourneyGalleryDetailSchema } from './schema';
 
 const props = defineProps<{
   mode: 'create' | 'update';
-  defaultValue?: JourneyDetailsResponse;
+  defaultValue?: JourneyDetailsResponse | any;
   isHeader?: boolean | undefined;
 }>();
 
@@ -24,7 +24,7 @@ const { handleSubmit, setFieldValue, values } = useForm({
     type: props?.defaultValue?.is_video === true ? 'video' : 'image',
     title: props?.defaultValue?.title || '-',
     description: props?.defaultValue?.description || '-',
-    thumbnail: props?.defaultValue?.thumbnail || '',
+    thumbnail: props?.isHeader === true ? props?.defaultValue?.thumbnail || '' : props?.defaultValue?.thumbnail_url || '',
     thumbnailUrl: props?.isHeader === true ? props?.defaultValue?.thumbnail || '' : props?.defaultValue?.thumbnail_url || '',
     videoUrl: props?.defaultValue?.video_url || '',
   },
@@ -36,7 +36,7 @@ const thumbnailUrl = computed(() => {
     if (props?.mode === 'update') {
       if (props?.isHeader === true) {
         // Use thumbnail value from props for image display when isHeader is true
-        const url = props?.defaultValue?.thumbnail || values?.thumbnailUrl;
+        const url = props?.isHeader === true ? props?.defaultValue?.thumbnail || values?.thumbnailUrl : props?.defaultValue?.thumbnail_url || values?.thumbnailUrl;
         if (!url) {
           return '';
         }
@@ -144,6 +144,18 @@ function resetImage() {
     console.warn('resetImage skipped:', err);
   }
 }
+
+const removeImage = (index: number) => {
+  if (values?.thumbnail && Array.isArray(values.thumbnail)) {
+    const updatedThumbnails = [...values.thumbnail];
+    updatedThumbnails.splice(index, 1);
+    setFieldValue('thumbnail', updatedThumbnails);
+    
+    if (updatedThumbnails.length === 0) {
+      setFieldValue('thumbnailUrl', '');
+    }
+  }
+};
 </script>
 
 <template>
@@ -180,18 +192,54 @@ function resetImage() {
         </template>
         <template v-if="values?.type === 'image' || isHeader === true">
           <Field v-slot="{ errors }" name="thumbnail">
-            <UiFormItem label="Thumbnail" class="mb-6">
+            <UiFormItem :label="isHeader ? 'Thumbnail' : 'Thumbnails'" class="mb-6">
               <template v-if="!values?.thumbnailUrl?.length">
                 <UiDropfile
                   :aria-invalid="!!errors?.length"
+                  :multiple="!isHeader"
                   @dropped="
-                    (value) => {
-                      const file = value?.[0];
-                      setFieldValue('thumbnail', file);
-                      setFieldValue('thumbnailUrl', createObjectURL(file));
+                    (files) => {
+                      if (isHeader) {
+                        // Single file for header
+                        const file = files?.[0];
+                        setFieldValue('thumbnail', file);
+                        setFieldValue('thumbnailUrl', createObjectURL(file) || '');
+                      } else {
+                        // Multiple files for journey details
+                        setFieldValue('thumbnail', files);
+                        setFieldValue('thumbnailUrl', 'multiple');
+                      }
                     }
                   "
                 />
+                <p v-if="!isHeader" class="text-sm text-gray-500 mt-2">
+                  You can upload multiple images at once
+                </p>
+              </template>
+              <template v-else-if="values?.thumbnailUrl === 'multiple'">
+                <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+                  <div
+                    v-for="(file, index) in values?.thumbnail"
+                    :key="index"
+                    class="relative group"
+                  >
+                    <img
+                      :src="createObjectURL(file) || ''"
+                      class="w-full h-32 object-cover rounded-md border"
+                      :alt="`Uploaded image ${index + 1}`"
+                    />
+                    <button
+                      type="button"
+                      @click="removeImage(index)"
+                      class="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-6 h-6 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
+                    >
+                      <Icon name="heroicons:x-mark" class="w-4 h-4" />
+                    </button>
+                  </div>
+                </div>
+                <p class="text-sm text-gray-500 mt-2">
+                  {{ values?.thumbnail?.length || 0 }} images selected
+                </p>
               </template>
               <template v-else>
                 <LazyUiImagePreview
@@ -214,24 +262,26 @@ function resetImage() {
           </Field>
         </template>
 
-        <!-- <Field v-slot="{ componentField }" name="title">
-          <UiFormItem label="Title" class="mb-6">
-            <UiInput v-bind="componentField" placeholder="Enter title" />
-          </UiFormItem>
-        </Field>
-        <Field
-          v-slot="{ value, handleChange, errors, validate }"
-          name="description"
-        >
-          <UiFormItem label="Description" class="mb-6">
-            <UiTiptap
-              :value="value"
-              :aria-invalid="!!errors?.length ? true : undefined"
-              @update:value="(value) => handleChange(value)"
-              @on-blur="validate()"
-            />
-          </UiFormItem>
-        </Field> -->
+        <template v-if="isHeader">
+          <Field v-slot="{ componentField }" name="title">
+            <UiFormItem label="Title" class="mb-6">
+              <UiInput v-bind="componentField" placeholder="Enter title" />
+            </UiFormItem>
+          </Field>
+          <Field
+            v-slot="{ value, handleChange, errors, validate }"
+            name="description"
+          >
+            <UiFormItem label="Description" class="mb-6">
+              <UiTiptap
+                :value="value"
+                :aria-invalid="!!errors?.length ? true : undefined"
+                @update:value="(value) => handleChange(value)"
+                @on-blur="validate()"
+              />
+            </UiFormItem>
+          </Field>
+        </template>
       </div>
     </UiCardContent>
     <UiCardFooter class="!py-4 flex justify-end gap-4">

@@ -116,7 +116,7 @@ function getEmbedUrl(url: string): string {
       </template>
 
       <!-- WRAPPER UTAMA -->
-      <div class="relative inline-block px-6">
+      <div class="relative inline-block px-4 md:px-0">
 
         <!-- MEDIA -->
         <div class="max-h-[90vh]">
@@ -126,7 +126,7 @@ function getEmbedUrl(url: string): string {
             <iframe
               v-if="isYouTubeUrl(videoUrl)"
               :src="getEmbedUrl(videoUrl)"
-              class="max-h-[90vh] rounded-lg object-contain"
+              class="max-h-[90vh] w-full aspect-9/16 rounded-lg object-contain"
               allowfullscreen
             ></iframe>
 
@@ -135,7 +135,7 @@ function getEmbedUrl(url: string): string {
               v-else
               :src="videoUrl"
               autoplay muted loop playsinline
-              class="max-h-[90vh] rounded-lg object-contain"
+              class="max-h-[90vh] w-full aspect-16/9 rounded-lg object-contain"
             ></video>
 
           </template>
