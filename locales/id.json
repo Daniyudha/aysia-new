@@ -1,0 +1,61 @@
+{
+    "navigation": {
+        "home": "Beranda",
+        "gallery": "Galeri",
+        "about": "Tentang",
+        "contact": "Kontak"
+    },
+    "gallery": {
+        "title": "Galeri",
+        "collection_not_found": "Koleksi tidak ditemukan.",
+        "previous": "Sebelumnya",
+        "next": "Selanjutnya"
+    },
+    "common": {
+        "loading": "Memuat...",
+        "error": "Kesalahan",
+        "success": "Berhasil",
+        "save": "Simpan",
+        "cancel": "Batal",
+        "delete": "Hapus",
+        "edit": "Edit"
+    },
+    "home": {
+        "welcome": "Selamat datang di galeri kami",
+        "explore": "Jelajahi koleksi kami",
+        "hero_quote": "Melalui lensa, aku menangkap ritme budaya dan keterhubungan yang tak terlihat.",
+        "hero_description": "Perjalanan menuju keindahan abadi — menjelajahi kemanusiaan, alam, dan emosi melalui kekuatan tenang dari fotografi.",
+        "about_title": "Tentang Perjalananku",
+        "about_description": "Kecintaanku pada fotografi dimulai dari ketertarikan pada tempat-tempat terpencil — lanskap yang sunyi, orang-orang yang hidup di luar irama modern, dan budaya yang bertahan melawan waktu. Aku menjelajah ke tempat-tempat yang jarang terdengar, menangkap jiwa dari kesederhanaan dan cerita yang jarang tersampaikan ke dunia.",
+        "about_quote": "Setiap perjalanan mengajarkanku untuk melihat, bukan hanya memandang.",
+        "places_title": "Beberapa Tempat yang Telah Aku Jelajahi",
+        "place1_title": "Mentawai, Siberut",
+        "place1_description": "Di antara tato leluhur dan bisikan hutan, kehidupan mengalir dengan keyakinan dan tradisi.",
+        "place2_title": "Omo, Ethiopia",
+        "place2_description": "Di lembah suku-suku, warna, semangat, dan ritual berpadu di bawah matahari Afrika.",
+        "place3_title": "Cappadocia, Turki",
+        "place3_description": "Batu-batu kuno dan balon udara yang melayang — mimpi yang diukir oleh angin dan waktu.",
+        "place4_title": "Lathmar Holi, India",
+        "place4_description": "Kekacauan dan warna berpadu — pengabdian yang dilukis dalam rona kegembiraan dan perlawanan.",
+        "closing_quote": "Aku bepergian bukan untuk melarikan diri dari kehidupan, tapi agar kehidupan tidak melarikan diri dariku."
+    },
+    "about": {
+        "title": "Tentang Kami",
+        "description": "Pelajari lebih lanjut tentang perjalanan dan visi kami"
+    },
+    "contact": {
+        "description": "Hubungi kami untuk informasi lebih lanjut",
+        "title": "Kontak",
+        "meta_description": "Hubungi Aysia LinggarWati untuk kolaborasi, proyek fotografi, atau pertanyaan lainnya. Mari wujudkan visi kreatif Anda bersama.",
+        "meta_keywords": "Aysia LinggarWati, kontak, fotografi, kolaborasi, proyek",
+        "heading": "Mari Terhubung!",
+        "paragraph1": "Hubungi saya melalui formulir di bawah ini dan mari kita mulai menciptakan visi Anda bersama!",
+        "paragraph2": "Gunakan tab di bawah ini untuk membaca tentang pengalaman sesi pemotretan, pertanyaan yang sering diajukan, harga, dan lainnya agar Anda tahu apa yang diharapkan. Jangan ragu untuk menanyakan hal lain!",
+        "whatsapp_text": "atau Kirim saya WhatsApp!"
+    },
+    "language": {
+        "english": "Inggris",
+        "indonesian": "Indonesia",
+        "switch": "Ganti Bahasa"
+    }
+}

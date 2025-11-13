@@ -1,5 +1,8 @@
 <script setup lang="ts">
 defineProps<{ socialMedia?: SocialMediaResponse }>();
+import { useI18n } from '@/composables/useI18n'
+import LanguageSwitcher from '@/components/common/language-switcher.vue'
+const { t } = useI18n()
 </script>
 
 <template>
@@ -50,6 +53,9 @@ defineProps<{ socialMedia?: SocialMediaResponse }>();
           </NuxtLink>
         </li>
       </ul>
+    </div>
+    <div class="absolute top-4 right-4 md:top-8 md:right-8 z-[9999]">
+      <LanguageSwitcher />
     </div>
   </header>
 </template>

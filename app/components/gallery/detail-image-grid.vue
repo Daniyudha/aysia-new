@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import { computed, reactive } from 'vue'
 import { useRuntimeConfig } from '#app'
+import { useI18n } from '#imports'
+
+const { t } = useI18n()
 
 /** ----- props ----- */
 const props = defineProps<{
@@ -186,7 +189,7 @@ const selectedEmbedUrl = computed(() => {
 
       <!-- No data -->
       <template v-else>
-        <p class="text-center text-xl">Collection not found.</p>
+        <p class="text-center text-xl">{{ t('gallery.collection_not_found') }}</p>
       </template>
     </div>
   </section>
@@ -205,6 +208,7 @@ const selectedEmbedUrl = computed(() => {
       :is-video="selectedJourney?.is_video ?? false"
       :video-url=" selectedJourney && isYouTubeUrl(selectedJourney.video_url) ? getEmbedUrl(selectedJourney.video_url, 1, 0) : (selectedJourney?.video_url ?? '')"
       :model-value=" showDialogState.openDialog && showDialogState.selectedJourneyIndex > -1 "
+      :collections="[]"
       @update:model-value="(isOpen) => { if (!isOpen) closeDialog(); }"
     >
       <template #control>
@@ -217,7 +221,7 @@ const selectedEmbedUrl = computed(() => {
             @click="handleChangeImage(showDialogState.selectedJourneyIndex - 1)"
           >
             <Icon name="heroicons:arrow-long-left" />
-            <span class="inline-block">Previous</span>
+            <span class="inline-block">{{ t('gallery.previous') }}</span>
           </button>
           <button
             type="button"
@@ -225,7 +229,7 @@ const selectedEmbedUrl = computed(() => {
             :disabled=" showDialogState.selectedJourneyIndex === props.journeyDetailItems.length - 1 "
             @click="handleChangeImage(showDialogState.selectedJourneyIndex + 1)"
           >
-            <span class="inline-block">Next</span>
+            <span class="inline-block">{{ t('gallery.next') }}</span>
             <Icon name="heroicons:arrow-long-left" class="rotate-180" />
           </button>
         </div>

@@ -18,6 +18,7 @@ interface _GlobalComponents {
   'AppHeader': typeof import("../../app/components/app/header.vue")['default']
   'AppHomepageHeader': typeof import("../../app/components/app/homepage-header.vue")['default']
   'AuthLoginForm': typeof import("../../app/components/auth/login-form.vue")['default']
+  'CommonLanguageSwitcher': typeof import("../../app/components/common/language-switcher.vue")['default']
   'ContactMessageForm': typeof import("../../app/components/contact/message-form.vue")['default']
   'DashboardSidebarMenu': typeof import("../../app/components/dashboard/sidebar-menu.vue")['default']
   'DashboardUserDropdown': typeof import("../../app/components/dashboard/user-dropdown.vue")['default']
@@ -215,19 +216,19 @@ interface _GlobalComponents {
   'UiTooltipProvider': typeof import("../../app/components/ui/tooltip/provider.vue")['default']
   'UiTooltip': typeof import("../../app/components/ui/tooltip/tooltip.vue")['default']
   'UiTooltipTrigger': typeof import("../../app/components/ui/tooltip/trigger.vue")['default']
-  'NuxtWelcome': typeof import("../../node_modules/.pnpm/nuxt@4.1.3_@parcel+watcher@2.5.1_@vue+compiler-sfc@3.5.22_db0@0.3.4_eslint@9.37.0_jiti@_62001d0ac71846b0274326caa9a952a4/node_modules/nuxt/dist/app/components/welcome.vue")['default']
-  'NuxtLayout': typeof import("../../node_modules/.pnpm/nuxt@4.1.3_@parcel+watcher@2.5.1_@vue+compiler-sfc@3.5.22_db0@0.3.4_eslint@9.37.0_jiti@_62001d0ac71846b0274326caa9a952a4/node_modules/nuxt/dist/app/components/nuxt-layout")['default']
-  'NuxtErrorBoundary': typeof import("../../node_modules/.pnpm/nuxt@4.1.3_@parcel+watcher@2.5.1_@vue+compiler-sfc@3.5.22_db0@0.3.4_eslint@9.37.0_jiti@_62001d0ac71846b0274326caa9a952a4/node_modules/nuxt/dist/app/components/nuxt-error-boundary.vue")['default']
-  'ClientOnly': typeof import("../../node_modules/.pnpm/nuxt@4.1.3_@parcel+watcher@2.5.1_@vue+compiler-sfc@3.5.22_db0@0.3.4_eslint@9.37.0_jiti@_62001d0ac71846b0274326caa9a952a4/node_modules/nuxt/dist/app/components/client-only")['default']
-  'DevOnly': typeof import("../../node_modules/.pnpm/nuxt@4.1.3_@parcel+watcher@2.5.1_@vue+compiler-sfc@3.5.22_db0@0.3.4_eslint@9.37.0_jiti@_62001d0ac71846b0274326caa9a952a4/node_modules/nuxt/dist/app/components/dev-only")['default']
-  'ServerPlaceholder': typeof import("../../node_modules/.pnpm/nuxt@4.1.3_@parcel+watcher@2.5.1_@vue+compiler-sfc@3.5.22_db0@0.3.4_eslint@9.37.0_jiti@_62001d0ac71846b0274326caa9a952a4/node_modules/nuxt/dist/app/components/server-placeholder")['default']
-  'NuxtLink': typeof import("../../node_modules/.pnpm/nuxt@4.1.3_@parcel+watcher@2.5.1_@vue+compiler-sfc@3.5.22_db0@0.3.4_eslint@9.37.0_jiti@_62001d0ac71846b0274326caa9a952a4/node_modules/nuxt/dist/app/components/nuxt-link")['default']
-  'NuxtLoadingIndicator': typeof import("../../node_modules/.pnpm/nuxt@4.1.3_@parcel+watcher@2.5.1_@vue+compiler-sfc@3.5.22_db0@0.3.4_eslint@9.37.0_jiti@_62001d0ac71846b0274326caa9a952a4/node_modules/nuxt/dist/app/components/nuxt-loading-indicator")['default']
-  'NuxtTime': typeof import("../../node_modules/.pnpm/nuxt@4.1.3_@parcel+watcher@2.5.1_@vue+compiler-sfc@3.5.22_db0@0.3.4_eslint@9.37.0_jiti@_62001d0ac71846b0274326caa9a952a4/node_modules/nuxt/dist/app/components/nuxt-time.vue")['default']
-  'NuxtRouteAnnouncer': typeof import("../../node_modules/.pnpm/nuxt@4.1.3_@parcel+watcher@2.5.1_@vue+compiler-sfc@3.5.22_db0@0.3.4_eslint@9.37.0_jiti@_62001d0ac71846b0274326caa9a952a4/node_modules/nuxt/dist/app/components/nuxt-route-announcer")['default']
-  'NuxtImg': typeof import("../../node_modules/.pnpm/nuxt@4.1.3_@parcel+watcher@2.5.1_@vue+compiler-sfc@3.5.22_db0@0.3.4_eslint@9.37.0_jiti@_62001d0ac71846b0274326caa9a952a4/node_modules/nuxt/dist/app/components/nuxt-stubs")['NuxtImg']
-  'NuxtPicture': typeof import("../../node_modules/.pnpm/nuxt@4.1.3_@parcel+watcher@2.5.1_@vue+compiler-sfc@3.5.22_db0@0.3.4_eslint@9.37.0_jiti@_62001d0ac71846b0274326caa9a952a4/node_modules/nuxt/dist/app/components/nuxt-stubs")['NuxtPicture']
-  'Icon': typeof import("../../node_modules/.pnpm/@nuxt+icon@1.15.0_magicast@0.3.5_vite@7.1.9_jiti@2.6.1_lightningcss@1.30.1_terser@5.44._38c2efddb21743b0d0a99f68cc9ed158/node_modules/@nuxt/icon/dist/runtime/components/index")['default']
+  'NuxtWelcome': typeof import("../../node_modules/.pnpm/nuxt@4.1.3_@parcel+watcher@2.5.1_@types+node@24.10.1_@vue+compiler-sfc@3.5.22_db0@0.3.4_5b4db39832caaa4fa6da828c9ba789fd/node_modules/nuxt/dist/app/components/welcome.vue")['default']
+  'NuxtLayout': typeof import("../../node_modules/.pnpm/nuxt@4.1.3_@parcel+watcher@2.5.1_@types+node@24.10.1_@vue+compiler-sfc@3.5.22_db0@0.3.4_5b4db39832caaa4fa6da828c9ba789fd/node_modules/nuxt/dist/app/components/nuxt-layout")['default']
+  'NuxtErrorBoundary': typeof import("../../node_modules/.pnpm/nuxt@4.1.3_@parcel+watcher@2.5.1_@types+node@24.10.1_@vue+compiler-sfc@3.5.22_db0@0.3.4_5b4db39832caaa4fa6da828c9ba789fd/node_modules/nuxt/dist/app/components/nuxt-error-boundary.vue")['default']
+  'ClientOnly': typeof import("../../node_modules/.pnpm/nuxt@4.1.3_@parcel+watcher@2.5.1_@types+node@24.10.1_@vue+compiler-sfc@3.5.22_db0@0.3.4_5b4db39832caaa4fa6da828c9ba789fd/node_modules/nuxt/dist/app/components/client-only")['default']
+  'DevOnly': typeof import("../../node_modules/.pnpm/nuxt@4.1.3_@parcel+watcher@2.5.1_@types+node@24.10.1_@vue+compiler-sfc@3.5.22_db0@0.3.4_5b4db39832caaa4fa6da828c9ba789fd/node_modules/nuxt/dist/app/components/dev-only")['default']
+  'ServerPlaceholder': typeof import("../../node_modules/.pnpm/nuxt@4.1.3_@parcel+watcher@2.5.1_@types+node@24.10.1_@vue+compiler-sfc@3.5.22_db0@0.3.4_5b4db39832caaa4fa6da828c9ba789fd/node_modules/nuxt/dist/app/components/server-placeholder")['default']
+  'NuxtLink': typeof import("../../node_modules/.pnpm/nuxt@4.1.3_@parcel+watcher@2.5.1_@types+node@24.10.1_@vue+compiler-sfc@3.5.22_db0@0.3.4_5b4db39832caaa4fa6da828c9ba789fd/node_modules/nuxt/dist/app/components/nuxt-link")['default']
+  'NuxtLoadingIndicator': typeof import("../../node_modules/.pnpm/nuxt@4.1.3_@parcel+watcher@2.5.1_@types+node@24.10.1_@vue+compiler-sfc@3.5.22_db0@0.3.4_5b4db39832caaa4fa6da828c9ba789fd/node_modules/nuxt/dist/app/components/nuxt-loading-indicator")['default']
+  'NuxtTime': typeof import("../../node_modules/.pnpm/nuxt@4.1.3_@parcel+watcher@2.5.1_@types+node@24.10.1_@vue+compiler-sfc@3.5.22_db0@0.3.4_5b4db39832caaa4fa6da828c9ba789fd/node_modules/nuxt/dist/app/components/nuxt-time.vue")['default']
+  'NuxtRouteAnnouncer': typeof import("../../node_modules/.pnpm/nuxt@4.1.3_@parcel+watcher@2.5.1_@types+node@24.10.1_@vue+compiler-sfc@3.5.22_db0@0.3.4_5b4db39832caaa4fa6da828c9ba789fd/node_modules/nuxt/dist/app/components/nuxt-route-announcer")['default']
+  'NuxtImg': typeof import("../../node_modules/.pnpm/nuxt@4.1.3_@parcel+watcher@2.5.1_@types+node@24.10.1_@vue+compiler-sfc@3.5.22_db0@0.3.4_5b4db39832caaa4fa6da828c9ba789fd/node_modules/nuxt/dist/app/components/nuxt-stubs")['NuxtImg']
+  'NuxtPicture': typeof import("../../node_modules/.pnpm/nuxt@4.1.3_@parcel+watcher@2.5.1_@types+node@24.10.1_@vue+compiler-sfc@3.5.22_db0@0.3.4_5b4db39832caaa4fa6da828c9ba789fd/node_modules/nuxt/dist/app/components/nuxt-stubs")['NuxtPicture']
+  'Icon': typeof import("../../node_modules/.pnpm/@nuxt+icon@1.15.0_magicast@0.3.5_vite@7.1.9_@types+node@24.10.1_jiti@2.6.1_lightningcss_d91a7470f0b7d900e7fd19ead4b8541a/node_modules/@nuxt/icon/dist/runtime/components/index")['default']
   'TiptapEditorContent': typeof import("@tiptap/vue-3")['EditorContent']
   'TiptapFloatingMenu': typeof import("@tiptap/vue-3")['FloatingMenu']
   'TiptapBubbleMenu': typeof import("@tiptap/vue-3")['BubbleMenu']
@@ -235,21 +236,22 @@ interface _GlobalComponents {
   'Field': typeof import("vee-validate")['Field']
   'FieldArray': typeof import("vee-validate")['FieldArray']
   'Form': typeof import("vee-validate")['Form']
-  'NuxtPage': typeof import("../../node_modules/.pnpm/nuxt@4.1.3_@parcel+watcher@2.5.1_@vue+compiler-sfc@3.5.22_db0@0.3.4_eslint@9.37.0_jiti@_62001d0ac71846b0274326caa9a952a4/node_modules/nuxt/dist/pages/runtime/page")['default']
-  'NoScript': typeof import("../../node_modules/.pnpm/nuxt@4.1.3_@parcel+watcher@2.5.1_@vue+compiler-sfc@3.5.22_db0@0.3.4_eslint@9.37.0_jiti@_62001d0ac71846b0274326caa9a952a4/node_modules/nuxt/dist/head/runtime/components")['NoScript']
-  'Link': typeof import("../../node_modules/.pnpm/nuxt@4.1.3_@parcel+watcher@2.5.1_@vue+compiler-sfc@3.5.22_db0@0.3.4_eslint@9.37.0_jiti@_62001d0ac71846b0274326caa9a952a4/node_modules/nuxt/dist/head/runtime/components")['Link']
-  'Base': typeof import("../../node_modules/.pnpm/nuxt@4.1.3_@parcel+watcher@2.5.1_@vue+compiler-sfc@3.5.22_db0@0.3.4_eslint@9.37.0_jiti@_62001d0ac71846b0274326caa9a952a4/node_modules/nuxt/dist/head/runtime/components")['Base']
-  'Title': typeof import("../../node_modules/.pnpm/nuxt@4.1.3_@parcel+watcher@2.5.1_@vue+compiler-sfc@3.5.22_db0@0.3.4_eslint@9.37.0_jiti@_62001d0ac71846b0274326caa9a952a4/node_modules/nuxt/dist/head/runtime/components")['Title']
-  'Meta': typeof import("../../node_modules/.pnpm/nuxt@4.1.3_@parcel+watcher@2.5.1_@vue+compiler-sfc@3.5.22_db0@0.3.4_eslint@9.37.0_jiti@_62001d0ac71846b0274326caa9a952a4/node_modules/nuxt/dist/head/runtime/components")['Meta']
-  'Style': typeof import("../../node_modules/.pnpm/nuxt@4.1.3_@parcel+watcher@2.5.1_@vue+compiler-sfc@3.5.22_db0@0.3.4_eslint@9.37.0_jiti@_62001d0ac71846b0274326caa9a952a4/node_modules/nuxt/dist/head/runtime/components")['Style']
-  'Head': typeof import("../../node_modules/.pnpm/nuxt@4.1.3_@parcel+watcher@2.5.1_@vue+compiler-sfc@3.5.22_db0@0.3.4_eslint@9.37.0_jiti@_62001d0ac71846b0274326caa9a952a4/node_modules/nuxt/dist/head/runtime/components")['Head']
-  'Html': typeof import("../../node_modules/.pnpm/nuxt@4.1.3_@parcel+watcher@2.5.1_@vue+compiler-sfc@3.5.22_db0@0.3.4_eslint@9.37.0_jiti@_62001d0ac71846b0274326caa9a952a4/node_modules/nuxt/dist/head/runtime/components")['Html']
-  'Body': typeof import("../../node_modules/.pnpm/nuxt@4.1.3_@parcel+watcher@2.5.1_@vue+compiler-sfc@3.5.22_db0@0.3.4_eslint@9.37.0_jiti@_62001d0ac71846b0274326caa9a952a4/node_modules/nuxt/dist/head/runtime/components")['Body']
-  'NuxtIsland': typeof import("../../node_modules/.pnpm/nuxt@4.1.3_@parcel+watcher@2.5.1_@vue+compiler-sfc@3.5.22_db0@0.3.4_eslint@9.37.0_jiti@_62001d0ac71846b0274326caa9a952a4/node_modules/nuxt/dist/app/components/nuxt-island")['default']
+  'NuxtPage': typeof import("../../node_modules/.pnpm/nuxt@4.1.3_@parcel+watcher@2.5.1_@types+node@24.10.1_@vue+compiler-sfc@3.5.22_db0@0.3.4_5b4db39832caaa4fa6da828c9ba789fd/node_modules/nuxt/dist/pages/runtime/page")['default']
+  'NoScript': typeof import("../../node_modules/.pnpm/nuxt@4.1.3_@parcel+watcher@2.5.1_@types+node@24.10.1_@vue+compiler-sfc@3.5.22_db0@0.3.4_5b4db39832caaa4fa6da828c9ba789fd/node_modules/nuxt/dist/head/runtime/components")['NoScript']
+  'Link': typeof import("../../node_modules/.pnpm/nuxt@4.1.3_@parcel+watcher@2.5.1_@types+node@24.10.1_@vue+compiler-sfc@3.5.22_db0@0.3.4_5b4db39832caaa4fa6da828c9ba789fd/node_modules/nuxt/dist/head/runtime/components")['Link']
+  'Base': typeof import("../../node_modules/.pnpm/nuxt@4.1.3_@parcel+watcher@2.5.1_@types+node@24.10.1_@vue+compiler-sfc@3.5.22_db0@0.3.4_5b4db39832caaa4fa6da828c9ba789fd/node_modules/nuxt/dist/head/runtime/components")['Base']
+  'Title': typeof import("../../node_modules/.pnpm/nuxt@4.1.3_@parcel+watcher@2.5.1_@types+node@24.10.1_@vue+compiler-sfc@3.5.22_db0@0.3.4_5b4db39832caaa4fa6da828c9ba789fd/node_modules/nuxt/dist/head/runtime/components")['Title']
+  'Meta': typeof import("../../node_modules/.pnpm/nuxt@4.1.3_@parcel+watcher@2.5.1_@types+node@24.10.1_@vue+compiler-sfc@3.5.22_db0@0.3.4_5b4db39832caaa4fa6da828c9ba789fd/node_modules/nuxt/dist/head/runtime/components")['Meta']
+  'Style': typeof import("../../node_modules/.pnpm/nuxt@4.1.3_@parcel+watcher@2.5.1_@types+node@24.10.1_@vue+compiler-sfc@3.5.22_db0@0.3.4_5b4db39832caaa4fa6da828c9ba789fd/node_modules/nuxt/dist/head/runtime/components")['Style']
+  'Head': typeof import("../../node_modules/.pnpm/nuxt@4.1.3_@parcel+watcher@2.5.1_@types+node@24.10.1_@vue+compiler-sfc@3.5.22_db0@0.3.4_5b4db39832caaa4fa6da828c9ba789fd/node_modules/nuxt/dist/head/runtime/components")['Head']
+  'Html': typeof import("../../node_modules/.pnpm/nuxt@4.1.3_@parcel+watcher@2.5.1_@types+node@24.10.1_@vue+compiler-sfc@3.5.22_db0@0.3.4_5b4db39832caaa4fa6da828c9ba789fd/node_modules/nuxt/dist/head/runtime/components")['Html']
+  'Body': typeof import("../../node_modules/.pnpm/nuxt@4.1.3_@parcel+watcher@2.5.1_@types+node@24.10.1_@vue+compiler-sfc@3.5.22_db0@0.3.4_5b4db39832caaa4fa6da828c9ba789fd/node_modules/nuxt/dist/head/runtime/components")['Body']
+  'NuxtIsland': typeof import("../../node_modules/.pnpm/nuxt@4.1.3_@parcel+watcher@2.5.1_@types+node@24.10.1_@vue+compiler-sfc@3.5.22_db0@0.3.4_5b4db39832caaa4fa6da828c9ba789fd/node_modules/nuxt/dist/app/components/nuxt-island")['default']
   'LazyAppFooter': LazyComponent<typeof import("../../app/components/app/footer.vue")['default']>
   'LazyAppHeader': LazyComponent<typeof import("../../app/components/app/header.vue")['default']>
   'LazyAppHomepageHeader': LazyComponent<typeof import("../../app/components/app/homepage-header.vue")['default']>
   'LazyAuthLoginForm': LazyComponent<typeof import("../../app/components/auth/login-form.vue")['default']>
+  'LazyCommonLanguageSwitcher': LazyComponent<typeof import("../../app/components/common/language-switcher.vue")['default']>
   'LazyContactMessageForm': LazyComponent<typeof import("../../app/components/contact/message-form.vue")['default']>
   'LazyDashboardSidebarMenu': LazyComponent<typeof import("../../app/components/dashboard/sidebar-menu.vue")['default']>
   'LazyDashboardUserDropdown': LazyComponent<typeof import("../../app/components/dashboard/user-dropdown.vue")['default']>
@@ -447,19 +449,19 @@ interface _GlobalComponents {
   'LazyUiTooltipProvider': LazyComponent<typeof import("../../app/components/ui/tooltip/provider.vue")['default']>
   'LazyUiTooltip': LazyComponent<typeof import("../../app/components/ui/tooltip/tooltip.vue")['default']>
   'LazyUiTooltipTrigger': LazyComponent<typeof import("../../app/components/ui/tooltip/trigger.vue")['default']>
-  'LazyNuxtWelcome': LazyComponent<typeof import("../../node_modules/.pnpm/nuxt@4.1.3_@parcel+watcher@2.5.1_@vue+compiler-sfc@3.5.22_db0@0.3.4_eslint@9.37.0_jiti@_62001d0ac71846b0274326caa9a952a4/node_modules/nuxt/dist/app/components/welcome.vue")['default']>
-  'LazyNuxtLayout': LazyComponent<typeof import("../../node_modules/.pnpm/nuxt@4.1.3_@parcel+watcher@2.5.1_@vue+compiler-sfc@3.5.22_db0@0.3.4_eslint@9.37.0_jiti@_62001d0ac71846b0274326caa9a952a4/node_modules/nuxt/dist/app/components/nuxt-layout")['default']>
-  'LazyNuxtErrorBoundary': LazyComponent<typeof import("../../node_modules/.pnpm/nuxt@4.1.3_@parcel+watcher@2.5.1_@vue+compiler-sfc@3.5.22_db0@0.3.4_eslint@9.37.0_jiti@_62001d0ac71846b0274326caa9a952a4/node_modules/nuxt/dist/app/components/nuxt-error-boundary.vue")['default']>
-  'LazyClientOnly': LazyComponent<typeof import("../../node_modules/.pnpm/nuxt@4.1.3_@parcel+watcher@2.5.1_@vue+compiler-sfc@3.5.22_db0@0.3.4_eslint@9.37.0_jiti@_62001d0ac71846b0274326caa9a952a4/node_modules/nuxt/dist/app/components/client-only")['default']>
-  'LazyDevOnly': LazyComponent<typeof import("../../node_modules/.pnpm/nuxt@4.1.3_@parcel+watcher@2.5.1_@vue+compiler-sfc@3.5.22_db0@0.3.4_eslint@9.37.0_jiti@_62001d0ac71846b0274326caa9a952a4/node_modules/nuxt/dist/app/components/dev-only")['default']>
-  'LazyServerPlaceholder': LazyComponent<typeof import("../../node_modules/.pnpm/nuxt@4.1.3_@parcel+watcher@2.5.1_@vue+compiler-sfc@3.5.22_db0@0.3.4_eslint@9.37.0_jiti@_62001d0ac71846b0274326caa9a952a4/node_modules/nuxt/dist/app/components/server-placeholder")['default']>
-  'LazyNuxtLink': LazyComponent<typeof import("../../node_modules/.pnpm/nuxt@4.1.3_@parcel+watcher@2.5.1_@vue+compiler-sfc@3.5.22_db0@0.3.4_eslint@9.37.0_jiti@_62001d0ac71846b0274326caa9a952a4/node_modules/nuxt/dist/app/components/nuxt-link")['default']>
-  'LazyNuxtLoadingIndicator': LazyComponent<typeof import("../../node_modules/.pnpm/nuxt@4.1.3_@parcel+watcher@2.5.1_@vue+compiler-sfc@3.5.22_db0@0.3.4_eslint@9.37.0_jiti@_62001d0ac71846b0274326caa9a952a4/node_modules/nuxt/dist/app/components/nuxt-loading-indicator")['default']>
-  'LazyNuxtTime': LazyComponent<typeof import("../../node_modules/.pnpm/nuxt@4.1.3_@parcel+watcher@2.5.1_@vue+compiler-sfc@3.5.22_db0@0.3.4_eslint@9.37.0_jiti@_62001d0ac71846b0274326caa9a952a4/node_modules/nuxt/dist/app/components/nuxt-time.vue")['default']>
-  'LazyNuxtRouteAnnouncer': LazyComponent<typeof import("../../node_modules/.pnpm/nuxt@4.1.3_@parcel+watcher@2.5.1_@vue+compiler-sfc@3.5.22_db0@0.3.4_eslint@9.37.0_jiti@_62001d0ac71846b0274326caa9a952a4/node_modules/nuxt/dist/app/components/nuxt-route-announcer")['default']>
-  'LazyNuxtImg': LazyComponent<typeof import("../../node_modules/.pnpm/nuxt@4.1.3_@parcel+watcher@2.5.1_@vue+compiler-sfc@3.5.22_db0@0.3.4_eslint@9.37.0_jiti@_62001d0ac71846b0274326caa9a952a4/node_modules/nuxt/dist/app/components/nuxt-stubs")['NuxtImg']>
-  'LazyNuxtPicture': LazyComponent<typeof import("../../node_modules/.pnpm/nuxt@4.1.3_@parcel+watcher@2.5.1_@vue+compiler-sfc@3.5.22_db0@0.3.4_eslint@9.37.0_jiti@_62001d0ac71846b0274326caa9a952a4/node_modules/nuxt/dist/app/components/nuxt-stubs")['NuxtPicture']>
-  'LazyIcon': LazyComponent<typeof import("../../node_modules/.pnpm/@nuxt+icon@1.15.0_magicast@0.3.5_vite@7.1.9_jiti@2.6.1_lightningcss@1.30.1_terser@5.44._38c2efddb21743b0d0a99f68cc9ed158/node_modules/@nuxt/icon/dist/runtime/components/index")['default']>
+  'LazyNuxtWelcome': LazyComponent<typeof import("../../node_modules/.pnpm/nuxt@4.1.3_@parcel+watcher@2.5.1_@types+node@24.10.1_@vue+compiler-sfc@3.5.22_db0@0.3.4_5b4db39832caaa4fa6da828c9ba789fd/node_modules/nuxt/dist/app/components/welcome.vue")['default']>
+  'LazyNuxtLayout': LazyComponent<typeof import("../../node_modules/.pnpm/nuxt@4.1.3_@parcel+watcher@2.5.1_@types+node@24.10.1_@vue+compiler-sfc@3.5.22_db0@0.3.4_5b4db39832caaa4fa6da828c9ba789fd/node_modules/nuxt/dist/app/components/nuxt-layout")['default']>
+  'LazyNuxtErrorBoundary': LazyComponent<typeof import("../../node_modules/.pnpm/nuxt@4.1.3_@parcel+watcher@2.5.1_@types+node@24.10.1_@vue+compiler-sfc@3.5.22_db0@0.3.4_5b4db39832caaa4fa6da828c9ba789fd/node_modules/nuxt/dist/app/components/nuxt-error-boundary.vue")['default']>
+  'LazyClientOnly': LazyComponent<typeof import("../../node_modules/.pnpm/nuxt@4.1.3_@parcel+watcher@2.5.1_@types+node@24.10.1_@vue+compiler-sfc@3.5.22_db0@0.3.4_5b4db39832caaa4fa6da828c9ba789fd/node_modules/nuxt/dist/app/components/client-only")['default']>
+  'LazyDevOnly': LazyComponent<typeof import("../../node_modules/.pnpm/nuxt@4.1.3_@parcel+watcher@2.5.1_@types+node@24.10.1_@vue+compiler-sfc@3.5.22_db0@0.3.4_5b4db39832caaa4fa6da828c9ba789fd/node_modules/nuxt/dist/app/components/dev-only")['default']>
+  'LazyServerPlaceholder': LazyComponent<typeof import("../../node_modules/.pnpm/nuxt@4.1.3_@parcel+watcher@2.5.1_@types+node@24.10.1_@vue+compiler-sfc@3.5.22_db0@0.3.4_5b4db39832caaa4fa6da828c9ba789fd/node_modules/nuxt/dist/app/components/server-placeholder")['default']>
+  'LazyNuxtLink': LazyComponent<typeof import("../../node_modules/.pnpm/nuxt@4.1.3_@parcel+watcher@2.5.1_@types+node@24.10.1_@vue+compiler-sfc@3.5.22_db0@0.3.4_5b4db39832caaa4fa6da828c9ba789fd/node_modules/nuxt/dist/app/components/nuxt-link")['default']>
+  'LazyNuxtLoadingIndicator': LazyComponent<typeof import("../../node_modules/.pnpm/nuxt@4.1.3_@parcel+watcher@2.5.1_@types+node@24.10.1_@vue+compiler-sfc@3.5.22_db0@0.3.4_5b4db39832caaa4fa6da828c9ba789fd/node_modules/nuxt/dist/app/components/nuxt-loading-indicator")['default']>
+  'LazyNuxtTime': LazyComponent<typeof import("../../node_modules/.pnpm/nuxt@4.1.3_@parcel+watcher@2.5.1_@types+node@24.10.1_@vue+compiler-sfc@3.5.22_db0@0.3.4_5b4db39832caaa4fa6da828c9ba789fd/node_modules/nuxt/dist/app/components/nuxt-time.vue")['default']>
+  'LazyNuxtRouteAnnouncer': LazyComponent<typeof import("../../node_modules/.pnpm/nuxt@4.1.3_@parcel+watcher@2.5.1_@types+node@24.10.1_@vue+compiler-sfc@3.5.22_db0@0.3.4_5b4db39832caaa4fa6da828c9ba789fd/node_modules/nuxt/dist/app/components/nuxt-route-announcer")['default']>
+  'LazyNuxtImg': LazyComponent<typeof import("../../node_modules/.pnpm/nuxt@4.1.3_@parcel+watcher@2.5.1_@types+node@24.10.1_@vue+compiler-sfc@3.5.22_db0@0.3.4_5b4db39832caaa4fa6da828c9ba789fd/node_modules/nuxt/dist/app/components/nuxt-stubs")['NuxtImg']>
+  'LazyNuxtPicture': LazyComponent<typeof import("../../node_modules/.pnpm/nuxt@4.1.3_@parcel+watcher@2.5.1_@types+node@24.10.1_@vue+compiler-sfc@3.5.22_db0@0.3.4_5b4db39832caaa4fa6da828c9ba789fd/node_modules/nuxt/dist/app/components/nuxt-stubs")['NuxtPicture']>
+  'LazyIcon': LazyComponent<typeof import("../../node_modules/.pnpm/@nuxt+icon@1.15.0_magicast@0.3.5_vite@7.1.9_@types+node@24.10.1_jiti@2.6.1_lightningcss_d91a7470f0b7d900e7fd19ead4b8541a/node_modules/@nuxt/icon/dist/runtime/components/index")['default']>
   'LazyTiptapEditorContent': LazyComponent<typeof import("@tiptap/vue-3")['EditorContent']>
   'LazyTiptapFloatingMenu': LazyComponent<typeof import("@tiptap/vue-3")['FloatingMenu']>
   'LazyTiptapBubbleMenu': LazyComponent<typeof import("@tiptap/vue-3")['BubbleMenu']>
@@ -467,17 +469,17 @@ interface _GlobalComponents {
   'LazyField': LazyComponent<typeof import("vee-validate")['Field']>
   'LazyFieldArray': LazyComponent<typeof import("vee-validate")['FieldArray']>
   'LazyForm': LazyComponent<typeof import("vee-validate")['Form']>
-  'LazyNuxtPage': LazyComponent<typeof import("../../node_modules/.pnpm/nuxt@4.1.3_@parcel+watcher@2.5.1_@vue+compiler-sfc@3.5.22_db0@0.3.4_eslint@9.37.0_jiti@_62001d0ac71846b0274326caa9a952a4/node_modules/nuxt/dist/pages/runtime/page")['default']>
-  'LazyNoScript': LazyComponent<typeof import("../../node_modules/.pnpm/nuxt@4.1.3_@parcel+watcher@2.5.1_@vue+compiler-sfc@3.5.22_db0@0.3.4_eslint@9.37.0_jiti@_62001d0ac71846b0274326caa9a952a4/node_modules/nuxt/dist/head/runtime/components")['NoScript']>
-  'LazyLink': LazyComponent<typeof import("../../node_modules/.pnpm/nuxt@4.1.3_@parcel+watcher@2.5.1_@vue+compiler-sfc@3.5.22_db0@0.3.4_eslint@9.37.0_jiti@_62001d0ac71846b0274326caa9a952a4/node_modules/nuxt/dist/head/runtime/components")['Link']>
-  'LazyBase': LazyComponent<typeof import("../../node_modules/.pnpm/nuxt@4.1.3_@parcel+watcher@2.5.1_@vue+compiler-sfc@3.5.22_db0@0.3.4_eslint@9.37.0_jiti@_62001d0ac71846b0274326caa9a952a4/node_modules/nuxt/dist/head/runtime/components")['Base']>
-  'LazyTitle': LazyComponent<typeof import("../../node_modules/.pnpm/nuxt@4.1.3_@parcel+watcher@2.5.1_@vue+compiler-sfc@3.5.22_db0@0.3.4_eslint@9.37.0_jiti@_62001d0ac71846b0274326caa9a952a4/node_modules/nuxt/dist/head/runtime/components")['Title']>
-  'LazyMeta': LazyComponent<typeof import("../../node_modules/.pnpm/nuxt@4.1.3_@parcel+watcher@2.5.1_@vue+compiler-sfc@3.5.22_db0@0.3.4_eslint@9.37.0_jiti@_62001d0ac71846b0274326caa9a952a4/node_modules/nuxt/dist/head/runtime/components")['Meta']>
-  'LazyStyle': LazyComponent<typeof import("../../node_modules/.pnpm/nuxt@4.1.3_@parcel+watcher@2.5.1_@vue+compiler-sfc@3.5.22_db0@0.3.4_eslint@9.37.0_jiti@_62001d0ac71846b0274326caa9a952a4/node_modules/nuxt/dist/head/runtime/components")['Style']>
-  'LazyHead': LazyComponent<typeof import("../../node_modules/.pnpm/nuxt@4.1.3_@parcel+watcher@2.5.1_@vue+compiler-sfc@3.5.22_db0@0.3.4_eslint@9.37.0_jiti@_62001d0ac71846b0274326caa9a952a4/node_modules/nuxt/dist/head/runtime/components")['Head']>
-  'LazyHtml': LazyComponent<typeof import("../../node_modules/.pnpm/nuxt@4.1.3_@parcel+watcher@2.5.1_@vue+compiler-sfc@3.5.22_db0@0.3.4_eslint@9.37.0_jiti@_62001d0ac71846b0274326caa9a952a4/node_modules/nuxt/dist/head/runtime/components")['Html']>
-  'LazyBody': LazyComponent<typeof import("../../node_modules/.pnpm/nuxt@4.1.3_@parcel+watcher@2.5.1_@vue+compiler-sfc@3.5.22_db0@0.3.4_eslint@9.37.0_jiti@_62001d0ac71846b0274326caa9a952a4/node_modules/nuxt/dist/head/runtime/components")['Body']>
-  'LazyNuxtIsland': LazyComponent<typeof import("../../node_modules/.pnpm/nuxt@4.1.3_@parcel+watcher@2.5.1_@vue+compiler-sfc@3.5.22_db0@0.3.4_eslint@9.37.0_jiti@_62001d0ac71846b0274326caa9a952a4/node_modules/nuxt/dist/app/components/nuxt-island")['default']>
+  'LazyNuxtPage': LazyComponent<typeof import("../../node_modules/.pnpm/nuxt@4.1.3_@parcel+watcher@2.5.1_@types+node@24.10.1_@vue+compiler-sfc@3.5.22_db0@0.3.4_5b4db39832caaa4fa6da828c9ba789fd/node_modules/nuxt/dist/pages/runtime/page")['default']>
+  'LazyNoScript': LazyComponent<typeof import("../../node_modules/.pnpm/nuxt@4.1.3_@parcel+watcher@2.5.1_@types+node@24.10.1_@vue+compiler-sfc@3.5.22_db0@0.3.4_5b4db39832caaa4fa6da828c9ba789fd/node_modules/nuxt/dist/head/runtime/components")['NoScript']>
+  'LazyLink': LazyComponent<typeof import("../../node_modules/.pnpm/nuxt@4.1.3_@parcel+watcher@2.5.1_@types+node@24.10.1_@vue+compiler-sfc@3.5.22_db0@0.3.4_5b4db39832caaa4fa6da828c9ba789fd/node_modules/nuxt/dist/head/runtime/components")['Link']>
+  'LazyBase': LazyComponent<typeof import("../../node_modules/.pnpm/nuxt@4.1.3_@parcel+watcher@2.5.1_@types+node@24.10.1_@vue+compiler-sfc@3.5.22_db0@0.3.4_5b4db39832caaa4fa6da828c9ba789fd/node_modules/nuxt/dist/head/runtime/components")['Base']>
+  'LazyTitle': LazyComponent<typeof import("../../node_modules/.pnpm/nuxt@4.1.3_@parcel+watcher@2.5.1_@types+node@24.10.1_@vue+compiler-sfc@3.5.22_db0@0.3.4_5b4db39832caaa4fa6da828c9ba789fd/node_modules/nuxt/dist/head/runtime/components")['Title']>
+  'LazyMeta': LazyComponent<typeof import("../../node_modules/.pnpm/nuxt@4.1.3_@parcel+watcher@2.5.1_@types+node@24.10.1_@vue+compiler-sfc@3.5.22_db0@0.3.4_5b4db39832caaa4fa6da828c9ba789fd/node_modules/nuxt/dist/head/runtime/components")['Meta']>
+  'LazyStyle': LazyComponent<typeof import("../../node_modules/.pnpm/nuxt@4.1.3_@parcel+watcher@2.5.1_@types+node@24.10.1_@vue+compiler-sfc@3.5.22_db0@0.3.4_5b4db39832caaa4fa6da828c9ba789fd/node_modules/nuxt/dist/head/runtime/components")['Style']>
+  'LazyHead': LazyComponent<typeof import("../../node_modules/.pnpm/nuxt@4.1.3_@parcel+watcher@2.5.1_@types+node@24.10.1_@vue+compiler-sfc@3.5.22_db0@0.3.4_5b4db39832caaa4fa6da828c9ba789fd/node_modules/nuxt/dist/head/runtime/components")['Head']>
+  'LazyHtml': LazyComponent<typeof import("../../node_modules/.pnpm/nuxt@4.1.3_@parcel+watcher@2.5.1_@types+node@24.10.1_@vue+compiler-sfc@3.5.22_db0@0.3.4_5b4db39832caaa4fa6da828c9ba789fd/node_modules/nuxt/dist/head/runtime/components")['Html']>
+  'LazyBody': LazyComponent<typeof import("../../node_modules/.pnpm/nuxt@4.1.3_@parcel+watcher@2.5.1_@types+node@24.10.1_@vue+compiler-sfc@3.5.22_db0@0.3.4_5b4db39832caaa4fa6da828c9ba789fd/node_modules/nuxt/dist/head/runtime/components")['Body']>
+  'LazyNuxtIsland': LazyComponent<typeof import("../../node_modules/.pnpm/nuxt@4.1.3_@parcel+watcher@2.5.1_@types+node@24.10.1_@vue+compiler-sfc@3.5.22_db0@0.3.4_5b4db39832caaa4fa6da828c9ba789fd/node_modules/nuxt/dist/app/components/nuxt-island")['default']>
 }
 
 declare module 'vue' {

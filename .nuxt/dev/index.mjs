@@ -1223,7 +1223,7 @@ if (!window.__NUXT_DEVTOOLS_TIME_METRIC__) {
 window.__NUXT_DEVTOOLS_TIME_METRIC__.appInit = Date.now()
 `;
 
-const _reGnqpDshyXn4Zb9Nc7xzVRI4E3cavlZaag010k7vTo = (function(nitro) {
+const _Jo7MRPhZ5SlFtcw2OCQ_P8RBrco0Uv3f8I5hBq1aE = (function(nitro) {
   nitro.hooks.hook("render:html", (htmlContext) => {
     htmlContext.head.push(`<script>${script}<\/script>`);
   });
@@ -1252,7 +1252,7 @@ const devReducers = {
   URL: (data) => data instanceof URL ? data.toString() : void 0
 };
 const asyncContext = getContext("nuxt-dev", { asyncContext: true, AsyncLocalStorage });
-const _v37OKIsfa72sO3ke3qeLIfp9OIufvrfo50Guq2VJS4c = (nitroApp) => {
+const _p1UWnp_smxlz9ChNvwhyFI0LjvvGfsRcPjXYFuu2k = (nitroApp) => {
   const handler = nitroApp.h3App.handler;
   nitroApp.h3App.handler = (event) => {
     return asyncContext.callAsync({ logs: [], event }, () => handler(event));
@@ -1322,8 +1322,8 @@ function onConsoleLog(callback) {
 }
 
 const plugins = [
-  _reGnqpDshyXn4Zb9Nc7xzVRI4E3cavlZaag010k7vTo,
-_v37OKIsfa72sO3ke3qeLIfp9OIufvrfo50Guq2VJS4c
+  _Jo7MRPhZ5SlFtcw2OCQ_P8RBrco0Uv3f8I5hBq1aE,
+_p1UWnp_smxlz9ChNvwhyFI0LjvvGfsRcPjXYFuu2k
 ];
 
 const assets = {};
@@ -1505,7 +1505,7 @@ function publicAssetsURL(...path) {
 
 const warnOnceSet = /* @__PURE__ */ new Set();
 const DEFAULT_ENDPOINT = "https://api.iconify.design";
-const _heGwO4 = defineCachedEventHandler(async (event) => {
+const _EERWnz = defineCachedEventHandler(async (event) => {
   const url = getRequestURL(event);
   if (!url)
     return createError({ status: 400, message: "Invalid icon request" });
@@ -1875,14 +1875,18 @@ async function getIslandContext(event) {
   return ctx;
 }
 
-const _lazy_5tvCd6 = () => Promise.resolve().then(function () { return renderer$1; });
+const _lazy_jpyK7A = () => Promise.resolve().then(function () { return test_get$1; });
+const _lazy_23tQsG = () => Promise.resolve().then(function () { return translate_post$1; });
+const _lazy_sOVhXx = () => Promise.resolve().then(function () { return renderer$1; });
 
 const handlers = [
   { route: '', handler: _kAPYpd, lazy: false, middleware: true, method: undefined },
-  { route: '/__nuxt_error', handler: _lazy_5tvCd6, lazy: true, middleware: false, method: undefined },
-  { route: '/api/_nuxt_icon/:collection', handler: _heGwO4, lazy: false, middleware: false, method: undefined },
+  { route: '/api/test', handler: _lazy_jpyK7A, lazy: true, middleware: false, method: "get" },
+  { route: '/api/translate', handler: _lazy_23tQsG, lazy: true, middleware: false, method: "post" },
+  { route: '/__nuxt_error', handler: _lazy_sOVhXx, lazy: true, middleware: false, method: undefined },
+  { route: '/api/_nuxt_icon/:collection', handler: _EERWnz, lazy: false, middleware: false, method: undefined },
   { route: '/__nuxt_island/**', handler: _SxA8c9, lazy: false, middleware: false, method: undefined },
-  { route: '/**', handler: _lazy_5tvCd6, lazy: true, middleware: false, method: undefined }
+  { route: '/**', handler: _lazy_sOVhXx, lazy: true, middleware: false, method: undefined }
 ];
 
 function createNitroApp() {
@@ -2135,6 +2139,58 @@ const styles = {};
 const styles$1 = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
   __proto__: null,
   default: styles
+}, Symbol.toStringTag, { value: 'Module' }));
+
+const test_get = defineEventHandler(async (event) => {
+  return { message: "Test server route working" };
+});
+
+const test_get$1 = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
+  __proto__: null,
+  default: test_get
+}, Symbol.toStringTag, { value: 'Module' }));
+
+const translate_post = defineEventHandler(async (event) => {
+  var _a;
+  const body = await readBody(event);
+  try {
+    const sourceLang = body.source || "en";
+    const targetLang = body.target || "id";
+    console.log(`Translating from ${sourceLang} to ${targetLang}:`, ((_a = body.text) == null ? void 0 : _a.substring(0, 50)) + "...");
+    const response = await fetch("https://libretranslate.de/translate", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        q: body.text,
+        source: sourceLang,
+        target: targetLang,
+        format: "html"
+      })
+    });
+    if (!response.ok) {
+      throw new Error(`Translation API error: ${response.status}`);
+    }
+    const data = await response.json();
+    console.log("Translation API response:", data);
+    return {
+      translatedText: data.translatedText,
+      success: true
+    };
+  } catch (error) {
+    console.error("Translation proxy error:", error);
+    return {
+      translatedText: body.text,
+      success: false,
+      error: error.message
+    };
+  }
+});
+
+const translate_post$1 = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
+  __proto__: null,
+  default: translate_post
 }, Symbol.toStringTag, { value: 'Module' }));
 
 function renderPayloadResponse(ssrContext) {

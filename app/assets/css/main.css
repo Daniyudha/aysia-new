@@ -259,3 +259,37 @@
 button {
   @apply cursor-pointer;
 }
+
+.header-link {
+  position: relative;
+  padding-left: 0.5rem; /* px-2 */
+  padding-bottom: 0.25rem; /* pb-1 */
+  font-size: 1.5rem; /* text-2xl */
+  color: var(--app-secondary);
+}
+
+.header-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  height: 0.25rem; /* h-1 */
+  background-color: var(--app-secondary);
+  display: none;
+  transition: all 0.3s ease;
+}
+
+.header-link:hover::after {
+  display: block;
+}
+
+/* Saat NuxtLink punya aria-current="page" */
+.header-link[aria-current="page"]::after {
+  display: block;
+}
+
+.header-link[aria-current="page"] {
+  font-style: italic;
+  font-weight: 600; /* font-semibold */
+}
