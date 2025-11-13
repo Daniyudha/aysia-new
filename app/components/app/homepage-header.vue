@@ -54,7 +54,7 @@ const { t } = useI18n()
         </li>
       </ul>
     </div>
-    <div class="absolute top-4 right-4 md:top-8 md:right-8 z-[9999]">
+    <div class="absolute top-4 right-4 md:top-8 md:right-8 z-10">
       <LanguageSwitcher />
     </div>
   </header>
