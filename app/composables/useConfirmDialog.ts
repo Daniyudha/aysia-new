@@ -64,7 +64,7 @@ export function useConfirmDialog() {
     return confirm({
       title: "Delete Item",
       message: itemName
-        ? `Are you sure you want to delete "${itemName}"? This action cannot be undone.`
+        ? `Are you sure you want to delete this item? This action cannot be undone.`
         : "Are you sure you want to delete this item? This action cannot be undone.",
       confirmText: "Delete",
       cancelText: "Cancel",

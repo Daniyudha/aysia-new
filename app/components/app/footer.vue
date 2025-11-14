@@ -25,9 +25,9 @@ defineProps<{ socialMedia?: SocialMediaResponse }>();
             <li><span class="footer-divider">|</span></li>
             <li><NuxtLink to="/contact" class="footer-link">Contact</NuxtLink></li>
 
-            <li v-if="!!$props?.socialMedia?.instagram?.link?.length">
+            <li v-if="!!$props?.socialMedia?.instagram1?.link?.length">
               <a
-                :href="$props?.socialMedia?.instagram?.link"
+                :href="$props?.socialMedia?.instagram1?.link"
                 target="_blank"
                 rel="noopener"
                 class="footer-social-link"
@@ -35,9 +35,9 @@ defineProps<{ socialMedia?: SocialMediaResponse }>();
                 <IconInstagram1 />
               </a>
             </li>
-            <li v-if="!!$props?.socialMedia?.instagram?.link?.length">
+            <li v-if="!!$props?.socialMedia?.instagram2?.link?.length">
               <a
-                :href="$props?.socialMedia?.instagram?.link"
+                :href="$props?.socialMedia?.instagram2?.link"
                 target="_blank"
                 rel="noopener"
                 class="footer-social-link"
@@ -45,9 +45,9 @@ defineProps<{ socialMedia?: SocialMediaResponse }>();
                 <IconInstagram2 />
               </a>
             </li>
-            <li v-if="!!$props?.socialMedia?.instagram?.link?.length">
+            <li v-if="!!$props?.socialMedia?.instagram3?.link?.length">
               <a
-                :href="$props?.socialMedia?.instagram?.link"
+                :href="$props?.socialMedia?.instagram3?.link"
                 target="_blank"
                 rel="noopener"
                 class="footer-social-link"

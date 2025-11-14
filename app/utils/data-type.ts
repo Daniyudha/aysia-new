@@ -81,7 +81,15 @@ export type SocialMediaPayload = {
     title: string;
     link: string;
   };
-  instagram: {
+  instagram1: {
+    title: string;
+    link: string;
+  };
+  instagram2: {
+    title: string;
+    link: string;
+  };
+  instagram3: {
     title: string;
     link: string;
   };

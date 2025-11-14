@@ -13,7 +13,9 @@ const { handleSubmit, setValues } = useForm({
   validationSchema: toTypedSchema(SocialMediaSchema),
   initialValues: {
     facebook: props?.defaultValue?.facebook?.link ?? "",
-    instagram: props?.defaultValue?.instagram?.link ?? "",
+    instagram1: props?.defaultValue?.instagram1?.link ?? "",
+    instagram2: props?.defaultValue?.instagram2?.link ?? "",
+    instagram3: props?.defaultValue?.instagram3?.link ?? "",
     tiktok: props?.defaultValue?.tiktok?.link ?? "",
     twitter: props?.defaultValue?.twitter?.link ?? "",
     youtube: props?.defaultValue?.youtube?.link ?? "",
@@ -26,7 +28,9 @@ const isViewMode = ref(true);
 watch(props, () => {
   setValues({
     facebook: props?.defaultValue?.facebook?.link ?? "",
-    instagram: props?.defaultValue?.instagram?.link ?? "",
+    instagram1: props?.defaultValue?.instagram1?.link ?? "",
+    instagram2: props?.defaultValue?.instagram2?.link ?? "",
+    instagram3: props?.defaultValue?.instagram3?.link ?? "",
     tiktok: props?.defaultValue?.tiktok?.link ?? "",
     twitter: props?.defaultValue?.twitter?.link ?? "",
     youtube: props?.defaultValue?.youtube?.link ?? "",
@@ -41,9 +45,17 @@ const onSaveCategory = handleSubmit((values) => {
       title: "facebook",
       link: values?.facebook,
     },
-    instagram: {
+    instagram1: {
       title: "instagram",
-      link: values?.instagram,
+      link: values?.instagram1,
+    },
+    instagram2: {
+      title: "instagram",
+      link: values?.instagram2,
+    },
+    instagram3: {
+      title: "instagram",
+      link: values?.instagram3,
     },
     tiktok: {
       title: "tiktok",

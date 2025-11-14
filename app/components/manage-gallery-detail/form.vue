@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import { journeyDetailFetcher } from '~/repository/modules/journey-detail';
+import { journeyFetcher } from '~/repository/modules/journey';
+import { categoryFetcher } from '~/repository/modules/category';
 import { createObjectURL } from '~/utils/file-upload';
 
 import { JourneyGalleryDetailSchema } from './schema';
@@ -17,6 +19,17 @@ const emits = defineEmits<{
 
 const isSubmitting = ref(false);
 const route = useRoute();
+
+// Fetch categories for dropdown
+const { data: categories } = await useAsyncData(
+  'categories',
+  async () => {
+    const response = await categoryFetcher().get({ page: 1, limit: 100 });
+    return response?.data || [];
+  },
+  { server: false }
+);
+
 const { handleSubmit, setFieldValue, values } = useForm({
   validationSchema: toTypedSchema(JourneyGalleryDetailSchema),
   initialValues: {
@@ -24,6 +37,7 @@ const { handleSubmit, setFieldValue, values } = useForm({
     type: props?.defaultValue?.is_video === true ? 'video' : 'image',
     title: props?.defaultValue?.title || '-',
     description: props?.defaultValue?.description || '-',
+    gallery_category_id: props?.defaultValue?.gallery_category_id || '',
     thumbnail: props?.isHeader === true ? props?.defaultValue?.thumbnail || '' : props?.defaultValue?.thumbnail_url || '',
     thumbnailUrl: props?.isHeader === true ? props?.defaultValue?.thumbnail || '' : props?.defaultValue?.thumbnail_url || '',
     videoUrl: props?.defaultValue?.video_url || '',
@@ -89,6 +103,24 @@ function updateJourneyDetail(id: string, payload: JourneyDetailsPayload) {
     });
 }
 
+function updateJourney(id: string, payload: any) {
+  journeyFetcher()
+    .updateById(id, payload)
+    .then(() => {
+      useSonner.success('Success to update journey');
+      emits('onRefreshData');
+      emits('onCloseModal');
+    })
+    .catch((err) => {
+      useSonner.error(
+        (err as any)?.response?._data?.message || 'Fail to save data.'
+      );
+    })
+    .finally(() => {
+      isSubmitting.value = false;
+    });
+}
+
 function createJourneyDetail(payload: JourneyDetailsPayload) {
   journeyDetailFetcher()
     .create(payload)
@@ -107,25 +139,94 @@ function createJourneyDetail(payload: JourneyDetailsPayload) {
     });
 }
 
+function createJourneyDetailNoEmit(payload: JourneyDetailsPayload): Promise<void> {
+  return journeyDetailFetcher()
+    .create(payload)
+    .then(() => {
+      // No emits here - we'll handle them in the parent function
+    })
+    .catch((err) => {
+      throw err; // Re-throw to handle in Promise.all
+    });
+}
+
 const handleSaveDetailJourney = handleSubmit((values) => {
   const galleryId = route.params?.galleryId as string;
   if (!galleryId?.length) {
     return;
   }
   isSubmitting.value = true;
-  const payload = {
-    journey_id: galleryId,
-    is_video: values?.type === 'video',
-    title: values?.title,
-    description: values?.description,
-    content: values?.description,
-    thumbnail: values?.thumbnail,
-    video_url: values?.videoUrl,
-  } as JourneyDetailsPayload;
+  
+  if (props?.isHeader) {
+    // Handle journey (gallery) update with category
+    const payload = {
+      title: values?.title,
+      description: values?.description,
+      gallery_category_id: values?.gallery_category_id,
+      thumbnail: values?.thumbnail,
+    };
 
-  props?.defaultValue?.id
-    ? updateJourneyDetail(props?.defaultValue?.id, payload)
-    : createJourneyDetail(payload);
+    // For header updates, we use the journeyFetcher
+    if (props?.defaultValue?.id) {
+      updateJourney(props?.defaultValue?.id, payload);
+    } else {
+      // This shouldn't happen for header updates, but handle gracefully
+      useSonner.error('Cannot create gallery from this form');
+      isSubmitting.value = false;
+    }
+  } else {
+    // Handle journey detail update (multiple files)
+    const thumbnailFiles = Array.isArray(values?.thumbnail) ? values.thumbnail : [values?.thumbnail].filter(Boolean);
+    
+    // Create multiple journey details for each file
+    if (Array.isArray(values?.thumbnail) && values.thumbnail.length > 0) {
+      // Create a journey detail for each file using the no-emit version
+      const createPromises = thumbnailFiles.map(file => {
+        const payload = {
+          journey_id: galleryId,
+          is_video: values?.type === 'video',
+          title: values?.title,
+          description: values?.description,
+          content: values?.description,
+          thumbnail: file,
+          video_url: values?.videoUrl,
+        } as JourneyDetailsPayload;
+        
+        return createJourneyDetailNoEmit(payload);
+      });
+      
+      // Wait for all uploads to complete
+      Promise.all(createPromises)
+        .then(() => {
+          useSonner.success(`Successfully uploaded ${thumbnailFiles.length} files`);
+          emits('onRefreshData');
+          emits('onCloseModal');
+        })
+        .catch((err) => {
+          useSonner.error(
+            (err as any)?.response?._data?.message || 'Fail to save some files.'
+          );
+        })
+        .finally(() => {
+          isSubmitting.value = false;
+        });
+    } else {
+      // Handle single file upload (backward compatibility)
+      const payload = {
+        journey_id: galleryId,
+        is_video: values?.type === 'video',
+        title: values?.title,
+        description: values?.description,
+        content: values?.description,
+        thumbnail: thumbnailFiles[0],
+        video_url: values?.videoUrl,
+      } as JourneyDetailsPayload;
+
+      props?.defaultValue?.id
+        ? updateJourneyDetail(props?.defaultValue?.id, payload)
+        : createJourneyDetail(payload);
+    }
+  }
 });
 
 function resetImage() {
@@ -263,6 +364,24 @@ const removeImage = (index: number) => {
         </template>
 
         <template v-if="isHeader">
+          <Field v-slot="{ componentField }" name="gallery_category_id">
+            <UiFormItem label="Category" class="mb-6">
+              <UiSelect v-bind="componentField">
+                <UiSelectTrigger class="w-full">
+                  <UiSelectValue placeholder="Select a category" />
+                </UiSelectTrigger>
+                <UiSelectContent>
+                  <UiSelectItem
+                    v-for="category in categories"
+                    :key="category.id"
+                    :value="category.id"
+                  >
+                    {{ category.name }}
+                  </UiSelectItem>
+                </UiSelectContent>
+              </UiSelect>
+            </UiFormItem>
+          </Field>
           <Field v-slot="{ componentField }" name="title">
             <UiFormItem label="Title" class="mb-6">
               <UiInput v-bind="componentField" placeholder="Enter title" />
