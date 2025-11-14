@@ -46,40 +46,28 @@ const { handleSubmit, setFieldValue, values } = useForm({
 
 const thumbnailUrl = computed(() => {
   try {
-    // Handle thumbnail URL based on isHeader condition in update mode
-    if (props?.mode === 'update') {
-      if (props?.isHeader === true) {
-        // Use thumbnail value from props for image display when isHeader is true
-        const url = props?.isHeader === true ? props?.defaultValue?.thumbnail || values?.thumbnailUrl : props?.defaultValue?.thumbnail_url || values?.thumbnailUrl;
-        if (!url) {
-          return '';
-        }
-        if (url.startsWith('blob')) {
-          return url;
-        }
-        return useRuntimeConfig().public.apiBase + url;
-      } else {
-        // Use thumbnailUrl for image display when isHeader is false or undefined
-        const url = values?.thumbnailUrl;
-        if (!url) {
-          return '';
-        }
-        if (url.startsWith('blob')) {
-          return url;
-        }
-        return useRuntimeConfig().public.apiBase + url;
-      }
+    // Handle thumbnail URL based on isHeader condition and mode
+    let url = '';
+    
+    if (props?.isHeader === true) {
+      // For header images, use thumbnail value
+      url = values?.thumbnailUrl || props?.defaultValue?.thumbnail || '';
     } else {
-      // Default behavior for create mode
-      const url = values?.thumbnailUrl;
-      if (!url) {
-        return '';
-      }
-      if (url.startsWith('blob')) {
-        return url;
-      }
-      return useRuntimeConfig().public.apiBase + url;
+      // For journey details, use thumbnailUrl or thumbnail_url
+      url = values?.thumbnailUrl || props?.defaultValue?.thumbnail_url || '';
     }
+    
+    if (!url) {
+      return '';
+    }
+    
+    // If it's a blob URL (new upload preview) or 'multiple' for multiple files, return as-is
+    if (url.startsWith('blob:') || url === 'multiple') {
+      return url;
+    }
+    
+    // For server URLs, prepend the API base URL
+    return useRuntimeConfig().public.apiBase + url;
   } catch {
     return '';
   }
@@ -90,8 +78,12 @@ function updateJourneyDetail(id: string, payload: JourneyDetailsPayload) {
     .updateById(id, payload)
     .then(() => {
       useSonner.success('Success to update journey detail');
+      // Force refresh data to update preview
       emits('onRefreshData');
-      emits('onCloseModal');
+      // Close modal after a brief delay to ensure refresh happens
+      setTimeout(() => {
+        emits('onCloseModal');
+      }, 500);
     })
     .catch((err) => {
       useSonner.error(
@@ -159,12 +151,20 @@ const handleSaveDetailJourney = handleSubmit((values) => {
   
   if (props?.isHeader) {
     // Handle journey (gallery) update with category
-    const payload = {
+    const payload: any = {
       title: values?.title,
       description: values?.description,
       gallery_category_id: values?.gallery_category_id,
-      thumbnail: values?.thumbnail,
     };
+
+    // Include thumbnail if a new file is provided (File instance) or if it's different from original
+    const hasNewThumbnail = values?.thumbnail &&
+                           (values.thumbnail instanceof File ||
+                            values.thumbnail !== props?.defaultValue?.thumbnail);
+    
+    if (hasNewThumbnail) {
+      payload.thumbnail = values?.thumbnail;
+    }
 
     // For header updates, we use the journeyFetcher
     if (props?.defaultValue?.id) {
@@ -212,15 +212,23 @@ const handleSaveDetailJourney = handleSubmit((values) => {
         });
     } else {
       // Handle single file upload (backward compatibility)
-      const payload = {
+      const payload: any = {
         journey_id: galleryId,
         is_video: values?.type === 'video',
         title: values?.title,
         description: values?.description,
         content: values?.description,
-        thumbnail: thumbnailFiles[0],
         video_url: values?.videoUrl,
-      } as JourneyDetailsPayload;
+      };
+
+      // Include thumbnail if a new file is provided (File instance) or if it's different from original
+      const hasNewThumbnail = thumbnailFiles[0] &&
+                             (thumbnailFiles[0] instanceof File ||
+                              thumbnailFiles[0] !== props?.defaultValue?.thumbnail);
+      
+      if (hasNewThumbnail) {
+        payload.thumbnail = thumbnailFiles[0];
+      }
 
       props?.defaultValue?.id
         ? updateJourneyDetail(props?.defaultValue?.id, payload)
@@ -313,7 +321,11 @@ const removeImage = (index: number) => {
                     }
                   "
                 />
-                <p v-if="!isHeader" class="text-sm text-gray-500 mt-2">
+                <!-- Display only the error message text -->
+                <div v-if="errors?.length" class="text-red-500 text-sm mt-2">
+                  {{ errors[0] }}
+                </div>
+                <p v-if="!isHeader && !errors?.length" class="text-sm text-gray-500 mt-2">
                   You can upload multiple images at once
                 </p>
               </template>

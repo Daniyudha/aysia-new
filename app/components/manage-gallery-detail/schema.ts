@@ -11,8 +11,8 @@ export const JourneyGalleryDetailSchema = z.object({
   thumbnail: z.any().optional(),
   videoUrl: z.string().optional(),
 }).superRefine(async (data, ctx) => {
-  // For image type, require thumbnail
-  if (data.type === "image") {
+  // For image type, require thumbnail only in create mode
+  if (data.type === "image" && data.mode === "create") {
     // Check if we have any thumbnails (single file or array)
     const hasThumbnails = Array.isArray(data.thumbnail)
       ? data.thumbnail.length > 0
@@ -24,7 +24,7 @@ export const JourneyGalleryDetailSchema = z.object({
       ctx.addIssue({
         code: "custom",
         path: ["thumbnail"],
-        message: "Thumbnail is required for image type.",
+        message: "Thumbnail is required for image type in create mode.",
       });
     }
   }
@@ -38,22 +38,42 @@ export const JourneyGalleryDetailSchema = z.object({
     });
   }
   
+  // Validate thumbnail file if it's provided and it's a File object (new upload)
+  // This applies to both create and update modes when a new file is selected
   if (data.thumbnail) {
     // Handle both single file and array of files
     if (Array.isArray(data.thumbnail)) {
-      // Skip validation for multiple files to allow backend processing
-      // The backend will handle the actual file validation
-    } else {
-      // Single file validation
-      const file = data.thumbnail as File;
-      const isValidImage = await ImageUploadSchema.safeParseAsync(file);
-      if (!isValidImage.success) {
-        ctx.addIssue({
-          code: "custom",
-          path: ["thumbnail"],
-          message: isValidImage.error?.message || "Invalid image file.",
-        });
+      // For multiple files, validate each file that is a File object
+      for (const file of data.thumbnail) {
+        if (file instanceof File) {
+          const isValidImage = await ImageUploadSchema.safeParseAsync(file);
+          if (!isValidImage.success) {
+            // Extract just the first error message from the validation errors
+            const firstError = isValidImage.error.issues[0]?.message || "Invalid image file.";
+            ctx.addIssue({
+              code: "custom",
+              path: ["thumbnail"],
+              message: firstError,
+            });
+            break; // Stop after first error
+          }
+        }
       }
+    } else {
+      // Single file validation - only validate if it's a File object
+      if (data.thumbnail instanceof File) {
+        const isValidImage = await ImageUploadSchema.safeParseAsync(data.thumbnail);
+        if (!isValidImage.success) {
+          // Extract just the first error message from the validation errors
+          const firstError = isValidImage.error.issues[0]?.message || "Invalid image file.";
+          ctx.addIssue({
+            code: "custom",
+            path: ["thumbnail"],
+            message: firstError,
+          });
+        }
+      }
+      // If it's a string (existing image URL), skip validation
     }
   }
 });
