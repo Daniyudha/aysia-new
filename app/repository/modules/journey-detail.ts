@@ -16,11 +16,17 @@ export function journeyRepository<T>(fetch: FetchType<T>) {
       formData.append('title', payload.title);
       formData.append('content', payload.content);
       formData.append('description', payload.description);
-      formData.append('is_video', payload.is_video ? 1 : 0);
-      formData.append('video_url', payload.video_url);
+
+      // FIX for boolean → convert to string
+      formData.append('is_video', payload.is_video ? '1' : '0');
+
+      // FIX for string | null → fallback to empty string
+      formData.append('video_url', payload.video_url ?? '');
+
       if (payload?.thumbnail) {
         formData.append('thumbnail', payload.thumbnail);
       }
+
       return fetch(API_URL_LIST.JOURNEY_DETAIL, {
         method: 'POST',
         headers: {
@@ -39,11 +45,15 @@ export function journeyRepository<T>(fetch: FetchType<T>) {
       formData.append('title', payload.title);
       formData.append('content', payload.content);
       formData.append('description', payload.description);
-      formData.append('is_video', payload.is_video);
-      formData.append('video_url', payload.video_url);
+
+      // FIX
+      formData.append('is_video', payload.is_video ? '1' : '0');
+      formData.append('video_url', payload.video_url ?? '');
+
       if (payload?.thumbnail) {
         formData.append('thumbnail', payload.thumbnail);
       }
+
       return fetch(API_URL_LIST.JOURNEY_DETAIL_BY_ID(journeyDetailId), {
         method: 'PUT',
         headers: {

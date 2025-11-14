@@ -17,6 +17,23 @@ const { data } = useAsyncData(
   () => journeyFetcher().getAll({ limit: 10 }),
   { lazy: true }
 );
+
+// Filter items to only show human category
+const humanCategoryItems = computed(() => {
+  const items = data.value?.data || [];
+
+  return items
+    .filter(item =>
+      item.gallery_category_name?.toLowerCase() === "human"
+    )
+    .sort((a, b) => {
+      const dateA = new Date(a.created_at || 0).getTime();
+      const dateB = new Date(b.created_at || 0).getTime();
+      return dateB - dateA;
+    })
+    .slice(0, 10);
+});
+
 </script>
 
 <template>
@@ -24,8 +41,8 @@ const { data } = useAsyncData(
     <!-- ✅ Hero -->
     <ClientOnly>
       <HomepageHeroCarousel
-        :key="`hero-carousel-${data?.data?.length || 0}`"
-        :items="data?.data ?? []"
+        :key="`hero-carousel-${humanCategoryItems?.length || 0}`"
+        :items="humanCategoryItems"
       />
     </ClientOnly>
 
@@ -135,7 +152,7 @@ const { data } = useAsyncData(
           <!-- Lathmar Holi -->
           <div class="rounded-2xl overflow-hidden shadow-md">
             <img
-              src="/images/lathmar-holi.png"
+              src="/images/lathmar-holi.jpg"
               alt="Lathmar Holi, India"
               class="w-full h-56 object-cover"
             />
