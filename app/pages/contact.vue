@@ -28,22 +28,22 @@ useHead(() => ({
 <template>
   <section class="py-6">
     <div class="app-container">
-      <div class="flex flex-col lg:flex-row gap-6 justify-between">
+      <div class="grid grid-cols-2 gap-8 justify-between items-center px-0">
         <!-- ✅ Gambar -->
-        <div class="lg:w-5/12">
+        <div class="col-span-2 lg:col-span-1">
           <img
             src="/images/contact-image-001.png"
             alt="Aysia Contact"
             width="530"
             height="707"
-            class="w-full h-auto object-cover object-top"
+            class="w-full h-auto object-cover object-top rounded-lg"
           />
         </div>
 
         <!-- ✅ Konten teks -->
-        <div class="lg:w-6/12 flex flex-col justify-center">
+        <div class="col-span-2 lg:col-span-1 flex flex-col justify-center">
           <h1
-            class="mb-6 text-[4rem] font-medium leading-[100%] tracking-[0%] text-app-secondary"
+            class="mb-6 text-[3rem] font-medium leading-[100%] tracking-[0%] text-app-secondary"
           >
             {{ t('contact.heading') }}
           </h1>
@@ -54,7 +54,7 @@ useHead(() => ({
           </div>
 
           <!-- ✅ Sosial media -->
-          <ul class="flex items-center space-x-6 flex-wrap mb-6">
+          <ul class="flex items-center space-x-6 space-y-4 md:space-y-0 flex-wrap mb-6">
             <li v-if="!!sharedData?.instagram1?.link?.length">
               <NuxtLink
                 :to="sharedData.instagram1.link"

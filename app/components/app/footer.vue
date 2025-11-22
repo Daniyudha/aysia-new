@@ -25,6 +25,49 @@ defineProps<{ socialMedia?: SocialMediaResponse }>();
             <li><span class="footer-divider">|</span></li>
             <li><NuxtLink to="/contact" class="footer-link">Contact</NuxtLink></li>
 
+            <li v-if="!!$props?.socialMedia?.instagram1?.link?.length" class="hidden lg:inline-block">
+              <a
+                :href="$props?.socialMedia?.instagram1?.link"
+                target="_blank"
+                rel="noopener"
+                class="footer-social-link"
+              >
+                <IconInstagram1 />
+              </a>
+            </li>
+            <li v-if="!!$props?.socialMedia?.instagram2?.link?.length" class="hidden lg:inline-block">
+              <a
+                :href="$props?.socialMedia?.instagram2?.link"
+                target="_blank"
+                rel="noopener"
+                class="footer-social-link"
+              >
+                <IconInstagram2 />
+              </a>
+            </li>
+            <li v-if="!!$props?.socialMedia?.instagram3?.link?.length" class="hidden lg:inline-block">
+              <a
+                :href="$props?.socialMedia?.instagram3?.link"
+                target="_blank"
+                rel="noopener"
+                class="footer-social-link"
+              >
+                <IconInstagram3 />
+              </a>
+            </li>
+            <li v-if="!!$props?.socialMedia?.tiktok?.link?.length" class="hidden lg:inline-block">
+              <a
+                :href="$props?.socialMedia?.tiktok?.link"
+                target="_blank"
+                rel="noopener"
+                class="footer-social-link"
+              >
+                <IconTiktok />
+              </a>
+            </li>
+          </ul>
+
+          <ul class="flex flex-wrap justify-center md:justify-end items-center gap-5 md:gap-7 mb-3 lg:hidden">
             <li v-if="!!$props?.socialMedia?.instagram1?.link?.length">
               <a
                 :href="$props?.socialMedia?.instagram1?.link"

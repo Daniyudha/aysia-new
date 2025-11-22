@@ -8,29 +8,37 @@ defineProps<{
 </script>
 
 <template>
-  <section class="pb-14">
-    <div class="app-container">
-      <div class="flex flex-col lg:flex-row md:justify-between gap-4">
-        <div class="lg:w-5/12">
+  <section class="pb-12">
+  <div class="app-container">
+    <div class="grid grid-cols-2 gap-10">
+
+      <!-- IMAGE -->
+      <div class="col-span-2 lg:col-span-1">
+        <div class=" overflow-hidden rounded-md">
           <img
             :src="`${useRuntimeConfig().public.apiBase}${$props.image}`"
             :alt="$props?.title"
-            class="w-full h-auto"
+            class=" object-cover"
           >
         </div>
-        <div class="lg:w-6/12 text-app-secondary">
-          <p class="text-[2.25rem]">
-            {{ $props?.category }}
-          </p>
-          <h1 class="mb-8 font-medium text-[8rem] leading-[100%] tracking-[0]">
-            {{ $props?.title }}
-          </h1>
-          <div
-            class="prose font-sans font-thin space-y-4"
-            v-html="$props.description"
-          />
-        </div>
       </div>
+
+      <!-- TEXT -->
+      <div class="col-span-2 lg:col-span-1 flex flex-col justify-center">
+        <p class="text-[2rem] text-app-secondary">{{ $props?.category }}</p>
+
+        <h1 class="mb-4 font-medium text-[4rem] leading-[100%]">
+          {{ $props?.title }}
+        </h1>
+
+        <div
+          class="prose font-sans font-thin space-y-4"
+          v-html="$props.description"
+        />
+      </div>
+
     </div>
-  </section>
+  </div>
+</section>
+
 </template>

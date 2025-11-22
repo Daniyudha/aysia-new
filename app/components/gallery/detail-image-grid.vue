@@ -211,29 +211,28 @@ const selectedEmbedUrl = computed(() => {
       :collections="[]"
       @update:model-value="(isOpen) => { if (!isOpen) closeDialog(); }"
     >
-      <template #control>
-<div class="flex items-center gap-6 bg-black text-app-primary px-6 py-3 rounded-lg w-full justify-between">
+      <template #control-left>
+  <button
+    type="button"
+    class="control-button"
+    :disabled="showDialogState.selectedJourneyIndex === 0"
+    @click="handleChangeImage(showDialogState.selectedJourneyIndex - 1)"
+  >
+    <Icon name="heroicons:chevron-left" />
+  </button>
+</template>
 
-          <button
-            type="button"
-            class="control-button"
-            :disabled="showDialogState.selectedJourneyIndex === 0"
-            @click="handleChangeImage(showDialogState.selectedJourneyIndex - 1)"
-          >
-            <Icon name="heroicons:arrow-long-left" />
-            <span class="inline-block">{{ t('gallery.previous') }}</span>
-          </button>
-          <button
-            type="button"
-            class="control-button"
-            :disabled=" showDialogState.selectedJourneyIndex === props.journeyDetailItems.length - 1 "
-            @click="handleChangeImage(showDialogState.selectedJourneyIndex + 1)"
-          >
-            <span class="inline-block">{{ t('gallery.next') }}</span>
-            <Icon name="heroicons:arrow-long-left" class="rotate-180" />
-          </button>
-        </div>
-      </template>
+<template #control-right>
+  <button
+    type="button"
+    class="control-button"
+    :disabled="showDialogState.selectedJourneyIndex === props.journeyDetailItems.length - 1"
+    @click="handleChangeImage(showDialogState.selectedJourneyIndex + 1)"
+  >
+    <Icon name="heroicons:chevron-right" />
+  </button>
+</template>
+
     </GalleryDetailDialog>
   </template>
 </template>

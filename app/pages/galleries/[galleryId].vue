@@ -28,7 +28,13 @@ const galleryId = computed(() => route.params.galleryId);
 const { data, pending } = useAsyncData("journey detail", async () => {
   if (!galleryId.value)
     return;
-  return Promise.all([journeyFetcher().getById(galleryId?.value?.toString()), journeyDetailFetcher().getByJourneyId({ journeyId: galleryId.value?.toString() })]);
+  const [journeyData, journeyDetailData] = await Promise.all([
+    journeyFetcher().getById(galleryId?.value?.toString()),
+    journeyDetailFetcher().getByJourneyId({ journeyId: galleryId.value?.toString(), limit: 1000 })
+  ]);
+  // Reverse the journey detail array to show newest items at the bottom in public gallery
+  const reversedJourneyDetailData = journeyDetailData ? [...journeyDetailData].reverse() : journeyDetailData;
+  return { journey: journeyData, details: reversedJourneyDetailData };
 }, {
   watch: [galleryId],
   lazy: true,
@@ -37,10 +43,10 @@ const { data, pending } = useAsyncData("journey detail", async () => {
 
 <template>
   <GalleryDetailHero
-    :image="data ? data[0]?.thumbnail : ''"
-    :category="data ? data[0]?.gallery_category_name : ''"
-    :title="data ? data[0]?.title : ''"
-    :description="data ? data[0]?.description : ''"
+    :image="data?.journey?.thumbnail ?? ''"
+    :category="data?.journey?.gallery_category_name ?? ''"
+    :title="data?.journey?.title ?? ''"
+    :description="data?.journey?.description ?? ''"
   />
-  <DetailImageGrid :journey-detail-items="data ? data[1] : []" :pending="pending" />
+  <DetailImageGrid :journey-detail-items="data?.details ?? []" :pending="pending" />
 </template>

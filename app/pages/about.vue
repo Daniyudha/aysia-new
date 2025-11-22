@@ -29,7 +29,7 @@ const sharedData = inject<SocialMediaResponse | null>("socialMedia");
 <template>
   <section class="py-6">
     <div class="app-container">
-      <div class="flex flex-col lg:flex-row gap-6 justify-between">
+      <div class="flex flex-col lg:flex-row gap-6 justify-between items-center">
         <div class="lg:w-5/12">
           <img
             v-if="!!data?.data?.[0]?.thumbnail?.length"
@@ -37,15 +37,15 @@ const sharedData = inject<SocialMediaResponse | null>("socialMedia");
             :alt="data?.data?.[0]?.title"
             width="530"
             height="707"
-            class="w-full h-auto object-cover object-top"
+            class="w-full h-auto object-cover object-top rounded-lg"
           >
         </div>
         <div class="lg:w-6/12 flex flex-col justify-center">
-          <p class="text-[2.25rem] text-app-secondary font-light">
+          <p class="text-[1.5rem] md:text-[2rem] text-app-secondary font-light">
             About
           </p>
           <h1
-            class="mb-6 text-[5rem] md:text-[7rem] font-medium leading-[100%] tracking-[0%] text-app-secondary"
+            class="mb-6 text-[3rem] md:text-[6rem] font-medium leading-[100%] tracking-[0%] text-app-secondary"
           >
             {{ data?.data?.[0]?.title ?? "Asyia Linggarwati" }}
           </h1>

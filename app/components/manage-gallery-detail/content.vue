@@ -22,9 +22,12 @@ const { data: journeyDetailData, pending: journeyDetailPending, error: journeyDe
     if (!props?.galleryId) {
       return;
     }
-    return journeyDetailFetcher().getByJourneyId({
+    const data = await journeyDetailFetcher().getByJourneyId({
       journeyId: props?.galleryId,
+      limit: 1000, // Increased limit to show all items
     });
+    // Reverse the array to show newest items at the bottom
+    return data ? [...data].reverse() : data;
   },
   { lazy: true, watch: [props] },
 );

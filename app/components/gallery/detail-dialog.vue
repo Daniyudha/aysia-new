@@ -90,74 +90,69 @@ function getEmbedUrl(url: string): string {
   <UiDialog v-model:open="open">
 
     <!-- FLOATING TITLE (OUTSIDE DIALOG) -->
-    <div
-      v-if="collections && collections.length > 0"
-      class="fixed top-6 left-6 z-[9999] text-white drop-shadow-lg"
-    >
+    <div v-if="collections && collections.length > 0" class="fixed top-6 left-6 z-[9999] text-white drop-shadow-lg">
       <h1 class="text-3xl font-semibold">
         {{ collections[0]?.title }}
       </h1>
     </div>
 
     <!-- FLOATING CLOSE BUTTON (OUTSIDE DIALOG) -->
-    <UiDialogClose
-      class="fixed top-6 right-6 z-[9999] text-white"
-    >
+    <!-- <UiDialogClose class="fixed top-6 right-6 z-[9999] text-white">
       <Icon name="heroicons:x-mark-16-solid" class="w-10 h-10" />
-    </UiDialogClose>
+    </UiDialogClose> -->
 
     <!-- DIALOG CONTENT -->
-    <UiDialogContent
-      class="!p-0 !m-0 bg-transparent border-none overflow-visible 
-             flex items-center justify-center [&>button]:hidden"
-    >
+    <UiDialogContent class="!p-0 bg-transparent border-none shadow-none 
+         max-w-none w-screen h-screen flex items-center justify-center">
       <template #overlay>
-        <UiDialogOverlay class="bg-black/80" />
+        <UiDialogOverlay class="bg-black/10 backdrop-blur-sm fixed inset-0" />
       </template>
 
       <!-- WRAPPER UTAMA -->
-      <div class="relative inline-block px-4 md:px-0">
+      <div class="relative w-full h-full flex items-center justify-center">
 
-        <!-- MEDIA -->
-        <div class="max-h-[90vh]">
-          <template v-if="isVideo && videoUrl">
+        <!-- WRAPPER -->
+        <div class="w-full px-4 xl:px-0">
 
-            <!-- YOUTUBE -->
-            <iframe
-              v-if="isYouTubeUrl(videoUrl)"
-              :src="getEmbedUrl(videoUrl)"
-              class="max-h-[90vh] w-full aspect-9/16 rounded-lg object-contain"
-              allowfullscreen
-            ></iframe>
+          <!-- MEDIA WRAPPER -->
+          <div class="w-full h-screen flex items-center justify-center">
 
-            <!-- DIRECT MP4 -->
-            <video
-              v-else
-              :src="videoUrl"
-              autoplay muted loop playsinline
-              class="max-h-[90vh] w-full aspect-16/9 rounded-lg object-contain"
-            ></video>
+            <template v-if="isVideo && videoUrl">
+              <iframe v-if="isYouTubeUrl(videoUrl)" :src="getEmbedUrl(videoUrl)"
+                class="w-full h-full rounded-xl object-contain"></iframe>
 
-          </template>
+              <video v-else :src="videoUrl" autoplay muted loop playsinline
+                class="w-full h-full rounded-xl object-contain"></video>
+            </template>
 
-          <!-- IMAGE -->
-          <template v-else>
-            <img
-              :src="`${useRuntimeConfig().public.apiBase}${image}`"
-              :alt="title"
-              class="max-h-[90vh] rounded-lg object-contain"
-            />
-          </template>
-        </div>
+            <template v-else>
+              <img :src="`${useRuntimeConfig().public.apiBase}${image}`" :alt="title"
+                class="w-full h-full rounded-xl object-contain" />
+            </template>
 
-        <!-- CONTROL BAR -->
-        <div class="w-full flex justify-center mt-3">
-          <slot name="control" />
+          </div>
+
+          <!-- CONTROL AS LIGHTBOX SIDE BUTTONS -->
+          <div class="absolute inset-0 flex items-center justify-between px-6 pointer-events-none">
+
+            <!-- LEFT CONTROL -->
+            <div class="pointer-events-auto text-white py-6 hover:background-blur-sm hover:bg-white/30 rounded-lg">
+              <slot name="control-left" />
+            </div>
+
+            <!-- RIGHT CONTROL -->
+            <div class="pointer-events-auto text-white py-6 hover:background-blur-sm hover:bg-white/30 rounded-lg">
+              <slot name="control-right" />
+            </div>
+
+          </div>
+
+
         </div>
 
       </div>
-    </UiDialogContent>
 
+    </UiDialogContent>
   </UiDialog>
 </template>
 
@@ -166,30 +161,3 @@ function getEmbedUrl(url: string): string {
 <style scoped>
 @reference "../../assets/css/main.css";
 </style>
-
-
-<!-- <div
-  class="md:w-1/2 flex flex-col justify-center p-6 pr-10 py-10 md:overflow-y-auto relative bg-app-primary"
->
-  <UiDialogClose
-    class="absolute top-4 right-4 text-app-secondary outline-none"
-  >
-    <Icon
-      name="heroicons:x-mark-16-solid"
-      class="!w-8 !h-8 inline-block"
-    />
-  </UiDialogClose>
-
-  <UiDialogHeader class="contents space-y-0 text-left">
-    <UiDialogTitle
-      class="font-medium mb-2 !text-[4rem] leading-[100%] tracking-[0%]"
-    >
-      {{ $props.title }}
-    </UiDialogTitle>
-    <UiDialogDescription class="hidden">
-      {{ $props.title }}
-    </UiDialogDescription>
-  </UiDialogHeader>
-
-  <div class="space-y-6" v-html="$props?.content" />
-</div> -->

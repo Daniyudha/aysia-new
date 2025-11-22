@@ -8,14 +8,14 @@
       :title="t('language.switch')"
     >
       <span
-        class="w-16 h-8 border-2 border-app-secondary rounded-full flex items-center transition-colors duration-200"
+        class="w-12 h-6 border-2 border-app-secondary rounded-full flex items-center transition-colors duration-200"
         :class="{ 'bg-app-primary': currentLanguage === 'id', 'bg-app-secondary': currentLanguage === 'en' }"
       >
         <span
-          class="w-7 h-7 bg-white rounded-full shadow-md transform transition-transform duration-200 flex items-center justify-center text-xs font-medium text-gray-700"
+          class="w-5 h-5 bg-white rounded-full shadow-md transform transition-transform duration-200 flex items-center justify-center text-xs font-medium text-gray-700"
           :class="{
             'translate-x-0 text-blue-600': currentLanguage === 'id',
-            'translate-x-8 text-gray-700': currentLanguage === 'en'
+            'translate-x-6 text-gray-700': currentLanguage === 'en'
           }"
         >
           {{ currentLanguage === 'id' ? 'ID' : 'EN' }}
