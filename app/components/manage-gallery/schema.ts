@@ -5,7 +5,8 @@ export const JourneySchema = z.object({
   title: z.string("Title is required.").min(1, "Title is required."),
   gallery_category_id: z.string("Category is required.").min(1, "Category is required."),
   gallery_category_name: z.string("Category is required.").min(1, "Category is required."),
-  description: z.string("Content is required.").min(1, "Content is required."),
+  description: z.string("Content is required.").min(1, "Content is required.").max(1000000, "Content must not exceed 1000000 characters."),
+  tag: z.string().optional(),
   imageUrl: z.string().optional(),
   image: z.any().optional(),
 }).superRefine(async (data, ctx) => {

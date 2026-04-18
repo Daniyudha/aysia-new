@@ -8,7 +8,7 @@ const props = defineProps<
     /** Custom class(es) to add to the parent */
     class?: any;
   }
-  >();
+>();
 const forwarded = reactiveOmit(props, "class");
 const styles = tv({
   base: "-mx-1 my-1 h-px bg-border",

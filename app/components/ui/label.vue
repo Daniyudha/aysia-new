@@ -9,7 +9,7 @@ const props = defineProps<
     class?: any;
     hint?: string;
   }
-  >();
+>();
 
 const forwarded = reactiveOmit(props, "class", "hint");
 

@@ -1,5 +1,5 @@
-import { A as API_URL_LIST } from './constant-D5BqL6of.mjs';
-import { b as useNuxtApp } from './server.mjs';
+import { A as API_URL_LIST } from "./constant-D5BqL6of.mjs";
+import { b as useNuxtApp } from "./server.mjs";
 
 function socialMediaRepository(fetch) {
   return {
@@ -9,9 +9,9 @@ function socialMediaRepository(fetch) {
     async update(payload) {
       return fetch(API_URL_LIST.SOCIAL_MEDIA, {
         method: "put",
-        body: JSON.stringify(payload)
+        body: JSON.stringify(payload),
       });
-    }
+    },
   };
 }
 function socialMediaFetchData() {
@@ -20,4 +20,4 @@ function socialMediaFetchData() {
 }
 
 export { socialMediaFetchData as s };
-//# sourceMappingURL=social-media-CCAYuXM7.mjs.map
+// # sourceMappingURL=social-media-CCAYuXM7.mjs.map

@@ -1,17 +1,18 @@
-import { p as pxValue, t as toArray, w as watchImmediate, a as tryOnScopeDispose, i as injectLocal, b as isDef, c as isObject, d as createEventHook, h as hasOwn } from './index-BAtNd0PJ.mjs';
-import { shallowRef, watchEffect, toValue, computed, getCurrentInstance, ref, watch, nextTick, hasInjectionContext, unref, readonly } from 'vue';
+import { computed, getCurrentInstance, hasInjectionContext, nextTick, readonly, ref, shallowRef, toValue, unref, watch, watchEffect } from "vue";
+
+import { d as createEventHook, h as hasOwn, i as injectLocal, b as isDef, c as isObject, p as pxValue, t as toArray, a as tryOnScopeDispose, w as watchImmediate } from "./index-BAtNd0PJ.mjs";
 
 const defaultWindow = void 0;
 const defaultDocument = void 0;
 function unrefElement(elRef) {
-  var _a;
+  let _a;
   const plain = toValue(elRef);
   return (_a = plain == null ? void 0 : plain.$el) != null ? _a : plain;
 }
 function useEventListener(...args) {
   const cleanups = [];
   const cleanup = () => {
-    cleanups.forEach((fn) => fn());
+    cleanups.forEach(fn => fn());
     cleanups.length = 0;
   };
   const register = (el, event, listener, options) => {
@@ -19,18 +20,18 @@ function useEventListener(...args) {
     return () => el.removeEventListener(event, listener, options);
   };
   const firstParamTargets = computed(() => {
-    const test = toArray(toValue(args[0])).filter((e) => e != null);
-    return test.every((e) => typeof e !== "string") ? test : void 0;
+    const test = toArray(toValue(args[0])).filter(e => e != null);
+    return test.every(e => typeof e !== "string") ? test : void 0;
   });
   const stopWatch = watchImmediate(
     () => {
-      var _a, _b;
+      let _a, _b;
       return [
-        (_b = (_a = firstParamTargets.value) == null ? void 0 : _a.map((e) => unrefElement(e))) != null ? _b : [defaultWindow].filter((e) => e != null),
+        (_b = (_a = firstParamTargets.value) == null ? void 0 : _a.map(e => unrefElement(e))) != null ? _b : [defaultWindow].filter(e => e != null),
         toArray(toValue(firstParamTargets.value ? args[1] : args[0])),
         toArray(unref(firstParamTargets.value ? args[2] : args[1])),
         // @ts-expect-error - TypeScript gets the correct types, but somehow still complains
-        toValue(firstParamTargets.value ? args[3] : args[2])
+        toValue(firstParamTargets.value ? args[3] : args[2]),
       ];
     },
     ([raw_targets, raw_events, raw_listeners, raw_options]) => {
@@ -40,13 +41,13 @@ function useEventListener(...args) {
       const optionsClone = isObject(raw_options) ? { ...raw_options } : raw_options;
       cleanups.push(
         ...raw_targets.flatMap(
-          (el) => raw_events.flatMap(
-            (event) => raw_listeners.map((listener) => register(el, event, listener, optionsClone))
-          )
-        )
+          el => raw_events.flatMap(
+            event => raw_listeners.map(listener => register(el, event, listener, optionsClone)),
+          ),
+        ),
       );
     },
-    { flush: "post" }
+    { flush: "post" },
   );
   const stop = () => {
     stopWatch();
@@ -119,14 +120,14 @@ function useDropZone(target, options = {}) {
   const files = shallowRef(null);
   return {
     files,
-    isOverDropZone
+    isOverDropZone,
   };
 }
 const DEFAULT_OPTIONS = {
   multiple: true,
   accept: "*",
   reset: false,
-  directory: false
+  directory: false,
 };
 function prepareInitialFiles(files) {
   if (!files)
@@ -141,13 +142,13 @@ function prepareInitialFiles(files) {
 }
 function useFileDialog(options = {}) {
   const {
-    document: document2 = defaultDocument
+    document: document2 = defaultDocument,
   } = options;
   const files = ref(prepareInitialFiles(options.initialFiles));
   const { on: onChange, trigger: changeTrigger } = createEventHook();
   const { on: onCancel, trigger: cancelTrigger } = createEventHook();
   const inputRef = computed(() => {
-    var _a;
+    let _a;
     const input = (_a = unrefElement(options.input)) != null ? _a : document2 ? document2.createElement("input") : void 0;
     if (input) {
       input.type = "file";
@@ -186,7 +187,7 @@ function useFileDialog(options = {}) {
     const mergedOptions = {
       ...DEFAULT_OPTIONS,
       ...options,
-      ...localOptions
+      ...localOptions,
     };
     applyOptions(mergedOptions);
     if (toValue(mergedOptions.reset))
@@ -201,31 +202,32 @@ function useFileDialog(options = {}) {
     open,
     reset,
     onCancel,
-    onChange
+    onChange,
   };
 }
 // @__NO_SIDE_EFFECTS__
 function useVModel(props, key, emit, options = {}) {
-  var _a, _b, _c;
+  let _a, _b, _c;
   const {
     clone = false,
     passive = false,
     eventName,
     deep = false,
     defaultValue,
-    shouldEmit
+    shouldEmit,
   } = options;
   const vm = getCurrentInstance();
   const _emit = emit || (vm == null ? void 0 : vm.emit) || ((_a = vm == null ? void 0 : vm.$emit) == null ? void 0 : _a.bind(vm)) || ((_c = (_b = vm == null ? void 0 : vm.proxy) == null ? void 0 : _b.$emit) == null ? void 0 : _c.bind(vm == null ? void 0 : vm.proxy));
   let event = eventName;
   event = event || `update:${key.toString()}`;
-  const cloneFn = (val) => !clone ? val : typeof clone === "function" ? clone(val) : cloneFnJSON(val);
+  const cloneFn = val => !clone ? val : typeof clone === "function" ? clone(val) : cloneFnJSON(val);
   const getValue2 = () => isDef(props[key]) ? cloneFn(props[key]) : defaultValue;
   const triggerEmit = (value) => {
     if (shouldEmit) {
       if (shouldEmit(value))
         _emit(event, value);
-    } else {
+    }
+    else {
       _emit(event, value);
     }
   };
@@ -241,7 +243,7 @@ function useVModel(props, key, emit, options = {}) {
           proxy.value = cloneFn(v);
           nextTick(() => isUpdating = false);
         }
-      }
+      },
     );
     watch(
       proxy,
@@ -249,20 +251,21 @@ function useVModel(props, key, emit, options = {}) {
         if (!isUpdating && (v !== props[key] || deep))
           triggerEmit(v);
       },
-      { deep }
+      { deep },
     );
     return proxy;
-  } else {
+  }
+  else {
     return computed({
       get() {
         return getValue2();
       },
       set(value) {
         triggerEmit(value);
-      }
+      },
     });
   }
 }
 
 export { useDropZone as a, useMediaQuery as b, useVModel as c, useEventListener as d, useFileDialog as u };
-//# sourceMappingURL=index-Df46HAS4.mjs.map
+// # sourceMappingURL=index-Df46HAS4.mjs.map

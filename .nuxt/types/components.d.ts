@@ -31,6 +31,7 @@ interface _GlobalComponents {
   'GalleryHeader': typeof import("../../app/components/gallery/header.vue")['default']
   'GalleryPagination': typeof import("../../app/components/gallery/pagination.vue")['default']
   'HomepageHeroCarousel': typeof import("../../app/components/homepage/hero-carousel.vue")['default']
+  'HomepageJourneySlider': typeof import("../../app/components/homepage/journey-slider.vue")['default']
   'IconInstagram': typeof import("../../app/components/icon/instagram.vue")['default']
   'IconInstagram1': typeof import("../../app/components/icon/instagram1.vue")['default']
   'IconInstagram2': typeof import("../../app/components/icon/instagram2.vue")['default']
@@ -46,6 +47,12 @@ interface _GlobalComponents {
   'ManageCategoryForm': typeof import("../../app/components/manage-category/form.vue")['default']
   'ManageCategorySchema': typeof import("../../app/components/manage-category/schema")['default']
   'ManageCategoryTable': typeof import("../../app/components/manage-category/table.vue")['default']
+  'ManageExploreDetailContent': typeof import("../../app/components/manage-explore-detail/content.vue")['default']
+  'ManageExploreImagesContent': typeof import("../../app/components/manage-explore-images/content.vue")['default']
+  'ManageExploreContent': typeof import("../../app/components/manage-explore/content.vue")['default']
+  'ManageExploreForm': typeof import("../../app/components/manage-explore/form.vue")['default']
+  'ManageExploreSchema': typeof import("../../app/components/manage-explore/schema")['default']
+  'ManageExploreTable': typeof import("../../app/components/manage-explore/table.vue")['default']
   'ManageGalleryDetailContent': typeof import("../../app/components/manage-gallery-detail/content.vue")['default']
   'ManageGalleryDetailForm': typeof import("../../app/components/manage-gallery-detail/form.vue")['default']
   'ManageGalleryDetailSchema': typeof import("../../app/components/manage-gallery-detail/schema")['default']
@@ -54,6 +61,10 @@ interface _GlobalComponents {
   'ManageGalleryForm': typeof import("../../app/components/manage-gallery/form.vue")['default']
   'ManageGallerySchema': typeof import("../../app/components/manage-gallery/schema")['default']
   'ManageGalleryTable': typeof import("../../app/components/manage-gallery/table.vue")['default']
+  'ManageJourneyContent': typeof import("../../app/components/manage-journey/content.vue")['default']
+  'ManageJourneyForm': typeof import("../../app/components/manage-journey/form.vue")['default']
+  'ManageJourneySchema': typeof import("../../app/components/manage-journey/schema")['default']
+  'ManageJourneyTable': typeof import("../../app/components/manage-journey/table.vue")['default']
   'ManageSocialMediaContent': typeof import("../../app/components/manage-social-media/content.vue")['default']
   'ManageSocialMediaForm': typeof import("../../app/components/manage-social-media/form.vue")['default']
   'ManageSocialMediaSchema': typeof import("../../app/components/manage-social-media/schema")['default']
@@ -264,6 +275,7 @@ interface _GlobalComponents {
   'LazyGalleryHeader': LazyComponent<typeof import("../../app/components/gallery/header.vue")['default']>
   'LazyGalleryPagination': LazyComponent<typeof import("../../app/components/gallery/pagination.vue")['default']>
   'LazyHomepageHeroCarousel': LazyComponent<typeof import("../../app/components/homepage/hero-carousel.vue")['default']>
+  'LazyHomepageJourneySlider': LazyComponent<typeof import("../../app/components/homepage/journey-slider.vue")['default']>
   'LazyIconInstagram': LazyComponent<typeof import("../../app/components/icon/instagram.vue")['default']>
   'LazyIconInstagram1': LazyComponent<typeof import("../../app/components/icon/instagram1.vue")['default']>
   'LazyIconInstagram2': LazyComponent<typeof import("../../app/components/icon/instagram2.vue")['default']>
@@ -279,6 +291,12 @@ interface _GlobalComponents {
   'LazyManageCategoryForm': LazyComponent<typeof import("../../app/components/manage-category/form.vue")['default']>
   'LazyManageCategorySchema': LazyComponent<typeof import("../../app/components/manage-category/schema")['default']>
   'LazyManageCategoryTable': LazyComponent<typeof import("../../app/components/manage-category/table.vue")['default']>
+  'LazyManageExploreDetailContent': LazyComponent<typeof import("../../app/components/manage-explore-detail/content.vue")['default']>
+  'LazyManageExploreImagesContent': LazyComponent<typeof import("../../app/components/manage-explore-images/content.vue")['default']>
+  'LazyManageExploreContent': LazyComponent<typeof import("../../app/components/manage-explore/content.vue")['default']>
+  'LazyManageExploreForm': LazyComponent<typeof import("../../app/components/manage-explore/form.vue")['default']>
+  'LazyManageExploreSchema': LazyComponent<typeof import("../../app/components/manage-explore/schema")['default']>
+  'LazyManageExploreTable': LazyComponent<typeof import("../../app/components/manage-explore/table.vue")['default']>
   'LazyManageGalleryDetailContent': LazyComponent<typeof import("../../app/components/manage-gallery-detail/content.vue")['default']>
   'LazyManageGalleryDetailForm': LazyComponent<typeof import("../../app/components/manage-gallery-detail/form.vue")['default']>
   'LazyManageGalleryDetailSchema': LazyComponent<typeof import("../../app/components/manage-gallery-detail/schema")['default']>
@@ -287,6 +305,10 @@ interface _GlobalComponents {
   'LazyManageGalleryForm': LazyComponent<typeof import("../../app/components/manage-gallery/form.vue")['default']>
   'LazyManageGallerySchema': LazyComponent<typeof import("../../app/components/manage-gallery/schema")['default']>
   'LazyManageGalleryTable': LazyComponent<typeof import("../../app/components/manage-gallery/table.vue")['default']>
+  'LazyManageJourneyContent': LazyComponent<typeof import("../../app/components/manage-journey/content.vue")['default']>
+  'LazyManageJourneyForm': LazyComponent<typeof import("../../app/components/manage-journey/form.vue")['default']>
+  'LazyManageJourneySchema': LazyComponent<typeof import("../../app/components/manage-journey/schema")['default']>
+  'LazyManageJourneyTable': LazyComponent<typeof import("../../app/components/manage-journey/table.vue")['default']>
   'LazyManageSocialMediaContent': LazyComponent<typeof import("../../app/components/manage-social-media/content.vue")['default']>
   'LazyManageSocialMediaForm': LazyComponent<typeof import("../../app/components/manage-social-media/form.vue")['default']>
   'LazyManageSocialMediaSchema': LazyComponent<typeof import("../../app/components/manage-social-media/schema")['default']>

@@ -1,43 +1,49 @@
-import { _ as __nuxt_component_0, a as __nuxt_component_1$1, c as __nuxt_component_0$1$1 } from './card-BC35WKp2.mjs';
-import { _ as __nuxt_component_0$1 } from './nuxt-link-Bh--EX_l.mjs';
-import __nuxt_component_0$2 from './index-C2n46nfI.mjs';
-import { u as useForm, t as toTypedSchema, F as Field, _ as __nuxt_component_5 } from './vee-validate-zod-NJbS403e.mjs';
-import { _ as __nuxt_component_2 } from './item-BzJ-gaK3.mjs';
-import { _ as __nuxt_component_3, I as ImageUploadSchema, c as createObjectURL } from './file-upload-CKlkL0qx.mjs';
-import { defineComponent, mergeProps, withCtx, createVNode, ref, watch, computed, unref, defineAsyncComponent, createBlock, openBlock, createTextVNode, toDisplayString, useSSRContext } from 'vue';
-import { d as useRouter, u as useRuntimeConfig, a as __nuxt_component_16 } from './server.mjs';
-import { _ as __nuxt_component_7 } from './footer-DXV0za36.mjs';
-import { _ as __nuxt_component_0$3 } from './button-BrROYuAJ.mjs';
-import { ssrRenderComponent, ssrRenderAttrs, ssrInterpolate } from 'vue/server-renderer';
-import { j as journeyFetcher } from './journey-9vIRkXmx.mjs';
-import { z } from 'zod';
-import { t as toast } from './index-DJGQOf1Z.mjs';
-import 'reka-ui';
-import 'tailwind-variants';
-import '../nitro/nitro.mjs';
-import 'node:http';
-import 'node:https';
-import 'node:events';
-import 'node:buffer';
-import 'node:fs';
-import 'node:path';
-import 'node:crypto';
-import 'node:url';
-import '@iconify/utils';
-import 'consola';
-import './composables-D0i6IdhD.mjs';
-import '../routes/renderer.mjs';
-import 'vue-bundle-renderer/runtime';
-import 'unhead/server';
-import 'devalue';
-import 'unhead/utils';
-import './asyncData-DuMyQiaR.mjs';
-import 'perfect-debounce';
-import './client-only-B_PoH0ma.mjs';
-import './index-Df46HAS4.mjs';
-import './index-BAtNd0PJ.mjs';
-import 'vue-router';
-import './constant-D5BqL6of.mjs';
+import { computed, createBlock, createTextVNode, createVNode, defineAsyncComponent, defineComponent, mergeProps, openBlock, ref, toDisplayString, unref, useSSRContext, watch, withCtx } from "vue";
+import { ssrInterpolate, ssrRenderAttrs, ssrRenderComponent } from "vue/server-renderer";
+import { z } from "zod";
+
+import { _ as __nuxt_component_0$3 } from "./button-BrROYuAJ.mjs";
+import { _ as __nuxt_component_0, c as __nuxt_component_0$1$1, a as __nuxt_component_1$1 } from "./card-BC35WKp2.mjs";
+import { _ as __nuxt_component_3, c as createObjectURL, I as ImageUploadSchema } from "./file-upload-CKlkL0qx.mjs";
+import { _ as __nuxt_component_7 } from "./footer-DXV0za36.mjs";
+import __nuxt_component_0$2 from "./index-C2n46nfI.mjs";
+import { t as toast } from "./index-DJGQOf1Z.mjs";
+import { _ as __nuxt_component_2 } from "./item-BzJ-gaK3.mjs";
+import { j as journeyFetcher } from "./journey-9vIRkXmx.mjs";
+import { _ as __nuxt_component_0$1 } from "./nuxt-link-Bh--EX_l.mjs";
+import { a as __nuxt_component_16, d as useRouter, u as useRuntimeConfig } from "./server.mjs";
+import { _ as __nuxt_component_5, F as Field, t as toTypedSchema, u as useForm } from "./vee-validate-zod-NJbS403e.mjs";
+import "reka-ui";
+import "tailwind-variants";
+
+import "../nitro/nitro.mjs";
+import "node:http";
+import "node:https";
+import "node:events";
+import "node:buffer";
+import "node:fs";
+import "node:path";
+import "node:crypto";
+import "node:url";
+import "@iconify/utils";
+import "consola";
+
+import "./composables-D0i6IdhD.mjs";
+import "../routes/renderer.mjs";
+import "vue-bundle-renderer/runtime";
+import "unhead/server";
+import "devalue";
+import "unhead/utils";
+
+import "./asyncData-DuMyQiaR.mjs";
+import "perfect-debounce";
+
+import "./client-only-B_PoH0ma.mjs";
+import "./index-Df46HAS4.mjs";
+import "./index-BAtNd0PJ.mjs";
+import "vue-router";
+
+import "./constant-D5BqL6of.mjs";
 
 const JourneySchema = z.object({
   mode: z.enum(["create", "update"]),
@@ -46,13 +52,13 @@ const JourneySchema = z.object({
   gallery_category_name: z.string("Category is required.").min(1, "Category is required."),
   description: z.string("Content is required.").min(1, "Content is required."),
   imageUrl: z.string().optional(),
-  image: z.any().optional()
+  image: z.any().optional(),
 }).superRefine(async (data, ctx) => {
   if (!data?.imageUrl) {
     ctx.addIssue({
       code: "custom",
       path: ["image"],
-      message: "Image is required."
+      message: "Image is required.",
     });
   }
   if (data.image) {
@@ -62,18 +68,18 @@ const JourneySchema = z.object({
       ctx.addIssue({
         code: "custom",
         path: ["image"],
-        message: isValidImage.error?.message || "Invalid image file."
+        message: isValidImage.error?.message || "Invalid image file.",
       });
     }
   }
 });
-const __nuxt_component_4_lazy = defineAsyncComponent(() => import('./image-preview-DmuMZ1gV.mjs').then((c) => c.default || c));
+const __nuxt_component_4_lazy = defineAsyncComponent(() => import("./image-preview-DmuMZ1gV.mjs").then(c => c.default || c));
 const _sfc_main$1 = /* @__PURE__ */ defineComponent({
   __name: "form",
   __ssrInlineRender: true,
   props: {
     defaultValue: {},
-    mode: {}
+    mode: {},
   },
   setup(__props) {
     const props = __props;
@@ -88,8 +94,8 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
         gallery_category_name: props?.defaultValue?.gallery_category_name ?? "",
         image: void 0,
         imageUrl: props?.defaultValue?.thumbnail ?? "",
-        mode: props?.mode || "create"
-      }
+        mode: props?.mode || "create",
+      },
     });
     watch(props, () => {
       if (props?.defaultValue) {
@@ -100,7 +106,7 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
           gallery_category_id: props?.defaultValue?.gallery_category_id ?? "",
           gallery_category_name: props?.defaultValue?.gallery_category_name ?? "",
           image: void 0,
-          mode: props?.mode || "create"
+          mode: props?.mode || "create",
         });
       }
     });
@@ -121,14 +127,14 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
         title: values2?.title,
         description: values2?.description,
         gallery_category_id: values2?.gallery_category_id,
-        thumbnail: values2?.image
+        thumbnail: values2?.image,
       }).then(() => {
         toast.success("Success to create new journey");
         resetForm();
         router.push("/dashboard/gallery/");
       }).catch((err) => {
         toast.error(
-          err?.response?._data?.message || "Fail to save data."
+          err?.response?._data?.message || "Fail to save data.",
         );
       }).finally(() => {
         isSubmitting.value = false;
@@ -139,13 +145,13 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
         title: values2?.title,
         description: values2?.description,
         gallery_category_id: values2?.gallery_category_id,
-        thumbnail: values2?.image
+        thumbnail: values2?.image,
       }).then(() => {
         toast.success("Success to update journey");
         router.push("/dashboard/gallery/");
       }).catch((err) => {
         toast.error(
-          err?.response?._data?.message || err?.response?._data?.error || "Fail to save data."
+          err?.response?._data?.message || err?.response?._data?.error || "Fail to save data.",
         );
       }).finally(() => {
         isSubmitting.value = false;
@@ -180,312 +186,328 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
                 if (_push3) {
                   _push3(ssrRenderComponent(_component_UiFormItem, {
                     label: "Image",
-                    class: "mb-6"
+                    class: "mb-6",
                   }, {
                     default: withCtx((_2, _push4, _parent4, _scopeId3) => {
                       if (_push4) {
                         if (!unref(values)?.imageUrl?.length) {
                           _push4(ssrRenderComponent(_component_UiDropfile, {
                             "aria-invalid": !!errors?.length,
-                            onDropped: (value) => {
+                            "onDropped": (value) => {
                               const file = value?.[0];
                               handleChange(value?.[0]);
                               unref(setFieldValue)("imageUrl", createImageUrl(file));
-                            }
-                          }, null, _parent4, _scopeId3));
-                        } else {
-                          _push4(ssrRenderComponent(_component_LazyUiImagePreview, {
-                            "image-url": unref(thumbnailUrl),
-                            onOnDeleteImage: resetImage
+                            },
                           }, null, _parent4, _scopeId3));
                         }
-                      } else {
-                        return [
-                          !unref(values)?.imageUrl?.length ? (openBlock(), createBlock(_component_UiDropfile, {
-                            key: 0,
-                            "aria-invalid": !!errors?.length,
-                            onDropped: (value) => {
-                              const file = value?.[0];
-                              handleChange(value?.[0]);
-                              unref(setFieldValue)("imageUrl", createImageUrl(file));
-                            }
-                          }, null, 8, ["aria-invalid", "onDropped"])) : (openBlock(), createBlock(_component_LazyUiImagePreview, {
-                            key: 1,
+                        else {
+                          _push4(ssrRenderComponent(_component_LazyUiImagePreview, {
                             "image-url": unref(thumbnailUrl),
-                            onOnDeleteImage: resetImage
-                          }, null, 8, ["image-url"]))
+                            "onOnDeleteImage": resetImage,
+                          }, null, _parent4, _scopeId3));
+                        }
+                      }
+                      else {
+                        return [
+                          !unref(values)?.imageUrl?.length
+                            ? (openBlock(), createBlock(_component_UiDropfile, {
+                                "key": 0,
+                                "aria-invalid": !!errors?.length,
+                                "onDropped": (value) => {
+                                  const file = value?.[0];
+                                  handleChange(value?.[0]);
+                                  unref(setFieldValue)("imageUrl", createImageUrl(file));
+                                },
+                              }, null, 8, ["aria-invalid", "onDropped"]))
+                            : (openBlock(), createBlock(_component_LazyUiImagePreview, {
+                                "key": 1,
+                                "image-url": unref(thumbnailUrl),
+                                "onOnDeleteImage": resetImage,
+                              }, null, 8, ["image-url"])),
                         ];
                       }
                     }),
-                    _: 2
+                    _: 2,
                   }, _parent3, _scopeId2));
-                } else {
+                }
+                else {
                   return [
                     createVNode(_component_UiFormItem, {
                       label: "Image",
-                      class: "mb-6"
+                      class: "mb-6",
                     }, {
                       default: withCtx(() => [
-                        !unref(values)?.imageUrl?.length ? (openBlock(), createBlock(_component_UiDropfile, {
-                          key: 0,
-                          "aria-invalid": !!errors?.length,
-                          onDropped: (value) => {
-                            const file = value?.[0];
-                            handleChange(value?.[0]);
-                            unref(setFieldValue)("imageUrl", createImageUrl(file));
-                          }
-                        }, null, 8, ["aria-invalid", "onDropped"])) : (openBlock(), createBlock(_component_LazyUiImagePreview, {
-                          key: 1,
-                          "image-url": unref(thumbnailUrl),
-                          onOnDeleteImage: resetImage
-                        }, null, 8, ["image-url"]))
+                        !unref(values)?.imageUrl?.length
+                          ? (openBlock(), createBlock(_component_UiDropfile, {
+                              "key": 0,
+                              "aria-invalid": !!errors?.length,
+                              "onDropped": (value) => {
+                                const file = value?.[0];
+                                handleChange(value?.[0]);
+                                unref(setFieldValue)("imageUrl", createImageUrl(file));
+                              },
+                            }, null, 8, ["aria-invalid", "onDropped"]))
+                          : (openBlock(), createBlock(_component_LazyUiImagePreview, {
+                              "key": 1,
+                              "image-url": unref(thumbnailUrl),
+                              "onOnDeleteImage": resetImage,
+                            }, null, 8, ["image-url"])),
                       ]),
-                      _: 2
-                    }, 1024)
+                      _: 2,
+                    }, 1024),
                   ];
                 }
               }),
-              _: 1
+              _: 1,
             }, _parent2, _scopeId));
             _push2(ssrRenderComponent(_component_Field, { name: "title" }, {
               default: withCtx(({ componentField }, _push3, _parent3, _scopeId2) => {
                 if (_push3) {
                   _push3(ssrRenderComponent(_component_UiFormItem, {
                     label: "Title",
-                    class: "mb-6"
+                    class: "mb-6",
                   }, {
                     default: withCtx((_2, _push4, _parent4, _scopeId3) => {
                       if (_push4) {
                         _push4(ssrRenderComponent(_component_UiInput, mergeProps(componentField, { placeholder: "Enter title" }), null, _parent4, _scopeId3));
-                      } else {
+                      }
+                      else {
                         return [
-                          createVNode(_component_UiInput, mergeProps(componentField, { placeholder: "Enter title" }), null, 16)
+                          createVNode(_component_UiInput, mergeProps(componentField, { placeholder: "Enter title" }), null, 16),
                         ];
                       }
                     }),
-                    _: 2
+                    _: 2,
                   }, _parent3, _scopeId2));
-                } else {
+                }
+                else {
                   return [
                     createVNode(_component_UiFormItem, {
                       label: "Title",
-                      class: "mb-6"
+                      class: "mb-6",
                     }, {
                       default: withCtx(() => [
-                        createVNode(_component_UiInput, mergeProps(componentField, { placeholder: "Enter title" }), null, 16)
+                        createVNode(_component_UiInput, mergeProps(componentField, { placeholder: "Enter title" }), null, 16),
                       ]),
-                      _: 2
-                    }, 1024)
+                      _: 2,
+                    }, 1024),
                   ];
                 }
               }),
-              _: 1
+              _: 1,
             }, _parent2, _scopeId));
             _push2(ssrRenderComponent(_component_Field, { name: "gallery_category_id" }, {
               default: withCtx(({ errorMessage }, _push3, _parent3, _scopeId2) => {
                 if (_push3) {
                   _push3(ssrRenderComponent(_component_UiFormItem, {
                     label: "Category",
-                    class: "mb-6"
+                    class: "mb-6",
                   }, {
                     default: withCtx((_2, _push4, _parent4, _scopeId3) => {
                       if (_push4) {
                         _push4(ssrRenderComponent(_component_UiCategorySelect, {
                           "default-value": {
                             value: unref(values).gallery_category_id ?? "",
-                            label: unref(values).gallery_category_name ?? ""
+                            label: unref(values).gallery_category_name ?? "",
                           },
                           "is-error": !!errorMessage,
-                          onOnSelectOption: (value) => {
+                          "onOnSelectOption": (value) => {
                             unref(setFieldValue)("gallery_category_id", value?.value);
                             unref(setFieldValue)("gallery_category_name", value?.label);
-                          }
+                          },
                         }, null, _parent4, _scopeId3));
-                      } else {
+                      }
+                      else {
                         return [
                           createVNode(_component_UiCategorySelect, {
                             "default-value": {
                               value: unref(values).gallery_category_id ?? "",
-                              label: unref(values).gallery_category_name ?? ""
+                              label: unref(values).gallery_category_name ?? "",
                             },
                             "is-error": !!errorMessage,
-                            onOnSelectOption: (value) => {
+                            "onOnSelectOption": (value) => {
                               unref(setFieldValue)("gallery_category_id", value?.value);
                               unref(setFieldValue)("gallery_category_name", value?.label);
-                            }
-                          }, null, 8, ["default-value", "is-error", "onOnSelectOption"])
+                            },
+                          }, null, 8, ["default-value", "is-error", "onOnSelectOption"]),
                         ];
                       }
                     }),
-                    _: 2
+                    _: 2,
                   }, _parent3, _scopeId2));
-                } else {
+                }
+                else {
                   return [
                     createVNode(_component_UiFormItem, {
                       label: "Category",
-                      class: "mb-6"
+                      class: "mb-6",
                     }, {
                       default: withCtx(() => [
                         createVNode(_component_UiCategorySelect, {
                           "default-value": {
                             value: unref(values).gallery_category_id ?? "",
-                            label: unref(values).gallery_category_name ?? ""
+                            label: unref(values).gallery_category_name ?? "",
                           },
                           "is-error": !!errorMessage,
-                          onOnSelectOption: (value) => {
+                          "onOnSelectOption": (value) => {
                             unref(setFieldValue)("gallery_category_id", value?.value);
                             unref(setFieldValue)("gallery_category_name", value?.label);
-                          }
-                        }, null, 8, ["default-value", "is-error", "onOnSelectOption"])
+                          },
+                        }, null, 8, ["default-value", "is-error", "onOnSelectOption"]),
                       ]),
-                      _: 2
-                    }, 1024)
+                      _: 2,
+                    }, 1024),
                   ];
                 }
               }),
-              _: 1
+              _: 1,
             }, _parent2, _scopeId));
             _push2(ssrRenderComponent(_component_Field, { name: "description" }, {
               default: withCtx(({ value, handleChange, errors, validate }, _push3, _parent3, _scopeId2) => {
                 if (_push3) {
                   _push3(ssrRenderComponent(_component_UiFormItem, {
                     label: "Content",
-                    class: "mb-6"
+                    class: "mb-6",
                   }, {
                     default: withCtx((_2, _push4, _parent4, _scopeId3) => {
                       if (_push4) {
                         _push4(ssrRenderComponent(_component_UiTiptap, {
                           value,
-                          "aria-invalid": !!errors?.length ? true : void 0,
-                          "onUpdate:value": (value2) => handleChange(value2),
-                          onOnBlur: ($event) => validate()
+                          "aria-invalid": errors?.length ? true : void 0,
+                          "onUpdate:value": value2 => handleChange(value2),
+                          "onOnBlur": $event => validate(),
                         }, null, _parent4, _scopeId3));
-                      } else {
+                      }
+                      else {
                         return [
                           createVNode(_component_UiTiptap, {
                             value,
-                            "aria-invalid": !!errors?.length ? true : void 0,
-                            "onUpdate:value": (value2) => handleChange(value2),
-                            onOnBlur: ($event) => validate()
-                          }, null, 8, ["value", "aria-invalid", "onUpdate:value", "onOnBlur"])
+                            "aria-invalid": errors?.length ? true : void 0,
+                            "onUpdate:value": value2 => handleChange(value2),
+                            "onOnBlur": $event => validate(),
+                          }, null, 8, ["value", "aria-invalid", "onUpdate:value", "onOnBlur"]),
                         ];
                       }
                     }),
-                    _: 2
+                    _: 2,
                   }, _parent3, _scopeId2));
-                } else {
+                }
+                else {
                   return [
                     createVNode(_component_UiFormItem, {
                       label: "Content",
-                      class: "mb-6"
+                      class: "mb-6",
                     }, {
                       default: withCtx(() => [
                         createVNode(_component_UiTiptap, {
                           value,
-                          "aria-invalid": !!errors?.length ? true : void 0,
-                          "onUpdate:value": (value2) => handleChange(value2),
-                          onOnBlur: ($event) => validate()
-                        }, null, 8, ["value", "aria-invalid", "onUpdate:value", "onOnBlur"])
+                          "aria-invalid": errors?.length ? true : void 0,
+                          "onUpdate:value": value2 => handleChange(value2),
+                          "onOnBlur": $event => validate(),
+                        }, null, 8, ["value", "aria-invalid", "onUpdate:value", "onOnBlur"]),
                       ]),
-                      _: 2
-                    }, 1024)
+                      _: 2,
+                    }, 1024),
                   ];
                 }
               }),
-              _: 1
+              _: 1,
             }, _parent2, _scopeId));
             _push2(`</div>`);
-          } else {
+          }
+          else {
             return [
               createVNode("div", { class: "w-full mx-auto" }, [
                 createVNode(_component_Field, { name: "image" }, {
                   default: withCtx(({ handleChange, errors }) => [
                     createVNode(_component_UiFormItem, {
                       label: "Image",
-                      class: "mb-6"
+                      class: "mb-6",
                     }, {
                       default: withCtx(() => [
-                        !unref(values)?.imageUrl?.length ? (openBlock(), createBlock(_component_UiDropfile, {
-                          key: 0,
-                          "aria-invalid": !!errors?.length,
-                          onDropped: (value) => {
-                            const file = value?.[0];
-                            handleChange(value?.[0]);
-                            unref(setFieldValue)("imageUrl", createImageUrl(file));
-                          }
-                        }, null, 8, ["aria-invalid", "onDropped"])) : (openBlock(), createBlock(_component_LazyUiImagePreview, {
-                          key: 1,
-                          "image-url": unref(thumbnailUrl),
-                          onOnDeleteImage: resetImage
-                        }, null, 8, ["image-url"]))
+                        !unref(values)?.imageUrl?.length
+                          ? (openBlock(), createBlock(_component_UiDropfile, {
+                              "key": 0,
+                              "aria-invalid": !!errors?.length,
+                              "onDropped": (value) => {
+                                const file = value?.[0];
+                                handleChange(value?.[0]);
+                                unref(setFieldValue)("imageUrl", createImageUrl(file));
+                              },
+                            }, null, 8, ["aria-invalid", "onDropped"]))
+                          : (openBlock(), createBlock(_component_LazyUiImagePreview, {
+                              "key": 1,
+                              "image-url": unref(thumbnailUrl),
+                              "onOnDeleteImage": resetImage,
+                            }, null, 8, ["image-url"])),
                       ]),
-                      _: 2
-                    }, 1024)
+                      _: 2,
+                    }, 1024),
                   ]),
-                  _: 1
+                  _: 1,
                 }),
                 createVNode(_component_Field, { name: "title" }, {
                   default: withCtx(({ componentField }) => [
                     createVNode(_component_UiFormItem, {
                       label: "Title",
-                      class: "mb-6"
+                      class: "mb-6",
                     }, {
                       default: withCtx(() => [
-                        createVNode(_component_UiInput, mergeProps(componentField, { placeholder: "Enter title" }), null, 16)
+                        createVNode(_component_UiInput, mergeProps(componentField, { placeholder: "Enter title" }), null, 16),
                       ]),
-                      _: 2
-                    }, 1024)
+                      _: 2,
+                    }, 1024),
                   ]),
-                  _: 1
+                  _: 1,
                 }),
                 createVNode(_component_Field, { name: "gallery_category_id" }, {
                   default: withCtx(({ errorMessage }) => [
                     createVNode(_component_UiFormItem, {
                       label: "Category",
-                      class: "mb-6"
+                      class: "mb-6",
                     }, {
                       default: withCtx(() => [
                         createVNode(_component_UiCategorySelect, {
                           "default-value": {
                             value: unref(values).gallery_category_id ?? "",
-                            label: unref(values).gallery_category_name ?? ""
+                            label: unref(values).gallery_category_name ?? "",
                           },
                           "is-error": !!errorMessage,
-                          onOnSelectOption: (value) => {
+                          "onOnSelectOption": (value) => {
                             unref(setFieldValue)("gallery_category_id", value?.value);
                             unref(setFieldValue)("gallery_category_name", value?.label);
-                          }
-                        }, null, 8, ["default-value", "is-error", "onOnSelectOption"])
+                          },
+                        }, null, 8, ["default-value", "is-error", "onOnSelectOption"]),
                       ]),
-                      _: 2
-                    }, 1024)
+                      _: 2,
+                    }, 1024),
                   ]),
-                  _: 1
+                  _: 1,
                 }),
                 createVNode(_component_Field, { name: "description" }, {
                   default: withCtx(({ value, handleChange, errors, validate }) => [
                     createVNode(_component_UiFormItem, {
                       label: "Content",
-                      class: "mb-6"
+                      class: "mb-6",
                     }, {
                       default: withCtx(() => [
                         createVNode(_component_UiTiptap, {
                           value,
-                          "aria-invalid": !!errors?.length ? true : void 0,
-                          "onUpdate:value": (value2) => handleChange(value2),
-                          onOnBlur: ($event) => validate()
-                        }, null, 8, ["value", "aria-invalid", "onUpdate:value", "onOnBlur"])
+                          "aria-invalid": errors?.length ? true : void 0,
+                          "onUpdate:value": value2 => handleChange(value2),
+                          "onOnBlur": $event => validate(),
+                        }, null, 8, ["value", "aria-invalid", "onUpdate:value", "onOnBlur"]),
                       ]),
-                      _: 2
-                    }, 1024)
+                      _: 2,
+                    }, 1024),
                   ]),
-                  _: 1
-                })
-              ])
+                  _: 1,
+                }),
+              ]),
             ];
           }
         }),
-        _: 1
+        _: 1,
       }, _parent));
       _push(ssrRenderComponent(_component_UiCardFooter, { class: "!py-4 flex justify-end gap-4" }, {
         default: withCtx((_, _push2, _parent2, _scopeId) => {
@@ -494,72 +516,75 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
               class: "text-lg h-auto !px-5 py-3",
               type: "button",
               variant: "outline",
-              onClick: () => _ctx.$router.back()
+              onClick: () => _ctx.$router.back(),
             }, {
               default: withCtx((_2, _push3, _parent3, _scopeId2) => {
                 if (_push3) {
                   _push3(ssrRenderComponent(_component_Icon, { name: "heroicons:x-mark-20-solid" }, null, _parent3, _scopeId2));
                   _push3(` Cancel `);
-                } else {
+                }
+                else {
                   return [
                     createVNode(_component_Icon, { name: "heroicons:x-mark-20-solid" }),
-                    createTextVNode(" Cancel ")
+                    createTextVNode(" Cancel "),
                   ];
                 }
               }),
-              _: 1
+              _: 1,
             }, _parent2, _scopeId));
             _push2(ssrRenderComponent(_component_UiButton, {
               type: "submit",
               class: "text-lg h-auto !px-5 py-3",
-              disabled: unref(isSubmitting)
+              disabled: unref(isSubmitting),
             }, {
               default: withCtx((_2, _push3, _parent3, _scopeId2) => {
                 if (_push3) {
                   _push3(ssrRenderComponent(_component_Icon, { name: "heroicons:archive-box" }, null, _parent3, _scopeId2));
                   _push3(` ${ssrInterpolate(unref(isSubmitting) ? "Saving..." : "Save")}`);
-                } else {
+                }
+                else {
                   return [
                     createVNode(_component_Icon, { name: "heroicons:archive-box" }),
-                    createTextVNode(" " + toDisplayString(unref(isSubmitting) ? "Saving..." : "Save"), 1)
+                    createTextVNode(` ${toDisplayString(unref(isSubmitting) ? "Saving..." : "Save")}`, 1),
                   ];
                 }
               }),
-              _: 1
+              _: 1,
             }, _parent2, _scopeId));
-          } else {
+          }
+          else {
             return [
               createVNode(_component_UiButton, {
                 class: "text-lg h-auto !px-5 py-3",
                 type: "button",
                 variant: "outline",
-                onClick: () => _ctx.$router.back()
+                onClick: () => _ctx.$router.back(),
               }, {
                 default: withCtx(() => [
                   createVNode(_component_Icon, { name: "heroicons:x-mark-20-solid" }),
-                  createTextVNode(" Cancel ")
+                  createTextVNode(" Cancel "),
                 ]),
-                _: 1
+                _: 1,
               }, 8, ["onClick"]),
               createVNode(_component_UiButton, {
                 type: "submit",
                 class: "text-lg h-auto !px-5 py-3",
-                disabled: unref(isSubmitting)
+                disabled: unref(isSubmitting),
               }, {
                 default: withCtx(() => [
                   createVNode(_component_Icon, { name: "heroicons:archive-box" }),
-                  createTextVNode(" " + toDisplayString(unref(isSubmitting) ? "Saving..." : "Save"), 1)
+                  createTextVNode(` ${toDisplayString(unref(isSubmitting) ? "Saving..." : "Save")}`, 1),
                 ]),
-                _: 1
-              }, 8, ["disabled"])
+                _: 1,
+              }, 8, ["disabled"]),
             ];
           }
         }),
-        _: 1
+        _: 1,
       }, _parent));
       _push(`</form>`);
     };
-  }
+  },
 });
 const _sfc_setup$1 = _sfc_main$1.setup;
 _sfc_main$1.setup = (props, ctx) => {
@@ -586,67 +611,70 @@ const _sfc_main = /* @__PURE__ */ defineComponent({
                 if (_push3) {
                   _push3(ssrRenderComponent(_component_NuxtLink, {
                     to: "/dashboard/gallery",
-                    class: "inline-flex items-center justify-center mt-2 mr-4 text-xl"
+                    class: "inline-flex items-center justify-center mt-2 mr-4 text-xl",
                   }, {
                     default: withCtx((_3, _push4, _parent4, _scopeId3) => {
                       if (_push4) {
                         _push4(ssrRenderComponent(_component_Icon, { name: "heroicons:arrow-long-left-16-solid" }, null, _parent4, _scopeId3));
                         _push4(`<span class="sr-only"${_scopeId3}>Back</span>`);
-                      } else {
+                      }
+                      else {
                         return [
                           createVNode(_component_Icon, { name: "heroicons:arrow-long-left-16-solid" }),
-                          createVNode("span", { class: "sr-only" }, "Back")
+                          createVNode("span", { class: "sr-only" }, "Back"),
                         ];
                       }
                     }),
-                    _: 1
+                    _: 1,
                   }, _parent3, _scopeId2));
                   _push3(`<h3 class="font-semibold text-lg text-dashboard-accent-50"${_scopeId2}> Add New Gallery </h3>`);
-                } else {
+                }
+                else {
                   return [
                     createVNode(_component_NuxtLink, {
                       to: "/dashboard/gallery",
-                      class: "inline-flex items-center justify-center mt-2 mr-4 text-xl"
+                      class: "inline-flex items-center justify-center mt-2 mr-4 text-xl",
                     }, {
                       default: withCtx(() => [
                         createVNode(_component_Icon, { name: "heroicons:arrow-long-left-16-solid" }),
-                        createVNode("span", { class: "sr-only" }, "Back")
+                        createVNode("span", { class: "sr-only" }, "Back"),
                       ]),
-                      _: 1
+                      _: 1,
                     }),
-                    createVNode("h3", { class: "font-semibold text-lg text-dashboard-accent-50" }, " Add New Gallery ")
+                    createVNode("h3", { class: "font-semibold text-lg text-dashboard-accent-50" }, " Add New Gallery "),
                   ];
                 }
               }),
-              _: 1
+              _: 1,
             }, _parent2, _scopeId));
             _push2(ssrRenderComponent(_component_ManageGalleryForm, { mode: "create" }, null, _parent2, _scopeId));
-          } else {
+          }
+          else {
             return [
               createVNode(_component_UiCardHeader, { class: "flex !flex-row py-4 !items-center text-dashboard-accent-50 border-b border-dashboard-neutral-100/50" }, {
                 default: withCtx(() => [
                   createVNode(_component_NuxtLink, {
                     to: "/dashboard/gallery",
-                    class: "inline-flex items-center justify-center mt-2 mr-4 text-xl"
+                    class: "inline-flex items-center justify-center mt-2 mr-4 text-xl",
                   }, {
                     default: withCtx(() => [
                       createVNode(_component_Icon, { name: "heroicons:arrow-long-left-16-solid" }),
-                      createVNode("span", { class: "sr-only" }, "Back")
+                      createVNode("span", { class: "sr-only" }, "Back"),
                     ]),
-                    _: 1
+                    _: 1,
                   }),
-                  createVNode("h3", { class: "font-semibold text-lg text-dashboard-accent-50" }, " Add New Gallery ")
+                  createVNode("h3", { class: "font-semibold text-lg text-dashboard-accent-50" }, " Add New Gallery "),
                 ]),
-                _: 1
+                _: 1,
               }),
-              createVNode(_component_ManageGalleryForm, { mode: "create" })
+              createVNode(_component_ManageGalleryForm, { mode: "create" }),
             ];
           }
         }),
-        _: 1
+        _: 1,
       }, _parent));
     };
-  }
+  },
 });
 const _sfc_setup = _sfc_main.setup;
 _sfc_main.setup = (props, ctx) => {
@@ -656,4 +684,4 @@ _sfc_main.setup = (props, ctx) => {
 };
 
 export { _sfc_main as default };
-//# sourceMappingURL=add.client-sSwv7ttQ.mjs.map
+// # sourceMappingURL=add.client-sSwv7ttQ.mjs.map

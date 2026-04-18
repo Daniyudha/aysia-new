@@ -1,38 +1,42 @@
-import { _ as __nuxt_component_0, a as __nuxt_component_1$1, c as __nuxt_component_0$1 } from './card-BC35WKp2.mjs';
-import { _ as __nuxt_component_2$1, a as __nuxt_component_3, b as __nuxt_component_5, c as __nuxt_component_4 } from './head-CEZx0sjE.mjs';
-import __nuxt_component_0$2 from './index-C2n46nfI.mjs';
-import { f as formatDateApp } from './format-data-D2ElPwyM.mjs';
-import { defineComponent, mergeProps, withCtx, createVNode, withAsyncContext, unref, createTextVNode, toDisplayString, createBlock, openBlock, Fragment, renderList, useSSRContext } from 'vue';
-import { ssrRenderComponent, ssrRenderList, ssrInterpolate } from 'vue/server-renderer';
-import { c as categoryFetcher } from './category-DozWu4oW.mjs';
-import { b as useNuxtApp } from './server.mjs';
-import { _ as __nuxt_component_1$2 } from './client-only-B_PoH0ma.mjs';
-import { u as useModalForm } from './useModalForm-CBkmuIPn.mjs';
-import { u as useQueryParams } from './useQueryParams-DKrG4n2c.mjs';
-import { u as useAsyncData } from './asyncData-DuMyQiaR.mjs';
-import 'reka-ui';
-import 'tailwind-variants';
-import './composables-D0i6IdhD.mjs';
-import '../routes/renderer.mjs';
-import 'vue-bundle-renderer/runtime';
-import '../nitro/nitro.mjs';
-import 'node:http';
-import 'node:https';
-import 'node:events';
-import 'node:buffer';
-import 'node:fs';
-import 'node:path';
-import 'node:crypto';
-import 'node:url';
-import '@iconify/utils';
-import 'consola';
-import 'unhead/server';
-import 'devalue';
-import 'unhead/utils';
-import 'date-fns';
-import './constant-D5BqL6of.mjs';
-import 'vue-router';
-import 'perfect-debounce';
+import { createBlock, createTextVNode, createVNode, defineComponent, Fragment, mergeProps, openBlock, renderList, toDisplayString, unref, useSSRContext, withAsyncContext, withCtx } from "vue";
+import { ssrInterpolate, ssrRenderComponent, ssrRenderList } from "vue/server-renderer";
+
+import { u as useAsyncData } from "./asyncData-DuMyQiaR.mjs";
+import { _ as __nuxt_component_0, c as __nuxt_component_0$1, a as __nuxt_component_1$1 } from "./card-BC35WKp2.mjs";
+import { c as categoryFetcher } from "./category-DozWu4oW.mjs";
+import { _ as __nuxt_component_1$2 } from "./client-only-B_PoH0ma.mjs";
+import { f as formatDateApp } from "./format-data-D2ElPwyM.mjs";
+import { _ as __nuxt_component_2$1, a as __nuxt_component_3, c as __nuxt_component_4, b as __nuxt_component_5 } from "./head-CEZx0sjE.mjs";
+import __nuxt_component_0$2 from "./index-C2n46nfI.mjs";
+import { b as useNuxtApp } from "./server.mjs";
+import { u as useModalForm } from "./useModalForm-CBkmuIPn.mjs";
+import { u as useQueryParams } from "./useQueryParams-DKrG4n2c.mjs";
+import "reka-ui";
+import "tailwind-variants";
+
+import "./composables-D0i6IdhD.mjs";
+import "../routes/renderer.mjs";
+import "vue-bundle-renderer/runtime";
+
+import "../nitro/nitro.mjs";
+import "node:http";
+import "node:https";
+import "node:events";
+import "node:buffer";
+import "node:fs";
+import "node:path";
+import "node:crypto";
+import "node:url";
+import "@iconify/utils";
+import "consola";
+import "unhead/server";
+import "devalue";
+import "unhead/utils";
+import "date-fns";
+
+import "./constant-D5BqL6of.mjs";
+import "vue-router";
+import "perfect-debounce";
 
 const _sfc_main$2 = /* @__PURE__ */ defineComponent({
   __name: "table",
@@ -40,7 +44,7 @@ const _sfc_main$2 = /* @__PURE__ */ defineComponent({
   props: {
     items: {},
     isLoading: { type: Boolean },
-    isError: { type: Boolean }
+    isError: { type: Boolean },
   },
   emits: ["onSelectToEdit", "onRefresh"],
   setup(__props, { emit: __emit }) {
@@ -61,10 +65,10 @@ const _sfc_main$2 = /* @__PURE__ */ defineComponent({
       const _component_UiTableData = __nuxt_component_5;
       const _component_Icon = __nuxt_component_0$2;
       _push(ssrRenderComponent(_component_UiTable, mergeProps({
-        data: __props.items,
+        "data": __props.items,
         "header-count": 5,
         "is-error": _ctx.$props?.isError,
-        "is-loading": _ctx.$props?.isLoading
+        "is-loading": _ctx.$props?.isLoading,
       }, _attrs), {
         head: withCtx((_, _push2, _parent2, _scopeId) => {
           if (_push2) {
@@ -75,115 +79,121 @@ const _sfc_main$2 = /* @__PURE__ */ defineComponent({
                     default: withCtx((_3, _push4, _parent4, _scopeId3) => {
                       if (_push4) {
                         _push4(`ID`);
-                      } else {
+                      }
+                      else {
                         return [
-                          createTextVNode("ID")
+                          createTextVNode("ID"),
                         ];
                       }
                     }),
-                    _: 1
+                    _: 1,
                   }, _parent3, _scopeId2));
                   _push3(ssrRenderComponent(_component_UiTableHead, null, {
                     default: withCtx((_3, _push4, _parent4, _scopeId3) => {
                       if (_push4) {
                         _push4(`Category Name`);
-                      } else {
+                      }
+                      else {
                         return [
-                          createTextVNode("Category Name")
+                          createTextVNode("Category Name"),
                         ];
                       }
                     }),
-                    _: 1
+                    _: 1,
                   }, _parent3, _scopeId2));
                   _push3(ssrRenderComponent(_component_UiTableHead, null, {
                     default: withCtx((_3, _push4, _parent4, _scopeId3) => {
                       if (_push4) {
                         _push4(`Created At`);
-                      } else {
+                      }
+                      else {
                         return [
-                          createTextVNode("Created At")
+                          createTextVNode("Created At"),
                         ];
                       }
                     }),
-                    _: 1
+                    _: 1,
                   }, _parent3, _scopeId2));
                   _push3(ssrRenderComponent(_component_UiTableHead, null, {
                     default: withCtx((_3, _push4, _parent4, _scopeId3) => {
                       if (_push4) {
                         _push4(`Last Update`);
-                      } else {
+                      }
+                      else {
                         return [
-                          createTextVNode("Last Update")
+                          createTextVNode("Last Update"),
                         ];
                       }
                     }),
-                    _: 1
+                    _: 1,
                   }, _parent3, _scopeId2));
                   _push3(ssrRenderComponent(_component_UiTableHead, null, null, _parent3, _scopeId2));
-                } else {
+                }
+                else {
                   return [
                     createVNode(_component_UiTableHead, null, {
                       default: withCtx(() => [
-                        createTextVNode("ID")
+                        createTextVNode("ID"),
                       ]),
-                      _: 1
+                      _: 1,
                     }),
                     createVNode(_component_UiTableHead, null, {
                       default: withCtx(() => [
-                        createTextVNode("Category Name")
+                        createTextVNode("Category Name"),
                       ]),
-                      _: 1
+                      _: 1,
                     }),
                     createVNode(_component_UiTableHead, null, {
                       default: withCtx(() => [
-                        createTextVNode("Created At")
+                        createTextVNode("Created At"),
                       ]),
-                      _: 1
+                      _: 1,
                     }),
                     createVNode(_component_UiTableHead, null, {
                       default: withCtx(() => [
-                        createTextVNode("Last Update")
+                        createTextVNode("Last Update"),
                       ]),
-                      _: 1
+                      _: 1,
                     }),
-                    createVNode(_component_UiTableHead)
+                    createVNode(_component_UiTableHead),
                   ];
                 }
               }),
-              _: 1
+              _: 1,
             }, _parent2, _scopeId));
-          } else {
+          }
+          else {
             return [
               createVNode(_component_UiTableRow, null, {
                 default: withCtx(() => [
                   createVNode(_component_UiTableHead, null, {
                     default: withCtx(() => [
-                      createTextVNode("ID")
+                      createTextVNode("ID"),
                     ]),
-                    _: 1
+                    _: 1,
                   }),
                   createVNode(_component_UiTableHead, null, {
                     default: withCtx(() => [
-                      createTextVNode("Category Name")
+                      createTextVNode("Category Name"),
                     ]),
-                    _: 1
+                    _: 1,
                   }),
                   createVNode(_component_UiTableHead, null, {
                     default: withCtx(() => [
-                      createTextVNode("Created At")
+                      createTextVNode("Created At"),
                     ]),
-                    _: 1
+                    _: 1,
                   }),
                   createVNode(_component_UiTableHead, null, {
                     default: withCtx(() => [
-                      createTextVNode("Last Update")
+                      createTextVNode("Last Update"),
                     ]),
-                    _: 1
+                    _: 1,
                   }),
-                  createVNode(_component_UiTableHead)
+                  createVNode(_component_UiTableHead),
                 ]),
-                _: 1
-              })
+                _: 1,
+              }),
             ];
           }
         }),
@@ -198,49 +208,53 @@ const _sfc_main$2 = /* @__PURE__ */ defineComponent({
                       default: withCtx((_3, _push4, _parent4, _scopeId3) => {
                         if (_push4) {
                           _push4(`${ssrInterpolate(index + 1)}`);
-                        } else {
+                        }
+                        else {
                           return [
-                            createTextVNode(toDisplayString(index + 1), 1)
+                            createTextVNode(toDisplayString(index + 1), 1),
                           ];
                         }
                       }),
-                      _: 2
+                      _: 2,
                     }, _parent3, _scopeId2));
                     _push3(ssrRenderComponent(_component_UiTableData, null, {
                       default: withCtx((_3, _push4, _parent4, _scopeId3) => {
                         if (_push4) {
                           _push4(`${ssrInterpolate(item?.name)}`);
-                        } else {
+                        }
+                        else {
                           return [
-                            createTextVNode(toDisplayString(item?.name), 1)
+                            createTextVNode(toDisplayString(item?.name), 1),
                           ];
                         }
                       }),
-                      _: 2
+                      _: 2,
                     }, _parent3, _scopeId2));
                     _push3(ssrRenderComponent(_component_UiTableData, null, {
                       default: withCtx((_3, _push4, _parent4, _scopeId3) => {
                         if (_push4) {
                           _push4(`${ssrInterpolate(("formatDateApp" in _ctx ? _ctx.formatDateApp : unref(formatDateApp))(item?.created_at))}`);
-                        } else {
+                        }
+                        else {
                           return [
-                            createTextVNode(toDisplayString(("formatDateApp" in _ctx ? _ctx.formatDateApp : unref(formatDateApp))(item?.created_at)), 1)
+                            createTextVNode(toDisplayString(("formatDateApp" in _ctx ? _ctx.formatDateApp : unref(formatDateApp))(item?.created_at)), 1),
                           ];
                         }
                       }),
-                      _: 2
+                      _: 2,
                     }, _parent3, _scopeId2));
                     _push3(ssrRenderComponent(_component_UiTableData, null, {
                       default: withCtx((_3, _push4, _parent4, _scopeId3) => {
                         if (_push4) {
                           _push4(`${ssrInterpolate(("formatDateApp" in _ctx ? _ctx.formatDateApp : unref(formatDateApp))(item?.updated_at))}`);
-                        } else {
+                        }
+                        else {
                           return [
-                            createTextVNode(toDisplayString(("formatDateApp" in _ctx ? _ctx.formatDateApp : unref(formatDateApp))(item?.updated_at)), 1)
+                            createTextVNode(toDisplayString(("formatDateApp" in _ctx ? _ctx.formatDateApp : unref(formatDateApp))(item?.updated_at)), 1),
                           ];
                         }
                       }),
-                      _: 2
+                      _: 2,
                     }, _parent3, _scopeId2));
                     _push3(ssrRenderComponent(_component_UiTableData, { class: "space-x-2" }, {
                       default: withCtx((_3, _push4, _parent4, _scopeId3) => {
@@ -248,166 +262,169 @@ const _sfc_main$2 = /* @__PURE__ */ defineComponent({
                           _push4(`<button type="button" class="table-action-button group"${_scopeId3}>`);
                           _push4(ssrRenderComponent(_component_Icon, {
                             name: "lucide:pencil",
-                            class: "opacity-70 group-hover:text-dashboard-info-50"
+                            class: "opacity-70 group-hover:text-dashboard-info-50",
                           }, null, _parent4, _scopeId3));
                           _push4(`</button><button type="button" class="group table-action-button"${_scopeId3}>`);
                           _push4(ssrRenderComponent(_component_Icon, {
                             name: "lucide:trash-2",
-                            class: "opacity-70 group-hover:text-dashboard-danger-50"
+                            class: "opacity-70 group-hover:text-dashboard-danger-50",
                           }, null, _parent4, _scopeId3));
                           _push4(`</button>`);
-                        } else {
+                        }
+                        else {
                           return [
                             createVNode("button", {
                               type: "button",
                               class: "table-action-button group",
-                              onClick: ($event) => _ctx.$emit("onSelectToEdit", item)
+                              onClick: $event => _ctx.$emit("onSelectToEdit", item),
                             }, [
                               createVNode(_component_Icon, {
                                 name: "lucide:pencil",
-                                class: "opacity-70 group-hover:text-dashboard-info-50"
-                              })
+                                class: "opacity-70 group-hover:text-dashboard-info-50",
+                              }),
                             ], 8, ["onClick"]),
                             createVNode("button", {
                               type: "button",
                               class: "group table-action-button",
-                              onClick: () => handleDelete(item?.name, item?.id)
+                              onClick: () => handleDelete(item?.name, item?.id),
                             }, [
                               createVNode(_component_Icon, {
                                 name: "lucide:trash-2",
-                                class: "opacity-70 group-hover:text-dashboard-danger-50"
-                              })
-                            ], 8, ["onClick"])
+                                class: "opacity-70 group-hover:text-dashboard-danger-50",
+                              }),
+                            ], 8, ["onClick"]),
                           ];
                         }
                       }),
-                      _: 2
+                      _: 2,
                     }, _parent3, _scopeId2));
-                  } else {
+                  }
+                  else {
                     return [
                       createVNode(_component_UiTableData, null, {
                         default: withCtx(() => [
-                          createTextVNode(toDisplayString(index + 1), 1)
+                          createTextVNode(toDisplayString(index + 1), 1),
                         ]),
-                        _: 2
+                        _: 2,
                       }, 1024),
                       createVNode(_component_UiTableData, null, {
                         default: withCtx(() => [
-                          createTextVNode(toDisplayString(item?.name), 1)
+                          createTextVNode(toDisplayString(item?.name), 1),
                         ]),
-                        _: 2
+                        _: 2,
                       }, 1024),
                       createVNode(_component_UiTableData, null, {
                         default: withCtx(() => [
-                          createTextVNode(toDisplayString(("formatDateApp" in _ctx ? _ctx.formatDateApp : unref(formatDateApp))(item?.created_at)), 1)
+                          createTextVNode(toDisplayString(("formatDateApp" in _ctx ? _ctx.formatDateApp : unref(formatDateApp))(item?.created_at)), 1),
                         ]),
-                        _: 2
+                        _: 2,
                       }, 1024),
                       createVNode(_component_UiTableData, null, {
                         default: withCtx(() => [
-                          createTextVNode(toDisplayString(("formatDateApp" in _ctx ? _ctx.formatDateApp : unref(formatDateApp))(item?.updated_at)), 1)
+                          createTextVNode(toDisplayString(("formatDateApp" in _ctx ? _ctx.formatDateApp : unref(formatDateApp))(item?.updated_at)), 1),
                         ]),
-                        _: 2
+                        _: 2,
                       }, 1024),
                       createVNode(_component_UiTableData, { class: "space-x-2" }, {
                         default: withCtx(() => [
                           createVNode("button", {
                             type: "button",
                             class: "table-action-button group",
-                            onClick: ($event) => _ctx.$emit("onSelectToEdit", item)
+                            onClick: $event => _ctx.$emit("onSelectToEdit", item),
                           }, [
                             createVNode(_component_Icon, {
                               name: "lucide:pencil",
-                              class: "opacity-70 group-hover:text-dashboard-info-50"
-                            })
+                              class: "opacity-70 group-hover:text-dashboard-info-50",
+                            }),
                           ], 8, ["onClick"]),
                           createVNode("button", {
                             type: "button",
                             class: "group table-action-button",
-                            onClick: () => handleDelete(item?.name, item?.id)
+                            onClick: () => handleDelete(item?.name, item?.id),
                           }, [
                             createVNode(_component_Icon, {
                               name: "lucide:trash-2",
-                              class: "opacity-70 group-hover:text-dashboard-danger-50"
-                            })
-                          ], 8, ["onClick"])
+                              class: "opacity-70 group-hover:text-dashboard-danger-50",
+                            }),
+                          ], 8, ["onClick"]),
                         ]),
-                        _: 2
-                      }, 1024)
+                        _: 2,
+                      }, 1024),
                     ];
                   }
                 }),
-                _: 2
+                _: 2,
               }, _parent2, _scopeId));
             });
             _push2(`<!--]-->`);
-          } else {
+          }
+          else {
             return [
               (openBlock(true), createBlock(Fragment, null, renderList(__props.items, (item, index) => {
                 return openBlock(), createBlock(_component_UiTableRow, {
-                  key: item?.id
+                  key: item?.id,
                 }, {
                   default: withCtx(() => [
                     createVNode(_component_UiTableData, null, {
                       default: withCtx(() => [
-                        createTextVNode(toDisplayString(index + 1), 1)
+                        createTextVNode(toDisplayString(index + 1), 1),
                       ]),
-                      _: 2
+                      _: 2,
                     }, 1024),
                     createVNode(_component_UiTableData, null, {
                       default: withCtx(() => [
-                        createTextVNode(toDisplayString(item?.name), 1)
+                        createTextVNode(toDisplayString(item?.name), 1),
                       ]),
-                      _: 2
+                      _: 2,
                     }, 1024),
                     createVNode(_component_UiTableData, null, {
                       default: withCtx(() => [
-                        createTextVNode(toDisplayString(("formatDateApp" in _ctx ? _ctx.formatDateApp : unref(formatDateApp))(item?.created_at)), 1)
+                        createTextVNode(toDisplayString(("formatDateApp" in _ctx ? _ctx.formatDateApp : unref(formatDateApp))(item?.created_at)), 1),
                       ]),
-                      _: 2
+                      _: 2,
                     }, 1024),
                     createVNode(_component_UiTableData, null, {
                       default: withCtx(() => [
-                        createTextVNode(toDisplayString(("formatDateApp" in _ctx ? _ctx.formatDateApp : unref(formatDateApp))(item?.updated_at)), 1)
+                        createTextVNode(toDisplayString(("formatDateApp" in _ctx ? _ctx.formatDateApp : unref(formatDateApp))(item?.updated_at)), 1),
                       ]),
-                      _: 2
+                      _: 2,
                     }, 1024),
                     createVNode(_component_UiTableData, { class: "space-x-2" }, {
                       default: withCtx(() => [
                         createVNode("button", {
                           type: "button",
                           class: "table-action-button group",
-                          onClick: ($event) => _ctx.$emit("onSelectToEdit", item)
+                          onClick: $event => _ctx.$emit("onSelectToEdit", item),
                         }, [
                           createVNode(_component_Icon, {
                             name: "lucide:pencil",
-                            class: "opacity-70 group-hover:text-dashboard-info-50"
-                          })
+                            class: "opacity-70 group-hover:text-dashboard-info-50",
+                          }),
                         ], 8, ["onClick"]),
                         createVNode("button", {
                           type: "button",
                           class: "group table-action-button",
-                          onClick: () => handleDelete(item?.name, item?.id)
+                          onClick: () => handleDelete(item?.name, item?.id),
                         }, [
                           createVNode(_component_Icon, {
                             name: "lucide:trash-2",
-                            class: "opacity-70 group-hover:text-dashboard-danger-50"
-                          })
-                        ], 8, ["onClick"])
+                            class: "opacity-70 group-hover:text-dashboard-danger-50",
+                          }),
+                        ], 8, ["onClick"]),
                       ]),
-                      _: 2
-                    }, 1024)
+                      _: 2,
+                    }, 1024),
                   ]),
-                  _: 2
+                  _: 2,
                 }, 1024);
-              }), 128))
+              }), 128)),
             ];
           }
         }),
-        _: 1
+        _: 1,
       }, _parent));
     };
-  }
+  },
 });
 const _sfc_setup$2 = _sfc_main$2.setup;
 _sfc_main$2.setup = (props, ctx) => {
@@ -435,7 +452,7 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
         }
         return categoryFetcher().get(params);
       },
-      { lazy: true, watch: [currentQueryParams] }
+      { lazy: true, watch: [currentQueryParams] },
     )), __temp = await __temp, __restore(), __temp);
     return (_ctx, _push, _parent, _attrs) => {
       const _component_UiCardHeader = __nuxt_component_1$1;
@@ -447,55 +464,57 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
         default: withCtx((_, _push2, _parent2, _scopeId) => {
           if (_push2) {
             _push2(`<h3 class="font-semibold text-lg text-dashboard-accent-50"${_scopeId}> Manage Category </h3><div class="flex flex-col md:flex-row justify-end gap-4 items-center"${_scopeId}><button type="button" class="text-dashboard-primary-50 bg-dashboard-accent-50 inline-flex h-full py-2 px-6 rounded-lg w-full md:w-auto whitespace-nowrap justify-center"${_scopeId}> + Add </button></div>`);
-          } else {
+          }
+          else {
             return [
               createVNode("h3", { class: "font-semibold text-lg text-dashboard-accent-50" }, " Manage Category "),
               createVNode("div", { class: "flex flex-col md:flex-row justify-end gap-4 items-center" }, [
                 createVNode("button", {
                   type: "button",
                   class: "text-dashboard-primary-50 bg-dashboard-accent-50 inline-flex h-full py-2 px-6 rounded-lg w-full md:w-auto whitespace-nowrap justify-center",
-                  onClick: ($event) => unref(handleShowModal)({ type: "ADD" })
-                }, " + Add ", 8, ["onClick"])
-              ])
+                  onClick: $event => unref(handleShowModal)({ type: "ADD" }),
+                }, " + Add ", 8, ["onClick"]),
+              ]),
             ];
           }
         }),
-        _: 1
+        _: 1,
       }, _parent));
       _push(ssrRenderComponent(_component_UiCardContent, { class: "!px-0 !pb-0" }, {
         default: withCtx((_, _push2, _parent2, _scopeId) => {
           if (_push2) {
             _push2(ssrRenderComponent(_component_ManageCategoryTable, {
-              items: unref(data)?.data ?? [],
+              "items": unref(data)?.data ?? [],
               "is-loading": unref(pending),
               "is-error": !!unref(error),
-              onOnSelectToEdit: (selectedItem2) => unref(handleShowModal)({
+              "onOnSelectToEdit": selectedItem2 => unref(handleShowModal)({
                 type: "UPDATE",
-                selectedItem: selectedItem2
+                selectedItem: selectedItem2,
               }),
-              onOnRefresh: unref(refresh)
+              "onOnRefresh": unref(refresh),
             }, null, _parent2, _scopeId));
-          } else {
+          }
+          else {
             return [
               createVNode(_component_ManageCategoryTable, {
-                items: unref(data)?.data ?? [],
+                "items": unref(data)?.data ?? [],
                 "is-loading": unref(pending),
                 "is-error": !!unref(error),
-                onOnSelectToEdit: (selectedItem2) => unref(handleShowModal)({
+                "onOnSelectToEdit": selectedItem2 => unref(handleShowModal)({
                   type: "UPDATE",
-                  selectedItem: selectedItem2
+                  selectedItem: selectedItem2,
                 }),
-                onOnRefresh: unref(refresh)
-              }, null, 8, ["items", "is-loading", "is-error", "onOnSelectToEdit", "onOnRefresh"])
+                "onOnRefresh": unref(refresh),
+              }, null, 8, ["items", "is-loading", "is-error", "onOnSelectToEdit", "onOnRefresh"]),
             ];
           }
         }),
-        _: 1
+        _: 1,
       }, _parent));
       _push(ssrRenderComponent(_component_ClientOnly, null, {}, _parent));
       _push(`<!--]-->`);
     };
-  }
+  },
 });
 const _sfc_setup$1 = _sfc_main$1.setup;
 _sfc_main$1.setup = (props, ctx) => {
@@ -515,16 +534,17 @@ const _sfc_main = /* @__PURE__ */ defineComponent({
         default: withCtx((_, _push2, _parent2, _scopeId) => {
           if (_push2) {
             _push2(ssrRenderComponent(_component_ManageCategoryContent, null, null, _parent2, _scopeId));
-          } else {
+          }
+          else {
             return [
-              createVNode(_component_ManageCategoryContent)
+              createVNode(_component_ManageCategoryContent),
             ];
           }
         }),
-        _: 1
+        _: 1,
       }, _parent));
     };
-  }
+  },
 });
 const _sfc_setup = _sfc_main.setup;
 _sfc_main.setup = (props, ctx) => {
@@ -534,4 +554,4 @@ _sfc_main.setup = (props, ctx) => {
 };
 
 export { _sfc_main as default };
-//# sourceMappingURL=index.client-C0CEadtm.mjs.map
+// # sourceMappingURL=index.client-C0CEadtm.mjs.map

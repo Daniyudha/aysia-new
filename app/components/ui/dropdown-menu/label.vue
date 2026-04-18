@@ -9,7 +9,7 @@ const props = defineProps<
     inset?: boolean;
     label?: string;
   }
-  >();
+>();
 const forwarded = reactiveOmit(props, "class", "inset", "label");
 const styles = tv({
   base: "inline-block w-full px-2 py-1.5 text-sm font-semibold text-foreground",

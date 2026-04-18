@@ -10,7 +10,7 @@ const props = defineProps<
     /** Custom class(es) to add to the parent */
     class?: any;
   }
-  >();
+>();
 const forwarded = reactiveOmit(props, "class", "icon");
 
 const styles = tv({

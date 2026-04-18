@@ -16,7 +16,7 @@ const props = defineProps<
     /** The trailing icon to display */
     trailingIcon?: string;
   }
-  >();
+>();
 const forwarded = reactiveOmit(props, "class", "inset", "icon", "title", "trailingIcon");
 const styles = tv({
   base: "flex cursor-default select-none items-center gap-3 rounded-sm px-2 py-1.5 text-sm outline-none focus:bg-accent data-[state=open]:bg-accent",

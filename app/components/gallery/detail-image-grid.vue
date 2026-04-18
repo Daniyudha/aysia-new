@@ -1,289 +1,353 @@
 <script setup lang="ts">
-import { computed, reactive } from 'vue'
-import { useRuntimeConfig } from '#app'
-import { useI18n } from '#imports'
-
-const { t } = useI18n()
+import { useRuntimeConfig } from "#app";
+import { useI18n } from "#imports";
+import { computed, reactive, ref, onMounted, onUnmounted, watch } from "vue";
 
 /** ----- props ----- */
 const props = defineProps<{
-  journeyDetailItems: JourneyDetailsResponse[]
-  pending?: boolean
-}>()
+  journeyDetailItems: JourneyDetailsResponse[];
+  pending?: boolean;
+}>();
 
-/** ----- dialog state (sama seperti milikmu) ----- */
+const { t } = useI18n();
+
+console.debug('[detail-image-grid] props:', props.journeyDetailItems?.length, props.pending);
+
+onMounted(() => {
+  console.debug('[detail-image-grid] mounted, props:', props.journeyDetailItems?.length, props.pending);
+});
+
+/** ----- dialog ----- */
 const showDialogState = reactive({
   openDialog: false,
   selectedJourneyIndex: -1,
-})
+});
 
 function closeDialog() {
-  showDialogState.openDialog = false
-  showDialogState.selectedJourneyIndex = -1
+  showDialogState.openDialog = false;
+  showDialogState.selectedJourneyIndex = -1;
 }
 
-function handleChangeImage(index: number) {
-  if (index < 0 || index >= props.journeyDetailItems.length) return
-  showDialogState.selectedJourneyIndex = index
-}
-
-/** ----- selectedItem computed ----- */
-const selectedJourney = computed(() => {
-  if (showDialogState.selectedJourneyIndex === undefined || showDialogState.selectedJourneyIndex < 0) return null
-  return props.journeyDetailItems[showDialogState.selectedJourneyIndex] ?? null
-})
-
-/** ----- runtime config ----- */
-const apiBase = useRuntimeConfig().public?.apiBase ?? ''
-
-/** ----- YouTube helpers (robust) ----- */
-function isYouTubeUrl(url?: string | null) {
-  return !!url && /youtu\.be|youtube\.com/.test(url)
-}
-
-function getYouTubeId(url?: string | null): string | null {
-  if (!url) return null
-  // pola umum (shorts, watch?v=, youtu.be/, embed/)
-  const patterns = [
-    /(?:youtube\.com\/shorts\/|youtube\.com\/embed\/)([a-zA-Z0-9_-]{11})/,
-    /youtube\.com\/watch\?v=([a-zA-Z0-9_-]{11})/,
-    /v=([a-zA-Z0-9_-]{11})/,
-    /youtu\.be\/([a-zA-Z0-9_-]{11})/
-  ]
-  for (const p of patterns) {
-    const m = url.match(p)
-    if (m && m[1]) return m[1]
-  }
-  // fallback cari 11-char id
-  const fallback = url.match(/([a-zA-Z0-9_-]{11})/)
-  return fallback && fallback[1] ? fallback[1] : null
-}
-
-function getYouTubeType(url?: string | null): 'short' | 'video' {
-  if (!url) return 'video'
-  return url.includes('/shorts/') ? 'short' : 'video'
-}
-
-/** Build embed URL (dipakai di grid iframe & di modal) */
-function getEmbedUrl(url?: string | null, autoplay = 1, mute = 1) {
-  const id = getYouTubeId(url)
-  if (!id) return ''
-  const params = [
-    `autoplay=${autoplay ? 1 : 0}`,
-    `mute=${mute ? 1 : 0}`,
-    'playsinline=1',
-    'loop=1',
-    `playlist=${id}`,
-    'controls=1',
-    'rel=0',
-    'modestbranding=1'
-  ]
-  return `https://www.youtube.com/embed/${id}?${params.join('&')}`
-}
-
-/** YouTube thumbnail fallback */
-function getYouTubeThumbnail(url?: string | null) {
-  const id = getYouTubeId(url)
-  if (!id) return ''
-  return `https://img.youtube.com/vi/${id}/hqdefault.jpg`
-}
-
-/** helper untuk membuka dialog (dipanggil oleh overlay) */
 function openDialogAt(index: number) {
-  showDialogState.selectedJourneyIndex = index
-  showDialogState.openDialog = true
+  showDialogState.selectedJourneyIndex = index;
+  showDialogState.openDialog = true;
 }
 
-/** computed embed url of selected item (for passing to GalleryDetailDialog) */
-const selectedEmbedUrl = computed(() => {
-  if (!selectedJourney.value) return ''
-  // kirim embed URL (menghindari masalah shorts raw url)
-  return getEmbedUrl(selectedJourney.value.video_url ?? null, 1, 0) // autoplay di modal, mute=0 agar user bisa dengar (sesuaikan)
-})
+/** ----- selected item ----- */
+const selectedJourney = computed(() => {
+  if (showDialogState.selectedJourneyIndex < 0) return null;
+  return props.journeyDetailItems[showDialogState.selectedJourneyIndex] ?? null;
+});
+
+/** ----- runtime ----- */
+const apiBase = useRuntimeConfig().public?.apiBase ?? "";
+
+/** ----- SLIDER ----- */
+const currentIndex = ref(0);
+let interval: any = null;
+
+function nextSlide() {
+  if (!props.journeyDetailItems.length) return;
+  currentIndex.value =
+    (currentIndex.value + 1) % props.journeyDetailItems.length;
+}
+
+function prevSlide() {
+  if (!props.journeyDetailItems.length) return;
+  currentIndex.value =
+    (currentIndex.value - 1 + props.journeyDetailItems.length) %
+    props.journeyDetailItems.length;
+}
+
+onMounted(() => {
+  interval = setInterval(nextSlide, 4000);
+});
+
+onUnmounted(() => {
+  clearInterval(interval);
+});
+
+/** ----- IMAGE HANDLING ----- */
+function handleImageError(event: Event) {
+  console.error('[detail-image-grid] image failed to load', event);
+}
+
+function handleImageLoad(event: Event) {
+  console.debug('[detail-image-grid] image loaded', event);
+}
+
+/** ----- MUSIC ----- */
+const audioRef = ref<HTMLAudioElement | null>(null);
+const isPlaying = ref(false);
+const autoplayBlocked = ref(false);
+
+/** toggle manual */
+function toggleMusic() {
+  const audio = audioRef.value;
+  if (!audio) return;
+
+  audio.muted = false;
+
+  if (audio.paused) {
+    audio.play();
+  } else {
+    audio.pause();
+  }
+}
+
+onMounted(() => {
+  const audio = audioRef.value;
+  if (!audio) return;
+
+  const handlePlay = () => {
+    isPlaying.value = true;
+  };
+
+  const handlePause = () => {
+    isPlaying.value = false;
+  };
+
+  const handleCanPlay = () => {
+    // Autoplay muted (PASTI jalan)
+    audio.muted = true;
+
+    audio.play()
+      .then(() => {
+        isPlaying.value = true;
+      })
+      .catch(() => {
+        autoplayBlocked.value = true;
+      });
+  };
+
+  audio.addEventListener("play", handlePlay);
+  audio.addEventListener("pause", handlePause);
+  audio.addEventListener("canplaythrough", handleCanPlay);
+
+  /** UNMUTE saat user interaksi */
+  const handleUserInteraction = () => {
+    if (!audio) return;
+
+    audio.muted = false;
+
+    if (audio.paused) {
+      audio.play().catch(() => {});
+    }
+
+    document.removeEventListener("click", handleUserInteraction);
+    document.removeEventListener("touchstart", handleUserInteraction);
+  };
+
+  document.addEventListener("click", handleUserInteraction);
+  document.addEventListener("touchstart", handleUserInteraction);
+
+  onUnmounted(() => {
+    audio.removeEventListener("play", handlePlay);
+    audio.removeEventListener("pause", handlePause);
+    audio.removeEventListener("canplaythrough", handleCanPlay);
+    document.removeEventListener("click", handleUserInteraction);
+    document.removeEventListener("touchstart", handleUserInteraction);
+  });
+});
 </script>
 
 <template>
-  <section class="pt-6 pb-9">
-    <div class="app-container">
-      <!-- Loading Spinner -->
-      <template v-if="props?.pending">
+  <section class="pt-0 pb-16">
+    <div class="lg:app-container max-w-5xl mx-auto px-8 lg:px-0">
+
+      <!-- LOADING -->
+      <template v-if="props.pending">
         <div class="flex justify-center my-10 animate-spin">
           <Icon name="gg:spinner" style="width: 4rem; height: 4rem" />
         </div>
       </template>
 
-      <!-- Grid -->
-      <template v-else-if="!props?.pending && !!props?.journeyDetailItems?.length">
-        <div class="masonry-grid">
-          <div v-for="(item, index) in props.journeyDetailItems" :key="item.id" class="masonry-item">
-            <!-- ===== VIDEO (YouTube or MP4) ===== -->
-            <template v-if="item.is_video">
-              <div class="relative block w-full rounded-lg overflow-hidden">
-                <!-- container dengan aspect ratio dinamis (short vs video) -->
-                <div
-                  :style="{ aspectRatio: isYouTubeUrl(item.video_url) ? (getYouTubeType(item.video_url) === 'short' ? '9/16' : '16/9') : '16/9' }"
-                  class="w-full bg-black relative rounded-lg overflow-hidden"
-                >
-                  <!-- If YouTube: render iframe (autoplay in-grid) but disable pointer events so click passes to overlay -->
-                  <iframe
-                    v-if="isYouTubeUrl(item.video_url)"
-                    :src="getEmbedUrl(item.video_url, 1, 1)" 
-                    frameborder="0"
-                    allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
-                    allowfullscreen
-                    class="absolute inset-0 w-full h-full pointer-events-none"
-                  ></iframe>
+      <!-- SLIDER -->
+      <template v-else-if="props.journeyDetailItems?.length">
+        <div class="relative w-full aspect-[16/9] overflow-hidden rounded-xl">
 
-                  <!-- Direct MP4 video: autoplay but pointer-events-none -->
-                  <video
-                    v-else-if="item.video_url"
-                    :src="item.video_url"
-                    autoplay
-                    muted
-                    loop
-                    playsinline
-                    preload="metadata"
-                    class="absolute inset-0 w-full h-full object-cover pointer-events-none"
-                  />
+          <div
+            v-for="(item, index) in props.journeyDetailItems"
+            :key="item.id"
+            class="absolute inset-0 transition-opacity duration-700"
+            :class="index === currentIndex ? 'opacity-100 z-10' : 'opacity-0 z-0'"
+          >
+            <img
+              v-if="!item.is_video"
+              :src="`${apiBase}${item.thumbnail_url}`"
+              class="w-full h-full object-cover"
+              @error="handleImageError"
+              @load="handleImageLoad"
+            >
 
-                  <!-- If thumbnail exists or fallback (kept for cases where iframe not desired) -->
-                  <img
-                    v-if="!isYouTubeUrl(item.video_url) && item.thumbnail_url"
-                    :src="`${apiBase}${item.thumbnail_url}`"
-                    alt=""
-                    class="absolute inset-0 w-full h-full object-cover pointer-events-none"
-                  />
+            <video
+              v-else-if="item.video_url"
+              :src="item.video_url"
+              autoplay
+              muted
+              loop
+              playsinline
+              class="w-full h-full object-cover"
+            />
 
-                  <!-- Overlay clickable: menangkap klik dan membuka dialog -->
-                  <button
-                    type="button"
-                    class="absolute inset-0 z-20 flex items-center justify-center bg-transparent"
-                    @click="openDialogAt(index)"
-                    aria-label="Open gallery item"
-                  >                    
-                  </button>
-                </div>
-              </div>
-            </template>
-
-            <!-- ===== IMAGE (non-video) ===== -->
-            <template v-else>
-              <div class="relative rounded-lg overflow-hidden shadow cursor-pointer">
-                <img
-                  :src="`${apiBase}${item.thumbnail_url}`"
-                  alt=""
-                  class="w-full h-auto object-cover"
-                />
-                <!-- overlay clickable -->
-                <button
-                  type="button"
-                  class="absolute inset-0 z-10"
-                  @click="openDialogAt(index)"
-                  aria-label="Open image"
-                />
-              </div>
-            </template>
+            <button class="absolute inset-0" @click="openDialogAt(index)" />
           </div>
+
+          <button class="absolute left-4 top-1/2 -translate-y-1/2 z-20 text-white text-3xl" @click="prevSlide">
+            ‹
+          </button>
+
+          <button class="absolute right-4 top-1/2 -translate-y-1/2 z-20 text-white text-3xl" @click="nextSlide">
+            ›
+          </button>
         </div>
       </template>
 
-      <!-- No data -->
+      <!-- EMPTY -->
       <template v-else>
-        <p class="text-center text-xl">{{ t('gallery.collection_not_found') }}</p>
+        <p class="text-center text-xl">
+          {{ t('gallery.collection_not_found') }}
+        </p>
       </template>
     </div>
   </section>
 
-  <!-- ===== GalleryDetailDialog (pakai component milikmu) =====
-       Penting: kita kirim :video-url sebagai embed URL (bukan raw shorts url)
-       agar dialog dapat menampilkan YouTube Shorts & regular video tanpa error.
-  -->
-  <template
-    v-if="showDialogState.selectedJourneyIndex > -1 && props?.journeyDetailItems?.length"
-  >
-    <GalleryDetailDialog
-      :image="selectedJourney?.thumbnail_url ?? ''"
-      :title="selectedJourney?.title ?? ''"
-      :content="selectedJourney?.description ?? ''"
-      :is-video="selectedJourney?.is_video ?? false"
-      :video-url=" selectedJourney && isYouTubeUrl(selectedJourney.video_url) ? getEmbedUrl(selectedJourney.video_url, 1, 0) : (selectedJourney?.video_url ?? '')"
-      :model-value=" showDialogState.openDialog && showDialogState.selectedJourneyIndex > -1 "
-      :collections="[]"
-      @update:model-value="(isOpen) => { if (!isOpen) closeDialog(); }"
-    >
-      <template #control-left>
-  <button
-    type="button"
-    class="control-button"
-    :disabled="showDialogState.selectedJourneyIndex === 0"
-    @click="handleChangeImage(showDialogState.selectedJourneyIndex - 1)"
-  >
-    <Icon name="heroicons:chevron-left" />
-  </button>
-</template>
+  <!-- DIALOG -->
+  <GalleryDetailDialog
+    v-if="showDialogState.selectedJourneyIndex > -1"
+    :image="selectedJourney?.thumbnail_url ?? ''"
+    :title="selectedJourney?.title ?? ''"
+    :content="selectedJourney?.description ?? ''"
+    :is-video="selectedJourney?.is_video ?? false"
+    :video-url="selectedJourney?.video_url ?? ''"
+    :collections="[]"
+    :model-value="showDialogState.openDialog"
+    @update:model-value="(v) => { if (!v) closeDialog(); }"
+  />
 
-<template #control-right>
-  <button
-    type="button"
-    class="control-button"
-    :disabled="showDialogState.selectedJourneyIndex === props.journeyDetailItems.length - 1"
-    @click="handleChangeImage(showDialogState.selectedJourneyIndex + 1)"
-  >
-    <Icon name="heroicons:chevron-right" />
-  </button>
-</template>
+  <!-- AUDIO -->
+  <audio
+    ref="audioRef"
+    src="/audio/Wonderland-Indonesia.mp3"
+    autoplay
+    loop
+    muted
+    playsinline
+    preload="auto"
+  />
 
-    </GalleryDetailDialog>
-  </template>
+  <!-- FLOATING MUSIC -->
+  <div class="music-player" @click="toggleMusic">
+    <div class="wrapper" :class="{ spinning: isPlaying }">
+
+      <!-- TEXT MELINGKAR -->
+      <svg viewBox="0 0 120 120" class="circular-text">
+        <defs>
+          <path
+            id="circlePath"
+            d="
+              M 60,60
+              m -50,0
+              a 50,50 0 1,1 100,0
+              a 50,50 0 1,1 -100,0
+            "
+          />
+        </defs>
+
+        <text font-size="10">
+          <textPath href="#circlePath">
+            Now Playing • Journey Music • Now Playing •
+          </textPath>
+        </text>
+      </svg>
+
+      <!-- DISC -->
+      <div class="disc">
+        <Icon
+          :name="isPlaying ? 'mdi:music' : 'mdi:music-off'"
+          class="icon"
+        />
+      </div>
+
+    </div>
+
+    <!-- TOOLTIP -->
+    <div v-if="autoplayBlocked && !isPlaying" class="autoplay-tooltip">
+      Click to play music
+    </div>
+  </div>
 </template>
 
 <style scoped>
-@reference "../../assets/css/main.css";
-
-.masonry-grid {
-  column-count: 1;
-  column-gap: 1.5rem;
+.music-player {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 50;
+  cursor: pointer;
 }
 
-.masonry-item {
-  break-inside: avoid;
-  display: inline-block;
+.wrapper {
+  position: relative;
+  width: 100px;
+  height: 100px;
+}
+
+.circular-text {
+  position: absolute;
   width: 100%;
-  margin-bottom: 1.5rem;
+  height: 100%;
+  fill: oklch(35.165% 0.06358 89.614);
+  letter-spacing: 1.5px;
 }
 
-/* Responsive masonry columns */
-@media (min-width: 768px) {
-  .masonry-grid {
-    column-count: 2;
-    column-gap: 2rem;
-  }
-  
-  .masonry-item {
-    margin-bottom: 2rem;
-  }
+.disc {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 60px;
+  height: 60px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: oklch(35.165% 0.06358 89.614);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-@media (min-width: 1024px) {
-  .masonry-grid {
-    column-count: 3;
-    column-gap: 2rem;
-  }
+.icon {
+  font-size: 26px;
+  color: oklch(96.1% 0.012 91.52);
 }
 
-/* overlay button default tanpa visual, hanya agar clickable area penuh */
-button[aria-label="Open gallery item"],
-button[aria-label="Open image"] {
-  background: transparent;
-  border: none;
-  padding: 0;
+.spinning .circular-text {
+  animation: rotateText 10s linear infinite;
 }
 
-/* control-button styling (sama seperti milikmu) */
-.control-button {
-  @apply inline-flex items-center text-2xl font-light gap-4 cursor-pointer;
+.spinning .disc {
+  animation: spinDisc 4s linear infinite;
 }
-.control-button:disabled {
-  @apply opacity-50;
+
+@keyframes rotateText {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes spinDisc {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+.autoplay-tooltip {
+  position: absolute;
+  top: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
 }
 </style>

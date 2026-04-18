@@ -1,4 +1,5 @@
 import { z } from "zod";
+
 import { ImageUploadSchema } from "~/utils/file-upload";
 
 export const JourneyGalleryDetailSchema = z.object({
@@ -6,6 +7,7 @@ export const JourneyGalleryDetailSchema = z.object({
   type: z.enum(["image", "video"]),
   title: z.string("Title is required.").min(1, "Title is required."),
   description: z.string("Description is required.").min(1, "Description is required."),
+  tag: z.string().optional(),
   gallery_category_id: z.string().optional(),
   thumbnailUrl: z.string().optional(),
   thumbnail: z.any().optional(),
@@ -17,9 +19,9 @@ export const JourneyGalleryDetailSchema = z.object({
     const hasThumbnails = Array.isArray(data.thumbnail)
       ? data.thumbnail.length > 0
       : !!data.thumbnail;
-    
+
     const hasThumbnailUrl = !!data.thumbnailUrl?.length;
-    
+
     if (!hasThumbnails && !hasThumbnailUrl) {
       ctx.addIssue({
         code: "custom",
@@ -28,7 +30,7 @@ export const JourneyGalleryDetailSchema = z.object({
       });
     }
   }
-  
+
   // For video type, require videoUrl
   if (data.type === "video" && !data?.videoUrl?.length) {
     ctx.addIssue({
@@ -37,7 +39,7 @@ export const JourneyGalleryDetailSchema = z.object({
       message: "Video URL is required for video type.",
     });
   }
-  
+
   // Validate thumbnail file if it's provided and it's a File object (new upload)
   // This applies to both create and update modes when a new file is selected
   if (data.thumbnail) {
@@ -59,7 +61,8 @@ export const JourneyGalleryDetailSchema = z.object({
           }
         }
       }
-    } else {
+    }
+    else {
       // Single file validation - only validate if it's a File object
       if (data.thumbnail instanceof File) {
         const isValidImage = await ImageUploadSchema.safeParseAsync(data.thumbnail);

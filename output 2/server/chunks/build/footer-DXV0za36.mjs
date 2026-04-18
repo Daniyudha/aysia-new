@@ -1,7 +1,7 @@
-import { defineComponent, unref, mergeProps, withCtx, renderSlot, useSSRContext } from 'vue';
-import { ssrRenderComponent, ssrRenderSlot } from 'vue/server-renderer';
-import { Primitive } from 'reka-ui';
-import { tv } from 'tailwind-variants';
+import { Primitive } from "reka-ui";
+import { tv } from "tailwind-variants";
+import { defineComponent, mergeProps, renderSlot, unref, useSSRContext, withCtx } from "vue";
+import { ssrRenderComponent, ssrRenderSlot } from "vue/server-renderer";
 
 const _sfc_main = /* @__PURE__ */ defineComponent({
   __name: "footer",
@@ -9,32 +9,33 @@ const _sfc_main = /* @__PURE__ */ defineComponent({
   props: {
     asChild: { type: Boolean },
     as: { default: "div" },
-    class: {}
+    class: {},
   },
   setup(__props) {
     const props = __props;
     const styles = tv({
-      base: "flex items-center p-6"
+      base: "flex items-center p-6",
     });
     return (_ctx, _push, _parent, _attrs) => {
       _push(ssrRenderComponent(unref(Primitive), mergeProps({
-        class: unref(styles)({ class: props.class }),
-        as: __props.as,
-        "as-child": __props.asChild
+        "class": unref(styles)({ class: props.class }),
+        "as": __props.as,
+        "as-child": __props.asChild,
       }, _attrs), {
         default: withCtx((_, _push2, _parent2, _scopeId) => {
           if (_push2) {
             ssrRenderSlot(_ctx.$slots, "default", {}, null, _push2, _parent2, _scopeId);
-          } else {
+          }
+          else {
             return [
-              renderSlot(_ctx.$slots, "default")
+              renderSlot(_ctx.$slots, "default"),
             ];
           }
         }),
-        _: 3
+        _: 3,
       }, _parent));
     };
-  }
+  },
 });
 const _sfc_setup = _sfc_main.setup;
 _sfc_main.setup = (props, ctx) => {
@@ -45,4 +46,4 @@ _sfc_main.setup = (props, ctx) => {
 const __nuxt_component_7 = Object.assign(_sfc_main, { __name: "UiCardFooter" });
 
 export { __nuxt_component_7 as _ };
-//# sourceMappingURL=footer-DXV0za36.mjs.map
+// # sourceMappingURL=footer-DXV0za36.mjs.map

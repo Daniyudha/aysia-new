@@ -58,7 +58,7 @@ const { data: journeyDetailData, pending: journeyDetailPending, error: journeyDe
             <ManageGalleryDetailForm
               :default-value="detailJourneyData"
               mode="update"
-              :isHeader="true"
+              :is-header="true"
             />
           </template>
         </UiAccordionContent>
@@ -67,7 +67,7 @@ const { data: journeyDetailData, pending: journeyDetailPending, error: journeyDe
         <UiAccordionTrigger
           class="w-full py-2 text-[15px] leading-6 hover:no-underline"
         >
-          Gallery Item
+          Portfolio Item
         </UiAccordionTrigger>
         <UiAccordionContent class="text-muted-foreground">
           <ManageGalleryDetailTable

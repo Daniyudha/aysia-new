@@ -1,6 +1,7 @@
-import { defineComponent, withCtx, createTextVNode, createVNode, renderSlot, createBlock, openBlock, mergeProps, useSSRContext } from 'vue';
-import { ssrRenderComponent, ssrRenderSlot, ssrRenderAttrs } from 'vue/server-renderer';
-import { _ as _export_sfc } from './server.mjs';
+import { createBlock, createTextVNode, createVNode, defineComponent, mergeProps, openBlock, renderSlot, useSSRContext, withCtx } from "vue";
+import { ssrRenderAttrs, ssrRenderComponent, ssrRenderSlot } from "vue/server-renderer";
+
+import { _ as _export_sfc } from "./server.mjs";
 
 const _sfc_main$4 = {};
 function _sfc_ssrRender$3(_ctx, _push, _parent, _attrs) {
@@ -48,7 +49,7 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
     isLoading: { type: Boolean },
     isError: { type: Boolean },
     headerCount: {},
-    data: {}
+    data: {},
   },
   setup(__props) {
     return (_ctx, _push, _parent, _attrs) => {
@@ -67,171 +68,187 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
                   if (_push3) {
                     _push3(ssrRenderComponent(_component_UiTableData, {
                       class: "!text-center",
-                      colspan: _ctx.$props?.headerCount
+                      colspan: _ctx.$props?.headerCount,
                     }, {
                       default: withCtx((_3, _push4, _parent4, _scopeId3) => {
                         if (_push4) {
                           _push4(` Getting data... `);
-                        } else {
+                        }
+                        else {
                           return [
-                            createTextVNode(" Getting data... ")
+                            createTextVNode(" Getting data... "),
                           ];
                         }
                       }),
-                      _: 1
+                      _: 1,
                     }, _parent3, _scopeId2));
-                  } else {
+                  }
+                  else {
                     return [
                       createVNode(_component_UiTableData, {
                         class: "!text-center",
-                        colspan: _ctx.$props?.headerCount
+                        colspan: _ctx.$props?.headerCount,
                       }, {
                         default: withCtx(() => [
-                          createTextVNode(" Getting data... ")
+                          createTextVNode(" Getting data... "),
                         ]),
-                        _: 1
-                      }, 8, ["colspan"])
+                        _: 1,
+                      }, 8, ["colspan"]),
                     ];
                   }
                 }),
-                _: 1
+                _: 1,
               }, _parent2, _scopeId));
-            } else if (!__props.isLoading && _ctx.$props?.isError) {
+            }
+            else if (!__props.isLoading && _ctx.$props?.isError) {
               _push2(ssrRenderComponent(_component_UiTableRow, null, {
                 default: withCtx((_2, _push3, _parent3, _scopeId2) => {
                   if (_push3) {
                     _push3(ssrRenderComponent(_component_UiTableData, {
                       class: "!text-center",
-                      colspan: _ctx.$props?.headerCount
+                      colspan: _ctx.$props?.headerCount,
                     }, {
                       default: withCtx((_3, _push4, _parent4, _scopeId3) => {
                         if (_push4) {
                           _push4(` Something went wrong. `);
-                        } else {
+                        }
+                        else {
                           return [
-                            createTextVNode(" Something went wrong. ")
+                            createTextVNode(" Something went wrong. "),
                           ];
                         }
                       }),
-                      _: 1
+                      _: 1,
                     }, _parent3, _scopeId2));
-                  } else {
+                  }
+                  else {
                     return [
                       createVNode(_component_UiTableData, {
                         class: "!text-center",
-                        colspan: _ctx.$props?.headerCount
+                        colspan: _ctx.$props?.headerCount,
                       }, {
                         default: withCtx(() => [
-                          createTextVNode(" Something went wrong. ")
+                          createTextVNode(" Something went wrong. "),
                         ]),
-                        _: 1
-                      }, 8, ["colspan"])
+                        _: 1,
+                      }, 8, ["colspan"]),
                     ];
                   }
                 }),
-                _: 1
+                _: 1,
               }, _parent2, _scopeId));
-            } else if (!__props.isLoading && !_ctx.$props?.data?.length) {
+            }
+            else if (!__props.isLoading && !_ctx.$props?.data?.length) {
               _push2(ssrRenderComponent(_component_UiTableRow, null, {
                 default: withCtx((_2, _push3, _parent3, _scopeId2) => {
                   if (_push3) {
                     _push3(ssrRenderComponent(_component_UiTableData, {
                       class: "!text-center",
-                      colspan: _ctx.$props?.headerCount
+                      colspan: _ctx.$props?.headerCount,
                     }, {
                       default: withCtx((_3, _push4, _parent4, _scopeId3) => {
                         if (_push4) {
                           _push4(` No data found. `);
-                        } else {
+                        }
+                        else {
                           return [
-                            createTextVNode(" No data found. ")
+                            createTextVNode(" No data found. "),
                           ];
                         }
                       }),
-                      _: 1
+                      _: 1,
                     }, _parent3, _scopeId2));
-                  } else {
+                  }
+                  else {
                     return [
                       createVNode(_component_UiTableData, {
                         class: "!text-center",
-                        colspan: _ctx.$props?.headerCount
+                        colspan: _ctx.$props?.headerCount,
                       }, {
                         default: withCtx(() => [
-                          createTextVNode(" No data found. ")
+                          createTextVNode(" No data found. "),
                         ]),
-                        _: 1
-                      }, 8, ["colspan"])
+                        _: 1,
+                      }, 8, ["colspan"]),
                     ];
                   }
                 }),
-                _: 1
+                _: 1,
               }, _parent2, _scopeId));
-            } else {
+            }
+            else {
               ssrRenderSlot(_ctx.$slots, "body", {}, null, _push2, _parent2, _scopeId);
             }
             _push2(`</tbody>`);
             ssrRenderSlot(_ctx.$slots, "foot", {}, null, _push2, _parent2, _scopeId);
             _push2(`</table>`);
-          } else {
+          }
+          else {
             return [
               createVNode("table", {
                 class: "w-full",
-                role: "table"
+                role: "table",
               }, [
                 createVNode("thead", null, [
-                  renderSlot(_ctx.$slots, "head")
+                  renderSlot(_ctx.$slots, "head"),
                 ]),
                 createVNode("tbody", null, [
-                  __props.isLoading ? (openBlock(), createBlock(_component_UiTableRow, { key: 0 }, {
-                    default: withCtx(() => [
-                      createVNode(_component_UiTableData, {
-                        class: "!text-center",
-                        colspan: _ctx.$props?.headerCount
-                      }, {
+                  __props.isLoading
+                    ? (openBlock(), createBlock(_component_UiTableRow, { key: 0 }, {
                         default: withCtx(() => [
-                          createTextVNode(" Getting data... ")
+                          createVNode(_component_UiTableData, {
+                            class: "!text-center",
+                            colspan: _ctx.$props?.headerCount,
+                          }, {
+                            default: withCtx(() => [
+                              createTextVNode(" Getting data... "),
+                            ]),
+                            _: 1,
+                          }, 8, ["colspan"]),
                         ]),
-                        _: 1
-                      }, 8, ["colspan"])
-                    ]),
-                    _: 1
-                  })) : !__props.isLoading && _ctx.$props?.isError ? (openBlock(), createBlock(_component_UiTableRow, { key: 1 }, {
-                    default: withCtx(() => [
-                      createVNode(_component_UiTableData, {
-                        class: "!text-center",
-                        colspan: _ctx.$props?.headerCount
-                      }, {
-                        default: withCtx(() => [
-                          createTextVNode(" Something went wrong. ")
-                        ]),
-                        _: 1
-                      }, 8, ["colspan"])
-                    ]),
-                    _: 1
-                  })) : !__props.isLoading && !_ctx.$props?.data?.length ? (openBlock(), createBlock(_component_UiTableRow, { key: 2 }, {
-                    default: withCtx(() => [
-                      createVNode(_component_UiTableData, {
-                        class: "!text-center",
-                        colspan: _ctx.$props?.headerCount
-                      }, {
-                        default: withCtx(() => [
-                          createTextVNode(" No data found. ")
-                        ]),
-                        _: 1
-                      }, 8, ["colspan"])
-                    ]),
-                    _: 1
-                  })) : renderSlot(_ctx.$slots, "body", { key: 3 })
+                        _: 1,
+                      }))
+                    : !__props.isLoading && _ctx.$props?.isError
+                        ? (openBlock(), createBlock(_component_UiTableRow, { key: 1 }, {
+                            default: withCtx(() => [
+                              createVNode(_component_UiTableData, {
+                                class: "!text-center",
+                                colspan: _ctx.$props?.headerCount,
+                              }, {
+                                default: withCtx(() => [
+                                  createTextVNode(" Something went wrong. "),
+                                ]),
+                                _: 1,
+                              }, 8, ["colspan"]),
+                            ]),
+                            _: 1,
+                          }))
+                        : !__props.isLoading && !_ctx.$props?.data?.length
+                            ? (openBlock(), createBlock(_component_UiTableRow, { key: 2 }, {
+                                default: withCtx(() => [
+                                  createVNode(_component_UiTableData, {
+                                    class: "!text-center",
+                                    colspan: _ctx.$props?.headerCount,
+                                  }, {
+                                    default: withCtx(() => [
+                                      createTextVNode(" No data found. "),
+                                    ]),
+                                    _: 1,
+                                  }, 8, ["colspan"]),
+                                ]),
+                                _: 1,
+                              }))
+                            : renderSlot(_ctx.$slots, "body", { key: 3 }),
                 ]),
-                renderSlot(_ctx.$slots, "foot")
-              ])
+                renderSlot(_ctx.$slots, "foot"),
+              ]),
             ];
           }
         }),
-        _: 3
+        _: 3,
       }, _parent));
     };
-  }
+  },
 });
 const _sfc_setup$1 = _sfc_main$1.setup;
 _sfc_main$1.setup = (props, ctx) => {
@@ -255,4 +272,4 @@ _sfc_main.setup = (props, ctx) => {
 const __nuxt_component_4 = /* @__PURE__ */ Object.assign(_export_sfc(_sfc_main, [["ssrRender", _sfc_ssrRender]]), { __name: "UiTableHead" });
 
 export { __nuxt_component_2 as _, __nuxt_component_3 as a, __nuxt_component_5 as b, __nuxt_component_4 as c };
-//# sourceMappingURL=head-CEZx0sjE.mjs.map
+// # sourceMappingURL=head-CEZx0sjE.mjs.map

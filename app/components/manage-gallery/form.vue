@@ -17,6 +17,7 @@ const { handleSubmit, resetForm, setFieldValue, values, setValues } = useForm({
   initialValues: {
     title: props?.defaultValue?.title ?? "",
     description: props?.defaultValue?.description ?? "",
+    tag: props?.defaultValue?.tag ?? "",
     gallery_category_id: props?.defaultValue?.gallery_category_id ?? "",
     gallery_category_name: props?.defaultValue?.gallery_category_name ?? "",
     image: undefined,
@@ -30,6 +31,7 @@ watch(props, () => {
     setValues({
       title: props?.defaultValue?.title ?? "",
       description: props?.defaultValue?.description ?? "",
+      tag: props?.defaultValue?.tag ?? "",
       imageUrl: props?.defaultValue?.thumbnail ?? "",
       gallery_category_id: props?.defaultValue?.gallery_category_id ?? "",
       gallery_category_name: props?.defaultValue?.gallery_category_name ?? "",
@@ -58,6 +60,7 @@ function createNewGallery(values: JourneySchemaFormType) {
     .create({
       title: values?.title,
       description: values?.description,
+      tag: values?.tag,
       gallery_category_id: values?.gallery_category_id,
       thumbnail: values?.image,
     })
@@ -81,12 +84,13 @@ function updateGallery(id: string, values: JourneySchemaFormType) {
     .updateById(id, {
       title: values?.title,
       description: values?.description,
+      tag: values?.tag,
       gallery_category_id: values?.gallery_category_id,
       thumbnail: values?.image,
     })
     .then(() => {
       useSonner.success("Success to update journey");
-      router.push("/dashboard/gallery/");
+      router.push("/dashboard/portfolio/");
     })
     .catch((err) => {
       useSonner.error(
@@ -136,24 +140,29 @@ function createImageUrl(file: any) {
             </template>
           </UiFormItem>
         </Field>
-        <Field v-slot="{ componentField }" name="title">
-          <UiFormItem label="Title" class="mb-6">
-            <UiInput v-bind="componentField" placeholder="Enter title" />
-          </UiFormItem>
-        </Field>
         <Field v-slot="{ errorMessage }" name="gallery_category_id">
           <UiFormItem label="Category" class="mb-6">
             <UiCategorySelect
-              :default-value="{
-                value: values.gallery_category_id ?? '',
-                label: values.gallery_category_name ?? '',
-              }"
+            :default-value="{
+              value: values.gallery_category_id ?? '',
+              label: values.gallery_category_name ?? '',
+            }"
               :is-error="!!errorMessage"
               @on-select-option="(value) => {
                 setFieldValue('gallery_category_id', value?.value);
                 setFieldValue('gallery_category_name', value?.label);
               }"
             />
+          </UiFormItem>
+        </Field>
+        <Field v-slot="{ componentField }" name="title">
+          <UiFormItem label="Title" class="mb-6">
+            <UiInput v-bind="componentField" placeholder="Enter title" />
+          </UiFormItem>
+        </Field>
+        <Field v-slot="{ componentField }" name="tag">
+          <UiFormItem label="Subtitle" class="mb-6">
+            <UiInput v-bind="componentField" placeholder="Enter Subtitle" />
           </UiFormItem>
         </Field>
         <Field

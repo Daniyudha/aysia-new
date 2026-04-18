@@ -10,7 +10,7 @@ const props = defineProps<
     /** Title text */
     title?: string;
   }
-  >();
+>();
 const forwarded = reactiveOmit(props, "class", "title");
 const styles = tv({
   base: "text-lg font-semibold text-foreground",

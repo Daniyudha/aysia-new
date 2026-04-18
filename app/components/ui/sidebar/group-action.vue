@@ -17,7 +17,7 @@ const props = defineProps<
      */
     class?: HTMLAttributes["class"];
   }
-  >();
+>();
 </script>
 
 <template>

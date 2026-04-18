@@ -15,7 +15,12 @@ export function galleryRepository<T>(fetch: FetchType<T>) {
       const formData = new FormData();
       formData.append("description", payload.description);
       formData.append("title", payload.title);
-      formData.append("gallery_category_id", payload.gallery_category_id);
+      if (payload?.gallery_category_id) {
+        formData.append("gallery_category_id", payload.gallery_category_id);
+      }
+      if (payload?.tag) {
+        formData.append("tag", payload.tag);
+      }
       if (payload?.thumbnail) {
         formData.append("thumbnail", payload.thumbnail);
       }
@@ -29,12 +34,22 @@ export function galleryRepository<T>(fetch: FetchType<T>) {
       });
     },
     async updateById(galleryId: string, payload: JourneyPayload): Promise<JourneyResponse> {
+      console.log("updateById payload:", payload);
       const formData = new FormData();
       formData.append("description", payload.description);
       formData.append("title", payload.title);
-      formData.append("gallery_category_id", payload.gallery_category_id);
+      if (payload?.gallery_category_id) {
+        formData.append("gallery_category_id", payload.gallery_category_id);
+      }
+      if (payload?.tag) {
+        formData.append("tag", payload.tag);
+      }
       if (payload?.thumbnail) {
         formData.append("thumbnail", payload.thumbnail);
+      }
+      // Log FormData entries for debugging
+      for (const pair of formData.entries()) {
+        console.log(pair[0], pair[1]);
       }
       return fetch(API_URL_LIST.JOURNEY_BY_ID(galleryId), {
         method: "PUT",

@@ -1,8 +1,9 @@
-import { _ as __nuxt_component_0, a as __nuxt_component_1$1 } from './card-BC35WKp2.mjs';
-import { defineComponent, withCtx, createTextVNode, createVNode, useSSRContext } from 'vue';
-import { ssrRenderAttrs, ssrRenderComponent } from 'vue/server-renderer';
-import 'reka-ui';
-import 'tailwind-variants';
+import { createTextVNode, createVNode, defineComponent, useSSRContext, withCtx } from "vue";
+import { ssrRenderAttrs, ssrRenderComponent } from "vue/server-renderer";
+
+import { _ as __nuxt_component_0, a as __nuxt_component_1$1 } from "./card-BC35WKp2.mjs";
+import "reka-ui";
+import "tailwind-variants";
 
 const _sfc_main = /* @__PURE__ */ defineComponent({
   __name: "index.client",
@@ -19,32 +20,34 @@ const _sfc_main = /* @__PURE__ */ defineComponent({
               default: withCtx((_2, _push3, _parent3, _scopeId2) => {
                 if (_push3) {
                   _push3(` Welcome to the Dashboard `);
-                } else {
+                }
+                else {
                   return [
-                    createTextVNode(" Welcome to the Dashboard ")
+                    createTextVNode(" Welcome to the Dashboard "),
                   ];
                 }
               }),
-              _: 1
+              _: 1,
             }, _parent2, _scopeId));
             _push2(`<p class="text-center text-dashboard-neutral-500 text-xl"${_scopeId}> Here you can manage your settings and preferences. </p>`);
-          } else {
+          }
+          else {
             return [
               createVNode(_component_UiCardHeader, { class: "text-center font-bold text-dashboard-accent-50 text-5xl mb-6" }, {
                 default: withCtx(() => [
-                  createTextVNode(" Welcome to the Dashboard ")
+                  createTextVNode(" Welcome to the Dashboard "),
                 ]),
-                _: 1
+                _: 1,
               }),
-              createVNode("p", { class: "text-center text-dashboard-neutral-500 text-xl" }, " Here you can manage your settings and preferences. ")
+              createVNode("p", { class: "text-center text-dashboard-neutral-500 text-xl" }, " Here you can manage your settings and preferences. "),
             ];
           }
         }),
-        _: 1
+        _: 1,
       }, _parent));
       _push(`</div>`);
     };
-  }
+  },
 });
 const _sfc_setup = _sfc_main.setup;
 _sfc_main.setup = (props, ctx) => {
@@ -54,4 +57,4 @@ _sfc_main.setup = (props, ctx) => {
 };
 
 export { _sfc_main as default };
-//# sourceMappingURL=index.client-2DO9hpXL.mjs.map
+// # sourceMappingURL=index.client-2DO9hpXL.mjs.map

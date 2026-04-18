@@ -1,10 +1,11 @@
-import { _ as __nuxt_component_0$1 } from './nuxt-link-Bh--EX_l.mjs';
-import __nuxt_component_0$2 from './index-C2n46nfI.mjs';
-import { tv } from 'tailwind-variants';
-import { defineComponent, computed, createVNode, resolveDynamicComponent, unref, mergeProps, withCtx, renderSlot, createBlock, createCommentVNode, openBlock, toDisplayString, useSSRContext } from 'vue';
-import { ssrRenderVNode, ssrRenderSlot, ssrRenderComponent, ssrInterpolate } from 'vue/server-renderer';
-import { useForwardProps } from 'reka-ui';
-import { r as reactiveOmit } from './index-BAtNd0PJ.mjs';
+import { useForwardProps } from "reka-ui";
+import { tv } from "tailwind-variants";
+import { computed, createBlock, createCommentVNode, createVNode, defineComponent, mergeProps, openBlock, renderSlot, resolveDynamicComponent, toDisplayString, unref, useSSRContext, withCtx } from "vue";
+import { ssrInterpolate, ssrRenderComponent, ssrRenderSlot, ssrRenderVNode } from "vue/server-renderer";
+
+import { r as reactiveOmit } from "./index-BAtNd0PJ.mjs";
+import __nuxt_component_0$2 from "./index-C2n46nfI.mjs";
+import { _ as __nuxt_component_0$1 } from "./nuxt-link-Bh--EX_l.mjs";
 
 const buttonStyles = tv({
   base: "group inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 cursor-pointer disabled:cursor-not-allowed",
@@ -15,7 +16,7 @@ const buttonStyles = tv({
       outline: "border border-dashboard-neutral-100/50 bg-dashboard-neutral-50 hover:bg-dashboard-neutral-100/20",
       secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80",
       ghost: "hover:bg-accent hover:text-accent-foreground",
-      link: "text-primary underline-offset-4 hover:underline"
+      link: "text-primary underline-offset-4 hover:underline",
     },
     size: {
       "xs": "h-8 px-2",
@@ -24,19 +25,19 @@ const buttonStyles = tv({
       "lg": "h-11 px-8",
       "icon-xs": "h-8 w-8",
       "icon-sm": "h-9 w-9",
-      "icon": "h-10 w-10"
+      "icon": "h-10 w-10",
     },
     disabled: {
-      true: "pointer-events-none opacity-50"
+      true: "pointer-events-none opacity-50",
     },
     hasIcon: {
-      false: "gap-2"
-    }
+      false: "gap-2",
+    },
   },
   defaultVariants: {
     variant: "default",
-    size: "default"
-  }
+    size: "default",
+  },
 });
 const _sfc_main = /* @__PURE__ */ defineComponent({
   __name: "button",
@@ -70,7 +71,7 @@ const _sfc_main = /* @__PURE__ */ defineComponent({
     text: {},
     iconPlacement: { default: "left" },
     icon: {},
-    loadingIcon: { default: "line-md:loading-loop" }
+    loadingIcon: { default: "line-md:loading-loop" },
   },
   setup(__props) {
     const props = __props;
@@ -93,8 +94,8 @@ const _sfc_main = /* @__PURE__ */ defineComponent({
         "as",
         "loading",
         "disabled",
-        "loadingIcon"
-      )
+        "loadingIcon",
+      ),
     );
     return (_ctx, _push, _parent, _attrs) => {
       const _component_Icon = __nuxt_component_0$2;
@@ -104,9 +105,9 @@ const _sfc_main = /* @__PURE__ */ defineComponent({
           disabled: __props.disabled || __props.loading,
           variant: __props.variant,
           size: __props.size,
-          class: props.class
+          class: props.class,
         }),
-        disabled: __props.disabled || __props.loading
+        disabled: __props.disabled || __props.loading,
       }, unref(forwarded), _attrs), {
         default: withCtx((_, _push2, _parent2, _scopeId) => {
           if (_push2) {
@@ -115,10 +116,11 @@ const _sfc_main = /* @__PURE__ */ defineComponent({
                 _push2(`<div class="group-hover:translate-x-100 flex w-0 shrink-0 translate-x-[0%] items-center justify-center pr-0 opacity-0 transition-all duration-200 group-hover:w-6 group-hover:pr-2 group-hover:opacity-100"${_scopeId}>`);
                 _push2(ssrRenderComponent(_component_Icon, {
                   name: __props.icon,
-                  class: "size-5"
+                  class: "size-5",
                 }, null, _parent2, _scopeId));
                 _push2(`</div>`);
-              } else {
+              }
+              else {
                 _push2(`<!---->`);
               }
             }, _push2, _parent2, _scopeId);
@@ -126,16 +128,18 @@ const _sfc_main = /* @__PURE__ */ defineComponent({
               if (__props.loading) {
                 _push2(ssrRenderComponent(_component_Icon, {
                   class: "size-4 shrink-0",
-                  name: __props.loadingIcon
+                  name: __props.loadingIcon,
                 }, null, _parent2, _scopeId));
-              } else {
+              }
+              else {
                 _push2(`<!---->`);
               }
             }, _push2, _parent2, _scopeId);
             ssrRenderSlot(_ctx.$slots, "default", {}, () => {
               if (__props.text) {
                 _push2(`<span${_scopeId}>${ssrInterpolate(__props.text)}</span>`);
-              } else {
+              }
+              else {
                 _push2(`<!---->`);
               }
             }, _push2, _parent2, _scopeId);
@@ -144,54 +148,62 @@ const _sfc_main = /* @__PURE__ */ defineComponent({
                 _push2(`<div class="flex w-0 shrink-0 translate-x-[100%] items-center justify-center pl-0 opacity-0 transition-all duration-200 group-hover:w-6 group-hover:translate-x-0 group-hover:pl-2 group-hover:opacity-100"${_scopeId}>`);
                 _push2(ssrRenderComponent(_component_Icon, {
                   name: __props.icon,
-                  class: "size-5"
+                  class: "size-5",
                 }, null, _parent2, _scopeId));
                 _push2(`</div>`);
-              } else {
+              }
+              else {
                 _push2(`<!---->`);
               }
             }, _push2, _parent2, _scopeId);
-          } else {
+          }
+          else {
             return [
               renderSlot(_ctx.$slots, "iconLeft", {}, () => [
-                __props.icon && __props.iconPlacement === "left" ? (openBlock(), createBlock("div", {
-                  key: 0,
-                  class: "group-hover:translate-x-100 flex w-0 shrink-0 translate-x-[0%] items-center justify-center pr-0 opacity-0 transition-all duration-200 group-hover:w-6 group-hover:pr-2 group-hover:opacity-100"
-                }, [
-                  createVNode(_component_Icon, {
-                    name: __props.icon,
-                    class: "size-5"
-                  }, null, 8, ["name"])
-                ])) : createCommentVNode("", true)
+                __props.icon && __props.iconPlacement === "left"
+                  ? (openBlock(), createBlock("div", {
+                      key: 0,
+                      class: "group-hover:translate-x-100 flex w-0 shrink-0 translate-x-[0%] items-center justify-center pr-0 opacity-0 transition-all duration-200 group-hover:w-6 group-hover:pr-2 group-hover:opacity-100",
+                    }, [
+                      createVNode(_component_Icon, {
+                        name: __props.icon,
+                        class: "size-5",
+                      }, null, 8, ["name"]),
+                    ]))
+                  : createCommentVNode("", true),
               ]),
               renderSlot(_ctx.$slots, "loading", {}, () => [
-                __props.loading ? (openBlock(), createBlock(_component_Icon, {
-                  key: 0,
-                  class: "size-4 shrink-0",
-                  name: __props.loadingIcon
-                }, null, 8, ["name"])) : createCommentVNode("", true)
+                __props.loading
+                  ? (openBlock(), createBlock(_component_Icon, {
+                      key: 0,
+                      class: "size-4 shrink-0",
+                      name: __props.loadingIcon,
+                    }, null, 8, ["name"]))
+                  : createCommentVNode("", true),
               ]),
               renderSlot(_ctx.$slots, "default", {}, () => [
-                __props.text ? (openBlock(), createBlock("span", { key: 0 }, toDisplayString(__props.text), 1)) : createCommentVNode("", true)
+                __props.text ? (openBlock(), createBlock("span", { key: 0 }, toDisplayString(__props.text), 1)) : createCommentVNode("", true),
               ]),
               renderSlot(_ctx.$slots, "iconRight", {}, () => [
-                __props.icon && __props.iconPlacement === "right" ? (openBlock(), createBlock("div", {
-                  key: 0,
-                  class: "flex w-0 shrink-0 translate-x-[100%] items-center justify-center pl-0 opacity-0 transition-all duration-200 group-hover:w-6 group-hover:translate-x-0 group-hover:pl-2 group-hover:opacity-100"
-                }, [
-                  createVNode(_component_Icon, {
-                    name: __props.icon,
-                    class: "size-5"
-                  }, null, 8, ["name"])
-                ])) : createCommentVNode("", true)
-              ])
+                __props.icon && __props.iconPlacement === "right"
+                  ? (openBlock(), createBlock("div", {
+                      key: 0,
+                      class: "flex w-0 shrink-0 translate-x-[100%] items-center justify-center pl-0 opacity-0 transition-all duration-200 group-hover:w-6 group-hover:translate-x-0 group-hover:pl-2 group-hover:opacity-100",
+                    }, [
+                      createVNode(_component_Icon, {
+                        name: __props.icon,
+                        class: "size-5",
+                      }, null, 8, ["name"]),
+                    ]))
+                  : createCommentVNode("", true),
+              ]),
             ];
           }
         }),
-        _: 3
+        _: 3,
       }), _parent);
     };
-  }
+  },
 });
 const _sfc_setup = _sfc_main.setup;
 _sfc_main.setup = (props, ctx) => {
@@ -202,4 +214,4 @@ _sfc_main.setup = (props, ctx) => {
 const __nuxt_component_0 = Object.assign(_sfc_main, { __name: "UiButton" });
 
 export { __nuxt_component_0 as _ };
-//# sourceMappingURL=button-BrROYuAJ.mjs.map
+// # sourceMappingURL=button-BrROYuAJ.mjs.map

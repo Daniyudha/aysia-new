@@ -1,12 +1,12 @@
-import { A as API_URL_LIST } from './constant-D5BqL6of.mjs';
-import { b as useNuxtApp } from './server.mjs';
+import { A as API_URL_LIST } from "./constant-D5BqL6of.mjs";
+import { b as useNuxtApp } from "./server.mjs";
 
 function pagesAboutRepository(fetch) {
   return {
     async getAll(params) {
       return fetch(API_URL_LIST.PAGES_ABOUT, {
         method: "get",
-        params
+        params,
       });
     },
     async create(payload) {
@@ -20,11 +20,11 @@ function pagesAboutRepository(fetch) {
         method: "POST",
         headers: {
           "Accept": "application/json",
-          "Content-Type": "multipart/form-data"
+          "Content-Type": "multipart/form-data",
         },
-        body: formData
+        body: formData,
       });
-    }
+    },
   };
 }
 function pagesAboutFetchData() {
@@ -33,4 +33,4 @@ function pagesAboutFetchData() {
 }
 
 export { pagesAboutFetchData as p };
-//# sourceMappingURL=pages-about-C7lhVPt5.mjs.map
+// # sourceMappingURL=pages-about-C7lhVPt5.mjs.map

@@ -1,12 +1,12 @@
-import { A as API_URL_LIST } from './constant-D5BqL6of.mjs';
-import { b as useNuxtApp } from './server.mjs';
+import { A as API_URL_LIST } from "./constant-D5BqL6of.mjs";
+import { b as useNuxtApp } from "./server.mjs";
 
 function journeyRepository(fetch) {
   return {
     async getAll(params) {
       return fetch(API_URL_LIST.JOURNEY_DETAIL, {
         method: "GET",
-        params
+        params,
       });
     },
     async create(payload) {
@@ -23,10 +23,10 @@ function journeyRepository(fetch) {
       return fetch(API_URL_LIST.JOURNEY_DETAIL, {
         method: "POST",
         headers: {
-          Accept: "application/json",
-          "Content-Type": "multipart/form-data"
+          "Accept": "application/json",
+          "Content-Type": "multipart/form-data",
         },
-        body: formData
+        body: formData,
       });
     },
     async updateById(journeyDetailId, payload) {
@@ -43,15 +43,15 @@ function journeyRepository(fetch) {
       return fetch(API_URL_LIST.JOURNEY_DETAIL_BY_ID(journeyDetailId), {
         method: "PUT",
         headers: {
-          Accept: "application/json",
-          "Content-Type": "multipart/form-data"
+          "Accept": "application/json",
+          "Content-Type": "multipart/form-data",
         },
-        body: formData
+        body: formData,
       });
     },
     async deleteById(journeyDetailId) {
       return fetch(API_URL_LIST.JOURNEY_DETAIL_BY_ID(journeyDetailId), {
-        method: "DELETE"
+        method: "DELETE",
       });
     },
     async getByJourneyId({
@@ -60,9 +60,9 @@ function journeyRepository(fetch) {
     }) {
       return fetch(API_URL_LIST.JOURNEY_DETAIL_BY_JOURNEY_ID(journeyId), {
         method: "GET",
-        params
+        params,
       });
-    }
+    },
   };
 }
 function journeyDetailFetcher() {
@@ -71,4 +71,4 @@ function journeyDetailFetcher() {
 }
 
 export { journeyDetailFetcher as j };
-//# sourceMappingURL=journey-detail-DrgFQ8dR.mjs.map
+// # sourceMappingURL=journey-detail-DrgFQ8dR.mjs.map

@@ -13,33 +13,33 @@ declare global {
   const SIDEBAR_WIDTH: typeof import('../../app/utils/sidebar')['SIDEBAR_WIDTH']
   const SIDEBAR_WIDTH_ICON: typeof import('../../app/utils/sidebar')['SIDEBAR_WIDTH_ICON']
   const SIDEBAR_WIDTH_MOBILE: typeof import('../../app/utils/sidebar')['SIDEBAR_WIDTH_MOBILE']
-  const TiptapBlockquote: typeof import('../../node_modules/.pnpm/@tiptap+extension-blockquote@2.26.2_@tiptap+core@2.26.2_@tiptap+pm@2.26.2_/node_modules/@tiptap/extension-blockquote')['Blockquote']
-  const TiptapBold: typeof import('../../node_modules/.pnpm/@tiptap+extension-bold@2.26.2_@tiptap+core@2.26.2_@tiptap+pm@2.26.2_/node_modules/@tiptap/extension-bold')['Bold']
-  const TiptapBulletList: typeof import('../../node_modules/.pnpm/@tiptap+extension-bullet-list@2.26.2_@tiptap+core@2.26.2_@tiptap+pm@2.26.2_/node_modules/@tiptap/extension-bullet-list')['BulletList']
-  const TiptapCode: typeof import('../../node_modules/.pnpm/@tiptap+extension-code@2.26.2_@tiptap+core@2.26.2_@tiptap+pm@2.26.2_/node_modules/@tiptap/extension-code')['Code']
-  const TiptapCodeBlock: typeof import('../../node_modules/.pnpm/@tiptap+extension-code-block@2.26.2_@tiptap+core@2.26.2_@tiptap+pm@2.26.2__@tiptap+pm@2.26.2/node_modules/@tiptap/extension-code-block')['CodeBlock']
-  const TiptapDocument: typeof import('../../node_modules/.pnpm/@tiptap+extension-document@2.26.2_@tiptap+core@2.26.2_@tiptap+pm@2.26.2_/node_modules/@tiptap/extension-document')['Document']
-  const TiptapDropcursor: typeof import('../../node_modules/.pnpm/@tiptap+extension-dropcursor@2.26.2_@tiptap+core@2.26.2_@tiptap+pm@2.26.2__@tiptap+pm@2.26.2/node_modules/@tiptap/extension-dropcursor')['Dropcursor']
-  const TiptapEditor: typeof import('../../node_modules/.pnpm/@tiptap+vue-3@2.26.2_@tiptap+core@2.26.2_@tiptap+pm@2.26.2__@tiptap+pm@2.26.2_vue@3.5.22_typescript@5.9.3_/node_modules/@tiptap/vue-3')['Editor']
-  const TiptapExtension: typeof import('../../node_modules/.pnpm/@tiptap+core@2.26.2_@tiptap+pm@2.26.2/node_modules/@tiptap/core')['Extension']
-  const TiptapGapcursor: typeof import('../../node_modules/.pnpm/@tiptap+extension-gapcursor@2.26.2_@tiptap+core@2.26.2_@tiptap+pm@2.26.2__@tiptap+pm@2.26.2/node_modules/@tiptap/extension-gapcursor')['Gapcursor']
-  const TiptapHardBreak: typeof import('../../node_modules/.pnpm/@tiptap+extension-hard-break@2.26.2_@tiptap+core@2.26.2_@tiptap+pm@2.26.2_/node_modules/@tiptap/extension-hard-break')['HardBreak']
-  const TiptapHeading: typeof import('../../node_modules/.pnpm/@tiptap+extension-heading@2.26.2_@tiptap+core@2.26.2_@tiptap+pm@2.26.2_/node_modules/@tiptap/extension-heading')['Heading']
+  const TiptapBlockquote: typeof import('../../node_modules/.pnpm/@tiptap+extension-blockquote@3.14.0_@tiptap+core@3.14.0_@tiptap+pm@3.14.0_/node_modules/@tiptap/extension-blockquote')['Blockquote']
+  const TiptapBold: typeof import('../../node_modules/.pnpm/@tiptap+extension-bold@3.14.0_@tiptap+core@3.14.0_@tiptap+pm@3.14.0_/node_modules/@tiptap/extension-bold')['Bold']
+  const TiptapBulletList: typeof import('../../node_modules/.pnpm/@tiptap+extension-bullet-list@3.14.0_@tiptap+extension-list@3.14.0_@tiptap+core@3.14.0__7ba7c9f9a0da569569009c7c3b42362d/node_modules/@tiptap/extension-bullet-list')['BulletList']
+  const TiptapCode: typeof import('../../node_modules/.pnpm/@tiptap+extension-code@3.14.0_@tiptap+core@3.14.0_@tiptap+pm@3.14.0_/node_modules/@tiptap/extension-code')['Code']
+  const TiptapCodeBlock: typeof import('../../node_modules/.pnpm/@tiptap+extension-code-block@3.14.0_@tiptap+core@3.14.0_@tiptap+pm@3.14.0__@tiptap+pm@3.14.0/node_modules/@tiptap/extension-code-block')['CodeBlock']
+  const TiptapDocument: typeof import('../../node_modules/.pnpm/@tiptap+extension-document@3.14.0_@tiptap+core@3.14.0_@tiptap+pm@3.14.0_/node_modules/@tiptap/extension-document')['Document']
+  const TiptapDropcursor: typeof import('../../node_modules/.pnpm/@tiptap+extension-dropcursor@3.14.0_@tiptap+extensions@3.14.0_@tiptap+core@3.14.0_@tiptap+pm@3.14.0__@tiptap+pm@3.14.0_/node_modules/@tiptap/extension-dropcursor')['Dropcursor']
+  const TiptapEditor: typeof import('@tiptap/vue-3')['Editor']
+  const TiptapExtension: typeof import('@tiptap/core')['Extension']
+  const TiptapGapcursor: typeof import('../../node_modules/.pnpm/@tiptap+extension-gapcursor@3.14.0_@tiptap+extensions@3.14.0_@tiptap+core@3.14.0_@tiptap+pm@3.14.0__@tiptap+pm@3.14.0_/node_modules/@tiptap/extension-gapcursor')['Gapcursor']
+  const TiptapHardBreak: typeof import('../../node_modules/.pnpm/@tiptap+extension-hard-break@3.14.0_@tiptap+core@3.14.0_@tiptap+pm@3.14.0_/node_modules/@tiptap/extension-hard-break')['HardBreak']
+  const TiptapHeading: typeof import('../../node_modules/.pnpm/@tiptap+extension-heading@3.14.0_@tiptap+core@3.14.0_@tiptap+pm@3.14.0_/node_modules/@tiptap/extension-heading')['Heading']
   const TiptapHistory: typeof import('../../node_modules/.pnpm/@tiptap+extension-history@2.26.2_@tiptap+core@2.26.2_@tiptap+pm@2.26.2__@tiptap+pm@2.26.2/node_modules/@tiptap/extension-history')['History']
-  const TiptapHorizontalRule: typeof import('../../node_modules/.pnpm/@tiptap+extension-horizontal-rule@2.26.2_@tiptap+core@2.26.2_@tiptap+pm@2.26.2__@tiptap+pm@2.26.2/node_modules/@tiptap/extension-horizontal-rule')['HorizontalRule']
+  const TiptapHorizontalRule: typeof import('../../node_modules/.pnpm/@tiptap+extension-horizontal-rule@3.14.0_@tiptap+core@3.14.0_@tiptap+pm@3.14.0__@tiptap+pm@3.14.0/node_modules/@tiptap/extension-horizontal-rule')['HorizontalRule']
   const TiptapImage: typeof import('@tiptap/extension-image')['Image']
-  const TiptapImagePlaceholder: typeof import('../../node_modules/.pnpm/nuxt-tiptap-editor@2.3.1_@tiptap+core@2.26.2_@tiptap+pm@2.26.2__@tiptap+extension-code-_20a6c1c98d844b55c1c829bb79c42167/node_modules/nuxt-tiptap-editor/dist/runtime/custom-extensions/extension-image-upload')['ImagePlaceholder']
-  const TiptapImageUpload: typeof import('../../node_modules/.pnpm/nuxt-tiptap-editor@2.3.1_@tiptap+core@2.26.2_@tiptap+pm@2.26.2__@tiptap+extension-code-_20a6c1c98d844b55c1c829bb79c42167/node_modules/nuxt-tiptap-editor/dist/runtime/custom-extensions/extension-image-upload')['ImageUpload']
-  const TiptapItalic: typeof import('../../node_modules/.pnpm/@tiptap+extension-italic@2.26.2_@tiptap+core@2.26.2_@tiptap+pm@2.26.2_/node_modules/@tiptap/extension-italic')['Italic']
+  const TiptapImagePlaceholder: typeof import('../../node_modules/.pnpm/nuxt-tiptap-editor@2.3.1_@tiptap+core@3.14.0_@tiptap+pm@3.14.0__@tiptap+extension-code-_fdf5cae20b9a69296cc7ded84616f27a/node_modules/nuxt-tiptap-editor/dist/runtime/custom-extensions/extension-image-upload')['ImagePlaceholder']
+  const TiptapImageUpload: typeof import('../../node_modules/.pnpm/nuxt-tiptap-editor@2.3.1_@tiptap+core@3.14.0_@tiptap+pm@3.14.0__@tiptap+extension-code-_fdf5cae20b9a69296cc7ded84616f27a/node_modules/nuxt-tiptap-editor/dist/runtime/custom-extensions/extension-image-upload')['ImageUpload']
+  const TiptapItalic: typeof import('../../node_modules/.pnpm/@tiptap+extension-italic@3.14.0_@tiptap+core@3.14.0_@tiptap+pm@3.14.0_/node_modules/@tiptap/extension-italic')['Italic']
   const TiptapLink: typeof import('@tiptap/extension-link')['Link']
-  const TiptapListItem: typeof import('../../node_modules/.pnpm/@tiptap+extension-list-item@2.26.2_@tiptap+core@2.26.2_@tiptap+pm@2.26.2_/node_modules/@tiptap/extension-list-item')['ListItem']
-  const TiptapMark: typeof import('../../node_modules/.pnpm/@tiptap+core@2.26.2_@tiptap+pm@2.26.2/node_modules/@tiptap/core')['Mark']
-  const TiptapNode: typeof import('../../node_modules/.pnpm/@tiptap+core@2.26.2_@tiptap+pm@2.26.2/node_modules/@tiptap/core')['Node']
-  const TiptapOrderedList: typeof import('../../node_modules/.pnpm/@tiptap+extension-ordered-list@2.26.2_@tiptap+core@2.26.2_@tiptap+pm@2.26.2_/node_modules/@tiptap/extension-ordered-list')['OrderedList']
-  const TiptapParagraph: typeof import('../../node_modules/.pnpm/@tiptap+extension-paragraph@2.26.2_@tiptap+core@2.26.2_@tiptap+pm@2.26.2_/node_modules/@tiptap/extension-paragraph')['Paragraph']
-  const TiptapStarterKit: typeof import('../../node_modules/.pnpm/@tiptap+starter-kit@2.26.1/node_modules/@tiptap/starter-kit')['StarterKit']
-  const TiptapStrike: typeof import('../../node_modules/.pnpm/@tiptap+extension-strike@2.26.2_@tiptap+core@2.26.2_@tiptap+pm@2.26.2_/node_modules/@tiptap/extension-strike')['Strike']
-  const TiptapText: typeof import('../../node_modules/.pnpm/@tiptap+extension-text@2.26.2_@tiptap+core@2.26.2_@tiptap+pm@2.26.2_/node_modules/@tiptap/extension-text')['Text']
+  const TiptapListItem: typeof import('../../node_modules/.pnpm/@tiptap+extension-list-item@3.14.0_@tiptap+extension-list@3.14.0_@tiptap+core@3.14.0_@t_21d08d8285209cd54a85153fdf3a6001/node_modules/@tiptap/extension-list-item')['ListItem']
+  const TiptapMark: typeof import('@tiptap/core')['Mark']
+  const TiptapNode: typeof import('@tiptap/core')['Node']
+  const TiptapOrderedList: typeof import('../../node_modules/.pnpm/@tiptap+extension-ordered-list@3.14.0_@tiptap+extension-list@3.14.0_@tiptap+core@3.14.0_3e01f247023fc3e28e2f32b70783af10/node_modules/@tiptap/extension-ordered-list')['OrderedList']
+  const TiptapParagraph: typeof import('../../node_modules/.pnpm/@tiptap+extension-paragraph@3.14.0_@tiptap+core@3.14.0_@tiptap+pm@3.14.0_/node_modules/@tiptap/extension-paragraph')['Paragraph']
+  const TiptapStarterKit: typeof import('@tiptap/starter-kit')['StarterKit']
+  const TiptapStrike: typeof import('../../node_modules/.pnpm/@tiptap+extension-strike@3.14.0_@tiptap+core@3.14.0_@tiptap+pm@3.14.0_/node_modules/@tiptap/extension-strike')['Strike']
+  const TiptapText: typeof import('../../node_modules/.pnpm/@tiptap+extension-text@3.14.0_@tiptap+core@3.14.0_@tiptap+pm@3.14.0_/node_modules/@tiptap/extension-text')['Text']
   const abortNavigation: typeof import('../../node_modules/.pnpm/nuxt@4.1.3_@parcel+watcher@2.5.1_@types+node@24.10.1_@vue+compiler-sfc@3.5.22_db0@0.3.4_5b4db39832caaa4fa6da828c9ba789fd/node_modules/nuxt/dist/app/composables/router')['abortNavigation']
   const addRouteMiddleware: typeof import('../../node_modules/.pnpm/nuxt@4.1.3_@parcel+watcher@2.5.1_@types+node@24.10.1_@vue+compiler-sfc@3.5.22_db0@0.3.4_5b4db39832caaa4fa6da828c9ba789fd/node_modules/nuxt/dist/app/composables/router')['addRouteMiddleware']
   const asyncComputed: typeof import('@vueuse/core')['asyncComputed']
@@ -260,7 +260,7 @@ declare global {
   const useDocumentVisibility: typeof import('@vueuse/core')['useDocumentVisibility']
   const useDraggable: typeof import('@vueuse/core')['useDraggable']
   const useDropZone: typeof import('@vueuse/core')['useDropZone']
-  const useEditor: typeof import('../../node_modules/.pnpm/@tiptap+vue-3@2.26.2_@tiptap+core@2.26.2_@tiptap+pm@2.26.2__@tiptap+pm@2.26.2_vue@3.5.22_typescript@5.9.3_/node_modules/@tiptap/vue-3')['useEditor']
+  const useEditor: typeof import('@tiptap/vue-3')['useEditor']
   const useElementBounding: typeof import('@vueuse/core')['useElementBounding']
   const useElementByPoint: typeof import('@vueuse/core')['useElementByPoint']
   const useElementHover: typeof import('@vueuse/core')['useElementHover']
@@ -270,6 +270,7 @@ declare global {
   const useEventBus: typeof import('@vueuse/core')['useEventBus']
   const useEventListener: typeof import('@vueuse/core')['useEventListener']
   const useEventSource: typeof import('@vueuse/core')['useEventSource']
+  const useExploreImages: typeof import('../../app/composables/useExploreImages')['useExploreImages']
   const useEyeDropper: typeof import('@vueuse/core')['useEyeDropper']
   const useFavicon: typeof import('@vueuse/core')['useFavicon']
   const useFetch: typeof import('../../node_modules/.pnpm/nuxt@4.1.3_@parcel+watcher@2.5.1_@types+node@24.10.1_@vue+compiler-sfc@3.5.22_db0@0.3.4_5b4db39832caaa4fa6da828c9ba789fd/node_modules/nuxt/dist/app/composables/fetch')['useFetch']
@@ -504,7 +505,7 @@ declare global {
   export type { Language, TranslationKey } from '../../app/composables/useI18n'
   import('../../app/composables/useI18n')
   // @ts-ignore
-  export type { FetchType, PaginationResponse, PaginationParams, GalleryCategoryPayload, GalleryCategoryResponse, AuthLoginResponse, AuthLoginPayload, AuthRegisterPayload, AuthRegisterResponse, PageAboutPayload, PageAboutResponse, SocialMediaPayload, SocialMediaResponse, JourneyPayload, JourneyResponse, JourneyDetailsPayload, JourneyDetailsResponse, ConfirmDialogOptions, ConfirmDialogState } from '../../app/utils/data-type'
+  export type { FetchType, PaginationResponse, PaginationParams, GalleryCategoryPayload, GalleryCategoryResponse, AuthLoginResponse, AuthLoginPayload, AuthRegisterPayload, AuthRegisterResponse, PageAboutPayload, PageAboutResponse, SocialMediaPayload, SocialMediaResponse, JourneyPayload, BlogPayload, JourneyResponse, BlogResponse, BlogDetailResponse, BlogDetailPayload, JourneyDetailsPayload, JourneyDetailsResponse, ConfirmDialogOptions, ConfirmDialogState, ExploreImagePayload, ExploreImageBulkPayload, ExploreImageBulkDeletePayload, ExploreImageResponse } from '../../app/utils/data-type'
   import('../../app/utils/data-type')
   // @ts-ignore
   export type { SidebarMenuButtonVariants } from '../../app/utils/sidebar'
@@ -526,33 +527,33 @@ declare module 'vue' {
     readonly SIDEBAR_WIDTH: UnwrapRef<typeof import('../../app/utils/sidebar')['SIDEBAR_WIDTH']>
     readonly SIDEBAR_WIDTH_ICON: UnwrapRef<typeof import('../../app/utils/sidebar')['SIDEBAR_WIDTH_ICON']>
     readonly SIDEBAR_WIDTH_MOBILE: UnwrapRef<typeof import('../../app/utils/sidebar')['SIDEBAR_WIDTH_MOBILE']>
-    readonly TiptapBlockquote: UnwrapRef<typeof import('../../node_modules/.pnpm/@tiptap+extension-blockquote@2.26.2_@tiptap+core@2.26.2_@tiptap+pm@2.26.2_/node_modules/@tiptap/extension-blockquote')['Blockquote']>
-    readonly TiptapBold: UnwrapRef<typeof import('../../node_modules/.pnpm/@tiptap+extension-bold@2.26.2_@tiptap+core@2.26.2_@tiptap+pm@2.26.2_/node_modules/@tiptap/extension-bold')['Bold']>
-    readonly TiptapBulletList: UnwrapRef<typeof import('../../node_modules/.pnpm/@tiptap+extension-bullet-list@2.26.2_@tiptap+core@2.26.2_@tiptap+pm@2.26.2_/node_modules/@tiptap/extension-bullet-list')['BulletList']>
-    readonly TiptapCode: UnwrapRef<typeof import('../../node_modules/.pnpm/@tiptap+extension-code@2.26.2_@tiptap+core@2.26.2_@tiptap+pm@2.26.2_/node_modules/@tiptap/extension-code')['Code']>
-    readonly TiptapCodeBlock: UnwrapRef<typeof import('../../node_modules/.pnpm/@tiptap+extension-code-block@2.26.2_@tiptap+core@2.26.2_@tiptap+pm@2.26.2__@tiptap+pm@2.26.2/node_modules/@tiptap/extension-code-block')['CodeBlock']>
-    readonly TiptapDocument: UnwrapRef<typeof import('../../node_modules/.pnpm/@tiptap+extension-document@2.26.2_@tiptap+core@2.26.2_@tiptap+pm@2.26.2_/node_modules/@tiptap/extension-document')['Document']>
-    readonly TiptapDropcursor: UnwrapRef<typeof import('../../node_modules/.pnpm/@tiptap+extension-dropcursor@2.26.2_@tiptap+core@2.26.2_@tiptap+pm@2.26.2__@tiptap+pm@2.26.2/node_modules/@tiptap/extension-dropcursor')['Dropcursor']>
-    readonly TiptapEditor: UnwrapRef<typeof import('../../node_modules/.pnpm/@tiptap+vue-3@2.26.2_@tiptap+core@2.26.2_@tiptap+pm@2.26.2__@tiptap+pm@2.26.2_vue@3.5.22_typescript@5.9.3_/node_modules/@tiptap/vue-3')['Editor']>
-    readonly TiptapExtension: UnwrapRef<typeof import('../../node_modules/.pnpm/@tiptap+core@2.26.2_@tiptap+pm@2.26.2/node_modules/@tiptap/core')['Extension']>
-    readonly TiptapGapcursor: UnwrapRef<typeof import('../../node_modules/.pnpm/@tiptap+extension-gapcursor@2.26.2_@tiptap+core@2.26.2_@tiptap+pm@2.26.2__@tiptap+pm@2.26.2/node_modules/@tiptap/extension-gapcursor')['Gapcursor']>
-    readonly TiptapHardBreak: UnwrapRef<typeof import('../../node_modules/.pnpm/@tiptap+extension-hard-break@2.26.2_@tiptap+core@2.26.2_@tiptap+pm@2.26.2_/node_modules/@tiptap/extension-hard-break')['HardBreak']>
-    readonly TiptapHeading: UnwrapRef<typeof import('../../node_modules/.pnpm/@tiptap+extension-heading@2.26.2_@tiptap+core@2.26.2_@tiptap+pm@2.26.2_/node_modules/@tiptap/extension-heading')['Heading']>
+    readonly TiptapBlockquote: UnwrapRef<typeof import('../../node_modules/.pnpm/@tiptap+extension-blockquote@3.14.0_@tiptap+core@3.14.0_@tiptap+pm@3.14.0_/node_modules/@tiptap/extension-blockquote')['Blockquote']>
+    readonly TiptapBold: UnwrapRef<typeof import('../../node_modules/.pnpm/@tiptap+extension-bold@3.14.0_@tiptap+core@3.14.0_@tiptap+pm@3.14.0_/node_modules/@tiptap/extension-bold')['Bold']>
+    readonly TiptapBulletList: UnwrapRef<typeof import('../../node_modules/.pnpm/@tiptap+extension-bullet-list@3.14.0_@tiptap+extension-list@3.14.0_@tiptap+core@3.14.0__7ba7c9f9a0da569569009c7c3b42362d/node_modules/@tiptap/extension-bullet-list')['BulletList']>
+    readonly TiptapCode: UnwrapRef<typeof import('../../node_modules/.pnpm/@tiptap+extension-code@3.14.0_@tiptap+core@3.14.0_@tiptap+pm@3.14.0_/node_modules/@tiptap/extension-code')['Code']>
+    readonly TiptapCodeBlock: UnwrapRef<typeof import('../../node_modules/.pnpm/@tiptap+extension-code-block@3.14.0_@tiptap+core@3.14.0_@tiptap+pm@3.14.0__@tiptap+pm@3.14.0/node_modules/@tiptap/extension-code-block')['CodeBlock']>
+    readonly TiptapDocument: UnwrapRef<typeof import('../../node_modules/.pnpm/@tiptap+extension-document@3.14.0_@tiptap+core@3.14.0_@tiptap+pm@3.14.0_/node_modules/@tiptap/extension-document')['Document']>
+    readonly TiptapDropcursor: UnwrapRef<typeof import('../../node_modules/.pnpm/@tiptap+extension-dropcursor@3.14.0_@tiptap+extensions@3.14.0_@tiptap+core@3.14.0_@tiptap+pm@3.14.0__@tiptap+pm@3.14.0_/node_modules/@tiptap/extension-dropcursor')['Dropcursor']>
+    readonly TiptapEditor: UnwrapRef<typeof import('@tiptap/vue-3')['Editor']>
+    readonly TiptapExtension: UnwrapRef<typeof import('@tiptap/core')['Extension']>
+    readonly TiptapGapcursor: UnwrapRef<typeof import('../../node_modules/.pnpm/@tiptap+extension-gapcursor@3.14.0_@tiptap+extensions@3.14.0_@tiptap+core@3.14.0_@tiptap+pm@3.14.0__@tiptap+pm@3.14.0_/node_modules/@tiptap/extension-gapcursor')['Gapcursor']>
+    readonly TiptapHardBreak: UnwrapRef<typeof import('../../node_modules/.pnpm/@tiptap+extension-hard-break@3.14.0_@tiptap+core@3.14.0_@tiptap+pm@3.14.0_/node_modules/@tiptap/extension-hard-break')['HardBreak']>
+    readonly TiptapHeading: UnwrapRef<typeof import('../../node_modules/.pnpm/@tiptap+extension-heading@3.14.0_@tiptap+core@3.14.0_@tiptap+pm@3.14.0_/node_modules/@tiptap/extension-heading')['Heading']>
     readonly TiptapHistory: UnwrapRef<typeof import('../../node_modules/.pnpm/@tiptap+extension-history@2.26.2_@tiptap+core@2.26.2_@tiptap+pm@2.26.2__@tiptap+pm@2.26.2/node_modules/@tiptap/extension-history')['History']>
-    readonly TiptapHorizontalRule: UnwrapRef<typeof import('../../node_modules/.pnpm/@tiptap+extension-horizontal-rule@2.26.2_@tiptap+core@2.26.2_@tiptap+pm@2.26.2__@tiptap+pm@2.26.2/node_modules/@tiptap/extension-horizontal-rule')['HorizontalRule']>
+    readonly TiptapHorizontalRule: UnwrapRef<typeof import('../../node_modules/.pnpm/@tiptap+extension-horizontal-rule@3.14.0_@tiptap+core@3.14.0_@tiptap+pm@3.14.0__@tiptap+pm@3.14.0/node_modules/@tiptap/extension-horizontal-rule')['HorizontalRule']>
     readonly TiptapImage: UnwrapRef<typeof import('@tiptap/extension-image')['Image']>
-    readonly TiptapImagePlaceholder: UnwrapRef<typeof import('../../node_modules/.pnpm/nuxt-tiptap-editor@2.3.1_@tiptap+core@2.26.2_@tiptap+pm@2.26.2__@tiptap+extension-code-_20a6c1c98d844b55c1c829bb79c42167/node_modules/nuxt-tiptap-editor/dist/runtime/custom-extensions/extension-image-upload')['ImagePlaceholder']>
-    readonly TiptapImageUpload: UnwrapRef<typeof import('../../node_modules/.pnpm/nuxt-tiptap-editor@2.3.1_@tiptap+core@2.26.2_@tiptap+pm@2.26.2__@tiptap+extension-code-_20a6c1c98d844b55c1c829bb79c42167/node_modules/nuxt-tiptap-editor/dist/runtime/custom-extensions/extension-image-upload')['ImageUpload']>
-    readonly TiptapItalic: UnwrapRef<typeof import('../../node_modules/.pnpm/@tiptap+extension-italic@2.26.2_@tiptap+core@2.26.2_@tiptap+pm@2.26.2_/node_modules/@tiptap/extension-italic')['Italic']>
+    readonly TiptapImagePlaceholder: UnwrapRef<typeof import('../../node_modules/.pnpm/nuxt-tiptap-editor@2.3.1_@tiptap+core@3.14.0_@tiptap+pm@3.14.0__@tiptap+extension-code-_fdf5cae20b9a69296cc7ded84616f27a/node_modules/nuxt-tiptap-editor/dist/runtime/custom-extensions/extension-image-upload')['ImagePlaceholder']>
+    readonly TiptapImageUpload: UnwrapRef<typeof import('../../node_modules/.pnpm/nuxt-tiptap-editor@2.3.1_@tiptap+core@3.14.0_@tiptap+pm@3.14.0__@tiptap+extension-code-_fdf5cae20b9a69296cc7ded84616f27a/node_modules/nuxt-tiptap-editor/dist/runtime/custom-extensions/extension-image-upload')['ImageUpload']>
+    readonly TiptapItalic: UnwrapRef<typeof import('../../node_modules/.pnpm/@tiptap+extension-italic@3.14.0_@tiptap+core@3.14.0_@tiptap+pm@3.14.0_/node_modules/@tiptap/extension-italic')['Italic']>
     readonly TiptapLink: UnwrapRef<typeof import('@tiptap/extension-link')['Link']>
-    readonly TiptapListItem: UnwrapRef<typeof import('../../node_modules/.pnpm/@tiptap+extension-list-item@2.26.2_@tiptap+core@2.26.2_@tiptap+pm@2.26.2_/node_modules/@tiptap/extension-list-item')['ListItem']>
-    readonly TiptapMark: UnwrapRef<typeof import('../../node_modules/.pnpm/@tiptap+core@2.26.2_@tiptap+pm@2.26.2/node_modules/@tiptap/core')['Mark']>
-    readonly TiptapNode: UnwrapRef<typeof import('../../node_modules/.pnpm/@tiptap+core@2.26.2_@tiptap+pm@2.26.2/node_modules/@tiptap/core')['Node']>
-    readonly TiptapOrderedList: UnwrapRef<typeof import('../../node_modules/.pnpm/@tiptap+extension-ordered-list@2.26.2_@tiptap+core@2.26.2_@tiptap+pm@2.26.2_/node_modules/@tiptap/extension-ordered-list')['OrderedList']>
-    readonly TiptapParagraph: UnwrapRef<typeof import('../../node_modules/.pnpm/@tiptap+extension-paragraph@2.26.2_@tiptap+core@2.26.2_@tiptap+pm@2.26.2_/node_modules/@tiptap/extension-paragraph')['Paragraph']>
-    readonly TiptapStarterKit: UnwrapRef<typeof import('../../node_modules/.pnpm/@tiptap+starter-kit@2.26.1/node_modules/@tiptap/starter-kit')['StarterKit']>
-    readonly TiptapStrike: UnwrapRef<typeof import('../../node_modules/.pnpm/@tiptap+extension-strike@2.26.2_@tiptap+core@2.26.2_@tiptap+pm@2.26.2_/node_modules/@tiptap/extension-strike')['Strike']>
-    readonly TiptapText: UnwrapRef<typeof import('../../node_modules/.pnpm/@tiptap+extension-text@2.26.2_@tiptap+core@2.26.2_@tiptap+pm@2.26.2_/node_modules/@tiptap/extension-text')['Text']>
+    readonly TiptapListItem: UnwrapRef<typeof import('../../node_modules/.pnpm/@tiptap+extension-list-item@3.14.0_@tiptap+extension-list@3.14.0_@tiptap+core@3.14.0_@t_21d08d8285209cd54a85153fdf3a6001/node_modules/@tiptap/extension-list-item')['ListItem']>
+    readonly TiptapMark: UnwrapRef<typeof import('@tiptap/core')['Mark']>
+    readonly TiptapNode: UnwrapRef<typeof import('@tiptap/core')['Node']>
+    readonly TiptapOrderedList: UnwrapRef<typeof import('../../node_modules/.pnpm/@tiptap+extension-ordered-list@3.14.0_@tiptap+extension-list@3.14.0_@tiptap+core@3.14.0_3e01f247023fc3e28e2f32b70783af10/node_modules/@tiptap/extension-ordered-list')['OrderedList']>
+    readonly TiptapParagraph: UnwrapRef<typeof import('../../node_modules/.pnpm/@tiptap+extension-paragraph@3.14.0_@tiptap+core@3.14.0_@tiptap+pm@3.14.0_/node_modules/@tiptap/extension-paragraph')['Paragraph']>
+    readonly TiptapStarterKit: UnwrapRef<typeof import('@tiptap/starter-kit')['StarterKit']>
+    readonly TiptapStrike: UnwrapRef<typeof import('../../node_modules/.pnpm/@tiptap+extension-strike@3.14.0_@tiptap+core@3.14.0_@tiptap+pm@3.14.0_/node_modules/@tiptap/extension-strike')['Strike']>
+    readonly TiptapText: UnwrapRef<typeof import('../../node_modules/.pnpm/@tiptap+extension-text@3.14.0_@tiptap+core@3.14.0_@tiptap+pm@3.14.0_/node_modules/@tiptap/extension-text')['Text']>
     readonly abortNavigation: UnwrapRef<typeof import('../../node_modules/.pnpm/nuxt@4.1.3_@parcel+watcher@2.5.1_@types+node@24.10.1_@vue+compiler-sfc@3.5.22_db0@0.3.4_5b4db39832caaa4fa6da828c9ba789fd/node_modules/nuxt/dist/app/composables/router')['abortNavigation']>
     readonly addRouteMiddleware: UnwrapRef<typeof import('../../node_modules/.pnpm/nuxt@4.1.3_@parcel+watcher@2.5.1_@types+node@24.10.1_@vue+compiler-sfc@3.5.22_db0@0.3.4_5b4db39832caaa4fa6da828c9ba789fd/node_modules/nuxt/dist/app/composables/router')['addRouteMiddleware']>
     readonly asyncComputed: UnwrapRef<typeof import('@vueuse/core')['asyncComputed']>
@@ -773,7 +774,7 @@ declare module 'vue' {
     readonly useDocumentVisibility: UnwrapRef<typeof import('@vueuse/core')['useDocumentVisibility']>
     readonly useDraggable: UnwrapRef<typeof import('@vueuse/core')['useDraggable']>
     readonly useDropZone: UnwrapRef<typeof import('@vueuse/core')['useDropZone']>
-    readonly useEditor: UnwrapRef<typeof import('../../node_modules/.pnpm/@tiptap+vue-3@2.26.2_@tiptap+core@2.26.2_@tiptap+pm@2.26.2__@tiptap+pm@2.26.2_vue@3.5.22_typescript@5.9.3_/node_modules/@tiptap/vue-3')['useEditor']>
+    readonly useEditor: UnwrapRef<typeof import('@tiptap/vue-3')['useEditor']>
     readonly useElementBounding: UnwrapRef<typeof import('@vueuse/core')['useElementBounding']>
     readonly useElementByPoint: UnwrapRef<typeof import('@vueuse/core')['useElementByPoint']>
     readonly useElementHover: UnwrapRef<typeof import('@vueuse/core')['useElementHover']>
@@ -783,6 +784,7 @@ declare module 'vue' {
     readonly useEventBus: UnwrapRef<typeof import('@vueuse/core')['useEventBus']>
     readonly useEventListener: UnwrapRef<typeof import('@vueuse/core')['useEventListener']>
     readonly useEventSource: UnwrapRef<typeof import('@vueuse/core')['useEventSource']>
+    readonly useExploreImages: UnwrapRef<typeof import('../../app/composables/useExploreImages')['useExploreImages']>
     readonly useEyeDropper: UnwrapRef<typeof import('@vueuse/core')['useEyeDropper']>
     readonly useFavicon: UnwrapRef<typeof import('@vueuse/core')['useFavicon']>
     readonly useFetch: UnwrapRef<typeof import('../../node_modules/.pnpm/nuxt@4.1.3_@parcel+watcher@2.5.1_@types+node@24.10.1_@vue+compiler-sfc@3.5.22_db0@0.3.4_5b4db39832caaa4fa6da828c9ba789fd/node_modules/nuxt/dist/app/composables/fetch')['useFetch']>

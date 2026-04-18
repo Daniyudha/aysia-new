@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { journeyFetcher } from "~/repository/modules/journey";
 import { useI18n } from "~/composables/useI18n";
+import { journeyFetcher } from "~/repository/modules/journey";
 
 definePageMeta({
   layout: "homepage",
@@ -14,72 +14,78 @@ useHead({
 
 const { data } = useAsyncData(
   "journey-list",
-  () => journeyFetcher().getAll({ limit: 10 }),
-  { lazy: true }
+  () => journeyFetcher().getAll({ limit: 6, orderByField: 'created_at', orderBy: 'desc' }),
+  { lazy: true },
 );
 
-// Filter items to only show human category
+// Show all categories, limit to 6 latest posts
 const humanCategoryItems = computed(() => {
   const items = data.value?.data || [];
 
   return items
-    .filter(item =>
-      item.gallery_category_name?.toLowerCase() === "human"
-    )
     .sort((a, b) => {
       const dateA = new Date(a.created_at || 0).getTime();
       const dateB = new Date(b.created_at || 0).getTime();
       return dateB - dateA;
     })
-    .slice(0, 10);
+    .slice(0, 6);
 });
-
 </script>
 
 <template>
   <section class="h-full flex-1 flex flex-col">
     <!-- ✅ Hero -->
     <ClientOnly>
-      <HomepageHeroCarousel
-        :key="`hero-carousel-${humanCategoryItems?.length || 0}`"
-        :items="humanCategoryItems"
-      />
+      <HomepageHeroCarousel :key="`hero-carousel-${humanCategoryItems?.length || 0}`" :items="humanCategoryItems" />
     </ClientOnly>
 
     <!-- ✅ Artist Statement -->
     <section class="bg-[#F5F2E9] py-16">
-      <div class="max-w-7xl mx-auto px-6 text-center">
+      <div class="app-container text-center">
         <h2 class="text-2xl md:text-3xl font-serif tracking-wide text-[#4B3B2A] mb-4">
           “{{ t('home.hero_quote') }}”
         </h2>
-        <p class="max-w-3xl mx-auto text-[#6B5B4B] text-base md:text-lg leading-relaxed">
+        <p class="max-w-3xl mx-auto text-[#6B5B4B] text-base md:text-xl leading-relaxed">
           {{ t('home.hero_description') }}
         </p>
         <div class="mt-10 flex justify-center">
-          <hr class="w-24 border-t border-[#C6B299]" />
+          <hr class="w-24 border-t border-app-secondary">
         </div>
-        <p class="mt-6 text-[#7A6B5A] italic text-sm">— Aysia LinggarWati</p>
+        <p class="mt-6 text-[#7A6B5A] italic text-lg">
+          — Aysia Linggarwati
+        </p>
       </div>
     </section>
 
     <!-- ✅ About My Journey -->
-    <section class="bg-[#EAE4D4] py-20">
-      <div
-        class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center gap-10"
-      >
-        <img
-          src="/images/horse.jpg"
-          alt="Aysia LinggarWati Journey"
-          class="w-full md:w-1/2 aspect-4/3 object-cover rounded-2xl shadow-md"
-        />
-        <div class="md:w-1/2 text-center md:text-left">
-          <h3 class="text-2xl md:text-3xl font-serif text-[#4B3B2A] mb-4">
-            {{ t('home.about_title') }}
-          </h3>
-          <p class="text-[#6B5B4B] leading-relaxed text-base md:text-lg">
+    <section class="bg-[#EAE4D4] py-24 md:py-32">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+        <!-- IMAGE -->
+        <div class="app-container">
+          <img
+            src="/images/horse.jpg"
+            alt="Aysia Linggarwati Journey"
+            class="w-full aspect-[4/3] object-cover shadow-lg"
+          >
+        </div>
+
+        <!-- TEXT -->
+        <div class="">
+          <!-- TITLE + LINE -->
+          <div class="flex items-center gap-6 mb-8">
+            <h3 class="pl-6 md:pl-0 font-fraunces text-3xl md:text-5xl text-app-secondary whitespace-nowrap">
+              {{ t('home.about_title') }}
+            </h3>
+            <span class="flex-1 h-px bg-[#9C8C74]" />
+          </div>
+
+          <!-- DESCRIPTION -->
+          <p class="pr-16 px-6 md:px-0 text-app-secondary leading-relaxed text-base md:text-lg mb-10">
             {{ t('home.about_description') }}
           </p>
-          <p class="mt-6 text-[#7A6B5A] italic">
+
+          <!-- QUOTE -->
+          <p class="pl-6 md:pl-0 text-[#7A6B5A] italic text-base md:text-lg">
             “{{ t('home.about_quote') }}”
           </p>
         </div>
@@ -87,97 +93,20 @@ const humanCategoryItems = computed(() => {
     </section>
 
     <!-- ✅ Places I’ve Explored -->
-    <section class="bg-[#F5F2E9] py-20">
-      <div class="max-w-7xl mx-auto px-6">
-        <h3
-          class="text-2xl md:text-3xl font-serif text-center text-[#4B3B2A] mb-12"
-        >
-          {{ t('home.places_title') }}
-        </h3>
-
-        <div
-          class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8"
-        >
-          <!-- Mentawai -->
-          <div class="rounded-2xl overflow-hidden shadow-md">
-            <img
-              src="/images/mentawai.jpg"
-              alt="Mentawai, Siberut"
-              class="w-full h-56 object-cover"
-            />
-            <div class="p-4 text-center bg-[#EAE4D4]">
-              <h4 class="font-serif text-[#4B3B2A]">
-                {{ t('home.place1_title') }}
-              </h4>
-              <p class="text-sm text-[#6B5B4B] mt-2">
-                {{ t('home.place1_description') }}
-              </p>
-            </div>
-          </div>
-
-          <!-- Ethiopia -->
-          <div class="rounded-2xl overflow-hidden shadow-md">
-            <img
-              src="/images/ethiopia.jpg"
-              alt="Omo, Ethiopia"
-              class="w-full h-56 object-cover"
-            />
-            <div class="p-4 text-center bg-[#EAE4D4]">
-              <h4 class="font-serif text-[#4B3B2A]">
-                {{ t('home.place2_title') }}
-              </h4>
-              <p class="text-sm text-[#6B5B4B] mt-2">
-                {{ t('home.place2_description') }}
-              </p>
-            </div>
-          </div>
-
-          <!-- Cappadocia -->
-          <div class="rounded-2xl overflow-hidden shadow-md">
-            <img
-              src="/images/cappadocia.jpg"
-              alt="Cappadocia, Turki"
-              class="w-full h-56 object-cover"
-            />
-            <div class="p-4 text-center bg-[#EAE4D4]">
-              <h4 class="font-serif text-[#4B3B2A]">
-                {{ t('home.place3_title') }}
-              </h4>
-              <p class="text-sm text-[#6B5B4B] mt-2">
-                {{ t('home.place3_description') }}
-              </p>
-            </div>
-          </div>
-
-          <!-- Lathmar Holi -->
-          <div class="rounded-2xl overflow-hidden shadow-md">
-            <img
-              src="/images/lathmar-holi.jpg"
-              alt="Lathmar Holi, India"
-              class="w-full h-56 object-cover"
-            />
-            <div class="p-4 text-center bg-[#EAE4D4]">
-              <h4 class="font-serif text-[#4B3B2A]">
-                {{ t('home.place4_title') }}
-              </h4>
-              <p class="text-sm text-[#6B5B4B] mt-2">
-                {{ t('home.place4_description') }}
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+    <HomepageJourneySlider />
 
     <!-- ✅ Closing Quote -->
     <section class="bg-[#EAE4D4] py-16">
       <div class="max-w-7xl mx-auto px-6 text-center">
-        <p
-          class="text-[#4B3B2A] text-lg md:text-xl italic max-w-3xl mx-auto"
-        >
+        <p class="text-app-secondary font-fraunces text-lg md:text-2xl max-w-3xl mx-auto">
           “{{ t('home.closing_quote') }}”
         </p>
-        <p class="mt-3 text-[#6B5B4B] text-sm">— Aysia LinggarWati</p>
+        <div class="py-6 flex justify-center">
+          <hr class="w-24 border-t border-app-secondary">
+        </div>
+        <p class="text-app-secondary text-md">
+          — Aysia LinggarWati
+        </p>
       </div>
     </section>
   </section>

@@ -1,17 +1,17 @@
-import { A as API_URL_LIST } from './constant-D5BqL6of.mjs';
-import { b as useNuxtApp } from './server.mjs';
+import { A as API_URL_LIST } from "./constant-D5BqL6of.mjs";
+import { b as useNuxtApp } from "./server.mjs";
 
 function galleryRepository(fetch) {
   return {
     async getAll(params) {
       return fetch(API_URL_LIST.JOURNEY, {
         method: "GET",
-        params
+        params,
       });
     },
     async getById(galleryId) {
       return fetch(API_URL_LIST.JOURNEY_BY_ID(galleryId), {
-        method: "GET"
+        method: "GET",
       });
     },
     async create(payload) {
@@ -26,9 +26,9 @@ function galleryRepository(fetch) {
         method: "POST",
         headers: {
           "Accept": "application/json",
-          "Content-Type": "multipart/form-data"
+          "Content-Type": "multipart/form-data",
         },
-        body: formData
+        body: formData,
       });
     },
     async updateById(galleryId, payload) {
@@ -43,22 +43,22 @@ function galleryRepository(fetch) {
         method: "PUT",
         headers: {
           "Accept": "application/json",
-          "Content-Type": "multipart/form-data"
+          "Content-Type": "multipart/form-data",
         },
-        body: formData
+        body: formData,
       });
     },
     async deleteById(galleryId) {
       return fetch(API_URL_LIST.JOURNEY_BY_ID(galleryId), {
-        method: "DELETE"
+        method: "DELETE",
       });
     },
     async getByCategoryId(categoryId, params) {
       return fetch(API_URL_LIST.JOURNEY_BY_CATEGORY_ID(categoryId), {
         method: "GET",
-        params
+        params,
       });
-    }
+    },
   };
 }
 function journeyFetcher() {
@@ -67,4 +67,4 @@ function journeyFetcher() {
 }
 
 export { journeyFetcher as j };
-//# sourceMappingURL=journey-9vIRkXmx.mjs.map
+// # sourceMappingURL=journey-9vIRkXmx.mjs.map

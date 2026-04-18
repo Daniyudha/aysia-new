@@ -1,3 +1,3 @@
 export default defineEventHandler(async (event) => {
-  return { message: 'Test server route working' }
-})
+  return { message: "Test server route working" };
+});

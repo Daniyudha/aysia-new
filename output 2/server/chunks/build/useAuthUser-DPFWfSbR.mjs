@@ -1,5 +1,6 @@
-import { toRef, isRef } from 'vue';
-import { b as useNuxtApp } from './server.mjs';
+import { isRef, toRef } from "vue";
+
+import { b as useNuxtApp } from "./server.mjs";
 
 const useStateKeyPrefix = "$s";
 function useState(...args) {
@@ -9,10 +10,10 @@ function useState(...args) {
   }
   const [_key, init] = args;
   if (!_key || typeof _key !== "string") {
-    throw new TypeError("[nuxt] [useState] key must be a string: " + _key);
+    throw new TypeError(`[nuxt] [useState] key must be a string: ${_key}`);
   }
   if (init !== void 0 && typeof init !== "function") {
-    throw new Error("[nuxt] [useState] init must be a function: " + init);
+    throw new Error(`[nuxt] [useState] init must be a function: ${init}`);
   }
   const key = useStateKeyPrefix + _key;
   const nuxtApp = useNuxtApp();
@@ -31,9 +32,9 @@ function useAuthUser() {
   return useState("auth", () => ({
     loading: false,
     error: false,
-    auth: null
+    auth: null,
   }));
 }
 
 export { useAuthUser as u };
-//# sourceMappingURL=useAuthUser-DPFWfSbR.mjs.map
+// # sourceMappingURL=useAuthUser-DPFWfSbR.mjs.map

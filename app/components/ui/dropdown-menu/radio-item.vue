@@ -12,7 +12,7 @@ const props = defineProps<
     /** The title text to display */
     title?: string;
   }
-  >();
+>();
 
 const emits = defineEmits<DropdownMenuRadioItemEmits>();
 const forwarded = useForwardPropsEmits(reactiveOmit(props, "class", "icon", "title"), emits);

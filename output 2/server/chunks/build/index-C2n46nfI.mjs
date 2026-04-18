@@ -1,60 +1,62 @@
-import { defineComponent, computed, h, onServerPrefetch } from 'vue';
-import { b as useNuxtApp, j as useAppConfig, I as Icon, u as useRuntimeConfig, k as getIcon, l as loadIcon$1 } from './server.mjs';
-import { u as useHead } from './composables-D0i6IdhD.mjs';
-import { u as useAsyncData } from './asyncData-DuMyQiaR.mjs';
-import '../nitro/nitro.mjs';
-import 'node:http';
-import 'node:https';
-import 'node:events';
-import 'node:buffer';
-import 'node:fs';
-import 'node:path';
-import 'node:crypto';
-import 'node:url';
-import '@iconify/utils';
-import 'consola';
-import 'vue-router';
-import 'reka-ui';
-import 'tailwind-variants';
-import 'vue/server-renderer';
-import '../routes/renderer.mjs';
-import 'vue-bundle-renderer/runtime';
-import 'unhead/server';
-import 'devalue';
-import 'unhead/utils';
-import 'perfect-debounce';
+import { computed, defineComponent, h, onServerPrefetch } from "vue";
+
+import { u as useAsyncData } from "./asyncData-DuMyQiaR.mjs";
+import { u as useHead } from "./composables-D0i6IdhD.mjs";
+import { k as getIcon, I as Icon, l as loadIcon$1, j as useAppConfig, b as useNuxtApp, u as useRuntimeConfig } from "./server.mjs";
+import "../nitro/nitro.mjs";
+import "node:http";
+import "node:https";
+import "node:events";
+import "node:buffer";
+import "node:fs";
+import "node:path";
+import "node:crypto";
+import "node:url";
+import "@iconify/utils";
+import "consola";
+import "vue-router";
+import "reka-ui";
+import "tailwind-variants";
+import "vue/server-renderer";
+
+import "../routes/renderer.mjs";
+import "vue-bundle-renderer/runtime";
+import "unhead/server";
+import "devalue";
+import "unhead/utils";
+import "perfect-debounce";
 
 const defaultIconDimensions = Object.freeze(
   {
     left: 0,
     top: 0,
     width: 16,
-    height: 16
-  }
+    height: 16,
+  },
 );
 const defaultIconTransformations = Object.freeze({
   rotate: 0,
   vFlip: false,
-  hFlip: false
+  hFlip: false,
 });
 const defaultIconProps = Object.freeze({
   ...defaultIconDimensions,
-  ...defaultIconTransformations
+  ...defaultIconTransformations,
 });
 Object.freeze({
   ...defaultIconProps,
   body: "",
-  hidden: false
+  hidden: false,
 });
 function iconToHTML(body, attributes) {
-  let renderAttribsHTML = body.indexOf("xlink:") === -1 ? "" : ' xmlns:xlink="http://www.w3.org/1999/xlink"';
+  let renderAttribsHTML = !body.includes("xlink:") ? "" : " xmlns:xlink=\"http://www.w3.org/1999/xlink\"";
   for (const attr in attributes) {
-    renderAttribsHTML += " " + attr + '="' + attributes[attr] + '"';
+    renderAttribsHTML += ` ${attr}="${attributes[attr]}"`;
   }
-  return '<svg xmlns="http://www.w3.org/2000/svg"' + renderAttribsHTML + ">" + body + "</svg>";
+  return `<svg xmlns="http://www.w3.org/2000/svg"${renderAttribsHTML}>${body}</svg>`;
 }
-const unitsSplit = /(-?[0-9.]*[0-9]+[0-9.]*)/g;
-const unitsTest = /^-?[0-9.]*[0-9]+[0-9.]*$/g;
+const unitsSplit = /(-?[0-9.]*\d[0-9.]*)/g;
+const unitsTest = /^-?\.*\d[\d.]*$/g;
 function calculateSize(size, ratio, precision) {
   if (ratio === 1) {
     return size;
@@ -75,13 +77,15 @@ function calculateSize(size, ratio, precision) {
   let isNumber = unitsTest.test(code);
   while (true) {
     if (isNumber) {
-      const num = parseFloat(code);
+      const num = Number.parseFloat(code);
       if (isNaN(num)) {
         newParts.push(code);
-      } else {
+      }
+      else {
         newParts.push(Math.ceil(num * ratio * precision) / precision);
       }
-    } else {
+    }
+    else {
       newParts.push(code);
     }
     code = oldParts.shift();
@@ -95,10 +99,10 @@ function encodeSVGforURL(svg) {
   return svg.replace(/"/g, "'").replace(/%/g, "%25").replace(/#/g, "%23").replace(/</g, "%3C").replace(/>/g, "%3E").replace(/\s+/g, " ");
 }
 function svgToData(svg) {
-  return "data:image/svg+xml," + encodeSVGforURL(svg);
+  return `data:image/svg+xml,${encodeSVGforURL(svg)}`;
 }
 function svgToURL(svg) {
-  return 'url("' + svgToData(svg) + '")';
+  return `url("${svgToData(svg)}")`;
 }
 function makeViewBoxSquare(viewBox) {
   const [left, top, width, height] = viewBox;
@@ -110,20 +114,20 @@ function makeViewBoxSquare(viewBox) {
 }
 const defaultIconSizeCustomisations = Object.freeze({
   width: null,
-  height: null
+  height: null,
 });
 const defaultIconCustomisations = Object.freeze({
   // Dimensions
   ...defaultIconSizeCustomisations,
   // Transformations
-  ...defaultIconTransformations
+  ...defaultIconTransformations,
 });
 function splitSVGDefs(content, tag = "defs") {
   let defs = "";
-  const index = content.indexOf("<" + tag);
+  const index = content.indexOf(`<${tag}`);
   while (index >= 0) {
     const start = content.indexOf(">", index);
-    const end = content.indexOf("</" + tag);
+    const end = content.indexOf(`</${tag}`);
     if (start === -1 || end === -1) {
       break;
     }
@@ -136,31 +140,31 @@ function splitSVGDefs(content, tag = "defs") {
   }
   return {
     defs,
-    content
+    content,
   };
 }
 function mergeDefsAndContent(defs, content) {
-  return defs ? "<defs>" + defs + "</defs>" + content : content;
+  return defs ? `<defs>${defs}</defs>${content}` : content;
 }
 function wrapSVGContent(body, start, end) {
   const split = splitSVGDefs(body);
   return mergeDefsAndContent(split.defs, start + split.content + end);
 }
-const isUnsetKeyword = (value) => value === "unset" || value === "undefined" || value === "none";
+const isUnsetKeyword = value => value === "unset" || value === "undefined" || value === "none";
 function iconToSVG(icon, customisations) {
   const fullIcon = {
     ...defaultIconProps,
-    ...icon
+    ...icon,
   };
   const fullCustomisations = {
     ...defaultIconCustomisations,
-    ...customisations
+    ...customisations,
   };
   const box = {
     left: fullIcon.left,
     top: fullIcon.top,
     width: fullIcon.width,
-    height: fullIcon.height
+    height: fullIcon.height,
   };
   let body = fullIcon.body;
   [fullIcon, fullCustomisations].forEach((props) => {
@@ -171,16 +175,18 @@ function iconToSVG(icon, customisations) {
     if (hFlip) {
       if (vFlip) {
         rotation += 2;
-      } else {
+      }
+      else {
         transformations.push(
-          "translate(" + (box.width + box.left).toString() + " " + (0 - box.top).toString() + ")"
+          `translate(${(box.width + box.left).toString()} ${(0 - box.top).toString()})`,
         );
         transformations.push("scale(-1 1)");
         box.top = box.left = 0;
       }
-    } else if (vFlip) {
+    }
+    else if (vFlip) {
       transformations.push(
-        "translate(" + (0 - box.left).toString() + " " + (box.height + box.top).toString() + ")"
+        `translate(${(0 - box.left).toString()} ${(box.height + box.top).toString()})`,
       );
       transformations.push("scale(1 -1)");
       box.top = box.left = 0;
@@ -194,18 +200,18 @@ function iconToSVG(icon, customisations) {
       case 1:
         tempValue = box.height / 2 + box.top;
         transformations.unshift(
-          "rotate(90 " + tempValue.toString() + " " + tempValue.toString() + ")"
+          `rotate(90 ${tempValue.toString()} ${tempValue.toString()})`,
         );
         break;
       case 2:
         transformations.unshift(
-          "rotate(180 " + (box.width / 2 + box.left).toString() + " " + (box.height / 2 + box.top).toString() + ")"
+          `rotate(180 ${(box.width / 2 + box.left).toString()} ${(box.height / 2 + box.top).toString()})`,
         );
         break;
       case 3:
         tempValue = box.width / 2 + box.left;
         transformations.unshift(
-          "rotate(-90 " + tempValue.toString() + " " + tempValue.toString() + ")"
+          `rotate(-90 ${tempValue.toString()} ${tempValue.toString()})`,
         );
         break;
     }
@@ -224,8 +230,8 @@ function iconToSVG(icon, customisations) {
     if (transformations.length) {
       body = wrapSVGContent(
         body,
-        '<g transform="' + transformations.join(" ") + '">',
-        "</g>"
+        `<g transform="${transformations.join(" ")}">`,
+        "</g>",
       );
     }
   });
@@ -238,7 +244,8 @@ function iconToSVG(icon, customisations) {
   if (customisationsWidth === null) {
     height = customisationsHeight === null ? "1em" : customisationsHeight === "auto" ? boxHeight : customisationsHeight;
     width = calculateSize(height, boxWidth / boxHeight);
-  } else {
+  }
+  else {
     width = customisationsWidth === "auto" ? boxWidth : customisationsWidth;
     height = customisationsHeight === null ? calculateSize(width, boxHeight / boxWidth) : customisationsHeight === "auto" ? boxHeight : customisationsHeight;
   }
@@ -255,23 +262,23 @@ function iconToSVG(icon, customisations) {
   return {
     attributes,
     viewBox,
-    body
+    body,
   };
 }
 function getCommonCSSRules(options) {
   const result = {
     display: "inline-block",
     width: "1em",
-    height: "1em"
+    height: "1em",
   };
   const varName = options.varName;
   if (options.pseudoSelector) {
-    result["content"] = "''";
+    result.content = "''";
   }
   switch (options.mode) {
     case "background":
       if (varName) {
-        result["background-image"] = "var(--" + varName + ")";
+        result["background-image"] = `var(--${varName})`;
       }
       result["background-repeat"] = "no-repeat";
       result["background-size"] = "100% 100%";
@@ -279,7 +286,7 @@ function getCommonCSSRules(options) {
     case "mask":
       result["background-color"] = "currentColor";
       if (varName) {
-        result["mask-image"] = result["-webkit-mask-image"] = "var(--" + varName + ")";
+        result["mask-image"] = result["-webkit-mask-image"] = `var(--${varName})`;
       }
       result["mask-repeat"] = result["-webkit-mask-repeat"] = "no-repeat";
       result["mask-size"] = result["-webkit-mask-size"] = "100% 100%";
@@ -295,8 +302,9 @@ function generateItemCSSRules(icon, options) {
   if (viewBox[2] !== viewBox[3]) {
     if (options.forceSquare) {
       viewBox = makeViewBoxSquare(viewBox);
-    } else {
-      result["width"] = calculateSize("1em", viewBox[2] / viewBox[3]);
+    }
+    else {
+      result.width = calculateSize("1em", viewBox[2] / viewBox[3]);
     }
   }
   const svg = iconToHTML(
@@ -304,13 +312,14 @@ function generateItemCSSRules(icon, options) {
     {
       viewBox: `${viewBox[0]} ${viewBox[1]} ${viewBox[2]} ${viewBox[3]}`,
       width: `${viewBox[2]}`,
-      height: `${viewBox[3]}`
-    }
+      height: `${viewBox[3]}`,
+    },
   );
   const url = svgToURL(svg);
   if (varName) {
-    result["--" + varName] = url;
-  } else {
+    result[`--${varName}`] = url;
+  }
+  else {
     switch (options.mode) {
       case "background":
         result["background-image"] = url;
@@ -326,24 +335,24 @@ const format = {
   selectorStart: {
     compressed: "{",
     compact: " {",
-    expanded: " {"
+    expanded: " {",
   },
   selectorEnd: {
     compressed: "}",
     compact: "; }\n",
-    expanded: ";\n}\n"
+    expanded: ";\n}\n",
   },
   rule: {
     compressed: "{key}:",
     compact: " {key}: ",
-    expanded: "\n  {key}: "
-  }
+    expanded: "\n  {key}: ",
+  },
 };
 function formatCSS(data, mode = "expanded") {
   const results = [];
   for (let i = 0; i < data.length; i++) {
     const { selector, rules } = data[i];
-    const fullSelector = selector instanceof Array ? selector.join(mode === "compressed" ? "," : ", ") : selector;
+    const fullSelector = Array.isArray(selector) ? selector.join(mode === "compressed" ? "," : ", ") : selector;
     let entry = fullSelector + format.selectorStart[mode];
     let firstRule = true;
     for (const key in rules) {
@@ -369,7 +378,7 @@ function getIconCSS(icon, options = {}) {
     ...options,
     // Override mode and varName
     mode,
-    varName
+    varName,
   };
   if (mode === "background") {
     delete newOptions.varName;
@@ -381,20 +390,20 @@ function getIconCSS(icon, options = {}) {
       {
         ...defaultIconProps,
         ...icon,
-        body
+        body,
       },
-      newOptions
-    )
+      newOptions,
+    ),
   };
   const selector = options.iconSelector || ".icon";
   return formatCSS(
     [
       {
         selector,
-        rules
-      }
+        rules,
+      },
     ],
-    newOptions.format
+    newOptions.format,
   );
 }
 async function loadIcon(name, timeout) {
@@ -408,7 +417,7 @@ async function loadIcon(name, timeout) {
     console.warn(`[Icon] failed to load icon \`${name}\``);
     return null;
   });
-  if (timeout > 0)
+  if (timeout > 0) {
     await Promise.race([
       load,
       new Promise((resolve) => {
@@ -416,10 +425,12 @@ async function loadIcon(name, timeout) {
           console.warn(`[Icon] loading icon \`${name}\` timed out after ${timeout}ms`);
           resolve();
         }, timeout);
-      })
+      }),
     ]).finally(() => clearTimeout(timeoutWarn));
-  else
+  }
+  else {
     await load;
+  }
   return getIcon(name);
 }
 function useResolvedName(getName) {
@@ -430,15 +441,17 @@ function useResolvedName(getName) {
     const bare = name.startsWith(options.cssSelectorPrefix) ? name.slice(options.cssSelectorPrefix.length) : name;
     const resolved = options.aliases?.[bare] || bare;
     if (!resolved.includes(":")) {
-      const collection = collections.find((c) => resolved.startsWith(c + "-"));
-      return collection ? collection + ":" + resolved.slice(collection.length + 1) : resolved;
+      const collection = collections.find(c => resolved.startsWith(`${c}-`));
+      return collection ? `${collection}:${resolved.slice(collection.length + 1)}` : resolved;
     }
     return resolved;
   });
 }
 function resolveCustomizeFn(customize, globalCustomize) {
-  if (customize === false) return void 0;
-  if (customize === true || customize === null) return globalCustomize;
+  if (customize === false)
+    return void 0;
+  if (customize === true || customize === null)
+    return globalCustomize;
   return customize;
 }
 const SYMBOL_SERVER_CSS = "NUXT_ICONS_SERVER_CSS";
@@ -450,19 +463,19 @@ const NuxtIconCss = /* @__PURE__ */ defineComponent({
   props: {
     name: {
       type: String,
-      required: true
+      required: true,
     },
     customize: {
       type: [Function, Boolean, null],
       default: null,
-      required: false
-    }
+      required: false,
+    },
   },
   setup(props) {
     const nuxt = useNuxtApp();
     const options = useAppConfig().icon;
     const cssClass = computed(() => props.name ? options.cssSelectorPrefix + props.name : "");
-    const selector = computed(() => "." + escapeCssSelector(cssClass.value));
+    const selector = computed(() => `.${escapeCssSelector(cssClass.value)}`);
     function getCSS(icon, withLayer = true) {
       let iconSelector = selector.value;
       if (options.cssWherePseudo) {
@@ -471,7 +484,7 @@ const NuxtIconCss = /* @__PURE__ */ defineComponent({
       const css = getIconCSS(icon, {
         iconSelector,
         format: "compressed",
-        customise: resolveCustomizeFn(props.customize, options.customize)
+        customise: resolveCustomizeFn(props.customize, options.customize),
       });
       if (options.cssLayer && withLayer) {
         return `@layer ${options.cssLayer} { ${css} }`;
@@ -498,10 +511,10 @@ const NuxtIconCss = /* @__PURE__ */ defineComponent({
                       css = `@layer ${options.cssLayer} {${sep}${css}${sep}}`;
                     }
                     return { innerHTML: css };
-                  }
-                ]
+                  },
+                ],
               }, {
-                tagPriority: "low"
+                tagPriority: "low",
               });
             });
           }
@@ -514,33 +527,33 @@ const NuxtIconCss = /* @__PURE__ */ defineComponent({
       }
     });
     return () => h("span", { class: ["iconify", cssClass.value] });
-  }
+  },
 });
 const NuxtIconSvg = /* @__PURE__ */ defineComponent({
   name: "NuxtIconSvg",
   props: {
     name: {
       type: String,
-      required: true
+      required: true,
     },
     customize: {
       type: [Function, Boolean, null],
       default: null,
-      required: false
-    }
+      required: false,
+    },
   },
   setup(props, { slots }) {
     useNuxtApp();
     const options = useAppConfig().icon;
     const name = useResolvedName(() => props.name);
-    const storeKey = "i-" + name.value;
+    const storeKey = `i-${name.value}`;
     if (name.value) {
       onServerPrefetch(async () => {
         {
           await useAsyncData(
             storeKey,
             async () => await loadIcon(name.value, options.fetchTimeout),
-            { deep: false }
+            { deep: false },
           );
         }
       });
@@ -549,43 +562,43 @@ const NuxtIconSvg = /* @__PURE__ */ defineComponent({
       icon: name.value,
       ssr: true,
       // Iconify uses `customise`, where we expose `customize` for consistency
-      customise: resolveCustomizeFn(props.customize, options.customize)
+      customise: resolveCustomizeFn(props.customize, options.customize),
     }, slots);
-  }
+  },
 });
 const __nuxt_component_0 = defineComponent({
   name: "NuxtIcon",
   props: {
     name: {
       type: String,
-      required: true
+      required: true,
     },
     mode: {
       type: String,
       required: false,
-      default: null
+      default: null,
     },
     size: {
       type: [Number, String],
       required: false,
-      default: null
+      default: null,
     },
     customize: {
       type: [Function, Boolean, null],
       default: null,
-      required: false
-    }
+      required: false,
+    },
   },
   setup(props, { slots }) {
     const nuxtApp = useNuxtApp();
     const runtimeOptions = useAppConfig().icon;
     const name = useResolvedName(() => props.name);
     const component = computed(
-      () => nuxtApp.vueApp?.component(name.value) || ((props.mode || runtimeOptions.mode) === "svg" ? NuxtIconSvg : NuxtIconCss)
+      () => nuxtApp.vueApp?.component(name.value) || ((props.mode || runtimeOptions.mode) === "svg" ? NuxtIconSvg : NuxtIconCss),
     );
     const style = computed(() => {
       const size = props.size || runtimeOptions.size;
-      return size ? { fontSize: Number.isNaN(+size) ? size : size + "px" } : null;
+      return size ? { fontSize: Number.isNaN(+size) ? size : `${size}px` } : null;
     });
     return () => h(
       component.value,
@@ -594,12 +607,12 @@ const __nuxt_component_0 = defineComponent({
         name: name.value,
         class: runtimeOptions.class,
         style: style.value,
-        customize: props.customize
+        customize: props.customize,
       },
-      slots
+      slots,
     );
-  }
+  },
 });
 
 export { __nuxt_component_0 as default };
-//# sourceMappingURL=index-C2n46nfI.mjs.map
+// # sourceMappingURL=index-C2n46nfI.mjs.map

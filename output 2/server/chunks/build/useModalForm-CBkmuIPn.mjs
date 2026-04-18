@@ -1,4 +1,4 @@
-import { ref, watch } from 'vue';
+import { ref, watch } from "vue";
 
 function useModalForm() {
   const showModal = ref(false);
@@ -19,10 +19,10 @@ function useModalForm() {
       if (!showModal.value) {
         selectedItem.value = void 0;
       }
-    }
+    },
   );
   return { showModal, selectedItem, handleShowModal, handleCloseModal };
 }
 
 export { useModalForm as u };
-//# sourceMappingURL=useModalForm-CBkmuIPn.mjs.map
+// # sourceMappingURL=useModalForm-CBkmuIPn.mjs.map

@@ -3,27 +3,37 @@ defineProps<{ socialMedia?: SocialMediaResponse }>();
 </script>
 
 <template>
-  <footer class="bg-app-secondary py-6 text-app-primary overflow-hidden">
+  <footer class="bg-app-secondary py-4 text-app-primary overflow-hidden">
     <div class="app-container">
       <div class="flex flex-col md:flex-row justify-between items-center gap-8">
-
         <!-- Brand -->
-        <NuxtLink
-          to="/"
-          class="text-center font-cinzel-decorative text-2xl md:text-3xl text-app-text-primary tracking-wide"
-        >
-          Aysia<br>
-          Linggarwati
+        <NuxtLink to="/" class="flex items-center gap-2">
+          <img src="/images/AL-logo-light.png" class="h-12">
+          <span class="font-cinzel-decorative text-xl font-bold text-app-primary">
+            Aysia <br> LinggarWati
+          </span>
         </NuxtLink>
 
         <!-- Navigation + Socials -->
         <div class="flex flex-col items-center md:items-end">
           <ul class="flex flex-wrap justify-center md:justify-end items-center gap-5 md:gap-7 mb-3">
-            <li><NuxtLink to="/about" class="footer-link">About</NuxtLink></li>
+            <li>
+              <NuxtLink to="/about" class="footer-link">
+                About
+              </NuxtLink>
+            </li>
             <li><span class="footer-divider">|</span></li>
-            <li><NuxtLink to="/galleries" class="footer-link">Gallery</NuxtLink></li>
+            <li>
+              <NuxtLink to="/portfolio" class="footer-link">
+                Gallery
+              </NuxtLink>
+            </li>
             <li><span class="footer-divider">|</span></li>
-            <li><NuxtLink to="/contact" class="footer-link">Contact</NuxtLink></li>
+            <li>
+              <NuxtLink to="/contact" class="footer-link">
+                Contact
+              </NuxtLink>
+            </li>
 
             <li v-if="!!$props?.socialMedia?.instagram1?.link?.length" class="hidden lg:inline-block">
               <a
@@ -111,7 +121,7 @@ defineProps<{ socialMedia?: SocialMediaResponse }>();
           </ul>
 
           <!-- Credit -->
-          <p class="text-sm md:text-base font-light text-app-text-primary/70 tracking-wide">
+          <p class="text-base font-light text-app-text-primary/70 tracking-wide">
             © 2025 <span class="text-app-text-primary font-medium">Aysia Linggarwati</span>. All rights reserved.
           </p>
         </div>
@@ -124,7 +134,13 @@ defineProps<{ socialMedia?: SocialMediaResponse }>();
 @reference "../../assets/css/main.css";
 
 .footer-link {
-  @apply font-light italic text-lg leading-[26px] text-center text-app-text-primary/80 hover:text-app-text-primary transition-colors;
+  font-family: "Fraunces", serif;
+  font-weight: 300;
+  font-style: italic;
+  font-size: 18px;
+  line-height: 100%;
+  color: var(--app-text-primary/80);
+  transition: color 0.3s;
 }
 
 .footer-divider {

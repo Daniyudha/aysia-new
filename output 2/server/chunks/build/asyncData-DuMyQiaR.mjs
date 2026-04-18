@@ -1,6 +1,7 @@
-import { computed, toValue, getCurrentInstance, onServerPrefetch, unref, ref, shallowRef, toRef, nextTick } from 'vue';
-import { debounce } from 'perfect-debounce';
-import { b as useNuxtApp, h as asyncDataDefaults, i as createError } from './server.mjs';
+import { debounce } from "perfect-debounce";
+import { computed, getCurrentInstance, nextTick, onServerPrefetch, ref, shallowRef, toRef, toValue, unref } from "vue";
+
+import { h as asyncDataDefaults, i as createError, b as useNuxtApp } from "./server.mjs";
 
 function useAsyncData(...args) {
   const autoKey = typeof args[args.length - 1] === "string" ? args.pop() : void 0;
@@ -41,7 +42,8 @@ function useAsyncData(...args) {
     const promise = initialFetch();
     if (getCurrentInstance()) {
       onServerPrefetch(() => promise);
-    } else {
+    }
+    else {
       nuxtApp.hook("app:created", async () => {
         await promise;
       });
@@ -60,7 +62,7 @@ function useAsyncData(...args) {
       return nuxtApp._asyncData[key.value].execute(...args2);
     },
     execute: (...args2) => asyncReturn.refresh(...args2),
-    clear: () => clearNuxtDataByKey(nuxtApp, key.value)
+    clear: () => clearNuxtDataByKey(nuxtApp, key.value),
   };
   const asyncDataPromise = Promise.resolve(nuxtApp._asyncDataPromises[key.value]).then(() => asyncReturn);
   Object.assign(asyncDataPromise, asyncReturn);
@@ -76,7 +78,7 @@ function writableComputedRef(getter) {
       if (ref2) {
         ref2.value = value;
       }
-    }
+    },
   });
 }
 function _isAutoKeyNeeded(keyOrFetcher, fetcher) {
@@ -120,7 +122,7 @@ function pick(obj, keys) {
 function createAsyncData(nuxtApp, key, _handler, options, initialCachedData) {
   nuxtApp.payload._errors[key] ??= void 0;
   const hasCustomGetCachedData = options.getCachedData !== getDefaultCachedData;
-  const handler = _handler ;
+  const handler = _handler;
   const _ref = options.deep ? ref : shallowRef;
   const hasCachedData = initialCachedData !== void 0;
   const unsubRefreshAsyncData = nuxtApp.hook("app:data:refresh", async (keys) => {
@@ -156,10 +158,11 @@ function createAsyncData(nuxtApp, key, _handler, options, initialCachedData) {
         (resolve, reject) => {
           try {
             resolve(handler(nuxtApp));
-          } catch (err) {
+          }
+          catch (err) {
             reject(err);
           }
-        }
+        },
       ).then(async (_result) => {
         if (promise.cancelled) {
           return nuxtApp._asyncDataPromises[key];
@@ -209,19 +212,19 @@ function createAsyncData(nuxtApp, key, _handler, options, initialCachedData) {
           }
         });
       }
-    }
+    },
   };
   return asyncData;
 }
 const getDefault = () => void 0;
-const getDefaultCachedData = (key, nuxtApp, ctx) => {
+function getDefaultCachedData(key, nuxtApp, ctx) {
   if (nuxtApp.isHydrating) {
     return nuxtApp.payload.data[key];
   }
   if (ctx.cause !== "refresh:manual" && ctx.cause !== "refresh:hook") {
     return nuxtApp.static.data[key];
   }
-};
+}
 
 export { useAsyncData as u };
-//# sourceMappingURL=asyncData-DuMyQiaR.mjs.map
+// # sourceMappingURL=asyncData-DuMyQiaR.mjs.map

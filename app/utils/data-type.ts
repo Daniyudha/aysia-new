@@ -153,25 +153,70 @@ export type SocialMediaResponse = {
 export type JourneyPayload = {
   title: string;
   description: string;
-  gallery_category_id: string;
+  tag?: string;
+  thumbnail?: File;
+  gallery_category_id?: string;
+};
+
+export type BlogPayload = {
+  title: string;
+  description: string;
+  tag?: string;
   thumbnail?: File;
 };
 
 export type JourneyResponse = {
   id: string;
-  gallery_category_id: string;
-  gallery_category_name: string;
   title: string;
   description: string;
+  tag: string;
+  thumbnail: string;
+  is_active: boolean;
+  created_at: string;
+  updated_at: string;
+  gallery_category_id?: string;
+  gallery_category_name?: string;
+};
+
+export type BlogResponse = {
+  id: string;
+  title: string;
+  description: string;
+  tag: string;
   thumbnail: string;
   is_active: boolean;
   created_at: string;
   updated_at: string;
 };
 
+export type BlogDetailResponse = {
+  id: string;
+  blog_id: string;
+  title: string;
+  description: string;
+  thumbnail_url: string | null;
+  is_video: boolean;
+  video_url: string | null;
+  content: string;
+  is_active: boolean;
+  created_at: string;
+  updated_at: string;
+};
+
+export type BlogDetailPayload = {
+  blog_id: string;
+  title: string;
+  description: string;
+  thumbnail?: File;
+  is_video: boolean;
+  video_url: string | null;
+  content: string;
+};
+
 export type JourneyDetailsPayload = {
   journey_id: string;
   title: string;
+  tagline: string;
   description: string;
   content: string;
   thumbnail?: File;
@@ -183,6 +228,7 @@ export type JourneyDetailsResponse = {
   id: string;
   journey_id: string;
   title: string;
+  tagline: string;
   description: string;
   thumbnail_url: string | null;
   content: string;
@@ -206,4 +252,34 @@ export type ConfirmDialogState = {
   isOpen: boolean;
   options: ConfirmDialogOptions;
   resolve: ((value: boolean) => void) | null;
+};
+
+export type ExploreImagePayload = {
+  image: File;
+};
+
+export type ExploreImageBulkPayload = {
+  images: File[];
+};
+
+export type ExploreImageBulkDeletePayload = {
+  ids: string[];
+};
+
+export type ExploreImageResponse = {
+  id: string;
+  url: string;
+  name: string;
+  size: number;
+  type: string;
+  created_at: string;
+  updated_at: string;
+  // Optional fields from API response
+  filename?: string;
+  original_name?: string;
+  mime_type?: string;
+  thumbnail_path?: string;
+  alt_text?: string | null;
+  sort_order?: number;
+  is_active?: boolean;
 };

@@ -1,9 +1,10 @@
-import __nuxt_component_0 from './index-C2n46nfI.mjs';
-import { defineComponent, ref, mergeProps, unref, useSSRContext } from 'vue';
-import { ssrRenderAttrs, ssrRenderSlot, ssrRenderClass, ssrRenderComponent } from 'vue/server-renderer';
-import { u as useFileDialog, a as useDropZone } from './index-Df46HAS4.mjs';
-import { tv } from 'tailwind-variants';
-import { z } from 'zod';
+import { tv } from "tailwind-variants";
+import { defineComponent, mergeProps, ref, unref, useSSRContext } from "vue";
+import { ssrRenderAttrs, ssrRenderClass, ssrRenderComponent, ssrRenderSlot } from "vue/server-renderer";
+import { z } from "zod";
+
+import __nuxt_component_0 from "./index-C2n46nfI.mjs";
+import { a as useDropZone, u as useFileDialog } from "./index-Df46HAS4.mjs";
 
 const _sfc_main = /* @__PURE__ */ defineComponent({
   __name: "dropfile",
@@ -16,7 +17,7 @@ const _sfc_main = /* @__PURE__ */ defineComponent({
     multiple: { type: Boolean, default: true },
     accept: { default: "*" },
     class: {},
-    disabled: { type: Boolean, default: false }
+    disabled: { type: Boolean, default: false },
   },
   emits: ["dropped"],
   setup(__props, { emit: __emit }) {
@@ -24,7 +25,7 @@ const _sfc_main = /* @__PURE__ */ defineComponent({
     const emits = __emit;
     const { reset, onChange } = useFileDialog({
       multiple: props.multiple,
-      accept: props.accept
+      accept: props.accept,
     });
     onChange((files) => {
       if (files?.length && !props?.disabled) {
@@ -47,19 +48,19 @@ const _sfc_main = /* @__PURE__ */ defineComponent({
       base: "flex w-full cursor-pointer items-center justify-center rounded-md border border-dashboard-neutral-100 border-dashed transition",
       variants: {
         isOverDropZone: {
-          true: "border-dashboard-primary-50 bg-dashboard-primary-50"
+          true: "border-dashboard-primary-50 bg-dashboard-primary-50",
         },
         disabled: {
-          true: "bg-black/10 cursor-not-allowed"
-        }
-      }
+          true: "bg-black/10 cursor-not-allowed",
+        },
+      },
     });
     return (_ctx, _push, _parent, _attrs) => {
       const _component_Icon = __nuxt_component_0;
       _push(`<div${ssrRenderAttrs(mergeProps({
         ref_key: "dropZoneRef",
         ref: dropZoneRef,
-        class: unref(styles)({ isOverDropZone: unref(isOverDropZone), class: props.class, disabled: props?.disabled })
+        class: unref(styles)({ isOverDropZone: unref(isOverDropZone), class: props.class, disabled: props?.disabled }),
       }, _attrs))}>`);
       ssrRenderSlot(_ctx.$slots, "message", {}, () => {
         _push(`<div class="py-10 text-center">`);
@@ -68,10 +69,11 @@ const _sfc_main = /* @__PURE__ */ defineComponent({
             _push(`<div class="${ssrRenderClass([[unref(isOverDropZone) && "animate-bounce border-primary"], "inline-flex items-center justify-center rounded-md border border-dashboard-neutral-100 p-2 transition"])}">`);
             _push(ssrRenderComponent(_component_Icon, {
               name: __props.icon,
-              class: ["h-7 w-7 opacity-70", [unref(isOverDropZone) && "text-primary"]]
+              class: ["h-7 w-7 opacity-70", [unref(isOverDropZone) && "text-primary"]],
             }, null, _parent));
             _push(`</div>`);
-          } else {
+          }
+          else {
             _push(`<!---->`);
           }
         }, _push, _parent);
@@ -85,7 +87,7 @@ const _sfc_main = /* @__PURE__ */ defineComponent({
       }, _push, _parent);
       _push(`</div>`);
     };
-  }
+  },
 });
 const _sfc_setup = _sfc_main.setup;
 _sfc_main.setup = (props, ctx) => {
@@ -115,13 +117,13 @@ function createObjectURL(selectedImage) {
   return null;
 }
 const ImageUploadSchema = z.instanceof(File, {
-  message: "Please select an image file."
-}).refine((file) => file.size <= MAX_FILE_SIZE, {
-  message: `The image is too large. Please choose an image smaller than ${formatBytes(MAX_FILE_SIZE)}.`
-}).refine((file) => ACCEPTED_IMAGE_TYPES.includes(file.type), {
-  message: "Please upload a valid image file (JPEG, PNG, or WebP)."
+  message: "Please select an image file.",
+}).refine(file => file.size <= MAX_FILE_SIZE, {
+  message: `The image is too large. Please choose an image smaller than ${formatBytes(MAX_FILE_SIZE)}.`,
+}).refine(file => ACCEPTED_IMAGE_TYPES.includes(file.type), {
+  message: "Please upload a valid image file (JPEG, PNG, or WebP).",
 }).refine(
-  (file) => new Promise((resolve) => {
+  file => new Promise((resolve) => {
     const reader = new FileReader();
     reader.onload = (e) => {
       const img = new Image();
@@ -134,9 +136,9 @@ const ImageUploadSchema = z.instanceof(File, {
     reader.readAsDataURL(file);
   }),
   {
-    message: `The image dimensions are invalid. Please upload an image between ${MIN_DIMENSIONS.width}x${MIN_DIMENSIONS.height} and ${MAX_DIMENSIONS.width}x${MAX_DIMENSIONS.height} pixels.`
-  }
+    message: `The image dimensions are invalid. Please upload an image between ${MIN_DIMENSIONS.width}x${MIN_DIMENSIONS.height} and ${MAX_DIMENSIONS.width}x${MAX_DIMENSIONS.height} pixels.`,
+  },
 );
 
-export { ImageUploadSchema as I, __nuxt_component_3 as _, createObjectURL as c };
-//# sourceMappingURL=file-upload-CKlkL0qx.mjs.map
+export { __nuxt_component_3 as _, createObjectURL as c, ImageUploadSchema as I };
+// # sourceMappingURL=file-upload-CKlkL0qx.mjs.map

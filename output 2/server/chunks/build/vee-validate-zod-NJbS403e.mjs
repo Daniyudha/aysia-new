@@ -1,27 +1,28 @@
-import { defineComponent, ref, reactive, computed, toValue, unref, isRef, watch, provide, readonly, toRef, resolveDynamicComponent, h, watchEffect, nextTick, shallowRef, mergeProps, getCurrentInstance, inject, withCtx, renderSlot, createTextVNode, createVNode, toDisplayString, useSSRContext, useId } from 'vue';
-import { ssrRenderAttrs, ssrRenderComponent, ssrRenderSlot, ssrInterpolate } from 'vue/server-renderer';
-import { Slot, Label } from 'reka-ui';
-import { tv } from 'tailwind-variants';
-import { _ as __nuxt_component_1$1 } from './client-only-B_PoH0ma.mjs';
-import { ZodObject, ZodDefault, ZodFirstPartyTypeKind } from 'zod';
+import { Label, Slot } from "reka-ui";
+import { tv } from "tailwind-variants";
+import { computed, createTextVNode, createVNode, defineComponent, getCurrentInstance, h, inject, isRef, mergeProps, nextTick, provide, reactive, readonly, ref, renderSlot, resolveDynamicComponent, shallowRef, toDisplayString, toRef, toValue, unref, useId, useSSRContext, watch, watchEffect, withCtx } from "vue";
+import { ssrInterpolate, ssrRenderAttrs, ssrRenderComponent, ssrRenderSlot } from "vue/server-renderer";
+import { ZodDefault, ZodFirstPartyTypeKind, ZodObject } from "zod";
+
+import { _ as __nuxt_component_1$1 } from "./client-only-B_PoH0ma.mjs";
 
 /**
-  * vee-validate v4.15.1
-  * (c) 2025 Abdelrahman Awad
-  * @license MIT
-  */
+ * vee-validate v4.15.1
+ * (c) 2025 Abdelrahman Awad
+ * @license MIT
+ */
 function isCallable(fn) {
   return typeof fn === "function";
 }
 function isNullOrUndefined(value) {
   return value === null || value === void 0;
 }
-const isObject$1 = (obj) => obj !== null && !!obj && typeof obj === "object" && !Array.isArray(obj);
+const isObject$1 = obj => obj !== null && !!obj && typeof obj === "object" && !Array.isArray(obj);
 function isIndex$1(value) {
   return Number(value) >= 0;
 }
 function toNumber(value) {
-  const n = parseFloat(value);
+  const n = Number.parseFloat(value);
   return isNaN(n) ? value : n;
 }
 function isObjectLike$1(value) {
@@ -79,37 +80,50 @@ function resolveRule(id) {
   return RULES[id];
 }
 function set(obj, key, val) {
-  if (typeof val.value === "object") val.value = klona(val.value);
+  if (typeof val.value === "object")
+    val.value = klona(val.value);
   if (!val.enumerable || val.get || val.set || !val.configurable || !val.writable || key === "__proto__") {
     Object.defineProperty(obj, key, val);
-  } else obj[key] = val.value;
+  }
+  else {
+    obj[key] = val.value;
+  }
 }
 function klona(x) {
-  if (typeof x !== "object") return x;
-  var i = 0, k, list, tmp, str = Object.prototype.toString.call(x);
+  if (typeof x !== "object")
+    return x;
+  let i = 0; let k; let list; let tmp; let str = Object.prototype.toString.call(x);
   if (str === "[object Object]") {
     tmp = Object.create(x.__proto__ || null);
-  } else if (str === "[object Array]") {
-    tmp = Array(x.length);
-  } else if (str === "[object Set]") {
+  }
+  else if (str === "[object Array]") {
+    tmp = Array.from({ length: x.length });
+  }
+  else if (str === "[object Set]") {
     tmp = /* @__PURE__ */ new Set();
-    x.forEach(function(val) {
+    x.forEach((val) => {
       tmp.add(klona(val));
     });
-  } else if (str === "[object Map]") {
+  }
+  else if (str === "[object Map]") {
     tmp = /* @__PURE__ */ new Map();
-    x.forEach(function(val, key) {
+    x.forEach((val, key) => {
       tmp.set(klona(key), klona(val));
     });
-  } else if (str === "[object Date]") {
+  }
+  else if (str === "[object Date]") {
     tmp = /* @__PURE__ */ new Date(+x);
-  } else if (str === "[object RegExp]") {
+  }
+  else if (str === "[object RegExp]") {
     tmp = new RegExp(x.source, x.flags);
-  } else if (str === "[object DataView]") {
+  }
+  else if (str === "[object DataView]") {
     tmp = new x.constructor(klona(x.buffer));
-  } else if (str === "[object ArrayBuffer]") {
+  }
+  else if (str === "[object ArrayBuffer]") {
     tmp = x.slice(0);
-  } else if (str.slice(-6) === "Array]") {
+  }
+  else if (str.slice(-6) === "Array]") {
     tmp = new x.constructor(x);
   }
   if (tmp) {
@@ -117,7 +131,8 @@ function klona(x) {
       set(tmp, list[i], Object.getOwnPropertyDescriptor(x, list[i]));
     }
     for (i = 0, list = Object.getOwnPropertyNames(x); i < list.length; i++) {
-      if (Object.hasOwnProperty.call(tmp, k = list[i]) && tmp[k] === x[k]) continue;
+      if (Object.hasOwnProperty.call(tmp, k = list[i]) && tmp[k] === x[k])
+        continue;
       set(tmp, k, Object.getOwnPropertyDescriptor(x, k));
     }
   }
@@ -149,7 +164,7 @@ function isEmptyContainer(value) {
   return isObject$1(value) && Object.keys(value).length === 0;
 }
 function isNotNestedPath(path) {
-  return /^\[.+\]$/i.test(path);
+  return /^\[.+\]$/.test(path);
 }
 function isNativeMultiSelect(el) {
   return isNativeSelect(el) && el.multiple;
@@ -188,25 +203,28 @@ function isEqual(a, b) {
   if (a && b && typeof a === "object" && typeof b === "object") {
     if (a.constructor !== b.constructor)
       return false;
-    var length, i, keys;
+    let length, i, keys;
     if (Array.isArray(a)) {
       length = a.length;
       if (length != b.length)
         return false;
-      for (i = length; i-- !== 0; )
+      for (i = length; i-- !== 0;) {
         if (!isEqual(a[i], b[i]))
           return false;
+      }
       return true;
     }
     if (a instanceof Map && b instanceof Map) {
       if (a.size !== b.size)
         return false;
-      for (i of a.entries())
+      for (i of a.entries()) {
         if (!b.has(i[0]))
           return false;
-      for (i of a.entries())
+      }
+      for (i of a.entries()) {
         if (!isEqual(i[1], b.get(i[0])))
           return false;
+      }
       return true;
     }
     if (isFile() && isFile()) {
@@ -223,18 +241,20 @@ function isEqual(a, b) {
     if (a instanceof Set && b instanceof Set) {
       if (a.size !== b.size)
         return false;
-      for (i of a.entries())
+      for (i of a.entries()) {
         if (!b.has(i[0]))
           return false;
+      }
       return true;
     }
     if (ArrayBuffer.isView(a) && ArrayBuffer.isView(b)) {
       length = a.length;
       if (length != b.length)
         return false;
-      for (i = length; i-- !== 0; )
+      for (i = length; i-- !== 0;) {
         if (a[i] !== b[i])
           return false;
+      }
       return true;
     }
     if (a.constructor === RegExp)
@@ -249,11 +269,12 @@ function isEqual(a, b) {
     length = keys.length;
     if (length !== Object.keys(b).length)
       return false;
-    for (i = length; i-- !== 0; )
+    for (i = length; i-- !== 0;) {
       if (!Object.prototype.hasOwnProperty.call(b, keys[i]))
         return false;
-    for (i = length; i-- !== 0; ) {
-      var key = keys[i];
+    }
+    for (i = length; i-- !== 0;) {
+      let key = keys[i];
       if (!isEqual(a[key], b[key]))
         return false;
     }
@@ -271,7 +292,7 @@ function isFile(a) {
 }
 function cleanupNonNestedPath(path) {
   if (isNotNestedPath(path)) {
-    return path.replace(/\[|\]/gi, "");
+    return path.replace(/\[|\]/g, "");
   }
   return path;
 }
@@ -358,7 +379,7 @@ function injectWithSelf(symbol, def = void 0) {
 function resolveNextCheckboxValue(currentValue, checkedValue, uncheckedValue) {
   if (Array.isArray(currentValue)) {
     const newVal = [...currentValue];
-    const idx = newVal.findIndex((v) => isEqual(v, checkedValue));
+    const idx = newVal.findIndex(v => isEqual(v, checkedValue));
     idx >= 0 ? newVal.splice(idx, 1) : newVal.push(checkedValue);
     return newVal;
   }
@@ -367,16 +388,16 @@ function resolveNextCheckboxValue(currentValue, checkedValue, uncheckedValue) {
 function debounceAsync(inner, ms = 0) {
   let timer = null;
   let resolves = [];
-  return function(...args) {
+  return function (...args) {
     if (timer) {
       clearTimeout(timer);
     }
     timer = setTimeout(() => {
       const result = inner(...args);
-      resolves.forEach((r) => r(result));
+      resolves.forEach(r => r(result));
       resolves = [];
     }, ms);
-    return new Promise((resolve) => resolves.push(resolve));
+    return new Promise(resolve => resolves.push(resolve));
   };
 }
 function applyModelModifiers(value, modifiers) {
@@ -421,18 +442,18 @@ function omit(obj, keys) {
 function debounceNextTick(inner) {
   let lastTick = null;
   let resolves = [];
-  return function(...args) {
+  return function (...args) {
     const thisTick = nextTick(() => {
       if (lastTick !== thisTick) {
         return;
       }
       const result = inner(...args);
-      resolves.forEach((r) => r(result));
+      resolves.forEach(r => r(result));
       resolves = [];
       lastTick = null;
     });
     lastTick = thisTick;
-    return new Promise((resolve) => resolves.push(resolve));
+    return new Promise(resolve => resolves.push(resolve));
   };
 }
 function normalizeChildren(tag, context, slotProps) {
@@ -444,9 +465,9 @@ function normalizeChildren(tag, context, slotProps) {
   }
   return {
     default: () => {
-      var _a, _b;
+      let _a, _b;
       return (_b = (_a = context.slots).default) === null || _b === void 0 ? void 0 : _b.call(_a, slotProps());
-    }
+    },
   };
 }
 function getBoundValue(el) {
@@ -480,10 +501,10 @@ function normalizeEventValue(value) {
     return input.multiple ? files : files[0];
   }
   if (isNativeMultiSelect(input)) {
-    return Array.from(input.options).filter((opt) => opt.selected && !opt.disabled).map(getBoundValue);
+    return Array.from(input.options).filter(opt => opt.selected && !opt.disabled).map(getBoundValue);
   }
   if (isNativeSelect(input)) {
-    const selectedOption = Array.from(input.options).find((opt) => opt.selected);
+    const selectedOption = Array.from(input.options).find(opt => opt.selected);
     return selectedOption ? getBoundValue(selectedOption) : input.value;
   }
   return parseInputValue(input);
@@ -494,7 +515,7 @@ function normalizeRules(rules) {
     value: true,
     writable: false,
     enumerable: false,
-    configurable: false
+    configurable: false,
   });
   if (!rules) {
     return acc;
@@ -553,17 +574,17 @@ function buildParams(provided) {
     return prev;
   }, {});
 }
-const parseRule = (rule) => {
+function parseRule(rule) {
   let params = [];
   const name = rule.split(":")[0];
   if (rule.includes(":")) {
     params = rule.split(":").slice(1).join(":").split(",");
   }
   return { name, params };
-};
+}
 function createLocator(value) {
   const locator = (crossTable) => {
-    var _a;
+    let _a;
     const val = (_a = getFromPath(crossTable, value)) !== null && _a !== void 0 ? _a : crossTable[value];
     return val;
   };
@@ -574,7 +595,7 @@ function extractLocators(params) {
   if (Array.isArray(params)) {
     return params.filter(isLocator);
   }
-  return keysOf(params).filter((key) => isLocator(params[key])).map((key) => params[key]);
+  return keysOf(params).filter(key => isLocator(params[key])).map(key => params[key]);
 }
 const DEFAULT_CONFIG = {
   generateMessage: ({ field }) => `${field} is not valid.`,
@@ -582,7 +603,7 @@ const DEFAULT_CONFIG = {
   validateOnBlur: true,
   validateOnChange: true,
   validateOnInput: false,
-  validateOnModelUpdate: true
+  validateOnModelUpdate: true,
 };
 let currentConfig = Object.assign({}, DEFAULT_CONFIG);
 const getConfig = () => currentConfig;
@@ -593,7 +614,7 @@ async function validate(value, rules, options = {}) {
     rules,
     label: options === null || options === void 0 ? void 0 : options.label,
     bails: shouldBail !== null && shouldBail !== void 0 ? shouldBail : true,
-    formData: (options === null || options === void 0 ? void 0 : options.values) || {}
+    formData: (options === null || options === void 0 ? void 0 : options.values) || {},
   };
   const result = await _validate(field, value);
   return Object.assign(Object.assign({}, result), { valid: !result.errors.length });
@@ -609,7 +630,7 @@ async function _validate(field, value) {
       name: field.name,
       label: field.label,
       form: field.formData,
-      value
+      value,
     };
     const pipeline = Array.isArray(rules) ? rules : [rules];
     const length2 = pipeline.length;
@@ -623,18 +644,19 @@ async function _validate(field, value) {
       }
       if (Array.isArray(result)) {
         errors2.push(...result);
-      } else {
+      }
+      else {
         const message = typeof result === "string" ? result : _generateFieldError(ctx);
         errors2.push(message);
       }
       if (field.bails) {
         return {
-          errors: errors2
+          errors: errors2,
         };
       }
     }
     return {
-      errors: errors2
+      errors: errors2,
     };
   }
   const normalizedContext = Object.assign(Object.assign({}, field), { rules: normalizeRules(rules) });
@@ -645,19 +667,19 @@ async function _validate(field, value) {
     const rule = rulesKeys[i];
     const result = await _test(normalizedContext, value, {
       name: rule,
-      params: normalizedContext.rules[rule]
+      params: normalizedContext.rules[rule],
     });
     if (result.error) {
       errors.push(result.error);
       if (field.bails) {
         return {
-          errors
+          errors,
         };
       }
     }
   }
   return {
-    errors
+    errors,
   };
 }
 function isYupError(err) {
@@ -667,14 +689,15 @@ function yupToTypedSchema(yupSchema) {
   const schema = {
     __type: "VVTypedSchema",
     async parse(values, context) {
-      var _a;
+      let _a;
       try {
         const output = await yupSchema.validate(values, { abortEarly: false, context: (context === null || context === void 0 ? void 0 : context.formData) || {} });
         return {
           output,
-          errors: []
+          errors: [],
         };
-      } catch (err) {
+      }
+      catch (err) {
         if (!isYupError(err)) {
           throw err;
         }
@@ -691,7 +714,7 @@ function yupToTypedSchema(yupSchema) {
         }, {});
         return { errors: Object.values(errors) };
       }
-    }
+    },
   };
   return schema;
 }
@@ -706,7 +729,7 @@ async function validateFieldWithTypedSchema(value, context) {
   }
   return {
     value: result.value,
-    errors: messages
+    errors: messages,
   };
 }
 async function _test(field, value, rule) {
@@ -721,16 +744,16 @@ async function _test(field, value, rule) {
     label: field.label,
     value,
     form: field.formData,
-    rule: Object.assign(Object.assign({}, rule), { params })
+    rule: Object.assign(Object.assign({}, rule), { params }),
   };
   const result = await validator(value, params, ctx);
   if (typeof result === "string") {
     return {
-      error: result
+      error: result,
     };
   }
   return {
-    error: result ? void 0 : _generateFieldError(ctx)
+    error: result ? void 0 : _generateFieldError(ctx),
   };
 }
 function _generateFieldError(fieldCtx) {
@@ -775,19 +798,19 @@ async function validateTypedSchema(schema, values) {
     results,
     errors,
     values: validationResult.value,
-    source: "schema"
+    source: "schema",
   };
 }
 async function validateObjectSchema(schema, values, opts) {
   const paths = keysOf(schema);
   const validations = paths.map(async (path) => {
-    var _a, _b, _c;
+    let _a, _b, _c;
     const strings = (_a = opts === null || opts === void 0 ? void 0 : opts.names) === null || _a === void 0 ? void 0 : _a[path];
     const fieldResult = await validate(getFromPath(values, path), schema[path], {
       name: (strings === null || strings === void 0 ? void 0 : strings.name) || path,
       label: strings === null || strings === void 0 ? void 0 : strings.label,
       values,
-      bails: (_c = (_b = opts === null || opts === void 0 ? void 0 : opts.bailsMap) === null || _b === void 0 ? void 0 : _b[path]) !== null && _c !== void 0 ? _c : true
+      bails: (_c = (_b = opts === null || opts === void 0 ? void 0 : opts.bailsMap) === null || _b === void 0 ? void 0 : _b[path]) !== null && _c !== void 0 ? _c : true,
     });
     return Object.assign(Object.assign({}, fieldResult), { path });
   });
@@ -798,7 +821,7 @@ async function validateObjectSchema(schema, values, opts) {
   for (const result of validationResults) {
     results[result.path] = {
       valid: result.valid,
-      errors: result.errors
+      errors: result.errors,
     };
     if (!result.valid) {
       isAllValid = false;
@@ -809,15 +832,15 @@ async function validateObjectSchema(schema, values, opts) {
     valid: isAllValid,
     results,
     errors,
-    source: "schema"
+    source: "schema",
   };
 }
 let ID_COUNTER = 0;
 function useFieldState(path, init) {
   const { value, initialValue, setInitialValue } = _useFieldValue(path, init.modelValue, init.form);
   if (!init.form) {
-    let setState2 = function(state2) {
-      var _a;
+    let setState2 = function (state2) {
+      let _a;
       if ("value" in state2) {
         value.value = state2.value;
       }
@@ -842,7 +865,7 @@ function useFieldState(path, init) {
       meta,
       flags: { pendingUnmount: { [id]: false }, pendingReset: false },
       errors: errors2,
-      setState: setState2
+      setState: setState2,
     };
   }
   const state = init.form.createPathState(path, {
@@ -850,11 +873,11 @@ function useFieldState(path, init) {
     label: init.label,
     type: init.type,
     validate: init.validate,
-    schema: init.schema
+    schema: init.schema,
   });
   const errors = computed(() => state.errors);
   function setState(state2) {
-    var _a, _b, _c;
+    let _a, _b, _c;
     if ("value" in state2) {
       value.value = state2.value;
     }
@@ -876,7 +899,7 @@ function useFieldState(path, init) {
     meta: state,
     initialValue,
     flags: state.__flags,
-    setState
+    setState,
   };
 }
 function _useFieldValue(path, modelValue, form) {
@@ -900,7 +923,7 @@ function _useFieldValue(path, modelValue, form) {
     return {
       value: value2,
       initialValue,
-      setInitialValue
+      setInitialValue,
     };
   }
   const currentValue = resolveModelValue(modelValue, form, initialValue, path);
@@ -911,12 +934,12 @@ function _useFieldValue(path, modelValue, form) {
     },
     set(newVal) {
       form.setFieldValue(unref(path), newVal, false);
-    }
+    },
   });
   return {
     value,
     initialValue,
-    setInitialValue
+    setInitialValue,
   };
 }
 function resolveModelValue(modelValue, form, initialValue, path) {
@@ -930,7 +953,7 @@ function resolveModelValue(modelValue, form, initialValue, path) {
 }
 function createFieldMeta(currentValue, initialValue, errors, schema) {
   const isRequired = computed(() => {
-    var _a, _b, _c;
+    let _a, _b, _c;
     return (_c = (_b = (_a = toValue(schema)) === null || _a === void 0 ? void 0 : _a.describe) === null || _b === void 0 ? void 0 : _b.call(_a).required) !== null && _c !== void 0 ? _c : false;
   });
   const meta = reactive({
@@ -942,13 +965,13 @@ function createFieldMeta(currentValue, initialValue, errors, schema) {
     initialValue: computed(() => unref(initialValue)),
     dirty: computed(() => {
       return !isEqual(unref(currentValue), unref(initialValue));
-    })
+    }),
   });
   watch(errors, (value) => {
     meta.valid = !value.length;
   }, {
     immediate: true,
-    flush: "sync"
+    flush: "sync",
   });
   return meta;
 }
@@ -958,7 +981,7 @@ function createFieldErrors() {
     errors,
     setErrors: (messages) => {
       errors.value = normalizeErrorItem(messages);
-    }
+    },
   };
 }
 function useField(path, rules, opts) {
@@ -991,7 +1014,7 @@ function _useField(path, rules, opts) {
     label,
     type,
     validate: validator.value ? validate$1 : void 0,
-    schema: isTyped ? rules : void 0
+    schema: isTyped ? rules : void 0,
   });
   const errorMessage = computed(() => errors.value[0]);
   if (syncVModel) {
@@ -999,7 +1022,7 @@ function _useField(path, rules, opts) {
       value,
       prop: syncVModel,
       handleChange,
-      shouldValidate: () => validateOnValueUpdate && !flags.pendingReset
+      shouldValidate: () => validateOnValueUpdate && !flags.pendingReset,
     });
   }
   const handleBlur = (evt, shouldValidate = false) => {
@@ -1009,7 +1032,7 @@ function _useField(path, rules, opts) {
     }
   };
   async function validateCurrentValue(mode) {
-    var _a, _b;
+    let _a, _b;
     if (form === null || form === void 0 ? void 0 : form.validateSchema) {
       const { results } = await form.validateSchema(mode);
       return (_a = results[toValue(name)]) !== null && _a !== void 0 ? _a : { valid: true, errors: [] };
@@ -1019,7 +1042,7 @@ function _useField(path, rules, opts) {
         name: toValue(name),
         label: toValue(label),
         values: (_b = form === null || form === void 0 ? void 0 : form.values) !== null && _b !== void 0 ? _b : {},
-        bails
+        bails,
       });
     }
     return { valid: true, errors: [] };
@@ -1057,13 +1080,13 @@ function _useField(path, rules, opts) {
     meta.touched = isTouched;
   }
   function resetField(state) {
-    var _a;
+    let _a;
     const newValue = state && "value" in state ? state.value : initialValue.value;
     setState({
       value: klona(newValue),
       initialValue: klona(newValue),
       touched: (_a = state === null || state === void 0 ? void 0 : state.touched) !== null && _a !== void 0 ? _a : false,
-      errors: (state === null || state === void 0 ? void 0 : state.errors) || []
+      errors: (state === null || state === void 0 ? void 0 : state.errors) || [],
     });
     meta.pending = false;
     meta.validated = false;
@@ -1084,7 +1107,7 @@ function _useField(path, rules, opts) {
     },
     set(newValue) {
       setValue(newValue, validateOnValueUpdate);
-    }
+    },
   });
   const field = {
     id,
@@ -1107,7 +1130,7 @@ function _useField(path, rules, opts) {
     setState,
     setTouched,
     setErrors,
-    setValue
+    setValue,
   };
   provide(FieldContextKey, field);
   if (isRef(rules) && typeof unref(rules) !== "function") {
@@ -1117,7 +1140,7 @@ function _useField(path, rules, opts) {
       }
       meta.validated ? validateWithStateMutation() : validateValidStateOnly();
     }, {
-      deep: true
+      deep: true,
     });
   }
   if (!form) {
@@ -1129,7 +1152,7 @@ function _useField(path, rules, opts) {
       return {};
     }
     return Object.keys(rulesVal).reduce((acc, rule) => {
-      const deps = extractLocators(rulesVal[rule]).map((dep) => dep.__locatorRef).reduce((depAcc, depName) => {
+      const deps = extractLocators(rulesVal[rule]).map(dep => dep.__locatorRef).reduce((depAcc, depName) => {
         const depValue = getFromPath(form.values, depName) || form.values[depName];
         if (depValue !== void 0) {
           depAcc[depName] = depValue;
@@ -1160,7 +1183,7 @@ function normalizeOptions(opts) {
     validateOnValueUpdate: true,
     keepValueOnUnmount: void 0,
     syncVModel: false,
-    controlled: true
+    controlled: true,
   });
   const isVModelSynced = !!(opts === null || opts === void 0 ? void 0 : opts.syncVModel);
   const modelPropName = typeof (opts === null || opts === void 0 ? void 0 : opts.syncVModel) === "string" ? opts.syncVModel : (opts === null || opts === void 0 ? void 0 : opts.modelPropName) || "modelValue";
@@ -1175,7 +1198,7 @@ function normalizeOptions(opts) {
     initialValue,
     controlled: controlled !== null && controlled !== void 0 ? controlled : true,
     checkedValue,
-    syncVModel
+    syncVModel,
   });
 }
 function useFieldWithChecked(name, rules, opts) {
@@ -1187,10 +1210,10 @@ function useFieldWithChecked(name, rules, opts) {
     const checked = computed(() => {
       const currentValue = toValue(field.value);
       const checkedVal = toValue(checkedValue);
-      return Array.isArray(currentValue) ? currentValue.findIndex((v) => isEqual(v, checkedVal)) >= 0 : isEqual(checkedVal, currentValue);
+      return Array.isArray(currentValue) ? currentValue.findIndex(v => isEqual(v, checkedVal)) >= 0 : isEqual(checkedVal, currentValue);
     });
     function handleCheckboxChange(e, shouldValidate = true) {
-      var _a, _b;
+      let _a, _b;
       if (checked.value === ((_a = e === null || e === void 0 ? void 0 : e.target) === null || _a === void 0 ? void 0 : _a.checked)) {
         if (shouldValidate) {
           field.validate();
@@ -1203,7 +1226,8 @@ function useFieldWithChecked(name, rules, opts) {
       let newValue = (_b = toValue(checkedValue)) !== null && _b !== void 0 ? _b : value;
       if (form && (pathState === null || pathState === void 0 ? void 0 : pathState.multiple) && pathState.type === "checkbox") {
         newValue = resolveNextCheckboxValue(getFromPath(form.values, path) || [], newValue, void 0);
-      } else if ((opts === null || opts === void 0 ? void 0 : opts.type) === "checkbox") {
+      }
+      else if ((opts === null || opts === void 0 ? void 0 : opts.type) === "checkbox") {
         newValue = resolveNextCheckboxValue(toValue(field.value), newValue, toValue(uncheckedValue));
       }
       handleChange(newValue, shouldValidate);
@@ -1212,7 +1236,7 @@ function useFieldWithChecked(name, rules, opts) {
       checked,
       checkedValue,
       uncheckedValue,
-      handleChange: handleCheckboxChange
+      handleChange: handleCheckboxChange,
     });
   }
   return patchCheckedApi(_useField(name, rules, opts));
@@ -1254,70 +1278,70 @@ const FieldImpl = /* @__PURE__ */ defineComponent({
   name: "Field",
   inheritAttrs: false,
   props: {
-    as: {
+    "as": {
       type: [String, Object],
-      default: void 0
+      default: void 0,
     },
-    name: {
+    "name": {
       type: String,
-      required: true
+      required: true,
     },
-    rules: {
+    "rules": {
       type: [Object, String, Function],
-      default: void 0
+      default: void 0,
     },
-    validateOnMount: {
+    "validateOnMount": {
       type: Boolean,
-      default: false
+      default: false,
     },
-    validateOnBlur: {
+    "validateOnBlur": {
       type: Boolean,
-      default: void 0
+      default: void 0,
     },
-    validateOnChange: {
+    "validateOnChange": {
       type: Boolean,
-      default: void 0
+      default: void 0,
     },
-    validateOnInput: {
+    "validateOnInput": {
       type: Boolean,
-      default: void 0
+      default: void 0,
     },
-    validateOnModelUpdate: {
+    "validateOnModelUpdate": {
       type: Boolean,
-      default: void 0
+      default: void 0,
     },
-    bails: {
+    "bails": {
       type: Boolean,
-      default: () => getConfig().bails
+      default: () => getConfig().bails,
     },
-    label: {
+    "label": {
       type: String,
-      default: void 0
+      default: void 0,
     },
-    uncheckedValue: {
+    "uncheckedValue": {
       type: null,
-      default: void 0
+      default: void 0,
     },
-    modelValue: {
+    "modelValue": {
       type: null,
-      default: IS_ABSENT
+      default: IS_ABSENT,
     },
-    modelModifiers: {
+    "modelModifiers": {
       type: null,
-      default: () => ({})
+      default: () => ({}),
     },
     "onUpdate:modelValue": {
       type: null,
-      default: void 0
+      default: void 0,
     },
-    standalone: {
+    "standalone": {
       type: Boolean,
-      default: false
+      default: false,
     },
-    keepValue: {
+    "keepValue": {
       type: Boolean,
-      default: void 0
-    }
+      default: void 0,
+    },
   },
   setup(props, ctx) {
     const rules = toRef(props, "rules");
@@ -1337,7 +1361,7 @@ const FieldImpl = /* @__PURE__ */ defineComponent({
       label,
       validateOnValueUpdate: props.validateOnModelUpdate,
       keepValueOnUnmount: keepValue,
-      syncVModel: true
+      syncVModel: true,
     });
     const onChangeHandler = function handleChangeWithModel(e, shouldValidate = true) {
       handleChange(e, shouldValidate);
@@ -1366,9 +1390,9 @@ const FieldImpl = /* @__PURE__ */ defineComponent({
         name: props.name,
         onBlur: baseOnBlur,
         onInput: baseOnInput,
-        onChange: baseOnChange
+        onChange: baseOnChange,
       };
-      attrs["onUpdate:modelValue"] = (e) => onChangeHandler(e, validateOnModelUpdate);
+      attrs["onUpdate:modelValue"] = e => onChangeHandler(e, validateOnModelUpdate);
       return attrs;
     });
     const fieldProps = computed(() => {
@@ -1396,12 +1420,12 @@ const FieldImpl = /* @__PURE__ */ defineComponent({
         validate: validateField,
         resetField,
         handleChange: onChangeHandler,
-        handleInput: (e) => onChangeHandler(e, false),
+        handleInput: e => onChangeHandler(e, false),
         handleReset,
         handleBlur: sharedProps.value.onBlur,
         setTouched,
         setErrors,
-        setValue
+        setValue,
       };
     }
     ctx.expose({
@@ -1414,7 +1438,7 @@ const FieldImpl = /* @__PURE__ */ defineComponent({
       setValue,
       reset: resetField,
       validate: validateField,
-      handleChange
+      handleChange,
     });
     return () => {
       const tag = resolveDynamicComponent(resolveTag(props, ctx));
@@ -1424,7 +1448,7 @@ const FieldImpl = /* @__PURE__ */ defineComponent({
       }
       return children;
     };
-  }
+  },
 });
 function resolveTag(props, ctx) {
   let tag = props.as || "";
@@ -1434,13 +1458,13 @@ function resolveTag(props, ctx) {
   return tag;
 }
 function resolveValidationTriggers(props) {
-  var _a, _b, _c, _d;
+  let _a, _b, _c, _d;
   const { validateOnInput, validateOnChange, validateOnBlur, validateOnModelUpdate } = getConfig();
   return {
     validateOnInput: (_a = props.validateOnInput) !== null && _a !== void 0 ? _a : validateOnInput,
     validateOnChange: (_b = props.validateOnChange) !== null && _b !== void 0 ? _b : validateOnChange,
     validateOnBlur: (_c = props.validateOnBlur) !== null && _c !== void 0 ? _c : validateOnBlur,
-    validateOnModelUpdate: (_d = props.validateOnModelUpdate) !== null && _d !== void 0 ? _d : validateOnModelUpdate
+    validateOnModelUpdate: (_d = props.validateOnModelUpdate) !== null && _d !== void 0 ? _d : validateOnModelUpdate,
   };
 }
 function resolveInitialValue(props, ctx) {
@@ -1462,7 +1486,7 @@ function resolveInitialValues(opts) {
   return klona(providedValues);
 }
 function useForm(opts) {
-  var _a;
+  let _a;
   const formId = FORM_COUNTER++;
   const name = (opts === null || opts === void 0 ? void 0 : opts.name) || "Form";
   let FIELD_ID_COUNTER = 0;
@@ -1531,7 +1555,7 @@ function useForm(opts) {
   });
   const fieldBailsMap = computed(() => {
     return pathStates.value.reduce((map, state) => {
-      var _a2;
+      let _a2;
       map[toValue(state.path)] = (_a2 = state.bails) !== null && _a2 !== void 0 ? _a2 : true;
       return map;
     }, {});
@@ -1549,7 +1573,7 @@ function useForm(opts) {
   });
   const schema = opts === null || opts === void 0 ? void 0 : opts.validationSchema;
   function createPathState(path, config) {
-    var _a2, _b;
+    let _a2, _b;
     const initialValue = computed(() => getFromPath(initialValues.value, toValue(path)));
     const pathStateExists = pathStateLookup.value[toValue(path)];
     const isCheckboxOrRadio = (config === null || config === void 0 ? void 0 : config.type) === "checkbox" || (config === null || config === void 0 ? void 0 : config.type) === "radio";
@@ -1558,7 +1582,8 @@ function useForm(opts) {
       const id2 = FIELD_ID_COUNTER++;
       if (Array.isArray(pathStateExists.id)) {
         pathStateExists.id.push(id2);
-      } else {
+      }
+      else {
         pathStateExists.id = [pathStateExists.id, id2];
       }
       pathStateExists.fieldsCount++;
@@ -1567,12 +1592,12 @@ function useForm(opts) {
     }
     const currentValue = computed(() => getFromPath(formValues, toValue(path)));
     const pathValue = toValue(path);
-    const unsetBatchIndex = UNSET_BATCH.findIndex((_path) => _path === pathValue);
+    const unsetBatchIndex = UNSET_BATCH.findIndex(_path => _path === pathValue);
     if (unsetBatchIndex !== -1) {
       UNSET_BATCH.splice(unsetBatchIndex, 1);
     }
     const isRequired = computed(() => {
-      var _a3, _b2, _c, _d;
+      let _a3, _b2, _c, _d;
       const schemaValue = toValue(schema);
       if (isTypedSchema(schemaValue)) {
         return (_b2 = (_a3 = schemaValue.describe) === null || _a3 === void 0 ? void 0 : _a3.call(schemaValue, toValue(path)).required) !== null && _b2 !== void 0 ? _b2 : false;
@@ -1601,13 +1626,13 @@ function useForm(opts) {
       multiple: false,
       __flags: {
         pendingUnmount: { [id]: false },
-        pendingReset: false
+        pendingReset: false,
       },
       fieldsCount: 1,
       validate: config === null || config === void 0 ? void 0 : config.validate,
       dirty: computed(() => {
         return !isEqual(unref(currentValue), unref(initialValue));
-      })
+      }),
     });
     pathStates.value.push(state);
     pathStateLookup.value[pathValue] = state;
@@ -1636,10 +1661,10 @@ function useForm(opts) {
   }, (formResult, [mode]) => {
     const currentErrorsPaths = keysOf(formCtx.errorBag.value);
     const paths = [
-      .../* @__PURE__ */ new Set([...keysOf(formResult.results), ...pathStates.value.map((p) => p.path), ...currentErrorsPaths])
+      ...new Set([...keysOf(formResult.results), ...pathStates.value.map(p => p.path), ...currentErrorsPaths]),
     ].sort();
     const results = paths.reduce((validation, _path) => {
-      var _a2;
+      let _a2;
       const expectedPath = _path;
       const pathState = findPathState(expectedPath) || findHoistedPath(expectedPath);
       const messages = ((_a2 = formResult.results[expectedPath]) === null || _a2 === void 0 ? void 0 : _a2.errors) || [];
@@ -1669,14 +1694,14 @@ function useForm(opts) {
       valid: formResult.valid,
       results: {},
       errors: {},
-      source: formResult.source
+      source: formResult.source,
     });
     if (formResult.values) {
       results.values = formResult.values;
       results.source = formResult.source;
     }
     keysOf(results.results).forEach((path) => {
-      var _a2;
+      let _a2;
       const pathState = findPathState(path);
       if (!pathState) {
         return;
@@ -1700,7 +1725,7 @@ function useForm(opts) {
     return pathState;
   }
   function findHoistedPath(path) {
-    const candidates = pathStates.value.filter((state) => path.startsWith(toValue(state.path)));
+    const candidates = pathStates.value.filter(state => path.startsWith(toValue(state.path)));
     return candidates.reduce((bestCandidate, candidate) => {
       if (!bestCandidate) {
         return candidate;
@@ -1731,7 +1756,7 @@ function useForm(opts) {
           e.preventDefault();
           e.stopPropagation();
         }
-        mutateAllPathState((s) => s.touched = true);
+        mutateAllPathState(s => s.touched = true);
         isSubmitting.value = true;
         submitCount.value++;
         return validate2().then((result) => {
@@ -1752,7 +1777,7 @@ function useForm(opts) {
               setValues,
               setFieldValue,
               resetForm,
-              resetField
+              resetField,
             });
           }
           if (!result.valid && typeof onValidationError === "function") {
@@ -1760,7 +1785,7 @@ function useForm(opts) {
               values,
               evt: e,
               errors: result.errors,
-              results: result.results
+              results: result.results,
             });
           }
         }).then((returnVal) => {
@@ -1810,7 +1835,7 @@ function useForm(opts) {
         delete pathStateLookup.value[key];
       }
     });
-    pathStates.value = pathStates.value.filter((s) => !s.path.startsWith(path));
+    pathStates.value = pathStates.value.filter(s => !s.path.startsWith(path));
     nextTick(() => {
       rebuildPathLookup();
     });
@@ -1857,7 +1882,7 @@ function useForm(opts) {
     destroyPath,
     isFieldTouched,
     isFieldDirty,
-    isFieldValid
+    isFieldValid,
   };
   function setFieldValue(field, value, shouldValidate = true) {
     const clonedValue = klona(value);
@@ -1884,7 +1909,7 @@ function useForm(opts) {
   }
   function setValues(fields, shouldValidate = true) {
     merge$1(formValues, fields);
-    fieldArrays.forEach((f) => f && f.reset());
+    fieldArrays.forEach(f => f && f.reset());
     if (shouldValidate) {
       validate2();
     }
@@ -1896,10 +1921,10 @@ function useForm(opts) {
         return pathState.value;
       },
       set(value) {
-        var _a2;
+        let _a2;
         const pathValue = toValue(path);
         setFieldValue(pathValue, value, (_a2 = toValue(shouldValidate)) !== null && _a2 !== void 0 ? _a2 : false);
-      }
+      },
     });
   }
   function setFieldTouched(field, isTouched) {
@@ -1913,21 +1938,21 @@ function useForm(opts) {
     if (pathState) {
       return pathState.touched;
     }
-    return pathStates.value.filter((s) => s.path.startsWith(field)).some((s) => s.touched);
+    return pathStates.value.filter(s => s.path.startsWith(field)).some(s => s.touched);
   }
   function isFieldDirty(field) {
     const pathState = findPathState(field);
     if (pathState) {
       return pathState.dirty;
     }
-    return pathStates.value.filter((s) => s.path.startsWith(field)).some((s) => s.dirty);
+    return pathStates.value.filter(s => s.path.startsWith(field)).some(s => s.dirty);
   }
   function isFieldValid(field) {
     const pathState = findPathState(field);
     if (pathState) {
       return pathState.valid;
     }
-    return pathStates.value.filter((s) => s.path.startsWith(field)).every((s) => s.valid);
+    return pathStates.value.filter(s => s.path.startsWith(field)).every(s => s.valid);
   }
   function setTouched(fields) {
     if (typeof fields === "boolean") {
@@ -1941,7 +1966,7 @@ function useForm(opts) {
     });
   }
   function resetField(field, state) {
-    var _a2;
+    let _a2;
     const newValue = state && "value" in state ? state.value : getFromPath(initialValues.value, field);
     const pathState = findPathState(field);
     if (pathState) {
@@ -1963,7 +1988,7 @@ function useForm(opts) {
     newValues = isTypedSchema(schema) && isCallable(schema.cast) ? schema.cast(newValues) : newValues;
     setInitialValues(newValues, { force: opts2 === null || opts2 === void 0 ? void 0 : opts2.force });
     mutateAllPathState((state) => {
-      var _a2;
+      let _a2;
       state.__flags.pendingReset = true;
       state.validated = false;
       state.touched = ((_a2 = resetState === null || resetState === void 0 ? void 0 : resetState.touched) === null || _a2 === void 0 ? void 0 : _a2[toValue(state.path)]) || false;
@@ -1983,7 +2008,7 @@ function useForm(opts) {
   async function validate2(opts2) {
     const mode = (opts2 === null || opts2 === void 0 ? void 0 : opts2.mode) || "force";
     if (mode === "force") {
-      mutateAllPathState((f) => f.validated = true);
+      mutateAllPathState(f => f.validated = true);
     }
     if (formCtx.validateSchema) {
       return formCtx.validateSchema(mode);
@@ -1995,7 +2020,7 @@ function useForm(opts) {
           key: toValue(state.path),
           valid: true,
           errors: [],
-          value: void 0
+          value: void 0,
         });
       }
       return state.validate(opts2).then((result) => {
@@ -2003,7 +2028,7 @@ function useForm(opts) {
           key: toValue(state.path),
           valid: result.valid,
           errors: result.errors,
-          value: result.value
+          value: result.value,
         };
       });
     }));
@@ -2014,7 +2039,7 @@ function useForm(opts) {
     for (const validation of validations) {
       results[validation.key] = {
         valid: validation.valid,
-        errors: validation.errors
+        errors: validation.errors,
       };
       if (validation.value) {
         setInPath(values, validation.key, validation.value);
@@ -2024,15 +2049,15 @@ function useForm(opts) {
       }
     }
     return {
-      valid: validations.every((r) => r.valid),
+      valid: validations.every(r => r.valid),
       results,
       errors: errors2,
       values,
-      source: "fields"
+      source: "fields",
     };
   }
   async function validateField(path, opts2) {
-    var _a2;
+    let _a2;
     const state = findPathState(path);
     if (state && (opts2 === null || opts2 === void 0 ? void 0 : opts2.mode) !== "silent") {
       state.validated = true;
@@ -2069,10 +2094,12 @@ function useForm(opts) {
       return { valid: true, results: {}, errors: {}, source: "none" };
     }
     isValidating.value = true;
-    const formResult = isYupValidator(schemaValue) || isTypedSchema(schemaValue) ? await validateTypedSchema(schemaValue, formValues) : await validateObjectSchema(schemaValue, formValues, {
-      names: fieldNames.value,
-      bailsMap: fieldBailsMap.value
-    });
+    const formResult = isYupValidator(schemaValue) || isTypedSchema(schemaValue)
+      ? await validateTypedSchema(schemaValue, formValues)
+      : await validateObjectSchema(schemaValue, formValues, {
+          names: fieldNames.value,
+          bailsMap: fieldBailsMap.value,
+        });
     isValidating.value = false;
     return formResult;
   }
@@ -2083,7 +2110,7 @@ function useForm(opts) {
   });
   if (isRef(schema)) {
     watch(schema, () => {
-      var _a2;
+      let _a2;
       (_a2 = formCtx.validateSchema) === null || _a2 === void 0 ? void 0 : _a2.call(formCtx, "validated-only");
     });
   }
@@ -2093,7 +2120,7 @@ function useForm(opts) {
     const pathState = findPathState(toValue(path)) || createPathState(path, { label });
     const evalConfig = () => isCallable(config) ? config(omit(pathState, PRIVATE_PATH_STATE_KEYS)) : config || {};
     function onBlur() {
-      var _a2;
+      let _a2;
       pathState.touched = true;
       const validateOnBlur = (_a2 = evalConfig().validateOnBlur) !== null && _a2 !== void 0 ? _a2 : getConfig().validateOnBlur;
       if (validateOnBlur) {
@@ -2101,7 +2128,7 @@ function useForm(opts) {
       }
     }
     function onInput() {
-      var _a2;
+      let _a2;
       const validateOnInput = (_a2 = evalConfig().validateOnInput) !== null && _a2 !== void 0 ? _a2 : getConfig().validateOnInput;
       if (validateOnInput) {
         nextTick(() => {
@@ -2110,7 +2137,7 @@ function useForm(opts) {
       }
     }
     function onChange() {
-      var _a2;
+      let _a2;
       const validateOnChange = (_a2 = evalConfig().validateOnChange) !== null && _a2 !== void 0 ? _a2 : getConfig().validateOnChange;
       if (validateOnChange) {
         nextTick(() => {
@@ -2122,7 +2149,7 @@ function useForm(opts) {
       const base = {
         onChange,
         onInput,
-        onBlur
+        onBlur,
       };
       if (isCallable(config)) {
         return Object.assign(Object.assign({}, base), config(omit(pathState, PRIVATE_PATH_STATE_KEYS)).props || {});
@@ -2133,7 +2160,7 @@ function useForm(opts) {
       return base;
     });
     const model = createModel(path, () => {
-      var _a2, _b, _c;
+      let _a2, _b, _c;
       return (_c = (_a2 = evalConfig().validateOnModelUpdate) !== null && _a2 !== void 0 ? _a2 : (_b = getConfig()) === null || _b === void 0 ? void 0 : _b.validateOnModelUpdate) !== null && _c !== void 0 ? _c : true;
     });
     return [model, props];
@@ -2142,7 +2169,7 @@ function useForm(opts) {
     if (!Array.isArray(pathOrPaths)) {
       return createModel(pathOrPaths);
     }
-    return pathOrPaths.map((p) => createModel(p, true));
+    return pathOrPaths.map(p => createModel(p, true));
   }
   function defineInputBinds(path, config) {
     const [model, props] = defineField(path, config);
@@ -2164,7 +2191,7 @@ function useForm(opts) {
         onBlur,
         onInput,
         onChange,
-        value: model.value
+        value: model.value,
       });
     });
   }
@@ -2187,7 +2214,7 @@ function useFormMeta(pathsState, currentValues, initialValues, errors) {
   const MERGE_STRATEGIES = {
     touched: "some",
     pending: "some",
-    valid: "every"
+    valid: "every",
   };
   const isDirty = computed(() => {
     return !isEqual(currentValues, unref(initialValues));
@@ -2196,7 +2223,7 @@ function useFormMeta(pathsState, currentValues, initialValues, errors) {
     const states = pathsState.value;
     return keysOf(MERGE_STRATEGIES).reduce((acc, flag) => {
       const mergeMethod = MERGE_STRATEGIES[flag];
-      acc[flag] = states[mergeMethod]((s) => s[flag]);
+      acc[flag] = states[mergeMethod](s => s[flag]);
       return acc;
     }, {});
   }
@@ -2219,7 +2246,8 @@ function useFormInitialValues(pathsState, formValues, opts) {
     if (opts2 === null || opts2 === void 0 ? void 0 : opts2.force) {
       initialValues.value = klona(values2);
       originalInitialValues.value = klona(values2);
-    } else {
+    }
+    else {
       initialValues.value = merge$1(klona(initialValues.value) || {}, klona(values2));
       originalInitialValues.value = merge$1(klona(originalInitialValues.value) || {}, klona(values2));
     }
@@ -2238,7 +2266,7 @@ function useFormInitialValues(pathsState, formValues, opts) {
   return {
     initialValues,
     originalInitialValues,
-    setInitialValues
+    setInitialValues,
   };
 }
 function mergeValidationResults(a, b) {
@@ -2247,7 +2275,7 @@ function mergeValidationResults(a, b) {
   }
   return {
     valid: a.valid && b.valid,
-    errors: [...a.errors, ...b.errors]
+    errors: [...a.errors, ...b.errors],
   };
 }
 const ErrorMessageImpl = /* @__PURE__ */ defineComponent({
@@ -2255,12 +2283,12 @@ const ErrorMessageImpl = /* @__PURE__ */ defineComponent({
   props: {
     as: {
       type: String,
-      default: void 0
+      default: void 0,
     },
     name: {
       type: String,
-      required: true
-    }
+      required: true,
+    },
   },
   setup(props, ctx) {
     const form = inject(FormContextKey, void 0);
@@ -2269,7 +2297,7 @@ const ErrorMessageImpl = /* @__PURE__ */ defineComponent({
     });
     function slotProps() {
       return {
-        message: message.value
+        message: message.value,
       };
     }
     return () => {
@@ -2287,13 +2315,13 @@ const ErrorMessageImpl = /* @__PURE__ */ defineComponent({
       }
       return h(tag, attrs, children);
     };
-  }
+  },
 });
 const ErrorMessage = ErrorMessageImpl;
 function useIsFieldDirty(path) {
   const fieldOrPath = resolveFieldOrPathState();
   return computed(() => {
-    var _a, _b;
+    let _a, _b;
     if (!fieldOrPath) {
       return false;
     }
@@ -2303,7 +2331,7 @@ function useIsFieldDirty(path) {
 function useIsFieldTouched(path) {
   const fieldOrPath = resolveFieldOrPathState();
   return computed(() => {
-    var _a, _b;
+    let _a, _b;
     if (!fieldOrPath) {
       return false;
     }
@@ -2313,7 +2341,7 @@ function useIsFieldTouched(path) {
 function useIsFieldValid(path) {
   const fieldOrPath = resolveFieldOrPathState();
   return computed(() => {
-    var _a, _b;
+    let _a, _b;
     if (!fieldOrPath) {
       return false;
     }
@@ -2337,37 +2365,38 @@ const _sfc_main$5 = /* @__PURE__ */ defineComponent({
     as: {},
     class: {},
     label: {},
-    hint: {}
+    hint: {},
   },
   setup(__props) {
     const props = __props;
     const { formItemId } = useFormField();
     const styles = tv({
-      base: "flex w-full items-center justify-between text-left text-sm font-medium tracking-tight text-foreground hover:cursor-pointer"
+      base: "flex w-full items-center justify-between text-left text-sm font-medium tracking-tight text-foreground hover:cursor-pointer",
     });
     return (_ctx, _push, _parent, _attrs) => {
       _push(ssrRenderComponent(unref(Label), mergeProps({
         class: unref(styles)({ class: props.class }),
-        for: unref(formItemId)
+        for: unref(formItemId),
       }, _ctx.$attrs, _attrs), {
         default: withCtx((_, _push2, _parent2, _scopeId) => {
           if (_push2) {
             ssrRenderSlot(_ctx.$slots, "default", {}, () => {
               _push2(`${ssrInterpolate(__props.label)} <span class="ml-auto font-normal text-muted-foreground/80"${_scopeId}>${ssrInterpolate(__props.hint)}</span>`);
             }, _push2, _parent2, _scopeId);
-          } else {
+          }
+          else {
             return [
               renderSlot(_ctx.$slots, "default", {}, () => [
-                createTextVNode(toDisplayString(__props.label) + " ", 1),
-                createVNode("span", { class: "ml-auto font-normal text-muted-foreground/80" }, toDisplayString(__props.hint), 1)
-              ])
+                createTextVNode(`${toDisplayString(__props.label)} `, 1),
+                createVNode("span", { class: "ml-auto font-normal text-muted-foreground/80" }, toDisplayString(__props.hint), 1),
+              ]),
             ];
           }
         }),
-        _: 3
+        _: 3,
       }, _parent));
     };
-  }
+  },
 });
 const _sfc_setup$4 = _sfc_main$5.setup;
 _sfc_main$5.setup = (props, ctx) => {
@@ -2382,7 +2411,7 @@ const _sfc_main$4 = /* @__PURE__ */ defineComponent({
   __ssrInlineRender: true,
   props: {
     class: {},
-    description: {}
+    description: {},
   },
   setup(__props) {
     const props = __props;
@@ -2392,14 +2421,14 @@ const _sfc_main$4 = /* @__PURE__ */ defineComponent({
       const _component_ClientOnly = __nuxt_component_1$1;
       _push(`<p${ssrRenderAttrs(mergeProps({
         id: unref(formDescriptionId),
-        class: unref(styles)({ class: props.class })
+        class: unref(styles)({ class: props.class }),
       }, _ctx.$attrs, _attrs))}>`);
       ssrRenderSlot(_ctx.$slots, "default", {}, () => {
         _push(ssrRenderComponent(_component_ClientOnly, null, {}, _parent));
       }, _push, _parent);
       _push(`</p>`);
     };
-  }
+  },
 });
 const _sfc_setup$3 = _sfc_main$4.setup;
 _sfc_main$4.setup = (props, ctx) => {
@@ -2419,10 +2448,10 @@ const _sfc_main$3 = /* @__PURE__ */ defineComponent({
         id: unref(formMessageId),
         as: "p",
         name: ("toValue" in _ctx ? _ctx.toValue : unref(toValue))(unref(name)),
-        class: "text-sm font-medium text-destructive"
+        class: "text-sm font-medium text-destructive",
       }, _attrs), null, _parent));
     };
-  }
+  },
 });
 const _sfc_setup$2 = _sfc_main$3.setup;
 _sfc_main$3.setup = (props, ctx) => {
@@ -2442,7 +2471,7 @@ const _sfc_main$2 = /* @__PURE__ */ defineComponent({
     label: {},
     description: {},
     hint: {},
-    hideMessage: { type: Boolean }
+    hideMessage: { type: Boolean },
   },
   setup(__props) {
     const props = __props;
@@ -2455,15 +2484,16 @@ const _sfc_main$2 = /* @__PURE__ */ defineComponent({
       const _component_UiFormDescription = __nuxt_component_2;
       const _component_UiFormMessage = __nuxt_component_3;
       _push(`<div${ssrRenderAttrs(mergeProps({
-        class: unref(styles)({ class: props.class })
+        class: unref(styles)({ class: props.class }),
       }, _ctx.$attrs, _attrs))}>`);
       ssrRenderSlot(_ctx.$slots, "label", {}, () => {
         if (__props.label || __props.hint) {
           _push(ssrRenderComponent(_component_UiFormLabel, {
             label: __props.label,
-            hint: __props.hint
+            hint: __props.hint,
           }, null, _parent));
-        } else {
+        }
+        else {
           _push(`<!---->`);
         }
       }, _push, _parent);
@@ -2471,31 +2501,34 @@ const _sfc_main$2 = /* @__PURE__ */ defineComponent({
         default: withCtx((_, _push2, _parent2, _scopeId) => {
           if (_push2) {
             ssrRenderSlot(_ctx.$slots, "default", {}, null, _push2, _parent2, _scopeId);
-          } else {
+          }
+          else {
             return [
-              renderSlot(_ctx.$slots, "default")
+              renderSlot(_ctx.$slots, "default"),
             ];
           }
         }),
-        _: 3
+        _: 3,
       }, _parent));
       ssrRenderSlot(_ctx.$slots, "description", {}, () => {
         if (__props.description) {
           _push(ssrRenderComponent(_component_UiFormDescription, { description: __props.description }, null, _parent));
-        } else {
+        }
+        else {
           _push(`<!---->`);
         }
       }, _push, _parent);
       ssrRenderSlot(_ctx.$slots, "errorMessage", {}, () => {
         if (!__props.hideMessage) {
           _push(ssrRenderComponent(_component_UiFormMessage, null, null, _parent));
-        } else {
+        }
+        else {
           _push(`<!---->`);
         }
       }, _push, _parent);
       _push(`</div>`);
     };
-  }
+  },
 });
 function useFormField() {
   const fieldContext = inject(FieldContextKey);
@@ -2504,7 +2537,7 @@ function useFormField() {
     valid: useIsFieldValid(),
     isDirty: useIsFieldDirty(),
     isTouched: useIsFieldTouched(),
-    error: useFieldError()
+    error: useFieldError(),
   };
   if (!fieldContext)
     throw new Error("useFormField should be used within <FormField>");
@@ -2516,7 +2549,7 @@ function useFormField() {
     formItemId: `${id}-form-item`,
     formDescriptionId: `${id}-form-item-description`,
     formMessageId: `${id}-form-item-message`,
-    ...fieldState
+    ...fieldState,
   };
 }
 const _sfc_main$1 = /* @__PURE__ */ defineComponent({
@@ -2526,23 +2559,24 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
     const { error, formItemId, formDescriptionId, formMessageId } = useFormField();
     return (_ctx, _push, _parent, _attrs) => {
       _push(ssrRenderComponent(unref(Slot), mergeProps({
-        id: unref(formItemId),
+        "id": unref(formItemId),
         "aria-describedby": !unref(error) ? `${unref(formDescriptionId)}` : `${unref(formDescriptionId)} ${unref(formMessageId)}`,
-        "aria-invalid": !!unref(error)
+        "aria-invalid": !!unref(error),
       }, _attrs), {
         default: withCtx((_, _push2, _parent2, _scopeId) => {
           if (_push2) {
             ssrRenderSlot(_ctx.$slots, "default", {}, null, _push2, _parent2, _scopeId);
-          } else {
+          }
+          else {
             return [
-              renderSlot(_ctx.$slots, "default")
+              renderSlot(_ctx.$slots, "default"),
             ];
           }
         }),
-        _: 3
+        _: 3,
       }, _parent));
     };
-  }
+  },
 });
 const _sfc_setup$1 = _sfc_main$1.setup;
 _sfc_main$1.setup = (props, ctx) => {
@@ -2564,21 +2598,21 @@ const _sfc_main = /* @__PURE__ */ defineComponent({
     type: { default: "text" },
     modelValue: { default: "" },
     maxlength: {},
-    pattern: {}
+    pattern: {},
   },
   emits: ["update:modelValue"],
   setup(__props, { emit: __emit }) {
     const props = __props;
     const styles = tv({
-      base: "form-input h-10 w-full ring-dashboard-neutral-100 ring-1 pl-4 pr-4 py-2 rounded-md focus:ring-2 focus:ring-dashboard-warning-50 outline-none focus:border-0 transition-all text-app-secondary focus:shadow-dashboard-warning-50 focus-visible:ring-dashboard-warning-50 [&[aria-invalid='true']]:ring-dashboard-danger-50 [&[aria-invalid='true']]:focus:ring-dashboard-danger-50 [aria-invalid='true']]:focus:shadow-dashboard-danger-50 [aria-invalid='true']]:focus-visible:!shadow-dashboard-danger-50 aria-[invalid='true']]:ring-2"
+      base: "form-input h-10 w-full ring-dashboard-neutral-100 ring-1 pl-4 pr-4 py-2 rounded-md focus:ring-2 focus:ring-dashboard-warning-50 outline-none focus:border-0 transition-all text-app-secondary focus:shadow-dashboard-warning-50 focus-visible:ring-dashboard-warning-50 [&[aria-invalid='true']]:ring-dashboard-danger-50 [&[aria-invalid='true']]:focus:ring-dashboard-danger-50 [aria-invalid='true']]:focus:shadow-dashboard-danger-50 [aria-invalid='true']]:focus-visible:!shadow-dashboard-danger-50 aria-[invalid='true']]:ring-2",
     });
     return (_ctx, _push, _parent, _attrs) => {
       _push(`<input${ssrRenderAttrs(mergeProps(props, {
         class: unref(styles)({ class: props.class }),
-        value: __props.modelValue
+        value: __props.modelValue,
       }, _attrs))}>`);
     };
-  }
+  },
 });
 const _sfc_setup = _sfc_main.setup;
 _sfc_main.setup = (props, ctx) => {
@@ -2588,11 +2622,11 @@ _sfc_main.setup = (props, ctx) => {
 };
 const __nuxt_component_5 = Object.assign(_sfc_main, { __name: "UiInput" });
 /**
-  * vee-validate v4.15.1
-  * (c) 2025 Abdelrahman Awad
-  * @license MIT
-  */
-const isObject = (obj) => obj !== null && !!obj && typeof obj === "object" && !Array.isArray(obj);
+ * vee-validate v4.15.1
+ * (c) 2025 Abdelrahman Awad
+ * @license MIT
+ */
+const isObject = obj => obj !== null && !!obj && typeof obj === "object" && !Array.isArray(obj);
 function isIndex(value) {
   return Number(value) >= 0;
 }
@@ -2654,19 +2688,20 @@ function toTypedSchema(zodSchema, opts) {
       if (result.success) {
         return {
           value: result.data,
-          errors: []
+          errors: [],
         };
       }
       const errors = {};
       processIssues(result.error.issues, errors);
       return {
-        errors: Object.values(errors)
+        errors: Object.values(errors),
       };
     },
     cast(values) {
       try {
         return zodSchema.parse(values);
-      } catch (_a) {
+      }
+      catch (_a) {
         const defaults = getDefaults(zodSchema);
         if (isObject(defaults) && isObject(values)) {
           return merge(defaults, values);
@@ -2679,27 +2714,28 @@ function toTypedSchema(zodSchema, opts) {
         if (!path) {
           return {
             required: !zodSchema.isOptional(),
-            exists: true
+            exists: true,
           };
         }
         const description = getSchemaForPath(path, zodSchema);
         if (!description) {
           return {
             required: false,
-            exists: false
+            exists: false,
           };
         }
         return {
           required: !description.isOptional(),
-          exists: true
-        };
-      } catch (_a) {
-        return {
-          required: false,
-          exists: false
+          exists: true,
         };
       }
-    }
+      catch (_a) {
+        return {
+          required: false,
+          exists: false,
+        };
+      }
+    },
   };
   return schema;
 }
@@ -2707,7 +2743,7 @@ function processIssues(issues, errors) {
   issues.forEach((issue) => {
     const path = normalizeFormPath(issue.path.join("."));
     if (issue.code === "invalid_union") {
-      processIssues(issue.unionErrors.flatMap((ue) => ue.issues), errors);
+      processIssues(issue.unionErrors.flatMap(ue => ue.issues), errors);
       if (!path) {
         return;
       }
@@ -2766,5 +2802,5 @@ function isObjectSchema(schema) {
   return getDefType(schema) === ZodFirstPartyTypeKind.ZodObject;
 }
 
-export { Field as F, __nuxt_component_5 as _, __nuxt_component_0 as a, __nuxt_component_1 as b, __nuxt_component_2 as c, __nuxt_component_3 as d, _sfc_main$2 as e, myInjectionKey as m, toTypedSchema as t, useForm as u };
-//# sourceMappingURL=vee-validate-zod-NJbS403e.mjs.map
+export { __nuxt_component_5 as _, __nuxt_component_0 as a, __nuxt_component_1 as b, __nuxt_component_2 as c, __nuxt_component_3 as d, _sfc_main$2 as e, Field as F, myInjectionKey as m, toTypedSchema as t, useForm as u };
+// # sourceMappingURL=vee-validate-zod-NJbS403e.mjs.map

@@ -1,5 +1,6 @@
-import { e as useRoute, d as useRouter } from './server.mjs';
-import { computed } from 'vue';
+import { computed } from "vue";
+
+import { e as useRoute, d as useRouter } from "./server.mjs";
 
 function useQueryParams() {
   const route = useRoute();
@@ -22,4 +23,4 @@ function useQueryParams() {
 }
 
 export { useQueryParams as u };
-//# sourceMappingURL=useQueryParams-DKrG4n2c.mjs.map
+// # sourceMappingURL=useQueryParams-DKrG4n2c.mjs.map

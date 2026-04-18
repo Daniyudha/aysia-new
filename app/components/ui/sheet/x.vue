@@ -13,7 +13,7 @@ const props = withDefaults(
       /** Screen reader text */
       srText?: string;
     }
-    >(),
+  >(),
   {
     icon: "heroicons:x-mark",
     srText: "Close",

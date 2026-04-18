@@ -11,6 +11,7 @@
     "Courier New", monospace;
   --font-alumni-sans: "Alumni Sans", sans-serif;
   --font-cinzel-decorative: "Cinzel Decorative", serif;
+  --font-fraunces: "Fraunces", serif;
 
   --radius: 0.625rem;
 
@@ -24,12 +25,12 @@
   --shadow-2xl: 0 1px 3px 0px oklch(0 0 0 / 0.25);
 
   /* Colors */
-  --app-primary: oklch(0.9301 0.0245 94.08);
-  --app-secondary: oklch(0.40 0.07 90);
+  --app-primary: oklch(96.1% 0.012 91.52);
+  --app-secondary: oklch(0.4005 0.0699 90.81);
   --app-text-primary: oklch(0.9301 0.0245 94.08);
 
   /* Sizes */
-  --app-container-width: 80vw;
+  --app-container-width: 98vw;
   --app-container-mobile-width: 90vw;
 }
 
@@ -228,7 +229,7 @@
 
   /* Image styling */
   .tiptap img {
-    @apply max-w-full h-auto block mx-auto my-4 rounded-lg shadow-md;
+    @apply max-w-full h-auto block mx-auto rounded-lg shadow-md;
   }
   .tiptap mark {
     @apply bg-dashboard-warning-50/50;
@@ -263,8 +264,10 @@ button {
 .header-link {
   position: relative;
   padding-left: 0.5rem; /* px-2 */
+  padding-right: 0.5rem; /* px-2 */
   padding-bottom: 0.25rem; /* pb-1 */
-  font-size: 1.5rem; /* text-2xl */
+  font-size: 18px; /* text-2xl */
+  font-family: "Fraunces", serif;
   color: var(--app-secondary);
 }
 
@@ -274,7 +277,7 @@ button {
   left: 0;
   bottom: 0;
   right: 0;
-  height: 0.25rem; /* h-1 */
+  height: 0.1rem; /* h-1 */
   background-color: var(--app-secondary);
   display: none;
   transition: all 0.3s ease;
@@ -290,6 +293,14 @@ button {
 }
 
 .header-link[aria-current="page"] {
-  font-style: italic;
-  font-weight: 600; /* font-semibold */
+  font-weight: 600;
+}
+
+/* ================= LIGHT HEADER NAV ================= */
+.nav-light .header-link {
+  color: #f5f2e9;
+}
+
+.nav-light .header-link::after {
+  background-color: #f5f2e9;
 }

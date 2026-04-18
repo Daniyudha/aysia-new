@@ -1,61 +1,71 @@
 {
-    "navigation": {
-        "home": "Home",
-        "gallery": "Gallery",
-        "about": "About",
-        "contact": "Contact"
-    },
-    "gallery": {
-        "title": "Gallery",
-        "collection_not_found": "Collection not found.",
-        "previous": "Previous",
-        "next": "Next"
-    },
-    "common": {
-        "loading": "Loading...",
-        "error": "Error",
-        "success": "Success",
-        "save": "Save",
-        "cancel": "Cancel",
-        "delete": "Delete",
-        "edit": "Edit"
-    },
-    "home": {
-        "welcome": "Welcome to our gallery",
-        "explore": "Explore our collections",
-        "hero_quote": "Through my lens, I capture the unseen rhythms of culture and connection.",
-        "hero_description": "A journey of timeless beauty — exploring humanity, nature, and emotion through the quiet power of imagery.",
-        "about_title": "About My Journey",
-        "about_description": "My passion for photography began with a love for remote places — silent landscapes, people untouched by modern rhythm, and cultures that endure against time. I travel to places most have never heard of, capturing the soul of simplicity and the stories that rarely reach the world.",
-        "about_quote": "Every journey teaches me to see, not just to look.",
-        "places_title": "Some Places I’ve Explored",
-        "place1_title": "Mentawai, Siberut",
-        "place1_description": "Among ancestral tattoos and jungle whispers, life flows with faith and tradition.",
-        "place2_title": "Omo, Ethiopia",
-        "place2_description": "In the valley of tribes, color, spirit, and ritual merge under the African sun.",
-        "place3_title": "Cappadocia, Turkey",
-        "place3_description": "Ancient stones and drifting balloons — a dream carved by wind and time.",
-        "place4_title": "Lathmar Holi, India",
-        "place4_description": "Chaos and color collide — devotion painted in the hues of joy and defiance.",
-        "closing_quote": "I travel not to escape life, but for life not to escape me."
-    },
-    "about": {
-        "title": "About Us",
-        "description": "Learn more about our journey and vision"
-    },
-    "contact": {
-        "description": "Get in touch with us",
-        "title": "Contact",
-        "meta_description": "Get in touch with Aysia LinggarWati for collaborations, photography projects, or any inquiries. Let’s bring your creative vision to life.",
-        "meta_keywords": "Aysia LinggarWati, contact, photography, collaboration, project",
-        "heading": "Let's Connect!",
-        "paragraph1": "Reach out through my contact form below, and we can start bringing your vision to life. If you feel connected to any of these photos, we’d truly love to hear from you. Please feel free to contact us directly for more information and pricing.",
-        "paragraph2": "Use the tabs below to explore what it’s like to shoot with me, read FAQs, and more. And if you have any other questions, please don’t hesitate to ask. I’m always happy to help.",
-        "whatsapp_text": "or Send me a WhatsApp!"
-    },
-    "language": {
-        "english": "English",
-        "indonesian": "Indonesian",
-        "switch": "Switch Language"
-    }
+  "navigation": {
+    "home": "Home",
+    "about": "About",
+    "gallery": "Portfolio",
+    "journey": "Journey",
+    "explore": "Gallery",
+    "contact": "Contact"
+  },
+  "gallery": {
+    "title": "Gallery",
+    "collection_not_found": "Collection not found.",
+    "previous": "Previous",
+    "next": "Next"
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit"
+  },
+  "home": {
+    "welcome": "Welcome to our gallery",
+    "explore": "Explore our collections",
+    "hero_quote": "Through my lens, I capture the unseen rhythms of culture and connection.",
+    "hero_description": "A journey of timeless beauty — exploring humanity, nature, and emotion through the quiet power of imagery.",
+    "about_title": "About My Journey",
+    "about_description": "My passion for photography began with a love for remote places — silent landscapes, people untouched by modern rhythm, and cultures that endure against time. I travel to places most have never heard of, capturing the soul of simplicity and the stories that rarely reach the world.",
+    "about_quote": "Every journey teaches me to see, not just to look.",
+    "places_title": "Some Places I’ve Explored",
+    "places_description": "I travel to places most have never heard of, capturing the soul of simplicity and the stories that rarely reach the world.",
+    "places_cta": "See all my photography journeys",
+    "place1_title": "Mentawai, Siberut",
+    "place1_description": "Among ancestral tattoos and jungle whispers, life flows with faith and tradition.",
+    "place2_title": "Omo, Ethiopia",
+    "place2_description": "In the valley of tribes, color, spirit, and ritual merge under the African sun.",
+    "place3_title": "Cappadocia, Turkey",
+    "place3_description": "Ancient stones and drifting balloons — a dream carved by wind and time.",
+    "place4_title": "Lathmar Holi, India",
+    "place4_description": "Chaos and color collide — devotion painted in the hues of joy and defiance.",
+    "closing_quote": "I travel not to escape life, but for life not to escape me."
+  },
+  "about": {
+    "title": "About Us",
+    "description": "Learn more about our journey and vision"
+  },
+  "contact": {
+    "description": "Get in touch with us",
+    "title": "Contact",
+    "meta_description": "Get in touch with Aysia LinggarWati for collaborations, photography projects, or any inquiries. Let’s bring your creative vision to life.",
+    "meta_keywords": "Aysia LinggarWati, contact, photography, collaboration, project",
+    "heading": "Let's Connect!",
+    "paragraph1": "Reach out through my contact form below, and we can start bringing your vision to life. If you feel connected to any of these photos, we’d truly love to hear from you. Please feel free to contact us directly for more information and pricing.",
+    "paragraph2": "Use the tabs below to explore what it’s like to shoot with me, read FAQs, and more. And if you have any other questions, please don’t hesitate to ask. I’m always happy to help.",
+    "whatsapp_text": "or Send me a WhatsApp!"
+  },
+  "dashboard": {
+    "explore": "Explore",
+    "manage_explore": "Manage Explore",
+    "add_explore": "Add Explore",
+    "detail_explore": "Detail Explore"
+  },
+  "language": {
+    "english": "English",
+    "indonesian": "Indonesian",
+    "switch": "Switch Language"
+  }
 }

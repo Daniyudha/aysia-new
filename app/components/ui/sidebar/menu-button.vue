@@ -12,7 +12,7 @@ const props = withDefaults(
     SidebarMenuButtonProps & {
       tooltip?: string | Component;
     }
-    >(),
+  >(),
   {
     as: "button",
     variant: "default",

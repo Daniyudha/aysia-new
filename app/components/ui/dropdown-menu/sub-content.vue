@@ -12,7 +12,7 @@ const props = withDefaults(
       /** The element to render the portal into */
       to?: string | HTMLElement;
     }
-    >(),
+  >(),
   {
     loop: true,
     sideOffset: 8,

@@ -1,5 +1,5 @@
-import { A as API_URL_LIST } from './constant-D5BqL6of.mjs';
-import { b as useNuxtApp } from './server.mjs';
+import { A as API_URL_LIST } from "./constant-D5BqL6of.mjs";
+import { b as useNuxtApp } from "./server.mjs";
 
 function categoryRepository(fetch) {
   return {
@@ -15,12 +15,12 @@ function categoryRepository(fetch) {
     async updateById(id, payload) {
       return fetch(API_URL_LIST.CATEGORY_BY_ID(id), {
         method: "put",
-        body: JSON.stringify(payload)
+        body: JSON.stringify(payload),
       });
     },
     async deleteById(id) {
       return fetch(API_URL_LIST.CATEGORY_BY_ID(id), { method: "delete" });
-    }
+    },
   };
 }
 function categoryFetcher() {
@@ -29,4 +29,4 @@ function categoryFetcher() {
 }
 
 export { categoryFetcher as c };
-//# sourceMappingURL=category-DozWu4oW.mjs.map
+// # sourceMappingURL=category-DozWu4oW.mjs.map

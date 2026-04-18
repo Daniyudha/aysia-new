@@ -1,8 +1,9 @@
-import { defineComponent, shallowRef, h, resolveComponent, computed } from 'vue';
-import { G as parseQuery, m as hasProtocol, j as joinURL, H as withTrailingSlash, I as withoutTrailingSlash } from '../nitro/nitro.mjs';
-import { d as useRouter, b as useNuxtApp, r as resolveRouteObject, u as useRuntimeConfig, n as navigateTo, g as nuxtLinkDefaults } from './server.mjs';
+import { computed, defineComponent, h, resolveComponent, shallowRef } from "vue";
 
-const firstNonUndefined = (...args) => args.find((arg) => arg !== void 0);
+import { m as hasProtocol, j as joinURL, G as parseQuery, I as withoutTrailingSlash, H as withTrailingSlash } from "../nitro/nitro.mjs";
+import { n as navigateTo, g as nuxtLinkDefaults, r as resolveRouteObject, b as useNuxtApp, d as useRouter, u as useRuntimeConfig } from "./server.mjs";
+
+const firstNonUndefined = (...args) => args.find(arg => arg !== void 0);
 // @__NO_SIDE_EFFECTS__
 function defineNuxtLink(options) {
   const componentName = options.componentName || "NuxtLink";
@@ -22,7 +23,7 @@ function defineNuxtLink(options) {
       ...to,
       name: void 0,
       // named routes would otherwise always override trailing slash behavior
-      path: applyTrailingSlashBehavior(path, effectiveTrailingSlash)
+      path: applyTrailingSlashBehavior(path, effectiveTrailingSlash),
     };
     return resolvedPath;
   }
@@ -81,7 +82,7 @@ function defineNuxtLink(options) {
       route: link?.route ?? computed(() => router.resolve(to.value)),
       async navigate(_e) {
         await navigateTo(href.value, { replace: props.replace, external: isExternal.value || hasTarget.value });
-      }
+      },
     };
   }
   return defineComponent({
@@ -91,90 +92,90 @@ function defineNuxtLink(options) {
       to: {
         type: [String, Object],
         default: void 0,
-        required: false
+        required: false,
       },
       href: {
         type: [String, Object],
         default: void 0,
-        required: false
+        required: false,
       },
       // Attributes
       target: {
         type: String,
         default: void 0,
-        required: false
+        required: false,
       },
       rel: {
         type: String,
         default: void 0,
-        required: false
+        required: false,
       },
       noRel: {
         type: Boolean,
         default: void 0,
-        required: false
+        required: false,
       },
       // Prefetching
       prefetch: {
         type: Boolean,
         default: void 0,
-        required: false
+        required: false,
       },
       prefetchOn: {
         type: [String, Object],
         default: void 0,
-        required: false
+        required: false,
       },
       noPrefetch: {
         type: Boolean,
         default: void 0,
-        required: false
+        required: false,
       },
       // Styling
       activeClass: {
         type: String,
         default: void 0,
-        required: false
+        required: false,
       },
       exactActiveClass: {
         type: String,
         default: void 0,
-        required: false
+        required: false,
       },
       prefetchedClass: {
         type: String,
         default: void 0,
-        required: false
+        required: false,
       },
       // Vue Router's `<RouterLink>` additional props
       replace: {
         type: Boolean,
         default: void 0,
-        required: false
+        required: false,
       },
       ariaCurrentValue: {
         type: String,
         default: void 0,
-        required: false
+        required: false,
       },
       // Edge cases handling
       external: {
         type: Boolean,
         default: void 0,
-        required: false
+        required: false,
       },
       // Slot API
       custom: {
         type: Boolean,
         default: void 0,
-        required: false
+        required: false,
       },
       // Behavior
       trailingSlash: {
         type: String,
         default: void 0,
-        required: false
-      }
+        required: false,
+      },
     },
     useLink: useNuxtLink,
     setup(props, { slots }) {
@@ -185,7 +186,7 @@ function defineNuxtLink(options) {
       const elRef = void 0;
       async function prefetch(nuxtApp = useNuxtApp()) {
         {
-          return;
+
         }
       }
       return () => {
@@ -197,7 +198,7 @@ function defineNuxtLink(options) {
             exactActiveClass: props.exactActiveClass || options.exactActiveClass,
             replace: props.replace,
             ariaCurrentValue: props.ariaCurrentValue,
-            custom: props.custom
+            custom: props.custom,
           };
           if (!props.custom) {
             routerLinkProps.rel = props.rel || void 0;
@@ -205,7 +206,7 @@ function defineNuxtLink(options) {
           return h(
             resolveComponent("RouterLink"),
             routerLinkProps,
-            slots.default
+            slots.default,
           );
         }
         const target = props.target || null;
@@ -217,7 +218,7 @@ function defineNuxtLink(options) {
           * A fallback rel of `noopener noreferrer` is applied for external links or links that open in a new tab.
           * This solves a reverse tabnapping security flaw in browsers pre-2021 as well as improving privacy.
           */
-          isAbsoluteUrl.value || hasTarget.value ? "noopener noreferrer" : ""
+          isAbsoluteUrl.value || hasTarget.value ? "noopener noreferrer" : "",
         ) || null;
         if (props.custom) {
           if (!slots.default) {
@@ -244,14 +245,14 @@ function defineNuxtLink(options) {
                 matched: [],
                 redirectedFrom: void 0,
                 meta: {},
-                href: href.value
+                href: href.value,
               };
             },
             rel,
             target,
             isExternal: isExternal.value || hasTarget.value,
             isActive: false,
-            isExactActive: false
+            isExactActive: false,
           });
         }
         return h("a", {
@@ -266,10 +267,10 @@ function defineNuxtLink(options) {
             }
             event.preventDefault();
             return props.replace ? router.replace(href.value) : router.push(href.value);
-          }
+          },
         }, slots.default?.());
       };
-    }
+    },
     // }) as unknown as DefineComponent<NuxtLinkProps, object, object, ComputedOptions, MethodOptions, object, object, EmitsOptions, string, object, NuxtLinkProps, object, SlotsType<NuxtLinkSlots>>
   });
 }
@@ -284,4 +285,4 @@ function applyTrailingSlashBehavior(to, trailingSlash) {
 }
 
 export { __nuxt_component_0 as _ };
-//# sourceMappingURL=nuxt-link-Bh--EX_l.mjs.map
+// # sourceMappingURL=nuxt-link-Bh--EX_l.mjs.map

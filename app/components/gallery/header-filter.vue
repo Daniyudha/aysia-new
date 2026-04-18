@@ -17,7 +17,8 @@ function updateButtonStates(emblaApi: EmblaCarouselAPIType) {
 }
 
 onMounted(() => {
-  if (!emblaApi.value) return;
+  if (!emblaApi.value)
+    return;
   updateButtonStates(emblaApi.value);
   emblaApi.value.on("select", updateButtonStates);
 });
@@ -115,4 +116,3 @@ const computedCategories = computed(() => {
   border: none !important;
 }
 </style>
-

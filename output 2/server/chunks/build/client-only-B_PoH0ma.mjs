@@ -1,4 +1,4 @@
-import { defineComponent, shallowRef, getCurrentInstance, provide, cloneVNode, h, createElementBlock } from 'vue';
+import { cloneVNode, createElementBlock, defineComponent, getCurrentInstance, h, provide, shallowRef } from "vue";
 
 const clientOnlySymbol = Symbol.for("nuxt:client-only");
 const __nuxt_component_1 = defineComponent({
@@ -29,8 +29,8 @@ const __nuxt_component_1 = defineComponent({
       const fallbackTag = props.fallbackTag || props.placeholderTag || "span";
       return createElementBlock(fallbackTag, attrs, fallbackStr);
     };
-  }
+  },
 });
 
 export { __nuxt_component_1 as _ };
-//# sourceMappingURL=client-only-B_PoH0ma.mjs.map
+// # sourceMappingURL=client-only-B_PoH0ma.mjs.map

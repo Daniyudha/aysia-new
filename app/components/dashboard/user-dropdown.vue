@@ -27,7 +27,7 @@ function handleSignOut() {
           class="w-10 h-10 rounded-full hover:ring-2 ring-dashboard-primary-50"
         >
         <div class="text-sm text-dashboard-accent-50 flex items-center justify-between gap-1 flex-1">
-          <p class="font-medium whitespace-nowrap max-w-[80px] text-ellipsis overflow-hidden">
+          <p class="font-semibold whitespace-nowrap max-w-[100px] text-ellipsis overflow-hidden">
             {{ userAuthName?.name }}
           </p>
           <Icon name="mynaui:chevron-down" class="inline-block" />

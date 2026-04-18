@@ -9,7 +9,9 @@ type MenuItem = {
 const menuItems: MenuItem[] = [
   { title: "Overview", url: "/dashboard", icon: "lucide:home" },
   { title: "Category", url: "/dashboard/categories", icon: "iconamoon:category-thin" },
-  { title: "Gallery", url: "/dashboard/gallery", icon: "lucide:images" },
+  { title: "Portfolio", url: "/dashboard/portfolio", icon: "lucide:images" },
+  { title: "Gallery", url: "/dashboard/explore", icon: "lucide:compass" },
+  { title: "Journey", url: "/dashboard/journey", icon: "lucide:map" },
   {
     title: "Social Media",
     url: "/dashboard/social-media",

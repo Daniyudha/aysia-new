@@ -1,14 +1,15 @@
-import { createRenderer, getRequestDependencies, getPreloadLinks, getPrefetchLinks } from 'vue-bundle-renderer/runtime';
-import { b as buildAssetsURL, u as useRuntimeConfig, g as getResponseStatusText, a as getResponseStatus, d as defineRenderHandler, p as publicAssetsURL, c as getQuery, e as createError, f as destr, h as getRouteRules, r as relative, j as joinURL, i as useNitroApp } from '../nitro/nitro.mjs';
-import { renderToString } from 'vue/server-renderer';
-import { createHead as createHead$1, propsToString, renderSSRHead } from 'unhead/server';
-import { stringify, uneval } from 'devalue';
-import { walkResolver } from 'unhead/utils';
-import { toValue, isRef, hasInjectionContext, inject, ref, watchEffect, getCurrentInstance, onBeforeUnmount, onDeactivated, onActivated } from 'vue';
+import { stringify, uneval } from "devalue";
+import { createHead as createHead$1, propsToString, renderSSRHead } from "unhead/server";
+import { walkResolver } from "unhead/utils";
+import { getCurrentInstance, hasInjectionContext, inject, isRef, onActivated, onBeforeUnmount, onDeactivated, ref, toValue, watchEffect } from "vue";
+import { createRenderer, getPrefetchLinks, getPreloadLinks, getRequestDependencies } from "vue-bundle-renderer/runtime";
+import { renderToString } from "vue/server-renderer";
 
-const VueResolver = (_, value) => {
+import { b as buildAssetsURL, e as createError, d as defineRenderHandler, f as destr, c as getQuery, a as getResponseStatus, g as getResponseStatusText, h as getRouteRules, j as joinURL, p as publicAssetsURL, r as relative, i as useNitroApp, u as useRuntimeConfig } from "../nitro/nitro.mjs";
+
+function VueResolver(_, value) {
   return isRef(value) ? toValue(value) : value;
-};
+}
 
 const headSymbol = "usehead";
 // @__NO_SIDE_EFFECTS__
@@ -18,7 +19,7 @@ function vueInstall(head) {
       app.config.globalProperties.$unhead = head;
       app.config.globalProperties.$head = head;
       app.provide(headSymbol, head);
-    }
+    },
   };
   return plugin.install;
 }
@@ -45,7 +46,8 @@ function clientUseHead(head, input, options = {}) {
     const i = deactivated.value ? {} : walkResolver(input, VueResolver);
     if (entry) {
       entry.patch(i);
-    } else {
+    }
+    else {
       entry = head.push(i, options);
     }
   });
@@ -68,32 +70,32 @@ function clientUseHead(head, input, options = {}) {
 function createHead(options = {}) {
   const head = createHead$1({
     ...options,
-    propResolvers: [VueResolver]
+    propResolvers: [VueResolver],
   });
   head.install = vueInstall(head);
   return head;
 }
 
-const appHead = {"meta":[{"name":"viewport","content":"width=device-width, initial-scale=1"},{"charset":"utf-8"}],"link":[],"style":[],"script":[],"noscript":[]};
+const appHead = { meta: [{ name: "viewport", content: "width=device-width, initial-scale=1" }, { charset: "utf-8" }], link: [], style: [], script: [], noscript: [] };
 
 const appRootTag = "div";
 
-const appRootAttrs = {"id":"__nuxt"};
+const appRootAttrs = { id: "__nuxt" };
 
 const appTeleportTag = "div";
 
-const appTeleportAttrs = {"id":"teleports"};
+const appTeleportAttrs = { id: "teleports" };
 
 const appSpaLoaderTag = "div";
 
-const appSpaLoaderAttrs = {"id":"__nuxt-loader"};
+const appSpaLoaderAttrs = { id: "__nuxt-loader" };
 
 const appId = "nuxt-app";
 
 const APP_ROOT_OPEN_TAG = `<${appRootTag}${propsToString(appRootAttrs)}>`;
 const APP_ROOT_CLOSE_TAG = `</${appRootTag}>`;
-const getServerEntry = () => import('../build/server.mjs').then((r) => r.default || r);
-const getClientManifest = () => import('../build/client.manifest.mjs').then((r) => r.default || r).then((r) => typeof r === "function" ? r() : r);
+const getServerEntry = () => import("../build/server.mjs").then(r => r.default || r);
+const getClientManifest = () => import("../build/client.manifest.mjs").then(r => r.default || r).then(r => typeof r === "function" ? r() : r);
 const getSSRRenderer = lazyCachedFunction(async () => {
   const manifest = await getClientManifest();
   if (!manifest) {
@@ -106,7 +108,7 @@ const getSSRRenderer = lazyCachedFunction(async () => {
   const options = {
     manifest,
     renderToString: renderToString$1,
-    buildAssetsURL
+    buildAssetsURL,
   };
   const renderer = createRenderer(createSSRApp, options);
   async function renderToString$1(input, context) {
@@ -117,7 +119,7 @@ const getSSRRenderer = lazyCachedFunction(async () => {
 });
 const getSPARenderer = lazyCachedFunction(async () => {
   const manifest = await getClientManifest();
-  const spaTemplate = await import('../virtual/_virtual_spa-template.mjs').then((r) => r.template).catch(() => "").then((r) => {
+  const spaTemplate = await import("../virtual/_virtual_spa-template.mjs").then(r => r.template).catch(() => "").then((r) => {
     {
       const APP_SPA_LOADER_OPEN_TAG = `<${appSpaLoaderTag}${propsToString(appSpaLoaderAttrs)}>`;
       const APP_SPA_LOADER_CLOSE_TAG = `</${appSpaLoaderTag}>`;
@@ -129,7 +131,7 @@ const getSPARenderer = lazyCachedFunction(async () => {
   const options = {
     manifest,
     renderToString: () => spaTemplate,
-    buildAssetsURL
+    buildAssetsURL,
   };
   const renderer = createRenderer(() => () => {
   }, options);
@@ -140,13 +142,13 @@ const getSPARenderer = lazyCachedFunction(async () => {
     ssrContext.payload.serverRendered = false;
     ssrContext.config = {
       public: config.public,
-      app: config.app
+      app: config.app,
     };
     return Promise.resolve(result);
   };
   return {
     rendererContext: renderer.rendererContext,
-    renderToString
+    renderToString,
   };
 });
 function lazyCachedFunction(fn) {
@@ -164,26 +166,28 @@ function lazyCachedFunction(fn) {
 function getRenderer(ssrContext) {
   return ssrContext.noSSR ? getSPARenderer() : getSSRRenderer();
 }
-const getSSRStyles = lazyCachedFunction(() => import('../build/styles.mjs').then((r) => r.default || r));
-const getEntryIds = () => getClientManifest().then((r) => {
-  const entryIds = [];
-  for (const entry of Object.values(r)) {
-    if (entry._globalCSS) {
-      entryIds.push(entry.src);
+const getSSRStyles = lazyCachedFunction(() => import("../build/styles.mjs").then(r => r.default || r));
+function getEntryIds() {
+  return getClientManifest().then((r) => {
+    const entryIds = [];
+    for (const entry of Object.values(r)) {
+      if (entry._globalCSS) {
+        entryIds.push(entry.src);
+      }
     }
-  }
-  return entryIds;
-});
+    return entryIds;
+  });
+}
 
 function renderPayloadResponse(ssrContext) {
   return {
-    body: stringify(splitPayload(ssrContext).payload, ssrContext._payloadReducers) ,
+    body: stringify(splitPayload(ssrContext).payload, ssrContext._payloadReducers),
     statusCode: getResponseStatus(ssrContext.event),
     statusMessage: getResponseStatusText(ssrContext.event),
     headers: {
-      "content-type": "application/json;charset=utf-8" ,
-      "x-powered-by": "Nuxt"
-    }
+      "content-type": "application/json;charset=utf-8",
+      "x-powered-by": "Nuxt",
+    },
   };
 }
 function renderPayloadJsonScript(opts) {
@@ -192,7 +196,7 @@ function renderPayloadJsonScript(opts) {
     "type": "application/json",
     "innerHTML": contents,
     "data-nuxt-data": appId,
-    "data-ssr": !(opts.ssrContext.noSSR)
+    "data-ssr": !(opts.ssrContext.noSSR),
   };
   {
     payload.id = "__NUXT_DATA__";
@@ -204,15 +208,15 @@ function renderPayloadJsonScript(opts) {
   return [
     payload,
     {
-      innerHTML: `window.__NUXT__={};window.__NUXT__.config=${config}`
-    }
+      innerHTML: `window.__NUXT__={};window.__NUXT__.config=${config}`,
+    },
   ];
 }
 function splitPayload(ssrContext) {
   const { data, prerenderedAt, ...initial } = ssrContext.payload;
   return {
     initial: { ...initial, prerenderedAt },
-    payload: { data, prerenderedAt }
+    payload: { data, prerenderedAt },
   };
 }
 
@@ -232,7 +236,7 @@ function createSSRContext(event) {
     /* NuxtApp */
     payload: {},
     _payloadReducers: /* @__PURE__ */ Object.create(null),
-    modules: /* @__PURE__ */ new Set()
+    modules: /* @__PURE__ */ new Set(),
   };
   return ssrContext;
 }
@@ -252,10 +256,10 @@ async function renderInlineStyles(usedModules) {
       }
     }
   }
-  return Array.from(inlinedStyles).map((style) => ({ innerHTML: style }));
+  return Array.from(inlinedStyles).map(style => ({ innerHTML: style }));
 }
 
-const renderSSRHeadOptions = {"omitLineBreaks":true};
+const renderSSRHeadOptions = { omitLineBreaks: true };
 
 const entryFileName = "BVOTu4j0.js";
 
@@ -264,7 +268,7 @@ globalThis.__publicAssetsURL = publicAssetsURL;
 const HAS_APP_TELEPORTS = !!(appTeleportAttrs.id);
 const APP_TELEPORT_OPEN_TAG = HAS_APP_TELEPORTS ? `<${appTeleportTag}${propsToString(appTeleportAttrs)}>` : "";
 const APP_TELEPORT_CLOSE_TAG = HAS_APP_TELEPORTS ? `</${appTeleportTag}>` : "";
-const PAYLOAD_URL_RE = /^[^?]*\/_payload.json(?:\?.*)?$/ ;
+const PAYLOAD_URL_RE = /^[^?]*\/_payload.json(?:\?.*)?$/;
 let entryPath;
 const renderer = defineRenderHandler(async (event) => {
   const nitroApp = useNitroApp();
@@ -272,7 +276,7 @@ const renderer = defineRenderHandler(async (event) => {
   if (ssrError && !("__unenv__" in event.node.req)) {
     throw createError({
       statusCode: 404,
-      statusMessage: "Page Not Found: /__nuxt_error"
+      statusMessage: "Page Not Found: /__nuxt_error",
     });
   }
   const ssrContext = createSSRContext(event);
@@ -283,7 +287,8 @@ const renderer = defineRenderHandler(async (event) => {
     if (typeof ssrError.data === "string") {
       try {
         ssrError.data = destr(ssrError.data);
-      } catch {
+      }
+      catch {
       }
     }
     setSSRError(ssrContext, ssrError);
@@ -332,7 +337,8 @@ const renderer = defineRenderHandler(async (event) => {
       path = buildAssetsURL(entryFileName);
       if (ssrContext.runtimeConfig.app.cdnURL || /^(?:\/|\.+\/)/.test(path)) {
         entryPath = path;
-      } else {
+      }
+      else {
         path = relative(event.path.replace(/\/[^/]+$/, "/"), joinURL("/", path));
         if (!/^(?:\/|\.+\/)/.test(path)) {
           path = `./${path}`;
@@ -344,15 +350,15 @@ const renderer = defineRenderHandler(async (event) => {
         tagPosition: "head",
         tagPriority: -2,
         type: "importmap",
-        innerHTML: JSON.stringify({ imports: { "#entry": path } })
-      }]
+        innerHTML: JSON.stringify({ imports: { "#entry": path } }),
+      }],
     }, headEntryOptions);
   }
   if (ssrContext._preloadManifest && !NO_SCRIPTS) {
     ssrContext.head.push({
       link: [
-        { rel: "preload", as: "fetch", fetchpriority: "low", crossorigin: "anonymous", href: buildAssetsURL(`builds/meta/${ssrContext.runtimeConfig.app.buildId}.json`) }
-      ]
+        { rel: "preload", as: "fetch", fetchpriority: "low", crossorigin: "anonymous", href: buildAssetsURL(`builds/meta/${ssrContext.runtimeConfig.app.buildId}.json`) },
+      ],
     }, { ...headEntryOptions, tagPriority: "low" });
   }
   if (inlinedStyles.length) {
@@ -367,32 +373,32 @@ const renderer = defineRenderHandler(async (event) => {
   }
   if (!NO_SCRIPTS) {
     ssrContext.head.push({
-      link: getPreloadLinks(ssrContext, renderer.rendererContext)
+      link: getPreloadLinks(ssrContext, renderer.rendererContext),
     }, headEntryOptions);
     ssrContext.head.push({
-      link: getPrefetchLinks(ssrContext, renderer.rendererContext)
+      link: getPrefetchLinks(ssrContext, renderer.rendererContext),
     }, headEntryOptions);
     ssrContext.head.push({
-      script: renderPayloadJsonScript({ ssrContext, data: ssrContext.payload }) 
+      script: renderPayloadJsonScript({ ssrContext, data: ssrContext.payload }),
     }, {
       ...headEntryOptions,
       // this should come before another end of body scripts
       tagPosition: "bodyClose",
-      tagPriority: "high"
+      tagPriority: "high",
     });
   }
   if (!routeOptions.noScripts) {
     const tagPosition = "head";
     ssrContext.head.push({
-      script: Object.values(scripts).map((resource) => ({
+      script: Object.values(scripts).map(resource => ({
         type: resource.module ? "module" : null,
         src: renderer.rendererContext.buildAssetsURL(resource.file),
         defer: resource.module ? null : true,
         // if we are rendering script tag payloads that import an async payload
         // we need to ensure this resolves before executing the Nuxt entry
         tagPosition,
-        crossorigin: ""
-      }))
+        crossorigin: "",
+      })),
     }, headEntryOptions);
   }
   const { headTags, bodyTags, bodyTagsOpen, htmlAttrs, bodyAttrs } = await renderSSRHead(ssrContext.head, renderSSRHeadOptions);
@@ -403,9 +409,9 @@ const renderer = defineRenderHandler(async (event) => {
     bodyPrepend: normalizeChunks([bodyTagsOpen, ssrContext.teleports?.body]),
     body: [
       _rendered.html,
-      APP_TELEPORT_OPEN_TAG + (HAS_APP_TELEPORTS ? joinTags([ssrContext.teleports?.[`#${appTeleportAttrs.id}`]]) : "") + APP_TELEPORT_CLOSE_TAG
+      APP_TELEPORT_OPEN_TAG + (HAS_APP_TELEPORTS ? joinTags([ssrContext.teleports?.[`#${appTeleportAttrs.id}`]]) : "") + APP_TELEPORT_CLOSE_TAG,
     ],
-    bodyAppend: [bodyTags]
+    bodyAppend: [bodyTags],
   };
   await nitroApp.hooks.callHook("render:html", htmlContext, { event });
   return {
@@ -414,8 +420,8 @@ const renderer = defineRenderHandler(async (event) => {
     statusMessage: getResponseStatusText(event),
     headers: {
       "content-type": "text/html;charset=utf-8",
-      "x-powered-by": "Nuxt"
-    }
+      "x-powered-by": "Nuxt",
+    },
   };
 });
 function normalizeChunks(chunks) {
@@ -435,16 +441,16 @@ function joinAttrs(chunks) {
   if (chunks.length === 0) {
     return "";
   }
-  return " " + chunks.join(" ");
+  return ` ${chunks.join(" ")}`;
 }
 function renderHTMLDocument(html) {
   return `<!DOCTYPE html><html${joinAttrs(html.htmlAttrs)}><head>${joinTags(html.head)}</head><body${joinAttrs(html.bodyAttrs)}>${joinTags(html.bodyPrepend)}${joinTags(html.body)}${joinTags(html.bodyAppend)}</body></html>`;
 }
 
-const renderer$1 = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
+const renderer$1 = /* #__PURE__ */Object.freeze(/* #__PURE__ */Object.defineProperty({
   __proto__: null,
-  default: renderer
-}, Symbol.toStringTag, { value: 'Module' }));
+  default: renderer,
+}, Symbol.toStringTag, { value: "Module" }));
 
 export { headSymbol as h, renderer$1 as r, useHead as u };
-//# sourceMappingURL=renderer.mjs.map
+// # sourceMappingURL=renderer.mjs.map

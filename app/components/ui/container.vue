@@ -8,7 +8,7 @@ const props = withDefaults(
     PrimitiveProps & {
       class?: any;
     }
-    >(),
+  >(),
   {
     as: "div",
   },

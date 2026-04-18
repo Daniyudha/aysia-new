@@ -1,36 +1,39 @@
-import { defineComponent, withCtx, unref, createVNode, renderSlot, createTextVNode, readonly, ref, computed, mergeProps, createBlock, createCommentVNode, openBlock, toDisplayString, Fragment, renderList, Transition, resolveDynamicComponent, useSSRContext } from 'vue';
-import { ssrRenderComponent, ssrRenderSlot, ssrRenderStyle, ssrRenderClass, ssrRenderAttrs, ssrInterpolate, ssrRenderList, ssrRenderSlotInner, ssrRenderVNode } from 'vue/server-renderer';
-import { useForwardProps, Primitive, Separator, VisuallyHidden, TooltipProvider, useForwardPropsEmits, DropdownMenuRoot, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem, DialogRoot, DialogContent, DialogTitle, DialogDescription, DialogOverlay, DropdownMenuPortal, DialogPortal, DialogClose, TooltipRoot, TooltipTrigger, TooltipContent, TooltipPortal } from 'reka-ui';
-import { e as useRoute, a as __nuxt_component_16, m as useCookie, q as SIDEBAR_COOKIE_MAX_AGE, s as SIDEBAR_COOKIE_NAME, p as provideSidebarContext, S as SIDEBAR_WIDTH_ICON, o as SIDEBAR_WIDTH, v as useSidebar, d as useRouter, c as useAuthCookie, w as SIDEBAR_WIDTH_MOBILE, _ as _export_sfc, x as sidebarMenuButtonVariants, t as SIDEBAR_KEYBOARD_SHORTCUT } from './server.mjs';
-import { tv } from 'tailwind-variants';
-import { b as useMediaQuery, c as useVModel, d as useEventListener } from './index-Df46HAS4.mjs';
-import { _ as __nuxt_component_1$5 } from './client-only-B_PoH0ma.mjs';
-import { r as reactiveOmit } from './index-BAtNd0PJ.mjs';
-import { _ as __nuxt_component_0$9 } from './nuxt-link-Bh--EX_l.mjs';
-import __nuxt_component_0$b from './index-C2n46nfI.mjs';
-import { _ as __nuxt_component_0$a } from './button-BrROYuAJ.mjs';
-import { u as useAuthUser } from './useAuthUser-DPFWfSbR.mjs';
-import { u as useHead } from './composables-D0i6IdhD.mjs';
-import { t as toast } from './index-DJGQOf1Z.mjs';
-import '../nitro/nitro.mjs';
-import 'node:http';
-import 'node:https';
-import 'node:events';
-import 'node:buffer';
-import 'node:fs';
-import 'node:path';
-import 'node:crypto';
-import 'node:url';
-import '@iconify/utils';
-import 'consola';
-import 'vue-router';
-import './asyncData-DuMyQiaR.mjs';
-import 'perfect-debounce';
-import '../routes/renderer.mjs';
-import 'vue-bundle-renderer/runtime';
-import 'unhead/server';
-import 'devalue';
-import 'unhead/utils';
+import { DialogClose, DialogContent, DialogDescription, DialogOverlay, DialogPortal, DialogRoot, DialogTitle, DropdownMenuContent, DropdownMenuItem, DropdownMenuPortal, DropdownMenuRoot, DropdownMenuTrigger, Primitive, Separator, TooltipContent, TooltipPortal, TooltipProvider, TooltipRoot, TooltipTrigger, useForwardProps, useForwardPropsEmits, VisuallyHidden } from "reka-ui";
+import { tv } from "tailwind-variants";
+import { computed, createBlock, createCommentVNode, createTextVNode, createVNode, defineComponent, Fragment, mergeProps, openBlock, readonly, ref, renderList, renderSlot, resolveDynamicComponent, toDisplayString, Transition, unref, useSSRContext, withCtx } from "vue";
+import { ssrInterpolate, ssrRenderAttrs, ssrRenderClass, ssrRenderComponent, ssrRenderList, ssrRenderSlot, ssrRenderSlotInner, ssrRenderStyle, ssrRenderVNode } from "vue/server-renderer";
+
+import { _ as __nuxt_component_0$a } from "./button-BrROYuAJ.mjs";
+import { _ as __nuxt_component_1$5 } from "./client-only-B_PoH0ma.mjs";
+import { u as useHead } from "./composables-D0i6IdhD.mjs";
+import { r as reactiveOmit } from "./index-BAtNd0PJ.mjs";
+import __nuxt_component_0$b from "./index-C2n46nfI.mjs";
+import { d as useEventListener, b as useMediaQuery, c as useVModel } from "./index-Df46HAS4.mjs";
+import { t as toast } from "./index-DJGQOf1Z.mjs";
+import { _ as __nuxt_component_0$9 } from "./nuxt-link-Bh--EX_l.mjs";
+import { a as __nuxt_component_16, _ as _export_sfc, p as provideSidebarContext, q as SIDEBAR_COOKIE_MAX_AGE, s as SIDEBAR_COOKIE_NAME, t as SIDEBAR_KEYBOARD_SHORTCUT, o as SIDEBAR_WIDTH, S as SIDEBAR_WIDTH_ICON, w as SIDEBAR_WIDTH_MOBILE, x as sidebarMenuButtonVariants, c as useAuthCookie, m as useCookie, e as useRoute, d as useRouter, v as useSidebar } from "./server.mjs";
+import { u as useAuthUser } from "./useAuthUser-DPFWfSbR.mjs";
+import "../nitro/nitro.mjs";
+import "node:http";
+import "node:https";
+import "node:events";
+import "node:buffer";
+import "node:fs";
+import "node:path";
+import "node:crypto";
+import "node:url";
+import "@iconify/utils";
+import "consola";
+import "vue-router";
+
+import "./asyncData-DuMyQiaR.mjs";
+import "perfect-debounce";
+
+import "../routes/renderer.mjs";
+import "vue-bundle-renderer/runtime";
+import "unhead/server";
+import "devalue";
+import "unhead/utils";
 
 const _sfc_main$B = /* @__PURE__ */ defineComponent({
   __name: "provider",
@@ -41,7 +44,7 @@ const _sfc_main$B = /* @__PURE__ */ defineComponent({
     disableHoverableContent: { type: Boolean },
     disableClosingTrigger: { type: Boolean },
     disabled: { type: Boolean },
-    ignoreNonKeyboardFocus: { type: Boolean }
+    ignoreNonKeyboardFocus: { type: Boolean },
   },
   setup(__props) {
     const props = __props;
@@ -50,16 +53,17 @@ const _sfc_main$B = /* @__PURE__ */ defineComponent({
         default: withCtx((_, _push2, _parent2, _scopeId) => {
           if (_push2) {
             ssrRenderSlot(_ctx.$slots, "default", {}, null, _push2, _parent2, _scopeId);
-          } else {
+          }
+          else {
             return [
-              renderSlot(_ctx.$slots, "default")
+              renderSlot(_ctx.$slots, "default"),
             ];
           }
         }),
-        _: 3
+        _: 3,
       }, _parent));
     };
-  }
+  },
 });
 const _sfc_setup$B = _sfc_main$B.setup;
 _sfc_main$B.setup = (props, ctx) => {
@@ -69,7 +73,7 @@ _sfc_main$B.setup = (props, ctx) => {
 };
 const __nuxt_component_0$8 = Object.assign(_sfc_main$B, { __name: "UiTooltipProvider" });
 const sideBarProviderStyles = tv({
-  base: "group/sidebar-wrapper flex min-h-svh w-full text-sidebar-foreground has-[[data-variant=inset]]:bg-sidebar"
+  base: "group/sidebar-wrapper flex min-h-svh w-full text-sidebar-foreground has-[[data-variant=inset]]:bg-sidebar",
 });
 const _sfc_main$A = /* @__PURE__ */ defineComponent({
   __name: "provider",
@@ -77,7 +81,7 @@ const _sfc_main$A = /* @__PURE__ */ defineComponent({
   props: {
     defaultOpen: { type: Boolean, default: true },
     open: { type: Boolean, default: void 0 },
-    class: {}
+    class: {},
   },
   emits: ["update:open"],
   setup(__props, { emit: __emit }) {
@@ -86,13 +90,13 @@ const _sfc_main$A = /* @__PURE__ */ defineComponent({
     const SIDEBAR_COOKIE = useCookie(SIDEBAR_COOKIE_NAME, {
       path: "/",
       maxAge: SIDEBAR_COOKIE_MAX_AGE,
-      default: () => false
+      default: () => false,
     });
     const isMobile = useMediaQuery("(max-width: 768px)");
     const openMobile = ref(false);
     const open = useVModel(props, "open", emits, {
       defaultValue: props.defaultOpen ? props.defaultOpen : SIDEBAR_COOKIE.value,
-      passive: props.open === void 0
+      passive: props.open === void 0,
     });
     function setOpen(value) {
       open.value = value;
@@ -118,7 +122,7 @@ const _sfc_main$A = /* @__PURE__ */ defineComponent({
       isMobile,
       openMobile,
       setOpenMobile,
-      toggleSidebar
+      toggleSidebar,
     });
     return (_ctx, _push, _parent, _attrs) => {
       const _component_UiTooltipProvider = __nuxt_component_0$8;
@@ -127,28 +131,29 @@ const _sfc_main$A = /* @__PURE__ */ defineComponent({
           if (_push2) {
             _push2(`<div style="${ssrRenderStyle({
               "--sidebar-width": "SIDEBAR_WIDTH" in _ctx ? _ctx.SIDEBAR_WIDTH : unref(SIDEBAR_WIDTH),
-              "--sidebar-width-icon": "SIDEBAR_WIDTH_ICON" in _ctx ? _ctx.SIDEBAR_WIDTH_ICON : unref(SIDEBAR_WIDTH_ICON)
+              "--sidebar-width-icon": "SIDEBAR_WIDTH_ICON" in _ctx ? _ctx.SIDEBAR_WIDTH_ICON : unref(SIDEBAR_WIDTH_ICON),
             })}" class="${ssrRenderClass(unref(sideBarProviderStyles)({ class: props.class }))}"${_scopeId}>`);
             ssrRenderSlot(_ctx.$slots, "default", { state: unref(state2), open: unref(open), setOpen, isMobile: unref(isMobile), openMobile: unref(openMobile), setOpenMobile, toggleSidebar }, null, _push2, _parent2, _scopeId);
             _push2(`</div>`);
-          } else {
+          }
+          else {
             return [
               createVNode("div", {
                 style: {
                   "--sidebar-width": "SIDEBAR_WIDTH" in _ctx ? _ctx.SIDEBAR_WIDTH : unref(SIDEBAR_WIDTH),
-                  "--sidebar-width-icon": "SIDEBAR_WIDTH_ICON" in _ctx ? _ctx.SIDEBAR_WIDTH_ICON : unref(SIDEBAR_WIDTH_ICON)
+                  "--sidebar-width-icon": "SIDEBAR_WIDTH_ICON" in _ctx ? _ctx.SIDEBAR_WIDTH_ICON : unref(SIDEBAR_WIDTH_ICON),
                 },
-                class: unref(sideBarProviderStyles)({ class: props.class })
+                class: unref(sideBarProviderStyles)({ class: props.class }),
               }, [
-                renderSlot(_ctx.$slots, "default", { state: unref(state2), open: unref(open), setOpen, isMobile: unref(isMobile), openMobile: unref(openMobile), setOpenMobile, toggleSidebar })
-              ], 6)
+                renderSlot(_ctx.$slots, "default", { state: unref(state2), open: unref(open), setOpen, isMobile: unref(isMobile), openMobile: unref(openMobile), setOpenMobile, toggleSidebar }),
+              ], 6),
             ];
           }
         }),
-        _: 3
+        _: 3,
       }, _parent));
     };
-  }
+  },
 });
 const _sfc_setup$A = _sfc_main$A.setup;
 _sfc_main$A.setup = (props, ctx) => {
@@ -163,7 +168,7 @@ const _sfc_main$z = /* @__PURE__ */ defineComponent({
   props: {
     open: { type: Boolean },
     defaultOpen: { type: Boolean },
-    modal: { type: Boolean }
+    modal: { type: Boolean },
   },
   emits: ["update:open"],
   setup(__props, { emit: __emit }) {
@@ -175,16 +180,17 @@ const _sfc_main$z = /* @__PURE__ */ defineComponent({
         default: withCtx((_, _push2, _parent2, _scopeId) => {
           if (_push2) {
             ssrRenderSlot(_ctx.$slots, "default", {}, null, _push2, _parent2, _scopeId);
-          } else {
+          }
+          else {
             return [
-              renderSlot(_ctx.$slots, "default")
+              renderSlot(_ctx.$slots, "default"),
             ];
           }
         }),
-        _: 3
+        _: 3,
       }, _parent));
     };
-  }
+  },
 });
 const _sfc_setup$z = _sfc_main$z.setup;
 _sfc_main$z.setup = (props, ctx) => {
@@ -200,7 +206,7 @@ const _sfc_main$y = /* @__PURE__ */ defineComponent({
     to: {},
     disabled: { type: Boolean },
     defer: { type: Boolean },
-    forceMount: { type: Boolean }
+    forceMount: { type: Boolean },
   },
   setup(__props) {
     const props = __props;
@@ -209,16 +215,17 @@ const _sfc_main$y = /* @__PURE__ */ defineComponent({
         default: withCtx((_, _push2, _parent2, _scopeId) => {
           if (_push2) {
             ssrRenderSlot(_ctx.$slots, "default", {}, null, _push2, _parent2, _scopeId);
-          } else {
+          }
+          else {
             return [
-              renderSlot(_ctx.$slots, "default")
+              renderSlot(_ctx.$slots, "default"),
             ];
           }
         }),
-        _: 3
+        _: 3,
       }, _parent));
     };
-  }
+  },
 });
 const _sfc_setup$y = _sfc_main$y.setup;
 _sfc_main$y.setup = (props, ctx) => {
@@ -234,20 +241,20 @@ const _sfc_main$x = /* @__PURE__ */ defineComponent({
     forceMount: { type: Boolean },
     asChild: { type: Boolean },
     as: {},
-    class: {}
+    class: {},
   },
   setup(__props) {
     const props = __props;
     const forwarded = reactiveOmit(props, "class");
     const styles = tv({
-      base: "fixed inset-0 z-50 bg-background/80 backdrop-blur-sm data-[state=closed]:animate-fadeOut data-[state=open]:animate-fadeIn"
+      base: "fixed inset-0 z-50 bg-background/80 backdrop-blur-sm data-[state=closed]:animate-fadeOut data-[state=open]:animate-fadeIn",
     });
     return (_ctx, _push, _parent, _attrs) => {
       _push(ssrRenderComponent(unref(DialogOverlay), mergeProps({
-        class: unref(styles)({ class: props.class })
+        class: unref(styles)({ class: props.class }),
       }, unref(forwarded), _attrs), null, _parent));
     };
-  }
+  },
 });
 const _sfc_setup$x = _sfc_main$x.setup;
 _sfc_main$x.setup = (props, ctx) => {
@@ -262,31 +269,32 @@ const _sfc_main$w = /* @__PURE__ */ defineComponent({
   props: {
     asChild: { type: Boolean },
     as: { default: "div" },
-    class: {}
+    class: {},
   },
   setup(__props) {
     const props = __props;
     const forwarded = reactiveOmit(props, "class");
     const styles = tv({
-      base: "flex flex-col space-y-2 text-center sm:text-left"
+      base: "flex flex-col space-y-2 text-center sm:text-left",
     });
     return (_ctx, _push, _parent, _attrs) => {
       _push(ssrRenderComponent(unref(Primitive), mergeProps({
-        class: unref(styles)({ class: props.class })
+        class: unref(styles)({ class: props.class }),
       }, unref(forwarded), _attrs), {
         default: withCtx((_, _push2, _parent2, _scopeId) => {
           if (_push2) {
             ssrRenderSlot(_ctx.$slots, "default", {}, null, _push2, _parent2, _scopeId);
-          } else {
+          }
+          else {
             return [
-              renderSlot(_ctx.$slots, "default")
+              renderSlot(_ctx.$slots, "default"),
             ];
           }
         }),
-        _: 3
+        _: 3,
       }, _parent));
     };
-  }
+  },
 });
 const _sfc_setup$w = _sfc_main$w.setup;
 _sfc_main$w.setup = (props, ctx) => {
@@ -302,35 +310,36 @@ const _sfc_main$v = /* @__PURE__ */ defineComponent({
     asChild: { type: Boolean },
     as: {},
     class: {},
-    title: {}
+    title: {},
   },
   setup(__props) {
     const props = __props;
     const forwarded = reactiveOmit(props, "class", "title");
     const styles = tv({
-      base: "text-lg font-semibold text-foreground"
+      base: "text-lg font-semibold text-foreground",
     });
     return (_ctx, _push, _parent, _attrs) => {
       _push(ssrRenderComponent(unref(DialogTitle), mergeProps({
-        class: unref(styles)({ class: props.class })
+        class: unref(styles)({ class: props.class }),
       }, unref(forwarded), _attrs), {
         default: withCtx((_, _push2, _parent2, _scopeId) => {
           if (_push2) {
             ssrRenderSlot(_ctx.$slots, "default", {}, () => {
               _push2(`${ssrInterpolate(__props.title)}`);
             }, _push2, _parent2, _scopeId);
-          } else {
+          }
+          else {
             return [
               renderSlot(_ctx.$slots, "default", {}, () => [
-                createTextVNode(toDisplayString(__props.title), 1)
-              ])
+                createTextVNode(toDisplayString(__props.title), 1),
+              ]),
             ];
           }
         }),
-        _: 3
+        _: 3,
       }, _parent));
     };
-  }
+  },
 });
 const _sfc_setup$v = _sfc_main$v.setup;
 _sfc_main$v.setup = (props, ctx) => {
@@ -346,35 +355,36 @@ const _sfc_main$u = /* @__PURE__ */ defineComponent({
     asChild: { type: Boolean },
     as: {},
     class: {},
-    description: {}
+    description: {},
   },
   setup(__props) {
     const props = __props;
     const forwarded = reactiveOmit(props, "class", "description");
     const styles = tv({
-      base: "text-sm text-muted-foreground"
+      base: "text-sm text-muted-foreground",
     });
     return (_ctx, _push, _parent, _attrs) => {
       _push(ssrRenderComponent(unref(DialogDescription), mergeProps({
-        class: unref(styles)({ class: props.class })
+        class: unref(styles)({ class: props.class }),
       }, unref(forwarded), _attrs), {
         default: withCtx((_, _push2, _parent2, _scopeId) => {
           if (_push2) {
             ssrRenderSlot(_ctx.$slots, "default", {}, () => {
               _push2(`${ssrInterpolate(__props.description)}`);
             }, _push2, _parent2, _scopeId);
-          } else {
+          }
+          else {
             return [
               renderSlot(_ctx.$slots, "default", {}, () => [
-                createTextVNode(toDisplayString(__props.description), 1)
-              ])
+                createTextVNode(toDisplayString(__props.description), 1),
+              ]),
             ];
           }
         }),
-        _: 3
+        _: 3,
       }, _parent));
     };
-  }
+  },
 });
 const _sfc_setup$u = _sfc_main$u.setup;
 _sfc_main$u.setup = (props, ctx) => {
@@ -388,7 +398,7 @@ const _sfc_main$t = /* @__PURE__ */ defineComponent({
   __ssrInlineRender: true,
   props: {
     asChild: { type: Boolean },
-    as: {}
+    as: {},
   },
   setup(__props) {
     const props = __props;
@@ -397,16 +407,17 @@ const _sfc_main$t = /* @__PURE__ */ defineComponent({
         default: withCtx((_, _push2, _parent2, _scopeId) => {
           if (_push2) {
             ssrRenderSlot(_ctx.$slots, "default", {}, null, _push2, _parent2, _scopeId);
-          } else {
+          }
+          else {
             return [
-              renderSlot(_ctx.$slots, "default")
+              renderSlot(_ctx.$slots, "default"),
             ];
           }
         }),
-        _: 3
+        _: 3,
       }, _parent));
     };
-  }
+  },
 });
 const _sfc_setup$t = _sfc_main$t.setup;
 _sfc_main$t.setup = (props, ctx) => {
@@ -429,7 +440,7 @@ const _sfc_main$s = /* @__PURE__ */ defineComponent({
     description: {},
     class: {},
     side: {},
-    to: {}
+    to: {},
   },
   emits: ["escapeKeyDown", "pointerDownOutside", "focusOutside", "interactOutside", "openAutoFocus", "closeAutoFocus"],
   setup(__props, { emit: __emit }) {
@@ -437,7 +448,7 @@ const _sfc_main$s = /* @__PURE__ */ defineComponent({
     const emits = __emit;
     const forwarded = useForwardPropsEmits(
       reactiveOmit(props, "icon", "title", "description", "class", "to", "side"),
-      emits
+      emits,
     );
     const styles = tv({
       base: "fixed z-50 gap-4 bg-background p-6 shadow-lg transition ease-in-out data-[state=closed]:duration-300 data-[state=open]:duration-500 data-[state=open]:animate-in data-[state=closed]:animate-out",
@@ -446,12 +457,12 @@ const _sfc_main$s = /* @__PURE__ */ defineComponent({
           top: "inset-x-0 top-0 w-full",
           bottom: "inset-x-0 bottom-0 w-full",
           left: "inset-y-0 left-0 h-full w-3/4 sm:max-w-sm",
-          right: "inset-y-0 right-0 h-full w-3/4 sm:max-w-sm"
-        }
+          right: "inset-y-0 right-0 h-full w-3/4 sm:max-w-sm",
+        },
       },
       defaultVariants: {
-        side: "left"
-      }
+        side: "left",
+      },
     });
     const transitionName = computed(() => `slide-${props.side || "left"}`);
     return (_ctx, _push, _parent, _attrs) => {
@@ -470,7 +481,7 @@ const _sfc_main$s = /* @__PURE__ */ defineComponent({
             }, _push2, _parent2, null + _scopeId, true);
             _push2(``);
             _push2(ssrRenderComponent(unref(DialogContent), mergeProps({
-              class: unref(styles)({ side: __props.side, class: props.class })
+              class: unref(styles)({ side: __props.side, class: props.class }),
             }, { ...unref(forwarded), ..._ctx.$attrs }), {
               default: withCtx((_2, _push3, _parent3, _scopeId2) => {
                 if (_push3) {
@@ -482,35 +493,42 @@ const _sfc_main$s = /* @__PURE__ */ defineComponent({
                             ssrRenderSlot(_ctx.$slots, "title", {}, () => {
                               if (__props.title) {
                                 _push4(ssrRenderComponent(_component_UiSheetTitle, { title: __props.title }, null, _parent4, _scopeId3));
-                              } else {
+                              }
+                              else {
                                 _push4(`<!---->`);
                               }
                             }, _push4, _parent4, _scopeId3);
                             ssrRenderSlot(_ctx.$slots, "description", {}, () => {
                               if (__props.description) {
                                 _push4(ssrRenderComponent(_component_UiSheetDescription, { description: __props.description }, null, _parent4, _scopeId3));
-                              } else {
+                              }
+                              else {
                                 _push4(`<!---->`);
                               }
                             }, _push4, _parent4, _scopeId3);
-                          } else {
+                          }
+                          else {
                             return [
                               renderSlot(_ctx.$slots, "title", {}, () => [
-                                __props.title ? (openBlock(), createBlock(_component_UiSheetTitle, {
-                                  key: 0,
-                                  title: __props.title
-                                }, null, 8, ["title"])) : createCommentVNode("", true)
+                                __props.title
+                                  ? (openBlock(), createBlock(_component_UiSheetTitle, {
+                                      key: 0,
+                                      title: __props.title,
+                                    }, null, 8, ["title"]))
+                                  : createCommentVNode("", true),
                               ], true),
                               renderSlot(_ctx.$slots, "description", {}, () => [
-                                __props.description ? (openBlock(), createBlock(_component_UiSheetDescription, {
-                                  key: 0,
-                                  description: __props.description
-                                }, null, 8, ["description"])) : createCommentVNode("", true)
-                              ], true)
+                                __props.description
+                                  ? (openBlock(), createBlock(_component_UiSheetDescription, {
+                                      key: 0,
+                                      description: __props.description,
+                                    }, null, 8, ["description"]))
+                                  : createCommentVNode("", true),
+                              ], true),
                             ];
                           }
                         }),
-                        _: 3
+                        _: 3,
                       }, _parent3, _scopeId2));
                     }, _push3, _parent3, _scopeId2);
                     ssrRenderSlot(_ctx.$slots, "content", {}, null, _push3, _parent3, _scopeId2);
@@ -519,40 +537,46 @@ const _sfc_main$s = /* @__PURE__ */ defineComponent({
                   ssrRenderSlot(_ctx.$slots, "close", {}, () => {
                     _push3(ssrRenderComponent(_component_UiSheetClose, { icon: __props.icon }, null, _parent3, _scopeId2));
                   }, _push3, _parent3, _scopeId2);
-                } else {
+                }
+                else {
                   return [
                     renderSlot(_ctx.$slots, "default", {}, () => [
                       renderSlot(_ctx.$slots, "header", {}, () => [
                         createVNode(_component_UiSheetHeader, null, {
                           default: withCtx(() => [
                             renderSlot(_ctx.$slots, "title", {}, () => [
-                              __props.title ? (openBlock(), createBlock(_component_UiSheetTitle, {
-                                key: 0,
-                                title: __props.title
-                              }, null, 8, ["title"])) : createCommentVNode("", true)
+                              __props.title
+                                ? (openBlock(), createBlock(_component_UiSheetTitle, {
+                                    key: 0,
+                                    title: __props.title,
+                                  }, null, 8, ["title"]))
+                                : createCommentVNode("", true),
                             ], true),
                             renderSlot(_ctx.$slots, "description", {}, () => [
-                              __props.description ? (openBlock(), createBlock(_component_UiSheetDescription, {
-                                key: 0,
-                                description: __props.description
-                              }, null, 8, ["description"])) : createCommentVNode("", true)
-                            ], true)
+                              __props.description
+                                ? (openBlock(), createBlock(_component_UiSheetDescription, {
+                                    key: 0,
+                                    description: __props.description,
+                                  }, null, 8, ["description"]))
+                                : createCommentVNode("", true),
+                            ], true),
                           ]),
-                          _: 3
-                        })
+                          _: 3,
+                        }),
                       ], true),
                       renderSlot(_ctx.$slots, "content", {}, void 0, true),
-                      renderSlot(_ctx.$slots, "footer", {}, void 0, true)
+                      renderSlot(_ctx.$slots, "footer", {}, void 0, true),
                     ], true),
                     renderSlot(_ctx.$slots, "close", {}, () => [
-                      createVNode(_component_UiSheetClose, { icon: __props.icon }, null, 8, ["icon"])
-                    ], true)
+                      createVNode(_component_UiSheetClose, { icon: __props.icon }, null, 8, ["icon"]),
+                    ], true),
                   ];
                 }
               }),
-              _: 3
+              _: 3,
             }, _parent2, _scopeId));
-          } else {
+          }
+          else {
             return [
               createVNode(Transition, {
                 "enter-active-class": "transition-opacity duration-300 ease-out",
@@ -560,19 +584,19 @@ const _sfc_main$s = /* @__PURE__ */ defineComponent({
                 "enter-to-class": "opacity-100",
                 "leave-active-class": "transition-opacity duration-200 ease-in",
                 "leave-from-class": "opacity-100",
-                "leave-to-class": "opacity-0"
+                "leave-to-class": "opacity-0",
               }, {
                 default: withCtx(() => [
                   renderSlot(_ctx.$slots, "overlay", {}, () => [
-                    createVNode(_component_UiSheetOverlay)
-                  ], true)
+                    createVNode(_component_UiSheetOverlay),
+                  ], true),
                 ]),
-                _: 3
+                _: 3,
               }),
               createVNode(Transition, { name: unref(transitionName) }, {
                 default: withCtx(() => [
                   createVNode(unref(DialogContent), mergeProps({
-                    class: unref(styles)({ side: __props.side, class: props.class })
+                    class: unref(styles)({ side: __props.side, class: props.class }),
                   }, { ...unref(forwarded), ..._ctx.$attrs }), {
                     default: withCtx(() => [
                       renderSlot(_ctx.$slots, "default", {}, () => [
@@ -580,40 +604,44 @@ const _sfc_main$s = /* @__PURE__ */ defineComponent({
                           createVNode(_component_UiSheetHeader, null, {
                             default: withCtx(() => [
                               renderSlot(_ctx.$slots, "title", {}, () => [
-                                __props.title ? (openBlock(), createBlock(_component_UiSheetTitle, {
-                                  key: 0,
-                                  title: __props.title
-                                }, null, 8, ["title"])) : createCommentVNode("", true)
+                                __props.title
+                                  ? (openBlock(), createBlock(_component_UiSheetTitle, {
+                                      key: 0,
+                                      title: __props.title,
+                                    }, null, 8, ["title"]))
+                                  : createCommentVNode("", true),
                               ], true),
                               renderSlot(_ctx.$slots, "description", {}, () => [
-                                __props.description ? (openBlock(), createBlock(_component_UiSheetDescription, {
-                                  key: 0,
-                                  description: __props.description
-                                }, null, 8, ["description"])) : createCommentVNode("", true)
-                              ], true)
+                                __props.description
+                                  ? (openBlock(), createBlock(_component_UiSheetDescription, {
+                                      key: 0,
+                                      description: __props.description,
+                                    }, null, 8, ["description"]))
+                                  : createCommentVNode("", true),
+                              ], true),
                             ]),
-                            _: 3
-                          })
+                            _: 3,
+                          }),
                         ], true),
                         renderSlot(_ctx.$slots, "content", {}, void 0, true),
-                        renderSlot(_ctx.$slots, "footer", {}, void 0, true)
+                        renderSlot(_ctx.$slots, "footer", {}, void 0, true),
                       ], true),
                       renderSlot(_ctx.$slots, "close", {}, () => [
-                        createVNode(_component_UiSheetClose, { icon: __props.icon }, null, 8, ["icon"])
-                      ], true)
+                        createVNode(_component_UiSheetClose, { icon: __props.icon }, null, 8, ["icon"]),
+                      ], true),
                     ]),
-                    _: 3
-                  }, 16, ["class"])
+                    _: 3,
+                  }, 16, ["class"]),
                 ]),
-                _: 3
-              }, 8, ["name"])
+                _: 3,
+              }, 8, ["name"]),
             ];
           }
         }),
-        _: 3
+        _: 3,
       }, _parent));
     };
-  }
+  },
 });
 const _sfc_setup$s = _sfc_main$s.setup;
 _sfc_main$s.setup = (props, ctx) => {
@@ -629,42 +657,42 @@ const sideBarStyles = tv({
     mobileInner: "flex h-full w-full flex-col",
     sideBarWrapper: "relative h-svh w-[var(--sidebar-width)] bg-transparent transition-[width] duration-200 ease-linear group-data-[collapsible=offcanvas]:w-0 group-data-[side=right]:rotate-180",
     sideBarWrapper2: "fixed inset-y-0 z-10 hidden h-svh w-[var(--sidebar-width)] transition-[left,right,width] duration-200 ease-linear md:flex",
-    sideBarInner: "flex h-full w-full flex-col bg-dashboard-primary-50 group-data-[variant=floating]:rounded-lg group-data-[variant=floating]:border group-data-[variant=floating]:border-sidebar-border group-data-[variant=floating]:shadow"
+    sideBarInner: "flex h-full w-full flex-col bg-dashboard-primary-50 group-data-[variant=floating]:rounded-lg group-data-[variant=floating]:border group-data-[variant=floating]:border-sidebar-border group-data-[variant=floating]:shadow",
   },
   variants: {
     side: {
       left: {
-        sideBarWrapper2: "left-0 group-data-[collapsible=offcanvas]:left-[calc(var(--sidebar-width)*-1)]"
+        sideBarWrapper2: "left-0 group-data-[collapsible=offcanvas]:left-[calc(var(--sidebar-width)*-1)]",
       },
       right: {
-        sideBarWrapper2: "right-0 group-data-[collapsible=offcanvas]:right-[calc(var(--sidebar-width)*-1)]"
-      }
+        sideBarWrapper2: "right-0 group-data-[collapsible=offcanvas]:right-[calc(var(--sidebar-width)*-1)]",
+      },
     },
     variant: {
       sidebar: {
         sideBarWrapper: "group-data-[collapsible=icon]:w-[--sidebar-width-icon]",
-        sideBarWrapper2: "group-data-[collapsible=icon]:w-[--sidebar-width-icon] group-data-[side=left]:border-r group-data-[side=right]:border-l border-dashboard-neutral-100/50"
+        sideBarWrapper2: "group-data-[collapsible=icon]:w-[--sidebar-width-icon] group-data-[side=left]:border-r group-data-[side=right]:border-l border-dashboard-neutral-100/50",
       },
       floating: {
         sideBarWrapper: "group-data-[collapsible=icon]:w-[calc(var(--sidebar-width-icon)_+_theme(spacing.4))]",
-        sideBarWrapper2: "p-2 group-data-[collapsible=icon]:w-[calc(var(--sidebar-width-icon)_+_theme(spacing.4)_+2px)]"
+        sideBarWrapper2: "p-2 group-data-[collapsible=icon]:w-[calc(var(--sidebar-width-icon)_+_theme(spacing.4)_+2px)]",
       },
       inset: {
         sideBarWrapper: "group-data-[collapsible=icon]:w-[calc(var(--sidebar-width-icon)_+_theme(spacing.4))]",
-        sideBarWrapper2: "p-2 group-data-[collapsible=icon]:w-[calc(var(--sidebar-width-icon)_+_theme(spacing.4)_+2px)]"
-      }
+        sideBarWrapper2: "p-2 group-data-[collapsible=icon]:w-[calc(var(--sidebar-width-icon)_+_theme(spacing.4)_+2px)]",
+      },
     },
     collapsible: {
       offcanvas: {},
       icon: {},
-      none: {}
-    }
+      none: {},
+    },
   },
   defaultVariants: {
     side: "left",
     variant: "sidebar",
-    collapsible: "offcanvas"
-  }
+    collapsible: "offcanvas",
+  },
 });
 const _sfc_main$r = /* @__PURE__ */ defineComponent({
   ...{ inheritAttrs: false },
@@ -674,7 +702,7 @@ const _sfc_main$r = /* @__PURE__ */ defineComponent({
     side: { default: "left" },
     variant: { default: "sidebar" },
     collapsible: { default: "offcanvas" },
-    class: {}
+    class: {},
   },
   setup(__props) {
     const props = __props;
@@ -687,29 +715,31 @@ const _sfc_main$r = /* @__PURE__ */ defineComponent({
       const _component_UiSheetDescription = __nuxt_component_4$2;
       if (__props.collapsible === "none") {
         _push(`<div${ssrRenderAttrs(mergeProps({
-          class: unref(sideBarStyles)().collapsible({ class: props.class })
+          class: unref(sideBarStyles)().collapsible({ class: props.class }),
         }, _ctx.$attrs, _attrs))}>`);
         ssrRenderSlot(_ctx.$slots, "default", {}, null, _push, _parent);
         _push(`</div>`);
-      } else if (unref(isMobile)) {
+      }
+      else if (unref(isMobile)) {
         _push(ssrRenderComponent(_component_UiSheet, mergeProps({ open: unref(openMobile) }, _ctx.$attrs, { "onUpdate:open": unref(setOpenMobile) }, _attrs), {
           default: withCtx((_, _push2, _parent2, _scopeId) => {
             if (_push2) {
               _push2(ssrRenderComponent(_component_UiSheetContent, {
                 "data-sidebar": "sidebar",
                 "data-mobile": "true",
-                side: __props.side,
-                class: unref(sideBarStyles)().mobileSheet(),
-                style: {
-                  "--sidebar-width": "SIDEBAR_WIDTH_MOBILE" in _ctx ? _ctx.SIDEBAR_WIDTH_MOBILE : unref(SIDEBAR_WIDTH_MOBILE)
-                }
+                "side": __props.side,
+                "class": unref(sideBarStyles)().mobileSheet(),
+                "style": {
+                  "--sidebar-width": "SIDEBAR_WIDTH_MOBILE" in _ctx ? _ctx.SIDEBAR_WIDTH_MOBILE : unref(SIDEBAR_WIDTH_MOBILE),
+                },
               }, {
                 overlay: withCtx((_2, _push3, _parent3, _scopeId2) => {
                   if (_push3) {
                     _push3(ssrRenderComponent(_component_UiSheetOverlay, { class: "bg-black/50" }, null, _parent3, _scopeId2));
-                  } else {
+                  }
+                  else {
                     return [
-                      createVNode(_component_UiSheetOverlay, { class: "bg-black/50" })
+                      createVNode(_component_UiSheetOverlay, { class: "bg-black/50" }),
                     ];
                   }
                 }),
@@ -722,142 +752,148 @@ const _sfc_main$r = /* @__PURE__ */ defineComponent({
                             default: withCtx((_4, _push5, _parent5, _scopeId4) => {
                               if (_push5) {
                                 _push5(`Mobile Sidebar`);
-                              } else {
+                              }
+                              else {
                                 return [
-                                  createTextVNode("Mobile Sidebar")
+                                  createTextVNode("Mobile Sidebar"),
                                 ];
                               }
                             }),
-                            _: 1
+                            _: 1,
                           }, _parent4, _scopeId3));
                           _push4(ssrRenderComponent(_component_UiSheetDescription, null, {
                             default: withCtx((_4, _push5, _parent5, _scopeId4) => {
                               if (_push5) {
                                 _push5(` This is the mobile sidebar. You can use this to navigate the site. `);
-                              } else {
+                              }
+                              else {
                                 return [
-                                  createTextVNode(" This is the mobile sidebar. You can use this to navigate the site. ")
+                                  createTextVNode(" This is the mobile sidebar. You can use this to navigate the site. "),
                                 ];
                               }
                             }),
-                            _: 1
+                            _: 1,
                           }, _parent4, _scopeId3));
-                        } else {
+                        }
+                        else {
                           return [
                             createVNode(_component_UiSheetTitle, null, {
                               default: withCtx(() => [
-                                createTextVNode("Mobile Sidebar")
+                                createTextVNode("Mobile Sidebar"),
                               ]),
-                              _: 1
+                              _: 1,
                             }),
                             createVNode(_component_UiSheetDescription, null, {
                               default: withCtx(() => [
-                                createTextVNode(" This is the mobile sidebar. You can use this to navigate the site. ")
+                                createTextVNode(" This is the mobile sidebar. You can use this to navigate the site. "),
                               ]),
-                              _: 1
-                            })
+                              _: 1,
+                            }),
                           ];
                         }
                       }),
-                      _: 1
+                      _: 1,
                     }, _parent3, _scopeId2));
                     _push3(`<div class="${ssrRenderClass(unref(sideBarStyles)().mobileInner())}"${_scopeId2}>`);
                     ssrRenderSlot(_ctx.$slots, "default", {}, null, _push3, _parent3, _scopeId2);
                     _push3(`</div>`);
-                  } else {
+                  }
+                  else {
                     return [
                       createVNode(unref(VisuallyHidden), null, {
                         default: withCtx(() => [
                           createVNode(_component_UiSheetTitle, null, {
                             default: withCtx(() => [
-                              createTextVNode("Mobile Sidebar")
+                              createTextVNode("Mobile Sidebar"),
                             ]),
-                            _: 1
+                            _: 1,
                           }),
                           createVNode(_component_UiSheetDescription, null, {
                             default: withCtx(() => [
-                              createTextVNode(" This is the mobile sidebar. You can use this to navigate the site. ")
+                              createTextVNode(" This is the mobile sidebar. You can use this to navigate the site. "),
                             ]),
-                            _: 1
-                          })
+                            _: 1,
+                          }),
                         ]),
-                        _: 1
+                        _: 1,
                       }),
                       createVNode("div", {
-                        class: unref(sideBarStyles)().mobileInner()
+                        class: unref(sideBarStyles)().mobileInner(),
                       }, [
-                        renderSlot(_ctx.$slots, "default")
-                      ], 2)
+                        renderSlot(_ctx.$slots, "default"),
+                      ], 2),
                     ];
                   }
                 }),
-                _: 3
+                _: 3,
               }, _parent2, _scopeId));
-            } else {
+            }
+            else {
               return [
                 createVNode(_component_UiSheetContent, {
                   "data-sidebar": "sidebar",
                   "data-mobile": "true",
-                  side: __props.side,
-                  class: unref(sideBarStyles)().mobileSheet(),
-                  style: {
-                    "--sidebar-width": "SIDEBAR_WIDTH_MOBILE" in _ctx ? _ctx.SIDEBAR_WIDTH_MOBILE : unref(SIDEBAR_WIDTH_MOBILE)
-                  }
+                  "side": __props.side,
+                  "class": unref(sideBarStyles)().mobileSheet(),
+                  "style": {
+                    "--sidebar-width": "SIDEBAR_WIDTH_MOBILE" in _ctx ? _ctx.SIDEBAR_WIDTH_MOBILE : unref(SIDEBAR_WIDTH_MOBILE),
+                  },
                 }, {
                   overlay: withCtx(() => [
-                    createVNode(_component_UiSheetOverlay, { class: "bg-black/50" })
+                    createVNode(_component_UiSheetOverlay, { class: "bg-black/50" }),
                   ]),
                   default: withCtx(() => [
                     createVNode(unref(VisuallyHidden), null, {
                       default: withCtx(() => [
                         createVNode(_component_UiSheetTitle, null, {
                           default: withCtx(() => [
-                            createTextVNode("Mobile Sidebar")
+                            createTextVNode("Mobile Sidebar"),
                           ]),
-                          _: 1
+                          _: 1,
                         }),
                         createVNode(_component_UiSheetDescription, null, {
                           default: withCtx(() => [
-                            createTextVNode(" This is the mobile sidebar. You can use this to navigate the site. ")
+                            createTextVNode(" This is the mobile sidebar. You can use this to navigate the site. "),
                           ]),
-                          _: 1
-                        })
+                          _: 1,
+                        }),
                       ]),
-                      _: 1
+                      _: 1,
                     }),
                     createVNode("div", {
-                      class: unref(sideBarStyles)().mobileInner()
+                      class: unref(sideBarStyles)().mobileInner(),
                     }, [
-                      renderSlot(_ctx.$slots, "default")
-                    ], 2)
+                      renderSlot(_ctx.$slots, "default"),
+                    ], 2),
                   ]),
-                  _: 3
-                }, 8, ["side", "class", "style"])
+                  _: 3,
+                }, 8, ["side", "class", "style"]),
               ];
             }
           }),
-          _: 3
+          _: 3,
         }, _parent));
-      } else {
+      }
+      else {
         _push(`<div${ssrRenderAttrs(mergeProps({
-          class: "group peer hidden md:block",
+          "class": "group peer hidden md:block",
           "data-state": unref(state2),
           "data-collapsible": unref(state2) === "collapsed" ? __props.collapsible : "",
           "data-variant": __props.variant,
-          "data-side": __props.side
+          "data-side": __props.side,
         }, _attrs))}><div class="${ssrRenderClass(unref(sideBarStyles)().sideBarWrapper({ variant: __props.variant }))}"></div><div${ssrRenderAttrs(mergeProps({
           class: unref(sideBarStyles)().sideBarWrapper2({
             collapsible: __props.collapsible,
             side: __props.side,
             variant: __props.variant,
-            class: props.class
-          })
+            class: props.class,
+          }),
         }, _ctx.$attrs))}><div data-sidebar="sidebar" class="${ssrRenderClass(unref(sideBarStyles)().sideBarInner())}">`);
         ssrRenderSlot(_ctx.$slots, "default", {}, null, _push, _parent);
         _push(`</div></div></div>`);
       }
     };
-  }
+  },
 });
 const _sfc_setup$r = _sfc_main$r.setup;
 _sfc_main$r.setup = (props, ctx) => {
@@ -867,25 +903,25 @@ _sfc_main$r.setup = (props, ctx) => {
 };
 const __nuxt_component_2$2 = Object.assign(_sfc_main$r, { __name: "UiSidebar" });
 const sideBarContentStyles = tv({
-  base: "flex min-h-0 flex-1 flex-col gap-2 overflow-auto group-data-[collapsible=icon]:overflow-hidden border-r-dashboard-neutral-100/50 shadow"
+  base: "flex min-h-0 flex-1 flex-col gap-2 overflow-auto group-data-[collapsible=icon]:overflow-hidden border-r-dashboard-neutral-100/50 shadow",
 });
 const _sfc_main$q = /* @__PURE__ */ defineComponent({
   __name: "content",
   __ssrInlineRender: true,
   props: {
-    class: {}
+    class: {},
   },
   setup(__props) {
     const props = __props;
     return (_ctx, _push, _parent, _attrs) => {
       _push(`<div${ssrRenderAttrs(mergeProps({
         "data-sidebar": "content",
-        class: unref(sideBarContentStyles)({ class: props.class })
+        "class": unref(sideBarContentStyles)({ class: props.class }),
       }, _attrs))}>`);
       ssrRenderSlot(_ctx.$slots, "default", {}, null, _push, _parent);
       _push(`</div>`);
     };
-  }
+  },
 });
 const _sfc_setup$q = _sfc_main$q.setup;
 _sfc_main$q.setup = (props, ctx) => {
@@ -895,25 +931,25 @@ _sfc_main$q.setup = (props, ctx) => {
 };
 const __nuxt_component_3$2 = Object.assign(_sfc_main$q, { __name: "UiSidebarContent" });
 const sideBarGroupStyles = tv({
-  base: "relative flex w-full min-w-0 flex-col p-2"
+  base: "relative flex w-full min-w-0 flex-col p-2",
 });
 const _sfc_main$p = /* @__PURE__ */ defineComponent({
   __name: "group",
   __ssrInlineRender: true,
   props: {
-    class: {}
+    class: {},
   },
   setup(__props) {
     const props = __props;
     return (_ctx, _push, _parent, _attrs) => {
       _push(`<div${ssrRenderAttrs(mergeProps({
         "data-sidebar": "group",
-        class: unref(sideBarGroupStyles)({ class: props.class })
+        "class": unref(sideBarGroupStyles)({ class: props.class }),
       }, _attrs))}>`);
       ssrRenderSlot(_ctx.$slots, "default", {}, null, _push, _parent);
       _push(`</div>`);
     };
-  }
+  },
 });
 const _sfc_setup$p = _sfc_main$p.setup;
 _sfc_main$p.setup = (props, ctx) => {
@@ -923,7 +959,7 @@ _sfc_main$p.setup = (props, ctx) => {
 };
 const __nuxt_component_4$1 = Object.assign(_sfc_main$p, { __name: "UiSidebarGroup" });
 const sideBarGroupLabelStyles = tv({
-  base: "flex h-12 shrink-0 items-center rounded-md px-2 text-xs font-medium text-sidebar-foreground/50 outline-none ring-sidebar-ring transition-all duration-200 ease-linear focus-visible:ring-2 group-data-[collapsible=icon]:-mt-8 group-data-[collapsible=icon]:opacity-0 [&>svg]:size-4 [&>svg]:shrink-0 text-xl font-bold text-app-primary"
+  base: "flex h-12 shrink-0 items-center rounded-md px-2 text-xs font-medium text-sidebar-foreground/50 outline-none ring-sidebar-ring transition-all duration-200 ease-linear focus-visible:ring-2 group-data-[collapsible=icon]:-mt-8 group-data-[collapsible=icon]:opacity-0 [&>svg]:size-4 [&>svg]:shrink-0 text-xl font-bold text-app-primary",
 });
 const _sfc_main$o = /* @__PURE__ */ defineComponent({
   __name: "group-label",
@@ -932,34 +968,35 @@ const _sfc_main$o = /* @__PURE__ */ defineComponent({
     asChild: { type: Boolean },
     as: {},
     class: {},
-    label: {}
+    label: {},
   },
   setup(__props) {
     const props = __props;
     return (_ctx, _push, _parent, _attrs) => {
       _push(ssrRenderComponent(unref(Primitive), mergeProps({
         "data-sidebar": "group-label",
-        as: __props.as,
+        "as": __props.as,
         "as-child": __props.asChild,
-        class: unref(sideBarGroupLabelStyles)({ class: props.class })
+        "class": unref(sideBarGroupLabelStyles)({ class: props.class }),
       }, _attrs), {
         default: withCtx((_, _push2, _parent2, _scopeId) => {
           if (_push2) {
             ssrRenderSlot(_ctx.$slots, "default", {}, () => {
               _push2(`${ssrInterpolate(props.label)}`);
             }, _push2, _parent2, _scopeId);
-          } else {
+          }
+          else {
             return [
               renderSlot(_ctx.$slots, "default", {}, () => [
-                createTextVNode(toDisplayString(props.label), 1)
-              ])
+                createTextVNode(toDisplayString(props.label), 1),
+              ]),
             ];
           }
         }),
-        _: 3
+        _: 3,
       }, _parent));
     };
-  }
+  },
 });
 const _sfc_setup$o = _sfc_main$o.setup;
 _sfc_main$o.setup = (props, ctx) => {
@@ -969,25 +1006,25 @@ _sfc_main$o.setup = (props, ctx) => {
 };
 const __nuxt_component_6 = Object.assign(_sfc_main$o, { __name: "UiSidebarGroupLabel" });
 const sideBarGroupContentStyles = tv({
-  base: "w-full text-sm"
+  base: "w-full text-sm",
 });
 const _sfc_main$n = /* @__PURE__ */ defineComponent({
   __name: "group-content",
   __ssrInlineRender: true,
   props: {
-    class: {}
+    class: {},
   },
   setup(__props) {
     const props = __props;
     return (_ctx, _push, _parent, _attrs) => {
       _push(`<div${ssrRenderAttrs(mergeProps({
         "data-sidebar": "group-content",
-        class: unref(sideBarGroupContentStyles)({ class: props.class })
+        "class": unref(sideBarGroupContentStyles)({ class: props.class }),
       }, _attrs))}>`);
       ssrRenderSlot(_ctx.$slots, "default", {}, null, _push, _parent);
       _push(`</div>`);
     };
-  }
+  },
 });
 const _sfc_setup$n = _sfc_main$n.setup;
 _sfc_main$n.setup = (props, ctx) => {
@@ -997,26 +1034,26 @@ _sfc_main$n.setup = (props, ctx) => {
 };
 const __nuxt_component_7 = Object.assign(_sfc_main$n, { __name: "UiSidebarGroupContent" });
 const sideBarMenuStyles = tv({
-  base: "flex w-full min-w-0 flex-col gap-1"
+  base: "flex w-full min-w-0 flex-col gap-1",
 });
 const _sfc_main$m = /* @__PURE__ */ defineComponent({
   __name: "menu",
   __ssrInlineRender: true,
   props: {
-    class: {}
+    class: {},
   },
   setup(__props) {
     const props = __props;
     return (_ctx, _push, _parent, _attrs) => {
       _push(`<ul${ssrRenderAttrs(mergeProps({
         "data-sidebar": "menu",
-        class: unref(sideBarMenuStyles)({ class: props.class }),
-        style: { "--sidebar-accent": "#ceaa7c" }
+        "class": unref(sideBarMenuStyles)({ class: props.class }),
+        "style": { "--sidebar-accent": "#ceaa7c" },
       }, _attrs))}>`);
       ssrRenderSlot(_ctx.$slots, "default", {}, null, _push, _parent);
       _push(`</ul>`);
     };
-  }
+  },
 });
 const _sfc_setup$m = _sfc_main$m.setup;
 _sfc_main$m.setup = (props, ctx) => {
@@ -1026,25 +1063,25 @@ _sfc_main$m.setup = (props, ctx) => {
 };
 const __nuxt_component_0$4 = Object.assign(_sfc_main$m, { __name: "UiSidebarMenu" });
 const sideBarMenuItemStyles = tv({
-  base: "group/menu-item relative"
+  base: "group/menu-item relative",
 });
 const _sfc_main$l = /* @__PURE__ */ defineComponent({
   __name: "menu-item",
   __ssrInlineRender: true,
   props: {
-    class: {}
+    class: {},
   },
   setup(__props) {
     const props = __props;
     return (_ctx, _push, _parent, _attrs) => {
       _push(`<li${ssrRenderAttrs(mergeProps({
         "data-sidebar": "menu-item",
-        class: unref(sideBarMenuItemStyles)({ class: props.class })
+        "class": unref(sideBarMenuItemStyles)({ class: props.class }),
       }, _attrs))}>`);
       ssrRenderSlot(_ctx.$slots, "default", {}, null, _push, _parent);
       _push(`</li>`);
     };
-  }
+  },
 });
 const _sfc_setup$l = _sfc_main$l.setup;
 _sfc_main$l.setup = (props, ctx) => {
@@ -1062,7 +1099,7 @@ const _sfc_main$k = /* @__PURE__ */ defineComponent({
     isActive: { type: Boolean },
     class: {},
     asChild: { type: Boolean },
-    as: { default: "button" }
+    as: { default: "button" },
   },
   setup(__props) {
     const props = __props;
@@ -1071,23 +1108,24 @@ const _sfc_main$k = /* @__PURE__ */ defineComponent({
         "data-sidebar": "menu-button",
         "data-size": __props.size,
         "data-active": __props.isActive,
-        class: ("sidebarMenuButtonVariants" in _ctx ? _ctx.sidebarMenuButtonVariants : unref(sidebarMenuButtonVariants))({ variant: __props.variant, size: __props.size, class: props.class }),
-        as: __props.as,
-        "as-child": __props.asChild
+        "class": ("sidebarMenuButtonVariants" in _ctx ? _ctx.sidebarMenuButtonVariants : unref(sidebarMenuButtonVariants))({ variant: __props.variant, size: __props.size, class: props.class }),
+        "as": __props.as,
+        "as-child": __props.asChild,
       }, _ctx.$attrs, _attrs), {
         default: withCtx((_, _push2, _parent2, _scopeId) => {
           if (_push2) {
             ssrRenderSlot(_ctx.$slots, "default", {}, null, _push2, _parent2, _scopeId);
-          } else {
+          }
+          else {
             return [
-              renderSlot(_ctx.$slots, "default")
+              renderSlot(_ctx.$slots, "default"),
             ];
           }
         }),
-        _: 3
+        _: 3,
       }, _parent));
     };
-  }
+  },
 });
 const _sfc_setup$k = _sfc_main$k.setup;
 _sfc_main$k.setup = (props, ctx) => {
@@ -1108,7 +1146,7 @@ const _sfc_main$j = /* @__PURE__ */ defineComponent({
     disableClosingTrigger: { type: Boolean },
     disabled: { type: Boolean },
     ignoreNonKeyboardFocus: { type: Boolean },
-    skipDelayDuration: {}
+    skipDelayDuration: {},
   },
   emits: ["update:open"],
   setup(__props, { emit: __emit }) {
@@ -1127,35 +1165,37 @@ const _sfc_main$j = /* @__PURE__ */ defineComponent({
                     ssrRenderSlot(_ctx.$slots, "trigger", slotProps, null, _push3, _parent3, _scopeId2);
                     ssrRenderSlot(_ctx.$slots, "content", slotProps, null, _push3, _parent3, _scopeId2);
                   }, _push3, _parent3, _scopeId2);
-                } else {
+                }
+                else {
                   return [
                     renderSlot(_ctx.$slots, "default", slotProps, () => [
                       renderSlot(_ctx.$slots, "trigger", slotProps),
-                      renderSlot(_ctx.$slots, "content", slotProps)
-                    ])
+                      renderSlot(_ctx.$slots, "content", slotProps),
+                    ]),
                   ];
                 }
               }),
-              _: 3
+              _: 3,
             }, _parent2, _scopeId));
-          } else {
+          }
+          else {
             return [
               createVNode(unref(TooltipRoot), { ...unref(forwarded), ..._ctx.$attrs }, {
-                default: withCtx((slotProps) => [
+                default: withCtx(slotProps => [
                   renderSlot(_ctx.$slots, "default", slotProps, () => [
                     renderSlot(_ctx.$slots, "trigger", slotProps),
-                    renderSlot(_ctx.$slots, "content", slotProps)
-                  ])
+                    renderSlot(_ctx.$slots, "content", slotProps),
+                  ]),
                 ]),
-                _: 3
-              }, 16)
+                _: 3,
+              }, 16),
             ];
           }
         }),
-        _: 3
+        _: 3,
       }, _parent));
     };
-  }
+  },
 });
 const _sfc_setup$j = _sfc_main$j.setup;
 _sfc_main$j.setup = (props, ctx) => {
@@ -1170,7 +1210,7 @@ const _sfc_main$i = /* @__PURE__ */ defineComponent({
   props: {
     reference: {},
     asChild: { type: Boolean },
-    as: {}
+    as: {},
   },
   setup(__props) {
     const props = __props;
@@ -1179,16 +1219,17 @@ const _sfc_main$i = /* @__PURE__ */ defineComponent({
         default: withCtx((_, _push2, _parent2, _scopeId) => {
           if (_push2) {
             ssrRenderSlot(_ctx.$slots, "default", {}, null, _push2, _parent2, _scopeId);
-          } else {
+          }
+          else {
             return [
-              renderSlot(_ctx.$slots, "default")
+              renderSlot(_ctx.$slots, "default"),
             ];
           }
         }),
-        _: 3
+        _: 3,
       }, _parent));
     };
-  }
+  },
 });
 const _sfc_setup$i = _sfc_main$i.setup;
 _sfc_main$i.setup = (props, ctx) => {
@@ -1204,7 +1245,7 @@ const _sfc_main$h = /* @__PURE__ */ defineComponent({
     to: {},
     disabled: { type: Boolean },
     defer: { type: Boolean },
-    forceMount: { type: Boolean }
+    forceMount: { type: Boolean },
   },
   setup(__props) {
     const props = __props;
@@ -1213,16 +1254,17 @@ const _sfc_main$h = /* @__PURE__ */ defineComponent({
         default: withCtx((_, _push2, _parent2, _scopeId) => {
           if (_push2) {
             ssrRenderSlot(_ctx.$slots, "default", {}, null, _push2, _parent2, _scopeId);
-          } else {
+          }
+          else {
             return [
-              renderSlot(_ctx.$slots, "default")
+              renderSlot(_ctx.$slots, "default"),
             ];
           }
         }),
-        _: 3
+        _: 3,
       }, _parent));
     };
-  }
+  },
 });
 const _sfc_setup$h = _sfc_main$h.setup;
 _sfc_main$h.setup = (props, ctx) => {
@@ -1253,7 +1295,7 @@ const _sfc_main$g = /* @__PURE__ */ defineComponent({
     positionStrategy: {},
     updatePositionStrategy: {},
     to: {},
-    class: {}
+    class: {},
   },
   emits: ["escapeKeyDown", "pointerDownOutside"],
   setup(__props, { emit: __emit }) {
@@ -1261,7 +1303,7 @@ const _sfc_main$g = /* @__PURE__ */ defineComponent({
     const emits = __emit;
     const forwarded = useForwardPropsEmits(reactiveOmit(props, "class", "to"), emits);
     const styles = tv({
-      base: "z-50 overflow-hidden rounded-md border border-dashboard-neutral-100/60 bg-dashboard-neutral-50 px-3 py-1.5 text-sm text-popover-foreground shadow-md animate-in fade-in-0 zoom-in-95 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2"
+      base: "z-50 overflow-hidden rounded-md border border-dashboard-neutral-100/60 bg-dashboard-neutral-50 px-3 py-1.5 text-sm text-popover-foreground shadow-md animate-in fade-in-0 zoom-in-95 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2",
     });
     return (_ctx, _push, _parent, _attrs) => {
       const _component_UiTooltipPortal = __nuxt_component_0$2;
@@ -1269,36 +1311,38 @@ const _sfc_main$g = /* @__PURE__ */ defineComponent({
         default: withCtx((_, _push2, _parent2, _scopeId) => {
           if (_push2) {
             _push2(ssrRenderComponent(unref(TooltipContent), mergeProps({ ...unref(forwarded), ..._ctx.$attrs }, {
-              class: unref(styles)({ class: props.class })
+              class: unref(styles)({ class: props.class }),
             }), {
               default: withCtx((_2, _push3, _parent3, _scopeId2) => {
                 if (_push3) {
                   ssrRenderSlot(_ctx.$slots, "default", {}, null, _push3, _parent3, _scopeId2);
-                } else {
+                }
+                else {
                   return [
-                    renderSlot(_ctx.$slots, "default")
+                    renderSlot(_ctx.$slots, "default"),
                   ];
                 }
               }),
-              _: 3
+              _: 3,
             }, _parent2, _scopeId));
-          } else {
+          }
+          else {
             return [
               createVNode(unref(TooltipContent), mergeProps({ ...unref(forwarded), ..._ctx.$attrs }, {
-                class: unref(styles)({ class: props.class })
+                class: unref(styles)({ class: props.class }),
               }), {
                 default: withCtx(() => [
-                  renderSlot(_ctx.$slots, "default")
+                  renderSlot(_ctx.$slots, "default"),
                 ]),
-                _: 3
-              }, 16, ["class"])
+                _: 3,
+              }, 16, ["class"]),
             ];
           }
         }),
-        _: 3
+        _: 3,
       }, _parent));
     };
-  }
+  },
 });
 const _sfc_setup$g = _sfc_main$g.setup;
 _sfc_main$g.setup = (props, ctx) => {
@@ -1318,7 +1362,7 @@ const _sfc_main$f = /* @__PURE__ */ defineComponent({
     class: {},
     asChild: { type: Boolean },
     as: { default: "button" },
-    tooltip: {}
+    tooltip: {},
   },
   setup(__props) {
     const props = __props;
@@ -1337,15 +1381,17 @@ const _sfc_main$f = /* @__PURE__ */ defineComponent({
           default: withCtx((_, _push2, _parent2, _scopeId) => {
             if (_push2) {
               ssrRenderSlot(_ctx.$slots, "default", {}, null, _push2, _parent2, _scopeId);
-            } else {
+            }
+            else {
               return [
-                renderSlot(_ctx.$slots, "default")
+                renderSlot(_ctx.$slots, "default"),
               ];
             }
           }),
-          _: 3
+          _: 3,
         }, _parent));
-      } else {
+      }
+      else {
         _push(ssrRenderComponent(_component_UiTooltip, _attrs, {
           default: withCtx((_, _push2, _parent2, _scopeId) => {
             if (_push2) {
@@ -1356,82 +1402,91 @@ const _sfc_main$f = /* @__PURE__ */ defineComponent({
                       default: withCtx((_3, _push4, _parent4, _scopeId3) => {
                         if (_push4) {
                           ssrRenderSlot(_ctx.$slots, "default", {}, null, _push4, _parent4, _scopeId3);
-                        } else {
+                        }
+                        else {
                           return [
-                            renderSlot(_ctx.$slots, "default")
+                            renderSlot(_ctx.$slots, "default"),
                           ];
                         }
                       }),
-                      _: 3
+                      _: 3,
                     }, _parent3, _scopeId2));
-                  } else {
+                  }
+                  else {
                     return [
                       createVNode(_component_UiSidebarMenuButtonChild, { ...unref(delegatedProps), ..._ctx.$attrs }, {
                         default: withCtx(() => [
-                          renderSlot(_ctx.$slots, "default")
+                          renderSlot(_ctx.$slots, "default"),
                         ]),
-                        _: 3
-                      }, 16)
+                        _: 3,
+                      }, 16),
                     ];
                   }
                 }),
-                _: 3
+                _: 3,
               }, _parent2, _scopeId));
               _push2(ssrRenderComponent(_component_UiTooltipContent, {
                 side: "right",
                 align: "center",
-                hidden: unref(state2) !== "collapsed" || unref(isMobile)
+                hidden: unref(state2) !== "collapsed" || unref(isMobile),
               }, {
                 default: withCtx((_2, _push3, _parent3, _scopeId2) => {
                   if (_push3) {
                     if (typeof __props.tooltip === "string") {
                       _push3(`<!--[-->${ssrInterpolate(__props.tooltip)}<!--]-->`);
-                    } else {
+                    }
+                    else {
                       ssrRenderVNode(_push3, createVNode(resolveDynamicComponent(__props.tooltip), null, null), _parent3, _scopeId2);
                     }
-                  } else {
+                  }
+                  else {
                     return [
-                      typeof __props.tooltip === "string" ? (openBlock(), createBlock(Fragment, { key: 0 }, [
-                        createTextVNode(toDisplayString(__props.tooltip), 1)
-                      ], 64)) : (openBlock(), createBlock(resolveDynamicComponent(__props.tooltip), { key: 1 }))
+                      typeof __props.tooltip === "string"
+                        ? (openBlock(), createBlock(Fragment, { key: 0 }, [
+                            createTextVNode(toDisplayString(__props.tooltip), 1),
+                          ], 64))
+                        : (openBlock(), createBlock(resolveDynamicComponent(__props.tooltip), { key: 1 })),
                     ];
                   }
                 }),
-                _: 1
+                _: 1,
               }, _parent2, _scopeId));
-            } else {
+            }
+            else {
               return [
                 createVNode(_component_UiTooltipTrigger, { "as-child": "" }, {
                   default: withCtx(() => [
                     createVNode(_component_UiSidebarMenuButtonChild, { ...unref(delegatedProps), ..._ctx.$attrs }, {
                       default: withCtx(() => [
-                        renderSlot(_ctx.$slots, "default")
+                        renderSlot(_ctx.$slots, "default"),
                       ]),
-                      _: 3
-                    }, 16)
+                      _: 3,
+                    }, 16),
                   ]),
-                  _: 3
+                  _: 3,
                 }),
                 createVNode(_component_UiTooltipContent, {
                   side: "right",
                   align: "center",
-                  hidden: unref(state2) !== "collapsed" || unref(isMobile)
+                  hidden: unref(state2) !== "collapsed" || unref(isMobile),
                 }, {
                   default: withCtx(() => [
-                    typeof __props.tooltip === "string" ? (openBlock(), createBlock(Fragment, { key: 0 }, [
-                      createTextVNode(toDisplayString(__props.tooltip), 1)
-                    ], 64)) : (openBlock(), createBlock(resolveDynamicComponent(__props.tooltip), { key: 1 }))
+                    typeof __props.tooltip === "string"
+                      ? (openBlock(), createBlock(Fragment, { key: 0 }, [
+                          createTextVNode(toDisplayString(__props.tooltip), 1),
+                        ], 64))
+                      : (openBlock(), createBlock(resolveDynamicComponent(__props.tooltip), { key: 1 })),
                   ]),
-                  _: 1
-                }, 8, ["hidden"])
+                  _: 1,
+                }, 8, ["hidden"]),
               ];
             }
           }),
-          _: 3
+          _: 3,
         }, _parent));
       }
     };
-  }
+  },
 });
 const _sfc_setup$f = _sfc_main$f.setup;
 _sfc_main$f.setup = (props, ctx) => {
@@ -1451,13 +1506,13 @@ const _sfc_main$e = /* @__PURE__ */ defineComponent({
       {
         title: "Social Media",
         url: "/dashboard/social-media",
-        icon: "streamline-ultimate:corporate-social-media"
+        icon: "streamline-ultimate:corporate-social-media",
       },
       {
         title: "About Page",
         url: "/dashboard/about-page",
-        icon: "streamline-logos:about-me-logo-solid"
-      }
+        icon: "streamline-logos:about-me-logo-solid",
+      },
     ];
     const route = useRoute();
     function checkAriaCurrent(itemUrl, routePath) {
@@ -1483,7 +1538,7 @@ const _sfc_main$e = /* @__PURE__ */ defineComponent({
             _push2(`<!--[-->`);
             ssrRenderList(menuItems, (item) => {
               _push2(ssrRenderComponent(_component_UiSidebarMenuItem, {
-                key: item.title
+                key: item.title,
               }, {
                 default: withCtx((_2, _push3, _parent3, _scopeId2) => {
                   if (_push3) {
@@ -1491,111 +1546,115 @@ const _sfc_main$e = /* @__PURE__ */ defineComponent({
                       default: withCtx((_3, _push4, _parent4, _scopeId3) => {
                         if (_push4) {
                           _push4(ssrRenderComponent(_component_NuxtLink, {
-                            href: item.url,
-                            "aria-current": checkAriaCurrent(item.url, unref(route).path)
+                            "href": item.url,
+                            "aria-current": checkAriaCurrent(item.url, unref(route).path),
                           }, {
                             default: withCtx((_4, _push5, _parent5, _scopeId4) => {
                               if (_push5) {
                                 _push5(ssrRenderComponent(_component_Icon, {
                                   name: item.icon,
-                                  class: "text-app-secondary text-lg"
+                                  class: "text-app-secondary text-lg",
                                 }, null, _parent5, _scopeId4));
                                 _push5(`<span${_scopeId4}>${ssrInterpolate(item.title)}</span>`);
-                              } else {
+                              }
+                              else {
                                 return [
                                   createVNode(_component_Icon, {
                                     name: item.icon,
-                                    class: "text-app-secondary text-lg"
+                                    class: "text-app-secondary text-lg",
                                   }, null, 8, ["name"]),
-                                  createVNode("span", null, toDisplayString(item.title), 1)
+                                  createVNode("span", null, toDisplayString(item.title), 1),
                                 ];
                               }
                             }),
-                            _: 2
+                            _: 2,
                           }, _parent4, _scopeId3));
-                        } else {
+                        }
+                        else {
                           return [
                             createVNode(_component_NuxtLink, {
-                              href: item.url,
-                              "aria-current": checkAriaCurrent(item.url, unref(route).path)
+                              "href": item.url,
+                              "aria-current": checkAriaCurrent(item.url, unref(route).path),
                             }, {
                               default: withCtx(() => [
                                 createVNode(_component_Icon, {
                                   name: item.icon,
-                                  class: "text-app-secondary text-lg"
+                                  class: "text-app-secondary text-lg",
                                 }, null, 8, ["name"]),
-                                createVNode("span", null, toDisplayString(item.title), 1)
+                                createVNode("span", null, toDisplayString(item.title), 1),
                               ]),
-                              _: 2
-                            }, 1032, ["href", "aria-current"])
+                              _: 2,
+                            }, 1032, ["href", "aria-current"]),
                           ];
                         }
                       }),
-                      _: 2
+                      _: 2,
                     }, _parent3, _scopeId2));
-                  } else {
+                  }
+                  else {
                     return [
                       createVNode(_component_UiSidebarMenuButton, { "as-child": "" }, {
                         default: withCtx(() => [
                           createVNode(_component_NuxtLink, {
-                            href: item.url,
-                            "aria-current": checkAriaCurrent(item.url, unref(route).path)
+                            "href": item.url,
+                            "aria-current": checkAriaCurrent(item.url, unref(route).path),
                           }, {
                             default: withCtx(() => [
                               createVNode(_component_Icon, {
                                 name: item.icon,
-                                class: "text-app-secondary text-lg"
+                                class: "text-app-secondary text-lg",
                               }, null, 8, ["name"]),
-                              createVNode("span", null, toDisplayString(item.title), 1)
+                              createVNode("span", null, toDisplayString(item.title), 1),
                             ]),
-                            _: 2
-                          }, 1032, ["href", "aria-current"])
+                            _: 2,
+                          }, 1032, ["href", "aria-current"]),
                         ]),
-                        _: 2
-                      }, 1024)
+                        _: 2,
+                      }, 1024),
                     ];
                   }
                 }),
-                _: 2
+                _: 2,
               }, _parent2, _scopeId));
             });
             _push2(`<!--]-->`);
-          } else {
+          }
+          else {
             return [
               (openBlock(), createBlock(Fragment, null, renderList(menuItems, (item) => {
                 return createVNode(_component_UiSidebarMenuItem, {
-                  key: item.title
+                  key: item.title,
                 }, {
                   default: withCtx(() => [
                     createVNode(_component_UiSidebarMenuButton, { "as-child": "" }, {
                       default: withCtx(() => [
                         createVNode(_component_NuxtLink, {
-                          href: item.url,
-                          "aria-current": checkAriaCurrent(item.url, unref(route).path)
+                          "href": item.url,
+                          "aria-current": checkAriaCurrent(item.url, unref(route).path),
                         }, {
                           default: withCtx(() => [
                             createVNode(_component_Icon, {
                               name: item.icon,
-                              class: "text-app-secondary text-lg"
+                              class: "text-app-secondary text-lg",
                             }, null, 8, ["name"]),
-                            createVNode("span", null, toDisplayString(item.title), 1)
+                            createVNode("span", null, toDisplayString(item.title), 1),
                           ]),
-                          _: 2
-                        }, 1032, ["href", "aria-current"])
+                          _: 2,
+                        }, 1032, ["href", "aria-current"]),
                       ]),
-                      _: 2
-                    }, 1024)
+                      _: 2,
+                    }, 1024),
                   ]),
-                  _: 2
+                  _: 2,
                 }, 1024);
-              }), 64))
+              }), 64)),
             ];
           }
         }),
-        _: 1
+        _: 1,
       }, _parent));
     };
-  }
+  },
 });
 const _sfc_setup$e = _sfc_main$e.setup;
 _sfc_main$e.setup = (props, ctx) => {
@@ -1609,27 +1668,27 @@ const sideBarInsetStyles = tv({
   variants: {
     state: {
       expanded: "max-w-[calc(100%_-_var(--sidebar-width))] max-w-full",
-      collapsed: "max-w-full"
-    }
-  }
+      collapsed: "max-w-full",
+    },
+  },
 });
 const _sfc_main$d = /* @__PURE__ */ defineComponent({
   __name: "inset",
   __ssrInlineRender: true,
   props: {
-    class: {}
+    class: {},
   },
   setup(__props) {
     const props = __props;
     const { state: state2 } = useSidebar();
     return (_ctx, _push, _parent, _attrs) => {
       _push(`<main${ssrRenderAttrs(mergeProps({
-        class: unref(sideBarInsetStyles)({ class: props.class, state: unref(state2) })
+        class: unref(sideBarInsetStyles)({ class: props.class, state: unref(state2) }),
       }, _attrs))}>`);
       ssrRenderSlot(_ctx.$slots, "default", {}, null, _push, _parent);
       _push(`</main>`);
     };
-  }
+  },
 });
 const _sfc_setup$d = _sfc_main$d.setup;
 _sfc_main$d.setup = (props, ctx) => {
@@ -1645,7 +1704,7 @@ const _sfc_main$c = /* @__PURE__ */ defineComponent({
     asChild: { type: Boolean },
     as: { default: "header" },
     class: {},
-    sticky: { type: Boolean }
+    sticky: { type: Boolean },
   },
   setup(__props) {
     const props = __props;
@@ -1654,27 +1713,28 @@ const _sfc_main$c = /* @__PURE__ */ defineComponent({
       base: "z-20 border-b bg-background/90 backdrop-blur",
       variants: {
         sticky: {
-          true: "sticky top-0"
-        }
-      }
+          true: "sticky top-0",
+        },
+      },
     });
     return (_ctx, _push, _parent, _attrs) => {
       _push(ssrRenderComponent(unref(Primitive), mergeProps({
-        class: unref(styles)({ sticky: __props.sticky, class: props.class })
+        class: unref(styles)({ sticky: __props.sticky, class: props.class }),
       }, unref(forwarded), _attrs), {
         default: withCtx((_, _push2, _parent2, _scopeId) => {
           if (_push2) {
             ssrRenderSlot(_ctx.$slots, "default", {}, null, _push2, _parent2, _scopeId);
-          } else {
+          }
+          else {
             return [
-              renderSlot(_ctx.$slots, "default")
+              renderSlot(_ctx.$slots, "default"),
             ];
           }
         }),
-        _: 3
+        _: 3,
       }, _parent));
     };
-  }
+  },
 });
 const _sfc_setup$c = _sfc_main$c.setup;
 _sfc_main$c.setup = (props, ctx) => {
@@ -1689,31 +1749,32 @@ const _sfc_main$b = /* @__PURE__ */ defineComponent({
   props: {
     asChild: { type: Boolean },
     as: { default: "div" },
-    class: {}
+    class: {},
   },
   setup(__props) {
     const props = __props;
     const forwarded = reactiveOmit(props, "class");
     const styles = tv({
-      base: "mx-auto px-4"
+      base: "mx-auto px-4",
     });
     return (_ctx, _push, _parent, _attrs) => {
       _push(ssrRenderComponent(unref(Primitive), mergeProps({
-        class: unref(styles)({ class: props.class })
+        class: unref(styles)({ class: props.class }),
       }, unref(forwarded), _attrs), {
         default: withCtx((_, _push2, _parent2, _scopeId) => {
           if (_push2) {
             ssrRenderSlot(_ctx.$slots, "default", {}, null, _push2, _parent2, _scopeId);
-          } else {
+          }
+          else {
             return [
-              renderSlot(_ctx.$slots, "default")
+              renderSlot(_ctx.$slots, "default"),
             ];
           }
         }),
-        _: 3
+        _: 3,
       }, _parent));
     };
-  }
+  },
 });
 const _sfc_setup$b = _sfc_main$b.setup;
 _sfc_main$b.setup = (props, ctx) => {
@@ -1723,7 +1784,7 @@ _sfc_main$b.setup = (props, ctx) => {
 };
 const __nuxt_component_11 = Object.assign(_sfc_main$b, { __name: "UiContainer" });
 const sideBarTriggerStyles = tv({
-  base: "size-7"
+  base: "size-7",
 });
 const _sfc_main$a = /* @__PURE__ */ defineComponent({
   __name: "trigger",
@@ -1731,7 +1792,7 @@ const _sfc_main$a = /* @__PURE__ */ defineComponent({
   props: {
     icon: { default: "lucide:panel-left" },
     class: {},
-    label: { default: "Toggle Sidebar" }
+    label: { default: "Toggle Sidebar" },
   },
   setup(__props) {
     const props = __props;
@@ -1740,39 +1801,43 @@ const _sfc_main$a = /* @__PURE__ */ defineComponent({
       const _component_UiButton = __nuxt_component_0$a;
       const _component_Icon = __nuxt_component_0$b;
       _push(ssrRenderComponent(_component_UiButton, mergeProps({
-        title: __props.label,
+        "title": __props.label,
         "data-sidebar": "trigger",
-        variant: "ghost",
-        size: "icon",
-        class: unref(sideBarTriggerStyles)({ class: props.class }),
-        onClick: unref(toggleSidebar)
+        "variant": "ghost",
+        "size": "icon",
+        "class": unref(sideBarTriggerStyles)({ class: props.class }),
+        "onClick": unref(toggleSidebar),
       }, _attrs), {
         default: withCtx((_, _push2, _parent2, _scopeId) => {
           if (_push2) {
             ssrRenderSlot(_ctx.$slots, "default", { state: unref(state2) }, () => {
               if (__props.icon) {
                 _push2(ssrRenderComponent(_component_Icon, { name: __props.icon }, null, _parent2, _scopeId));
-              } else {
+              }
+              else {
                 _push2(`<!---->`);
               }
               _push2(`<span class="sr-only"${_scopeId}>${ssrInterpolate(__props.label)}</span>`);
             }, _push2, _parent2, _scopeId);
-          } else {
+          }
+          else {
             return [
               renderSlot(_ctx.$slots, "default", { state: unref(state2) }, () => [
-                __props.icon ? (openBlock(), createBlock(_component_Icon, {
-                  key: 0,
-                  name: __props.icon
-                }, null, 8, ["name"])) : createCommentVNode("", true),
-                createVNode("span", { class: "sr-only" }, toDisplayString(__props.label), 1)
-              ])
+                __props.icon
+                  ? (openBlock(), createBlock(_component_Icon, {
+                      key: 0,
+                      name: __props.icon,
+                    }, null, 8, ["name"]))
+                  : createCommentVNode("", true),
+                createVNode("span", { class: "sr-only" }, toDisplayString(__props.label), 1),
+              ]),
             ];
           }
         }),
-        _: 3
+        _: 3,
       }, _parent));
     };
-  }
+  },
 });
 const _sfc_setup$a = _sfc_main$a.setup;
 _sfc_main$a.setup = (props, ctx) => {
@@ -1789,7 +1854,7 @@ const _sfc_main$9 = /* @__PURE__ */ defineComponent({
     decorative: { type: Boolean },
     asChild: { type: Boolean },
     as: {},
-    class: {}
+    class: {},
   },
   setup(__props) {
     const props = __props;
@@ -1799,16 +1864,16 @@ const _sfc_main$9 = /* @__PURE__ */ defineComponent({
       variants: {
         orientation: {
           horizontal: "h-[1px] w-full",
-          vertical: "h-full w-[1px]"
-        }
-      }
+          vertical: "h-full w-[1px]",
+        },
+      },
     });
     return (_ctx, _push, _parent, _attrs) => {
       _push(ssrRenderComponent(unref(Separator), mergeProps(unref(forwarded), {
-        class: unref(styles)({ orientation: __props.orientation, class: props.class })
+        class: unref(styles)({ orientation: __props.orientation, class: props.class }),
       }, _attrs), null, _parent));
     };
-  }
+  },
 });
 const _sfc_setup$9 = _sfc_main$9.setup;
 _sfc_main$9.setup = (props, ctx) => {
@@ -1823,7 +1888,7 @@ const _sfc_main$8 = /* @__PURE__ */ defineComponent({
   props: {
     items: { default: () => [] },
     separator: { default: "heroicons:chevron-right" },
-    class: { default: void 0 }
+    class: { default: void 0 },
   },
   setup(__props) {
     const props = __props;
@@ -1831,13 +1896,13 @@ const _sfc_main$8 = /* @__PURE__ */ defineComponent({
       return index !== props?.items?.length - 1;
     }
     const styles = tv({
-      base: "flex w-full items-center gap-4 flex-1"
+      base: "flex w-full items-center gap-4 flex-1",
     });
     return (_ctx, _push, _parent, _attrs) => {
       const _component_Icon = __nuxt_component_0$b;
       const _component_NuxtLink = __nuxt_component_0$9;
       _push(`<div${ssrRenderAttrs(mergeProps({
-        class: unref(styles)({ class: props.class })
+        class: unref(styles)({ class: props.class }),
       }, _attrs))}><!--[-->`);
       ssrRenderList(__props.items, (item, i) => {
         _push(`<!--[-->`);
@@ -1845,45 +1910,48 @@ const _sfc_main$8 = /* @__PURE__ */ defineComponent({
           _push(`<div class="${ssrRenderClass([isNotLastItem(i) ? "hidden md:flex" : "flex", "items-center gap-3"])}"><div class="group flex items-center gap-2">`);
           ssrRenderSlot(_ctx.$slots, "crumbIcon", {
             item,
-            index: i
+            index: i,
           }, () => {
             if (item.icon) {
               _push(ssrRenderComponent(_component_Icon, {
                 name: item.icon,
                 class: [
-                  isNotLastItem(i) ? "text-muted-foreground group-hover:text-foreground" : "text-app-secondary"
-                ]
+                  isNotLastItem(i) ? "text-muted-foreground group-hover:text-foreground" : "text-app-secondary",
+                ],
               }, null, _parent));
-            } else {
+            }
+            else {
               _push(`<!---->`);
             }
           }, _push, _parent);
           ssrRenderSlot(_ctx.$slots, "link", {
             item,
             isNotLastItem,
-            index: i
+            index: i,
           }, () => {
             if (item.label) {
               _push(ssrRenderComponent(_component_NuxtLink, {
                 to: !item?.disabled ? item.link : "",
                 class: [[
                   item.link && !item.disabled && "underline-offset-2 group-hover:underline",
-                  isNotLastItem(i) ? "text-muted-foreground group-hover:text-foreground hidden md:inline-block" : "font-semibold text-app-secondary"
+                  isNotLastItem(i) ? "text-muted-foreground group-hover:text-foreground hidden md:inline-block" : "font-semibold text-app-secondary",
                 ], "text-sm text-foreground transition-colors"],
-                onClick: ($event) => item?.click?.()
+                onClick: $event => item?.click?.(),
               }, {
                 default: withCtx((_, _push2, _parent2, _scopeId) => {
                   if (_push2) {
                     _push2(`${ssrInterpolate(item.label)}`);
-                  } else {
+                  }
+                  else {
                     return [
-                      createTextVNode(toDisplayString(item.label), 1)
+                      createTextVNode(toDisplayString(item.label), 1),
                     ];
                   }
                 }),
-                _: 2
+                _: 2,
               }, _parent));
-            } else {
+            }
+            else {
               _push(`<!---->`);
             }
           }, _push, _parent);
@@ -1891,14 +1959,15 @@ const _sfc_main$8 = /* @__PURE__ */ defineComponent({
         }, _push, _parent);
         ssrRenderSlot(_ctx.$slots, "separator", {
           item,
-          index: i
+          index: i,
         }, () => {
           if (isNotLastItem(i)) {
             _push(ssrRenderComponent(_component_Icon, {
               name: __props.separator,
-              class: "h-3 w-3 text-muted-foreground !hidden md:!inline-block"
+              class: "h-3 w-3 text-muted-foreground !hidden md:!inline-block",
             }, null, _parent));
-          } else {
+          }
+          else {
             _push(`<!---->`);
           }
         }, _push, _parent);
@@ -1906,7 +1975,7 @@ const _sfc_main$8 = /* @__PURE__ */ defineComponent({
       });
       _push(`<!--]--></div>`);
     };
-  }
+  },
 });
 const _sfc_setup$8 = _sfc_main$8.setup;
 _sfc_main$8.setup = (props, ctx) => {
@@ -1922,7 +1991,7 @@ const _sfc_main$7 = /* @__PURE__ */ defineComponent({
     defaultOpen: { type: Boolean },
     open: { type: Boolean },
     dir: {},
-    modal: { type: Boolean }
+    modal: { type: Boolean },
   },
   emits: ["update:open"],
   setup(__props, { emit: __emit }) {
@@ -1934,16 +2003,17 @@ const _sfc_main$7 = /* @__PURE__ */ defineComponent({
         default: withCtx((_, _push2, _parent2, _scopeId) => {
           if (_push2) {
             ssrRenderSlot(_ctx.$slots, "default", {}, null, _push2, _parent2, _scopeId);
-          } else {
+          }
+          else {
             return [
-              renderSlot(_ctx.$slots, "default")
+              renderSlot(_ctx.$slots, "default"),
             ];
           }
         }),
-        _: 3
+        _: 3,
       }, _parent));
     };
-  }
+  },
 });
 const _sfc_setup$7 = _sfc_main$7.setup;
 _sfc_main$7.setup = (props, ctx) => {
@@ -1958,7 +2028,7 @@ const _sfc_main$6 = /* @__PURE__ */ defineComponent({
   props: {
     disabled: { type: Boolean },
     asChild: { type: Boolean },
-    as: {}
+    as: {},
   },
   setup(__props) {
     const props = __props;
@@ -1967,16 +2037,17 @@ const _sfc_main$6 = /* @__PURE__ */ defineComponent({
         default: withCtx((_, _push2, _parent2, _scopeId) => {
           if (_push2) {
             ssrRenderSlot(_ctx.$slots, "default", {}, null, _push2, _parent2, _scopeId);
-          } else {
+          }
+          else {
             return [
-              renderSlot(_ctx.$slots, "default")
+              renderSlot(_ctx.$slots, "default"),
             ];
           }
         }),
-        _: 3
+        _: 3,
       }, _parent));
     };
-  }
+  },
 });
 const _sfc_setup$6 = _sfc_main$6.setup;
 _sfc_main$6.setup = (props, ctx) => {
@@ -1992,7 +2063,7 @@ const _sfc_main$5 = /* @__PURE__ */ defineComponent({
     to: {},
     disabled: { type: Boolean },
     defer: { type: Boolean },
-    forceMount: { type: Boolean }
+    forceMount: { type: Boolean },
   },
   setup(__props) {
     const props = __props;
@@ -2001,16 +2072,17 @@ const _sfc_main$5 = /* @__PURE__ */ defineComponent({
         default: withCtx((_, _push2, _parent2, _scopeId) => {
           if (_push2) {
             ssrRenderSlot(_ctx.$slots, "default", {}, null, _push2, _parent2, _scopeId);
-          } else {
+          }
+          else {
             return [
-              renderSlot(_ctx.$slots, "default")
+              renderSlot(_ctx.$slots, "default"),
             ];
           }
         }),
-        _: 3
+        _: 3,
       }, _parent));
     };
-  }
+  },
 });
 const _sfc_setup$5 = _sfc_main$5.setup;
 _sfc_main$5.setup = (props, ctx) => {
@@ -2045,7 +2117,7 @@ const _sfc_main$4 = /* @__PURE__ */ defineComponent({
     reference: {},
     asChild: { type: Boolean },
     as: {},
-    class: {}
+    class: {},
   },
   emits: ["escapeKeyDown", "pointerDownOutside", "focusOutside", "interactOutside", "closeAutoFocus"],
   setup(__props, { emit: __emit }) {
@@ -2053,7 +2125,7 @@ const _sfc_main$4 = /* @__PURE__ */ defineComponent({
     const emits = __emit;
     const forwarded = useForwardPropsEmits(reactiveOmit(props, "class"), emits);
     const styles = tv({
-      base: "z-50 min-w-[8rem] overflow-hidden rounded-md border border-dashboard-neutral-100/60 bg-dashboard-neutral-50 p-1 text-accent-foreground shadow-md data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2"
+      base: "z-50 min-w-[8rem] overflow-hidden rounded-md border border-dashboard-neutral-100/60 bg-dashboard-neutral-50 p-1 text-accent-foreground shadow-md data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2",
     });
     return (_ctx, _push, _parent, _attrs) => {
       const _component_UiDropdownMenuPortal = __nuxt_component_0;
@@ -2061,36 +2133,38 @@ const _sfc_main$4 = /* @__PURE__ */ defineComponent({
         default: withCtx((_, _push2, _parent2, _scopeId) => {
           if (_push2) {
             _push2(ssrRenderComponent(unref(DropdownMenuContent), mergeProps({ ...unref(forwarded), ..._ctx.$attrs }, {
-              class: unref(styles)({ class: props.class })
+              class: unref(styles)({ class: props.class }),
             }), {
               default: withCtx((_2, _push3, _parent3, _scopeId2) => {
                 if (_push3) {
                   ssrRenderSlot(_ctx.$slots, "default", {}, null, _push3, _parent3, _scopeId2);
-                } else {
+                }
+                else {
                   return [
-                    renderSlot(_ctx.$slots, "default")
+                    renderSlot(_ctx.$slots, "default"),
                   ];
                 }
               }),
-              _: 3
+              _: 3,
             }, _parent2, _scopeId));
-          } else {
+          }
+          else {
             return [
               createVNode(unref(DropdownMenuContent), mergeProps({ ...unref(forwarded), ..._ctx.$attrs }, {
-                class: unref(styles)({ class: props.class })
+                class: unref(styles)({ class: props.class }),
               }), {
                 default: withCtx(() => [
-                  renderSlot(_ctx.$slots, "default")
+                  renderSlot(_ctx.$slots, "default"),
                 ]),
-                _: 3
-              }, 16, ["class"])
+                _: 3,
+              }, 16, ["class"]),
             ];
           }
         }),
-        _: 3
+        _: 3,
       }, _parent));
     };
-  }
+  },
 });
 const _sfc_setup$4 = _sfc_main$4.setup;
 _sfc_main$4.setup = (props, ctx) => {
@@ -2105,31 +2179,32 @@ const _sfc_main$3 = /* @__PURE__ */ defineComponent({
   props: {
     asChild: { type: Boolean },
     as: { default: "span" },
-    class: {}
+    class: {},
   },
   setup(__props) {
     const props = __props;
     const forwarded = reactiveOmit(props, "class");
     const styles = tv({
-      base: "ml-auto text-xs tracking-widest opacity-60"
+      base: "ml-auto text-xs tracking-widest opacity-60",
     });
     return (_ctx, _push, _parent, _attrs) => {
       _push(ssrRenderComponent(unref(Primitive), mergeProps({
-        class: unref(styles)({ class: props.class })
+        class: unref(styles)({ class: props.class }),
       }, unref(forwarded), _attrs), {
         default: withCtx((_, _push2, _parent2, _scopeId) => {
           if (_push2) {
             ssrRenderSlot(_ctx.$slots, "default", {}, null, _push2, _parent2, _scopeId);
-          } else {
+          }
+          else {
             return [
-              renderSlot(_ctx.$slots, "default")
+              renderSlot(_ctx.$slots, "default"),
             ];
           }
         }),
-        _: 3
+        _: 3,
       }, _parent));
     };
-  }
+  },
 });
 const _sfc_setup$3 = _sfc_main$3.setup;
 _sfc_main$3.setup = (props, ctx) => {
@@ -2150,7 +2225,7 @@ const _sfc_main$2 = /* @__PURE__ */ defineComponent({
     inset: { type: Boolean },
     shortcut: {},
     title: {},
-    icon: {}
+    icon: {},
   },
   emits: ["select"],
   setup(__props, { emit: __emit }) {
@@ -2158,21 +2233,21 @@ const _sfc_main$2 = /* @__PURE__ */ defineComponent({
     const emits = __emit;
     const forwarded = useForwardPropsEmits(
       reactiveOmit(props, "class", "inset", "shortcut", "title", "icon"),
-      emits
+      emits,
     );
     const styles = tv({
       base: "relative flex cursor-default select-none items-center gap-3 rounded-sm px-2 py-1.5 text-sm outline-none transition-colors focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
       variants: {
         inset: {
-          true: "pl-8"
-        }
-      }
+          true: "pl-8",
+        },
+      },
     });
     return (_ctx, _push, _parent, _attrs) => {
       const _component_Icon = __nuxt_component_0$b;
       const _component_UiDropdownMenuShortcut = __nuxt_component_1;
       _push(ssrRenderComponent(unref(DropdownMenuItem), mergeProps(unref(forwarded), {
-        class: unref(styles)({ inset: __props.inset, class: props.class })
+        class: unref(styles)({ inset: __props.inset, class: props.class }),
       }, _attrs), {
         default: withCtx((_, _push2, _parent2, _scopeId) => {
           if (_push2) {
@@ -2181,16 +2256,18 @@ const _sfc_main$2 = /* @__PURE__ */ defineComponent({
                 if (__props.icon) {
                   _push2(ssrRenderComponent(_component_Icon, {
                     name: __props.icon,
-                    class: "h-4 w-4"
+                    class: "h-4 w-4",
                   }, null, _parent2, _scopeId));
-                } else {
+                }
+                else {
                   _push2(`<!---->`);
                 }
               }, _push2, _parent2, _scopeId);
               ssrRenderSlot(_ctx.$slots, "title", {}, () => {
                 if (__props.title) {
                   _push2(`<span${_scopeId}>${ssrInterpolate(__props.title)}</span>`);
-                } else {
+                }
+                else {
                   _push2(`<!---->`);
                 }
               }, _push2, _parent2, _scopeId);
@@ -2201,47 +2278,54 @@ const _sfc_main$2 = /* @__PURE__ */ defineComponent({
                   default: withCtx((_2, _push3, _parent3, _scopeId2) => {
                     if (_push3) {
                       _push3(`${ssrInterpolate(__props.shortcut)}`);
-                    } else {
+                    }
+                    else {
                       return [
-                        createTextVNode(toDisplayString(__props.shortcut), 1)
+                        createTextVNode(toDisplayString(__props.shortcut), 1),
                       ];
                     }
                   }),
-                  _: 1
+                  _: 1,
                 }, _parent2, _scopeId));
-              } else {
+              }
+              else {
                 _push2(`<!---->`);
               }
             }, _push2, _parent2, _scopeId);
-          } else {
+          }
+          else {
             return [
               renderSlot(_ctx.$slots, "default", {}, () => [
                 renderSlot(_ctx.$slots, "icon", {}, () => [
-                  __props.icon ? (openBlock(), createBlock(_component_Icon, {
-                    key: 0,
-                    name: __props.icon,
-                    class: "h-4 w-4"
-                  }, null, 8, ["name"])) : createCommentVNode("", true)
+                  __props.icon
+                    ? (openBlock(), createBlock(_component_Icon, {
+                        key: 0,
+                        name: __props.icon,
+                        class: "h-4 w-4",
+                      }, null, 8, ["name"]))
+                    : createCommentVNode("", true),
                 ]),
                 renderSlot(_ctx.$slots, "title", {}, () => [
-                  __props.title ? (openBlock(), createBlock("span", { key: 0 }, toDisplayString(__props.title), 1)) : createCommentVNode("", true)
-                ])
+                  __props.title ? (openBlock(), createBlock("span", { key: 0 }, toDisplayString(__props.title), 1)) : createCommentVNode("", true),
+                ]),
               ]),
               renderSlot(_ctx.$slots, "shortcut", {}, () => [
-                __props.shortcut ? (openBlock(), createBlock(_component_UiDropdownMenuShortcut, { key: 0 }, {
-                  default: withCtx(() => [
-                    createTextVNode(toDisplayString(__props.shortcut), 1)
-                  ]),
-                  _: 1
-                })) : createCommentVNode("", true)
-              ])
+                __props.shortcut
+                  ? (openBlock(), createBlock(_component_UiDropdownMenuShortcut, { key: 0 }, {
+                      default: withCtx(() => [
+                        createTextVNode(toDisplayString(__props.shortcut), 1),
+                      ]),
+                      _: 1,
+                    }))
+                  : createCommentVNode("", true),
+              ]),
             ];
           }
         }),
-        _: 3
+        _: 3,
       }, _parent));
     };
-  }
+  },
 });
 const _sfc_setup$2 = _sfc_main$2.setup;
 _sfc_main$2.setup = (props, ctx) => {
@@ -2263,7 +2347,7 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
       authUser.value = {
         loading: false,
         error: false,
-        auth: null
+        auth: null,
       };
       router.push("/");
     }
@@ -2282,34 +2366,35 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
                   _push3(`<button type="button" class="inline-flex items-center space-x-2 w-[150px]"${_scopeId2}><img src="https://i.pravatar.cc/300" alt="Admin Avatar" width="40" height="40" class="w-10 h-10 rounded-full hover:ring-2 ring-dashboard-primary-50"${_scopeId2}><div class="text-sm text-dashboard-accent-50 flex items-center justify-between gap-1 flex-1"${_scopeId2}><p class="font-medium whitespace-nowrap max-w-[80px] text-ellipsis overflow-hidden"${_scopeId2}>${ssrInterpolate(unref(userAuthName)?.name)}</p>`);
                   _push3(ssrRenderComponent(_component_Icon, {
                     name: "mynaui:chevron-down",
-                    class: "inline-block"
+                    class: "inline-block",
                   }, null, _parent3, _scopeId2));
                   _push3(`</div></button>`);
-                } else {
+                }
+                else {
                   return [
                     createVNode("button", {
                       type: "button",
-                      class: "inline-flex items-center space-x-2 w-[150px]"
+                      class: "inline-flex items-center space-x-2 w-[150px]",
                     }, [
                       createVNode("img", {
                         src: "https://i.pravatar.cc/300",
                         alt: "Admin Avatar",
                         width: "40",
                         height: "40",
-                        class: "w-10 h-10 rounded-full hover:ring-2 ring-dashboard-primary-50"
+                        class: "w-10 h-10 rounded-full hover:ring-2 ring-dashboard-primary-50",
                       }),
                       createVNode("div", { class: "text-sm text-dashboard-accent-50 flex items-center justify-between gap-1 flex-1" }, [
                         createVNode("p", { class: "font-medium whitespace-nowrap max-w-[80px] text-ellipsis overflow-hidden" }, toDisplayString(unref(userAuthName)?.name), 1),
                         createVNode(_component_Icon, {
                           name: "mynaui:chevron-down",
-                          class: "inline-block"
-                        })
-                      ])
-                    ])
+                          class: "inline-block",
+                        }),
+                      ]),
+                    ]),
                   ];
                 }
               }),
-              _: 1
+              _: 1,
             }, _parent2, _scopeId));
             _push2(ssrRenderComponent(_component_UiDropdownMenuContent, { class: "w-48" }, {
               default: withCtx((_2, _push3, _parent3, _scopeId2) => {
@@ -2317,63 +2402,65 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
                   _push3(ssrRenderComponent(_component_UiDropdownMenuItem, {
                     title: "Sign out",
                     icon: "ph:sign-out",
-                    onSelect: handleSignOut
+                    onSelect: handleSignOut,
                   }, null, _parent3, _scopeId2));
-                } else {
+                }
+                else {
                   return [
                     createVNode(_component_UiDropdownMenuItem, {
                       title: "Sign out",
                       icon: "ph:sign-out",
-                      onSelect: handleSignOut
-                    })
+                      onSelect: handleSignOut,
+                    }),
                   ];
                 }
               }),
-              _: 1
+              _: 1,
             }, _parent2, _scopeId));
-          } else {
+          }
+          else {
             return [
               createVNode(_component_UiDropdownMenuTrigger, { "as-child": "" }, {
                 default: withCtx(() => [
                   createVNode("button", {
                     type: "button",
-                    class: "inline-flex items-center space-x-2 w-[150px]"
+                    class: "inline-flex items-center space-x-2 w-[150px]",
                   }, [
                     createVNode("img", {
                       src: "https://i.pravatar.cc/300",
                       alt: "Admin Avatar",
                       width: "40",
                       height: "40",
-                      class: "w-10 h-10 rounded-full hover:ring-2 ring-dashboard-primary-50"
+                      class: "w-10 h-10 rounded-full hover:ring-2 ring-dashboard-primary-50",
                     }),
                     createVNode("div", { class: "text-sm text-dashboard-accent-50 flex items-center justify-between gap-1 flex-1" }, [
                       createVNode("p", { class: "font-medium whitespace-nowrap max-w-[80px] text-ellipsis overflow-hidden" }, toDisplayString(unref(userAuthName)?.name), 1),
                       createVNode(_component_Icon, {
                         name: "mynaui:chevron-down",
-                        class: "inline-block"
-                      })
-                    ])
-                  ])
+                        class: "inline-block",
+                      }),
+                    ]),
+                  ]),
                 ]),
-                _: 1
+                _: 1,
               }),
               createVNode(_component_UiDropdownMenuContent, { class: "w-48" }, {
                 default: withCtx(() => [
                   createVNode(_component_UiDropdownMenuItem, {
                     title: "Sign out",
                     icon: "ph:sign-out",
-                    onSelect: handleSignOut
-                  })
+                    onSelect: handleSignOut,
+                  }),
                 ]),
-                _: 1
-              })
+                _: 1,
+              }),
             ];
           }
         }),
-        _: 1
+        _: 1,
       }, _parent));
     };
-  }
+  },
 });
 const _sfc_setup$1 = _sfc_main$1.setup;
 _sfc_main$1.setup = (props, ctx) => {
@@ -2385,7 +2472,7 @@ const __nuxt_component_15 = Object.assign(_sfc_main$1, { __name: "DashboardUserD
 const state = ref({
   isOpen: false,
   options: { message: "" },
-  resolve: null
+  resolve: null,
 });
 const pending = ref(false);
 function useConfirmDialog() {
@@ -2408,9 +2495,9 @@ function useConfirmDialog() {
           title: "Confirm Action",
           confirmText: "Confirm",
           cancelText: "Cancel",
-          ...options
+          ...options,
         },
-        resolve
+        resolve,
       };
     });
   };
@@ -2427,11 +2514,13 @@ function useConfirmDialog() {
           closeDialog();
         }
       }
-    } catch (err) {
+    }
+    catch (err) {
       toast.error(
-        err?.response?._data?.message || "Failed to confirm action."
+        err?.response?._data?.message || "Failed to confirm action.",
       );
-    } finally {
+    }
+    finally {
       pending.value = false;
     }
   };
@@ -2441,7 +2530,7 @@ function useConfirmDialog() {
       message: itemName ? `Are you sure you want to delete "${itemName}"? This action cannot be undone.` : "Are you sure you want to delete this item? This action cannot be undone.",
       confirmText: "Delete",
       cancelText: "Cancel",
-      onConfirm: deleteCallback
+      onConfirm: deleteCallback,
     });
   };
   return {
@@ -2454,7 +2543,7 @@ function useConfirmDialog() {
     handleCancel,
     closeDialog,
     // Preset methods
-    confirmDelete
+    confirmDelete,
   };
 }
 const _sfc_main = /* @__PURE__ */ defineComponent({
@@ -2466,22 +2555,22 @@ const _sfc_main = /* @__PURE__ */ defineComponent({
       meta: [
         {
           name: "description",
-          content: "Welcome to the official website of Aysia LinggarWati, where creativity meets elegance. Explore our portfolio and discover the essence of our work."
+          content: "Welcome to the official website of Aysia LinggarWati, where creativity meets elegance. Explore our portfolio and discover the essence of our work.",
         },
         {
           name: "keywords",
-          content: "Aysia LinggarWati, portfolio, creative, design, elegance"
+          content: "Aysia LinggarWati, portfolio, creative, design, elegance",
         },
         {
           name: "viewport",
-          content: "width=device-width, initial-scale=1"
-        }
-      ]
+          content: "width=device-width, initial-scale=1",
+        },
+      ],
     });
     useHead({
       htmlAttrs: {
-        class: "dashboard-layout"
-      }
+        class: "dashboard-layout",
+      },
     });
     const route = useRoute();
     const { state: confirmState, loading: confirmLoading, handleConfirm, handleCancel } = useConfirmDialog();
@@ -2513,7 +2602,7 @@ const _sfc_main = /* @__PURE__ */ defineComponent({
                 if (_push3) {
                   _push3(ssrRenderComponent(_component_UiNavbar, {
                     sticky: "",
-                    class: "bg-dashboard-neutral-50 border-b-dashboard-neutral-50 shadow"
+                    class: "bg-dashboard-neutral-50 border-b-dashboard-neutral-50 shadow",
                   }, {
                     default: withCtx((_3, _push4, _parent4, _scopeId3) => {
                       if (_push4) {
@@ -2523,57 +2612,60 @@ const _sfc_main = /* @__PURE__ */ defineComponent({
                               _push5(ssrRenderComponent(_component_UiSidebarTrigger, null, null, _parent5, _scopeId4));
                               _push5(ssrRenderComponent(_component_UiSeparator, {
                                 orientation: "vertical",
-                                class: "h-6/12 bg-dashboard-neutral-100/50"
+                                class: "h-6/12 bg-dashboard-neutral-100/50",
                               }, null, _parent5, _scopeId4));
                               _push5(ssrRenderComponent(_component_UiBreadcrumbs, {
-                                items: unref(route).meta?.crumbs || []
+                                items: unref(route).meta?.crumbs || [],
                               }, null, _parent5, _scopeId4));
                               _push5(ssrRenderComponent(_component_DashboardUserDropdown, null, null, _parent5, _scopeId4));
-                            } else {
+                            }
+                            else {
                               return [
                                 createVNode(_component_UiSidebarTrigger),
                                 createVNode(_component_UiSeparator, {
                                   orientation: "vertical",
-                                  class: "h-6/12 bg-dashboard-neutral-100/50"
+                                  class: "h-6/12 bg-dashboard-neutral-100/50",
                                 }),
                                 createVNode(_component_UiBreadcrumbs, {
-                                  items: unref(route).meta?.crumbs || []
+                                  items: unref(route).meta?.crumbs || [],
                                 }, null, 8, ["items"]),
-                                createVNode(_component_DashboardUserDropdown)
+                                createVNode(_component_DashboardUserDropdown),
                               ];
                             }
                           }),
-                          _: 1
+                          _: 1,
                         }, _parent4, _scopeId3));
-                      } else {
+                      }
+                      else {
                         return [
                           createVNode(_component_UiContainer, { class: "w-full flex items-center gap-4 h-14" }, {
                             default: withCtx(() => [
                               createVNode(_component_UiSidebarTrigger),
                               createVNode(_component_UiSeparator, {
                                 orientation: "vertical",
-                                class: "h-6/12 bg-dashboard-neutral-100/50"
+                                class: "h-6/12 bg-dashboard-neutral-100/50",
                               }),
                               createVNode(_component_UiBreadcrumbs, {
-                                items: unref(route).meta?.crumbs || []
+                                items: unref(route).meta?.crumbs || [],
                               }, null, 8, ["items"]),
-                              createVNode(_component_DashboardUserDropdown)
+                              createVNode(_component_DashboardUserDropdown),
                             ]),
-                            _: 1
-                          })
+                            _: 1,
+                          }),
                         ];
                       }
                     }),
-                    _: 1
+                    _: 1,
                   }, _parent3, _scopeId2));
                   _push3(`<div class="p-4"${_scopeId2}>`);
                   ssrRenderSlot(_ctx.$slots, "default", {}, null, _push3, _parent3, _scopeId2);
                   _push3(`</div>`);
-                } else {
+                }
+                else {
                   return [
                     createVNode(_component_UiNavbar, {
                       sticky: "",
-                      class: "bg-dashboard-neutral-50 border-b-dashboard-neutral-50 shadow"
+                      class: "bg-dashboard-neutral-50 border-b-dashboard-neutral-50 shadow",
                     }, {
                       default: withCtx(() => [
                         createVNode(_component_UiContainer, { class: "w-full flex items-center gap-4 h-14" }, {
@@ -2581,27 +2673,28 @@ const _sfc_main = /* @__PURE__ */ defineComponent({
                             createVNode(_component_UiSidebarTrigger),
                             createVNode(_component_UiSeparator, {
                               orientation: "vertical",
-                              class: "h-6/12 bg-dashboard-neutral-100/50"
+                              class: "h-6/12 bg-dashboard-neutral-100/50",
                             }),
                             createVNode(_component_UiBreadcrumbs, {
-                              items: unref(route).meta?.crumbs || []
+                              items: unref(route).meta?.crumbs || [],
                             }, null, 8, ["items"]),
-                            createVNode(_component_DashboardUserDropdown)
+                            createVNode(_component_DashboardUserDropdown),
                           ]),
-                          _: 1
-                        })
+                          _: 1,
+                        }),
                       ]),
-                      _: 1
+                      _: 1,
                     }),
                     createVNode("div", { class: "p-4" }, [
-                      renderSlot(_ctx.$slots, "default")
-                    ])
+                      renderSlot(_ctx.$slots, "default"),
+                    ]),
                   ];
                 }
               }),
-              _: 3
+              _: 3,
             }, _parent2, _scopeId));
-          } else {
+          }
+          else {
             return [
               createVNode(_component_ClientOnly, null, {
                 default: withCtx(() => [
@@ -2620,37 +2713,37 @@ const _sfc_main = /* @__PURE__ */ defineComponent({
                                         createVNode("span", { class: "text-xl" }, "YSIA"),
                                         createVNode("br"),
                                         createTextVNode("L"),
-                                        createVNode("span", { class: "text-xl" }, "inggarWati")
-                                      ])
+                                        createVNode("span", { class: "text-xl" }, "inggarWati"),
+                                      ]),
                                     ]),
-                                    _: 1
-                                  })
+                                    _: 1,
+                                  }),
                                 ]),
-                                _: 1
+                                _: 1,
                               }),
                               createVNode(_component_UiSidebarGroupContent, null, {
                                 default: withCtx(() => [
-                                  createVNode(_component_DashboardSidebarMenu)
+                                  createVNode(_component_DashboardSidebarMenu),
                                 ]),
-                                _: 1
-                              })
+                                _: 1,
+                              }),
                             ]),
-                            _: 1
-                          })
+                            _: 1,
+                          }),
                         ]),
-                        _: 1
-                      })
+                        _: 1,
+                      }),
                     ]),
-                    _: 1
-                  })
+                    _: 1,
+                  }),
                 ]),
-                _: 1
+                _: 1,
               }),
               createVNode(_component_UiSidebarInset, { class: "bg-dashboard-neutral-100/20" }, {
                 default: withCtx(() => [
                   createVNode(_component_UiNavbar, {
                     sticky: "",
-                    class: "bg-dashboard-neutral-50 border-b-dashboard-neutral-50 shadow"
+                    class: "bg-dashboard-neutral-50 border-b-dashboard-neutral-50 shadow",
                   }, {
                     default: withCtx(() => [
                       createVNode(_component_UiContainer, { class: "w-full flex items-center gap-4 h-14" }, {
@@ -2658,39 +2751,39 @@ const _sfc_main = /* @__PURE__ */ defineComponent({
                           createVNode(_component_UiSidebarTrigger),
                           createVNode(_component_UiSeparator, {
                             orientation: "vertical",
-                            class: "h-6/12 bg-dashboard-neutral-100/50"
+                            class: "h-6/12 bg-dashboard-neutral-100/50",
                           }),
                           createVNode(_component_UiBreadcrumbs, {
-                            items: unref(route).meta?.crumbs || []
+                            items: unref(route).meta?.crumbs || [],
                           }, null, 8, ["items"]),
-                          createVNode(_component_DashboardUserDropdown)
+                          createVNode(_component_DashboardUserDropdown),
                         ]),
-                        _: 1
-                      })
+                        _: 1,
+                      }),
                     ]),
-                    _: 1
+                    _: 1,
                   }),
                   createVNode("div", { class: "p-4" }, [
-                    renderSlot(_ctx.$slots, "default")
-                  ])
+                    renderSlot(_ctx.$slots, "default"),
+                  ]),
                 ]),
-                _: 3
-              })
+                _: 3,
+              }),
             ];
           }
         }),
-        _: 3
+        _: 3,
       }, _parent));
       _push(ssrRenderComponent(_component_UiConfirmDialog, {
         "is-open": unref(confirmState).isOpen,
-        options: unref(confirmState).options,
-        loading: unref(confirmLoading),
-        onConfirm: unref(handleConfirm),
-        onCancel: unref(handleCancel)
+        "options": unref(confirmState).options,
+        "loading": unref(confirmLoading),
+        "onConfirm": unref(handleConfirm),
+        "onCancel": unref(handleCancel),
       }, null, _parent));
       _push(`<!--]-->`);
     };
-  }
+  },
 });
 const _sfc_setup = _sfc_main.setup;
 _sfc_main.setup = (props, ctx) => {
@@ -2700,4 +2793,4 @@ _sfc_main.setup = (props, ctx) => {
 };
 
 export { _sfc_main as default };
-//# sourceMappingURL=dashboard-DWo10Cma.mjs.map
+// # sourceMappingURL=dashboard-DWo10Cma.mjs.map

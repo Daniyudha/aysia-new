@@ -1,57 +1,97 @@
-<template>
-  <div class="inline-block">
-    <button
-      type="button"
-      class="relative inline-flex items-center cursor-pointer outline-none rounded-full transition-all duration-200 hover:opacity-80  bg-gray-300"
-      @click="toggleLanguage"
-      :aria-label="t('language.switch')"
-      :title="t('language.switch')"
-    >
-      <span
-        class="w-12 h-6 border-2 border-app-secondary rounded-full flex items-center transition-colors duration-200"
-        :class="{ 'bg-app-primary': currentLanguage === 'id', 'bg-app-secondary': currentLanguage === 'en' }"
-      >
-        <span
-          class="w-5 h-5 bg-white rounded-full shadow-md transform transition-transform duration-200 flex items-center justify-center text-xs font-medium text-gray-700"
-          :class="{
-            'translate-x-0 text-blue-600': currentLanguage === 'id',
-            'translate-x-6 text-gray-700': currentLanguage === 'en'
-          }"
-        >
-          {{ currentLanguage === 'id' ? 'ID' : 'EN' }}
-        </span>
-      </span>
-    </button>
-  </div>
-</template>
-
 <script setup lang="ts">
-import { ref, watch, onMounted } from 'vue'
-import { useI18n } from '@/composables/useI18n'
+import { computed, onMounted, ref, watch } from "vue";
 
-// Ambil fungsi i18n dari composable
-const { t, getCurrentLanguage, setLanguage, initLanguage, currentLanguage: langRef } = useI18n()
+import { useI18n } from "@/composables/useI18n";
 
-// Default bahasa: Indonesia
-const currentLanguage = ref('id')
+const { t, getCurrentLanguage, setLanguage, initLanguage, currentLanguage: langRef } = useI18n();
 
-// Fungsi toggle antar bahasa
-const toggleLanguage = () => {
-  const newLang = currentLanguage.value === 'id' ? 'en' : 'id'
-  setLanguage(newLang)
-  currentLanguage.value = newLang
+const open = ref(false);
+const currentLanguage = ref<"id" | "en">("id");
+
+const languages = [
+  { code: "id", label: "Indonesia" },
+  { code: "en", label: "English" },
+];
+
+const currentLabel = computed(() =>
+  currentLanguage.value === "id" ? "Indonesia" : "English",
+);
+
+function toggle() {
+  open.value = !open.value;
 }
 
-// Sinkronisasi bila bahasa global berubah
-watch(langRef, (newLang) => {
-  currentLanguage.value = newLang
-})
+function changeLanguage(lang: "id" | "en") {
+  setLanguage(lang);
+  currentLanguage.value = lang;
+  open.value = false;
+}
 
-// Inisialisasi saat mount
+// Sinkron global i18n
+watch(langRef, (newLang) => {
+  currentLanguage.value = newLang;
+});
+
+// Init
 onMounted(() => {
-  initLanguage()
-  const initial = getCurrentLanguage() || 'id'
-  currentLanguage.value = initial
-  setLanguage(initial)
-})
+  initLanguage();
+  const initial = (getCurrentLanguage() as "id" | "en") || "id";
+  currentLanguage.value = initial;
+  setLanguage(initial);
+});
 </script>
+
+<template>
+  <div class="relative">
+    <!-- Trigger: disamakan dengan menu -->
+    <button
+      type="button"
+      class="header-link flex items-center gap-1"
+      :aria-label="t('language.switch')"
+      @click="toggle"
+    >
+      Lang: {{ currentLabel }}
+      <svg
+        class="w-4 h-4 mt-[1px]"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        viewBox="0 0 24 24"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M19 9l-7 7-7-7"
+        />
+      </svg>
+    </button>
+
+    <!-- Dropdown -->
+    <div
+      v-if="open"
+      class="absolute right-0 mt-2 min-w-[140px]
+            bg-[#F5F2E9]
+            border border-[#F5F2E9]
+            shadow-lg
+            rounded-md
+            overflow-hidden
+            z-[9999]"
+    >
+      <button
+        v-for="lang in languages"
+        :key="lang.code"
+        class="block w-full text-left px-4 py-2
+                text-xl
+                text-[#564614]
+                bg-[#F5F2E9]
+                hover:bg-[#564614]
+                hover:text-[#F5F2E9]
+                transition"
+        :class="{ 'font-semibold': currentLanguage === lang.code }"
+        @click="changeLanguage(lang.code)"
+      >
+        {{ lang.label }}
+      </button>
+    </div>
+  </div>
+</template>

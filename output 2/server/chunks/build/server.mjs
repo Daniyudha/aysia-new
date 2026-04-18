@@ -1,35 +1,39 @@
-import process from 'node:process';globalThis._importMeta_=globalThis._importMeta_||{url:"file:///_entry.js",env:process.env};import { defineComponent, ref, shallowRef, watch, createElementBlock, hasInjectionContext, inject, h, getCurrentInstance, nextTick, defineAsyncComponent, computed, unref, provide, shallowReactive, Suspense, Fragment, createApp, toRef, onErrorCaptured, onServerPrefetch, createVNode, resolveDynamicComponent, reactive, effectScope, isReadonly, isRef, isShallow, isReactive, toRaw, mergeProps, getCurrentScope, withCtx, useSSRContext } from 'vue';
-import { e as createError$1, k as klona, l as defuFn, f as destr, m as hasProtocol, n as isScriptProtocol, j as joinURL, w as withQuery, o as parse, q as getRequestHeader, s as isEqual, t as sanitizeStatusCode, v as getContext, x as setCookie, y as getCookie, z as deleteCookie, $ as $fetch$1, A as baseURL, B as createHooks, C as executeAsync, D as toRouteMatcher, E as createRouter$1, F as defu } from '../nitro/nitro.mjs';
-import { useRoute as useRoute$1, RouterView, createMemoryHistory, createRouter, START_LOCATION } from 'vue-router';
-import { createContext } from 'reka-ui';
-import { tv } from 'tailwind-variants';
-import { ssrRenderSuspense, ssrRenderComponent, ssrRenderVNode } from 'vue/server-renderer';
-import 'node:http';
-import 'node:https';
-import 'node:events';
-import 'node:buffer';
-import 'node:fs';
-import 'node:path';
-import 'node:crypto';
-import 'node:url';
-import '@iconify/utils';
-import 'consola';
+import process from "node:process";
+import { createContext } from "reka-ui";
+import { tv } from "tailwind-variants";
+import { computed, createApp, createElementBlock, createVNode, defineAsyncComponent, defineComponent, effectScope, Fragment, getCurrentInstance, getCurrentScope, h, hasInjectionContext, inject, isReactive, isReadonly, isRef, isShallow, mergeProps, nextTick, onErrorCaptured, onServerPrefetch, provide, reactive, ref, resolveDynamicComponent, shallowReactive, shallowRef, Suspense, toRaw, toRef, unref, useSSRContext, watch, withCtx } from "vue";
+import { createMemoryHistory, createRouter, RouterView, START_LOCATION, useRoute as useRoute$1 } from "vue-router";
+import { ssrRenderComponent, ssrRenderSuspense, ssrRenderVNode } from "vue/server-renderer";
+
+import { $ as $fetch$1, A as baseURL, e as createError$1, B as createHooks, E as createRouter$1, F as defu, l as defuFn, z as deleteCookie, f as destr, C as executeAsync, v as getContext, y as getCookie, q as getRequestHeader, m as hasProtocol, s as isEqual, n as isScriptProtocol, j as joinURL, k as klona, o as parse, t as sanitizeStatusCode, x as setCookie, D as toRouteMatcher, w as withQuery } from "../nitro/nitro.mjs";
+import "node:http";
+import "node:https";
+import "node:events";
+import "node:buffer";
+import "node:fs";
+import "node:path";
+import "node:crypto";
+import "node:url";
+import "@iconify/utils";
+import "consola";
+
+globalThis._importMeta_ = globalThis._importMeta_ || { url: "file:///_entry.js", env: process.env };
 
 if (!globalThis.$fetch) {
   globalThis.$fetch = $fetch$1.create({
-    baseURL: baseURL()
+    baseURL: baseURL(),
   });
 }
 if (!("global" in globalThis)) {
   globalThis.global = globalThis;
 }
 const appLayoutTransition = false;
-const nuxtLinkDefaults = { "componentName": "NuxtLink" };
-const asyncDataDefaults = { "deep": false };
+const nuxtLinkDefaults = { componentName: "NuxtLink" };
+const asyncDataDefaults = { deep: false };
 const appId = "nuxt-app";
 function getNuxtAppCtx(id = appId) {
   return getContext(id, {
-    asyncContext: false
+    asyncContext: false,
   });
 }
 const NuxtPluginIndicator = "__nuxt_plugin";
@@ -45,17 +49,17 @@ function createNuxtApp(options) {
       },
       get vue() {
         return nuxtApp.vueApp.version;
-      }
+      },
     },
     payload: shallowReactive({
       ...options.ssrContext?.payload || {},
       data: shallowReactive({}),
       state: reactive({}),
       once: /* @__PURE__ */ new Set(),
-      _errors: shallowReactive({})
+      _errors: shallowReactive({}),
     }),
     static: {
-      data: {}
+      data: {},
     },
     runWithContext(fn) {
       if (nuxtApp._scope.active && !getCurrentScope()) {
@@ -86,7 +90,7 @@ function createNuxtApp(options) {
     _asyncDataPromises: {},
     _asyncData: shallowReactive({}),
     _payloadRevivers: {},
-    ...options
+    ...options,
   };
   {
     nuxtApp.payload.serverRendered = true;
@@ -97,13 +101,13 @@ function createNuxtApp(options) {
     nuxtApp.ssrContext.payload = nuxtApp.payload;
     nuxtApp.ssrContext.config = {
       public: nuxtApp.ssrContext.runtimeConfig.public,
-      app: nuxtApp.ssrContext.runtimeConfig.app
+      app: nuxtApp.ssrContext.runtimeConfig.app,
     };
   }
   nuxtApp.hooks = createHooks();
   nuxtApp.hook = nuxtApp.hooks.hook;
   {
-    const contextCaller = async function(hooks, args) {
+    const contextCaller = async function (hooks, args) {
       for (const hook of hooks) {
         await nuxtApp.runWithContext(() => hook(...args));
       }
@@ -112,7 +116,7 @@ function createNuxtApp(options) {
   }
   nuxtApp.callHook = nuxtApp.hooks.callHook;
   nuxtApp.provide = (name, value) => {
-    const $name = "$" + name;
+    const $name = `$${name}`;
     defineGetter(nuxtApp, $name, value);
     defineGetter(nuxtApp.vueApp.config.globalProperties, $name, value);
   };
@@ -144,10 +148,11 @@ async function applyPlugins(nuxtApp, plugins2) {
   let error = void 0;
   let promiseDepth = 0;
   async function executePlugin(plugin2) {
-    const unresolvedPluginsForThisPlugin = plugin2.dependsOn?.filter((name) => plugins2.some((p) => p._name === name) && !resolvedPlugins.has(name)) ?? [];
+    const unresolvedPluginsForThisPlugin = plugin2.dependsOn?.filter(name => plugins2.some(p => p._name === name) && !resolvedPlugins.has(name)) ?? [];
     if (unresolvedPluginsForThisPlugin.length > 0) {
       unresolvedPlugins.push([new Set(unresolvedPluginsForThisPlugin), plugin2]);
-    } else {
+    }
+    else {
       const promise = applyPlugin(nuxtApp, plugin2).then(async () => {
         if (plugin2._name) {
           resolvedPlugins.add(plugin2._name);
@@ -169,7 +174,8 @@ async function applyPlugins(nuxtApp, plugins2) {
       });
       if (plugin2.parallel) {
         parallels.push(promise);
-      } else {
+      }
+      else {
         await promise;
       }
     }
@@ -240,31 +246,32 @@ function defineGetter(obj, key, val) {
 const LayoutMetaSymbol = Symbol("layout-meta");
 const PageRouteSymbol = Symbol("route");
 globalThis._importMeta_.url.replace(/\/app\/.*$/, "/");
-const useRouter = () => {
+function useRouter() {
   return useNuxtApp()?.$router;
-};
-const useRoute = () => {
+}
+function useRoute() {
   if (hasInjectionContext()) {
     return inject(PageRouteSymbol, useNuxtApp()._route);
   }
   return useNuxtApp()._route;
-};
+}
 // @__NO_SIDE_EFFECTS__
 function defineNuxtRouteMiddleware(middleware) {
   return middleware;
 }
-const isProcessingMiddleware = () => {
+function isProcessingMiddleware() {
   try {
     if (useNuxtApp()._processingMiddleware) {
       return true;
     }
-  } catch {
+  }
+  catch {
     return false;
   }
   return false;
-};
+}
 const URL_QUOTE_RE = /"/g;
-const navigateTo = (to, options) => {
+function navigateTo(to, options) {
   to ||= "/";
   const toPath = typeof to === "string" ? to : "path" in to ? resolveRouteObject(to) : useRouter().resolve(to).href;
   const isExternalHost = hasProtocol(toPath, { acceptRelative: true });
@@ -285,19 +292,19 @@ const navigateTo = (to, options) => {
     if (nuxtApp.ssrContext) {
       const fullPath = typeof to === "string" || isExternal ? toPath : router.resolve(to).fullPath || "/";
       const location2 = isExternal ? toPath : joinURL((/* @__PURE__ */ useRuntimeConfig()).app.baseURL, fullPath);
-      const redirect = async function(response) {
+      const redirect = async function (response) {
         await nuxtApp.callHook("app:redirected");
         const encodedLoc = location2.replace(URL_QUOTE_RE, "%22");
         const encodedHeader = encodeURL(location2, isExternalHost);
         nuxtApp.ssrContext._renderResponse = {
           statusCode: sanitizeStatusCode(options?.redirectCode || 302, 302),
           body: `<!DOCTYPE html><html><head><meta http-equiv="refresh" content="0; url=${encodedLoc}"></head></html>`,
-          headers: { location: encodedHeader }
+          headers: { location: encodedHeader },
         };
         return response;
       };
       if (!isExternal && inMiddleware) {
-        router.afterEach((final) => final.fullPath === fullPath ? redirect(false) : void 0);
+        router.afterEach(final => final.fullPath === fullPath ? redirect(false) : void 0);
         return to;
       }
       return redirect(!inMiddleware ? void 0 : (
@@ -310,7 +317,8 @@ const navigateTo = (to, options) => {
     nuxtApp._scope.stop();
     if (options?.replace) {
       (void 0).replace(toPath);
-    } else {
+    }
+    else {
       (void 0).href = toPath;
     }
     if (inMiddleware) {
@@ -323,7 +331,7 @@ const navigateTo = (to, options) => {
     return Promise.resolve();
   }
   return options?.replace ? router.replace(to) : router.push(to);
-};
+}
 function resolveRouteObject(to) {
   return withQuery(to.path || "", to.query || {}) + (to.hash || "");
 }
@@ -339,34 +347,36 @@ function encodeURL(location2, isExternalHost = false) {
 }
 const NUXT_ERROR_SIGNATURE = "__nuxt_error";
 const useError = /* @__NO_SIDE_EFFECTS__ */ () => toRef(useNuxtApp().payload, "error");
-const showError = (error) => {
+function showError(error) {
   const nuxtError = createError(error);
   try {
     const error2 = /* @__PURE__ */ useError();
-    if (false) ;
+    if (false)
+      ;
     error2.value ||= nuxtError;
-  } catch {
+  }
+  catch {
     throw nuxtError;
   }
   return nuxtError;
-};
-const isNuxtError = (error) => !!error && typeof error === "object" && NUXT_ERROR_SIGNATURE in error;
-const createError = (error) => {
+}
+const isNuxtError = error => !!error && typeof error === "object" && NUXT_ERROR_SIGNATURE in error;
+function createError(error) {
   const nuxtError = createError$1(error);
   Object.defineProperty(nuxtError, NUXT_ERROR_SIGNATURE, {
     value: true,
     configurable: false,
-    writable: false
+    writable: false,
   });
   return nuxtError;
-};
+}
 const unhead_0WJFFtb7G0zB0cpb9pfRa9bqtEz79cbzBVdolKtwPLo = /* @__PURE__ */ defineNuxtPlugin({
   name: "nuxt:head",
   enforce: "pre",
   setup(nuxtApp) {
     const head = nuxtApp.ssrContext.head;
     nuxtApp.vueApp.use(head);
-  }
+  },
 });
 function toArray(value) {
   return Array.isArray(value) ? value : [value];
@@ -376,194 +386,194 @@ async function getRouteRules(arg) {
   {
     useNuxtApp().ssrContext._preloadManifest = true;
     const _routeRulesMatcher = toRouteMatcher(
-      createRouter$1({ routes: (/* @__PURE__ */ useRuntimeConfig()).nitro.routeRules })
+      createRouter$1({ routes: (/* @__PURE__ */ useRuntimeConfig()).nitro.routeRules }),
     );
     return defu({}, ..._routeRulesMatcher.matchAll(path).reverse());
   }
 }
 const __nuxt_page_meta$8 = {
-  layout: "homepage"
+  layout: "homepage",
 };
 const __nuxt_page_meta$7 = {
-  layout: "auth"
+  layout: "auth",
 };
 const crumbs$6 = [
   {
-    label: "Dashboard"
-  }
+    label: "Dashboard",
+  },
 ];
 const __nuxt_page_meta$6 = {
   layout: "dashboard",
-  crumbs: crumbs$6
+  crumbs: crumbs$6,
 };
 const crumbs$5 = [
   {
     label: "Dashboard",
-    link: "/dashboard"
+    link: "/dashboard",
   },
   {
-    label: "Add Gallery"
-  }
+    label: "Add Gallery",
+  },
 ];
 const __nuxt_page_meta$5 = {
   layout: "dashboard",
-  crumbs: crumbs$5
+  crumbs: crumbs$5,
 };
 const crumbs$4 = [
   {
     label: "Dashboard",
-    link: "/dashboard"
+    link: "/dashboard",
   },
   {
-    label: "Manage Gallery"
-  }
+    label: "Manage Gallery",
+  },
 ];
 const __nuxt_page_meta$4 = {
   layout: "dashboard",
-  crumbs: crumbs$4
+  crumbs: crumbs$4,
 };
 const crumbs$3 = [
   {
     label: "Dashboard",
-    link: "/dashboard"
+    link: "/dashboard",
   },
   {
-    label: "Manage About Page"
-  }
+    label: "Manage About Page",
+  },
 ];
 const __nuxt_page_meta$3 = {
   layout: "dashboard",
-  crumbs: crumbs$3
+  crumbs: crumbs$3,
 };
 const crumbs$2 = [
   {
     label: "Dashboard",
-    link: "/dashboard"
+    link: "/dashboard",
   },
   {
-    label: "Manage Category"
-  }
+    label: "Manage Category",
+  },
 ];
 const __nuxt_page_meta$2 = {
   layout: "dashboard",
-  crumbs: crumbs$2
+  crumbs: crumbs$2,
 };
 const crumbs$1 = [
   {
     label: "Dashboard",
-    link: "/dashboard"
+    link: "/dashboard",
   },
   {
-    label: "Social Media"
-  }
+    label: "Social Media",
+  },
 ];
 const __nuxt_page_meta$1 = {
   layout: "dashboard",
-  crumbs: crumbs$1
+  crumbs: crumbs$1,
 };
 const crumbs = [
   {
     label: "Dashboard",
-    link: "/dashboard"
+    link: "/dashboard",
   },
   {
-    label: "Detail Gallery"
-  }
+    label: "Detail Gallery",
+  },
 ];
 const __nuxt_page_meta = {
   layout: "dashboard",
-  crumbs
+  crumbs,
 };
 let _createClientPage;
 async function createClientPage(loader) {
-  _createClientPage ||= await import('./client-component-Chl9FTDe.mjs').then((r) => r.createClientPage);
+  _createClientPage ||= await import("./client-component-Chl9FTDe.mjs").then(r => r.createClientPage);
   return _createClientPage(loader);
 }
 const _routes = [
   {
     name: "about",
     path: "/about",
-    component: () => import('./about-7oPcEJfo.mjs')
+    component: () => import("./about-7oPcEJfo.mjs"),
   },
   {
     name: "index",
     path: "/",
     meta: __nuxt_page_meta$8 || {},
-    component: () => import('./index-BD57IEXr.mjs')
+    component: () => import("./index-BD57IEXr.mjs"),
   },
   {
     name: "login",
     path: "/login",
-    meta: { ...__nuxt_page_meta$7 || {}, ...{ "middleware": ["guest-only"] } },
-    component: () => import('./login-U4lzdgog.mjs')
+    meta: { ...__nuxt_page_meta$7 || {}, ...{ middleware: ["guest-only"] } },
+    component: () => import("./login-U4lzdgog.mjs"),
   },
   {
     name: "contact",
     path: "/contact",
-    component: () => import('./contact-DUURT7wd.mjs')
+    component: () => import("./contact-DUURT7wd.mjs"),
   },
   {
     name: "galleries",
     path: "/galleries",
-    component: () => import('./index-DAW4xNb1.mjs')
+    component: () => import("./index-DAW4xNb1.mjs"),
   },
   {
     name: "galleries-galleryId",
     path: "/galleries/:galleryId()",
-    component: () => import('./_galleryId_-Bls_zHxJ.mjs')
+    component: () => import("./_galleryId_-Bls_zHxJ.mjs"),
   },
   {
     name: "dashboard",
     path: "/dashboard",
-    meta: { ...__nuxt_page_meta$6 || {}, ...{ "middleware": ["dashboard"] } },
-    component: () => createClientPage(() => import('./index.client-2DO9hpXL.mjs'))
+    meta: { ...__nuxt_page_meta$6 || {}, ...{ middleware: ["dashboard"] } },
+    component: () => createClientPage(() => import("./index.client-2DO9hpXL.mjs")),
   },
   {
     name: "dashboard-gallery-add",
     path: "/dashboard/gallery/add",
     meta: __nuxt_page_meta$5 || {},
-    component: () => createClientPage(() => import('./add.client-sSwv7ttQ.mjs'))
+    component: () => createClientPage(() => import("./add.client-sSwv7ttQ.mjs")),
   },
   {
     name: "dashboard-gallery",
     path: "/dashboard/gallery",
     meta: __nuxt_page_meta$4 || {},
-    component: () => createClientPage(() => import('./index.client-DRfabOUX.mjs'))
+    component: () => createClientPage(() => import("./index.client-DRfabOUX.mjs")),
   },
   {
     name: "dashboard-about-page",
     path: "/dashboard/about-page",
     meta: __nuxt_page_meta$3 || {},
-    component: () => createClientPage(() => import('./index.client-NE6hXOs9.mjs'))
+    component: () => createClientPage(() => import("./index.client-NE6hXOs9.mjs")),
   },
   {
     name: "dashboard-categories",
     path: "/dashboard/categories",
     meta: __nuxt_page_meta$2 || {},
-    component: () => createClientPage(() => import('./index.client-C0CEadtm.mjs'))
+    component: () => createClientPage(() => import("./index.client-C0CEadtm.mjs")),
   },
   {
     name: "dashboard-social-media",
     path: "/dashboard/social-media",
     meta: __nuxt_page_meta$1 || {},
-    component: () => createClientPage(() => import('./index.client-BIuduqOn.mjs'))
+    component: () => createClientPage(() => import("./index.client-BIuduqOn.mjs")),
   },
   {
     name: "dashboard-gallery-galleryId",
     path: "/dashboard/gallery/:galleryId()",
     props: true,
     meta: __nuxt_page_meta || {},
-    component: () => createClientPage(() => import('./index.client-Bl1hW0bB.mjs'))
-  }
+    component: () => createClientPage(() => import("./index.client-Bl1hW0bB.mjs")),
+  },
 ];
-const _wrapInTransition = (props, children) => {
+function _wrapInTransition(props, children) {
   return { default: () => children.default?.() };
-};
+}
 const ROUTE_KEY_PARENTHESES_RE = /(:\w+)\([^)]+\)/g;
 const ROUTE_KEY_SYMBOLS_RE = /(:\w+)[?+*]/g;
 const ROUTE_KEY_NORMAL_RE = /:\w+/g;
 function generateRouteKey(route) {
-  const source = route?.meta.key ?? route.path.replace(ROUTE_KEY_PARENTHESES_RE, "$1").replace(ROUTE_KEY_SYMBOLS_RE, "$1").replace(ROUTE_KEY_NORMAL_RE, (r) => route.params[r.slice(1)]?.toString() || "");
+  const source = route?.meta.key ?? route.path.replace(ROUTE_KEY_PARENTHESES_RE, "$1").replace(ROUTE_KEY_SYMBOLS_RE, "$1").replace(ROUTE_KEY_NORMAL_RE, r => route.params[r.slice(1)]?.toString() || "");
   return typeof source === "function" ? source(route) : source;
 }
 function isChangingPage(to, from) {
@@ -574,7 +584,7 @@ function isChangingPage(to, from) {
     return true;
   }
   const areComponentsSame = to.matched.every(
-    (comp, index) => comp.components && comp.components.default === from.matched[index]?.components?.default
+    (comp, index) => comp.components && comp.components.default === from.matched[index]?.components?.default,
   );
   if (areComponentsSame) {
     return false;
@@ -608,7 +618,7 @@ const routerOptions0 = {
         requestAnimationFrame(() => resolve(_calculatePosition(to, from, savedPosition, hashScrollBehaviour)));
       });
     });
-  }
+  },
 };
 function _getHashElementScrollMarginTop(selector) {
   try {
@@ -616,7 +626,8 @@ function _getHashElementScrollMarginTop(selector) {
     if (elem) {
       return (Number.parseFloat(getComputedStyle(elem).scrollMarginTop) || 0) + (Number.parseFloat(getComputedStyle((void 0).documentElement).scrollPaddingTop) || 0);
     }
-  } catch {
+  }
+  catch {
   }
   return 0;
 }
@@ -629,21 +640,21 @@ function _calculatePosition(to, from, savedPosition, defaultHashScrollBehaviour)
     return {
       el: to.hash,
       top: _getHashElementScrollMarginTop(to.hash),
-      behavior: isPageNavigation ? defaultHashScrollBehaviour : "instant"
+      behavior: isPageNavigation ? defaultHashScrollBehaviour : "instant",
     };
   }
   return {
     left: 0,
-    top: 0
+    top: 0,
   };
 }
 const configRouterOptions = {
   hashMode: false,
-  scrollBehaviorType: "auto"
+  scrollBehaviorType: "auto",
 };
 const routerOptions = {
   ...configRouterOptions,
-  ...routerOptions0
+  ...routerOptions0,
 };
 const validate = /* @__PURE__ */ defineNuxtRouteMiddleware(async (to, from) => {
   let __temp, __restore;
@@ -659,23 +670,23 @@ const validate = /* @__PURE__ */ defineNuxtRouteMiddleware(async (to, from) => {
     statusCode: result && result.statusCode || 404,
     statusMessage: result && result.statusMessage || `Page Not Found: ${to.fullPath}`,
     data: {
-      path: to.fullPath
-    }
+      path: to.fullPath,
+    },
   });
   return error;
 });
 const manifest_45route_45rule = /* @__PURE__ */ defineNuxtRouteMiddleware(async (to) => {
   {
-    return;
+
   }
 });
 const globalMiddleware = [
   validate,
-  manifest_45route_45rule
+  manifest_45route_45rule,
 ];
 const namedMiddleware = {
-  dashboard: () => import('./dashboard-D4hVnsRr.mjs'),
-  "guest-only": () => import('./guest-only-Dl3OOh96.mjs')
+  "dashboard": () => import("./dashboard-D4hVnsRr.mjs"),
+  "guest-only": () => import("./guest-only-Dl3OOh96.mjs"),
 };
 const plugin = /* @__PURE__ */ defineNuxtPlugin({
   name: "nuxt:router",
@@ -705,7 +716,7 @@ const plugin = /* @__PURE__ */ defineNuxtPlugin({
         }
       },
       history,
-      routes
+      routes,
     });
     nuxtApp.vueApp.use(router);
     const previousRoute = shallowRef(router.currentRoute.value);
@@ -713,7 +724,7 @@ const plugin = /* @__PURE__ */ defineNuxtPlugin({
       previousRoute.value = from;
     });
     Object.defineProperty(nuxtApp.vueApp.config.globalProperties, "previousRoute", {
-      get: () => previousRoute.value
+      get: () => previousRoute.value,
     });
     const initialURL = nuxtApp.ssrContext.url;
     const _route = shallowRef(router.currentRoute.value);
@@ -730,13 +741,13 @@ const plugin = /* @__PURE__ */ defineNuxtPlugin({
     for (const key in _route.value) {
       Object.defineProperty(route, key, {
         get: () => _route.value[key],
-        enumerable: true
+        enumerable: true,
       });
     }
     nuxtApp._route = shallowReactive(route);
     nuxtApp._middleware ||= {
       global: [],
-      named: {}
+      named: {},
     };
     if (!nuxtApp.ssrContext?.islandContext) {
       router.afterEach(async (to, _from, failure) => {
@@ -761,7 +772,8 @@ const plugin = /* @__PURE__ */ defineNuxtPlugin({
       ;
       [__temp, __restore] = executeAsync(() => router.isReady()), await __temp, __restore();
       ;
-    } catch (error2) {
+    }
+    catch (error2) {
       [__temp, __restore] = executeAsync(() => nuxtApp.runWithContext(() => showError(error2))), await __temp, __restore();
     }
     const resolvedInitialRoute = router.currentRoute.value;
@@ -794,25 +806,27 @@ const plugin = /* @__PURE__ */ defineNuxtPlugin({
             for (const key in routeRules.appMiddleware) {
               if (routeRules.appMiddleware[key]) {
                 middlewareEntries.add(key);
-              } else {
+              }
+              else {
                 middlewareEntries.delete(key);
               }
             }
           }
         }
         for (const entry2 of middlewareEntries) {
-          const middleware = typeof entry2 === "string" ? nuxtApp._middleware.named[entry2] || await namedMiddleware[entry2]?.().then((r) => r.default || r) : entry2;
+          const middleware = typeof entry2 === "string" ? nuxtApp._middleware.named[entry2] || await namedMiddleware[entry2]?.().then(r => r.default || r) : entry2;
           if (!middleware) {
             throw new Error(`Unknown route middleware: '${entry2}'.`);
           }
           try {
-            if (false) ;
+            if (false)
+              ;
             const result = await nuxtApp.runWithContext(() => middleware(to, from));
             if (true) {
               if (result === false || result instanceof Error) {
                 const error2 = result || createError({
                   statusCode: 404,
-                  statusMessage: `Page Not Found: ${initialURL}`
+                  statusMessage: `Page Not Found: ${initialURL}`,
                 });
                 await nuxtApp.runWithContext(() => showError(error2));
                 return false;
@@ -830,7 +844,8 @@ const plugin = /* @__PURE__ */ defineNuxtPlugin({
               }
               return result;
             }
-          } catch (err) {
+          }
+          catch (err) {
             const error2 = createError(err);
             if (error2.fatal) {
               await nuxtApp.runWithContext(() => showError(error2));
@@ -851,8 +866,8 @@ const plugin = /* @__PURE__ */ defineNuxtPlugin({
           fatal: false,
           statusMessage: `Page not found: ${to.fullPath}`,
           data: {
-            path: to.fullPath
-          }
+            path: to.fullPath,
+          },
         })));
       }
     });
@@ -863,15 +878,16 @@ const plugin = /* @__PURE__ */ defineNuxtPlugin({
         }
         await router.replace({
           ...resolvedInitialRoute,
-          force: true
+          force: true,
         });
         router.options.scrollBehavior = routerOptions.scrollBehavior;
-      } catch (error2) {
+      }
+      catch (error2) {
         await nuxtApp.runWithContext(() => showError(error2));
       }
     });
     return { provide: { router } };
-  }
+  },
 });
 function definePayloadReducer(name, reduce) {
   {
@@ -879,13 +895,13 @@ function definePayloadReducer(name, reduce) {
   }
 }
 const reducers = [
-  ["NuxtError", (data) => isNuxtError(data) && data.toJSON()],
-  ["EmptyShallowRef", (data) => isRef(data) && isShallow(data) && !data.value && (typeof data.value === "bigint" ? "0n" : JSON.stringify(data.value) || "_")],
-  ["EmptyRef", (data) => isRef(data) && !data.value && (typeof data.value === "bigint" ? "0n" : JSON.stringify(data.value) || "_")],
-  ["ShallowRef", (data) => isRef(data) && isShallow(data) && data.value],
-  ["ShallowReactive", (data) => isReactive(data) && isShallow(data) && toRaw(data)],
-  ["Ref", (data) => isRef(data) && data.value],
-  ["Reactive", (data) => isReactive(data) && toRaw(data)]
+  ["NuxtError", data => isNuxtError(data) && data.toJSON()],
+  ["EmptyShallowRef", data => isRef(data) && isShallow(data) && !data.value && (typeof data.value === "bigint" ? "0n" : JSON.stringify(data.value) || "_")],
+  ["EmptyRef", data => isRef(data) && !data.value && (typeof data.value === "bigint" ? "0n" : JSON.stringify(data.value) || "_")],
+  ["ShallowRef", data => isRef(data) && isShallow(data) && data.value],
+  ["ShallowReactive", data => isReactive(data) && isShallow(data) && toRaw(data)],
+  ["Ref", data => isRef(data) && data.value],
+  ["Reactive", data => isReactive(data) && toRaw(data)],
 ];
 const revive_payload_server__71TOahOdIhAJYvFbSxZjy8OvdNqgaqcfpL2HOTJ5dE = /* @__PURE__ */ defineNuxtPlugin({
   name: "nuxt:revive-payload:server",
@@ -893,23 +909,23 @@ const revive_payload_server__71TOahOdIhAJYvFbSxZjy8OvdNqgaqcfpL2HOTJ5dE = /* @__
     for (const [reducer, fn] of reducers) {
       definePayloadReducer(reducer, fn);
     }
-  }
+  },
 });
-const LazyIcon = defineAsyncComponent(() => import('./index-C2n46nfI.mjs').then((r) => r["default"] || r.default || r));
+const LazyIcon = defineAsyncComponent(() => import("./index-C2n46nfI.mjs").then(r => r.default || r.default || r));
 const lazyGlobalComponents = [
-  ["Icon", LazyIcon]
+  ["Icon", LazyIcon],
 ];
 const components_plugin_4kY4pyzJIYX99vmMAAIorFf3CnAaptHitJgf7JxiED8 = /* @__PURE__ */ defineNuxtPlugin({
   name: "nuxt:global-components",
   setup(nuxtApp) {
     for (const [name, component] of lazyGlobalComponents) {
       nuxtApp.vueApp.component(name, component);
-      nuxtApp.vueApp.component("Lazy" + name, component);
+      nuxtApp.vueApp.component(`Lazy${name}`, component);
     }
-  }
+  },
 });
 const matchIconName = /^[a-z0-9]+(-[a-z0-9]+)*$/;
-const stringToIcon = (value, validate2, allowSimpleName, provider = "") => {
+function stringToIcon(value, validate2, allowSimpleName, provider = "") {
   const colonSeparated = value.split(":");
   if (value.slice(0, 1) === "@") {
     if (colonSeparated.length < 2 || colonSeparated.length > 3) {
@@ -927,7 +943,7 @@ const stringToIcon = (value, validate2, allowSimpleName, provider = "") => {
       // Allow provider without '@': "provider:prefix:name"
       provider: colonSeparated.length > 0 ? colonSeparated[0] : provider,
       prefix,
-      name: name2
+      name: name2,
     };
     return validate2 && !validateIconName(result) ? null : result;
   }
@@ -937,7 +953,7 @@ const stringToIcon = (value, validate2, allowSimpleName, provider = "") => {
     const result = {
       provider,
       prefix: dashSeparated.shift(),
-      name: dashSeparated.join("-")
+      name: dashSeparated.join("-"),
     };
     return validate2 && !validateIconName(result) ? null : result;
   }
@@ -945,41 +961,39 @@ const stringToIcon = (value, validate2, allowSimpleName, provider = "") => {
     const result = {
       provider,
       prefix: "",
-      name
+      name,
     };
     return validate2 && !validateIconName(result, allowSimpleName) ? null : result;
   }
   return null;
-};
-const validateIconName = (icon, allowSimpleName) => {
+}
+function validateIconName(icon, allowSimpleName) {
   if (!icon) {
     return false;
   }
-  return !!// Check prefix: cannot be empty, unless allowSimpleName is enabled
-  // Check name: cannot be empty
-  ((allowSimpleName && icon.prefix === "" || !!icon.prefix) && !!icon.name);
-};
+  return !!((allowSimpleName && icon.prefix === "" || !!icon.prefix) && !!icon.name);
+}
 const defaultIconDimensions = Object.freeze(
   {
     left: 0,
     top: 0,
     width: 16,
-    height: 16
-  }
+    height: 16,
+  },
 );
 const defaultIconTransformations = Object.freeze({
   rotate: 0,
   vFlip: false,
-  hFlip: false
+  hFlip: false,
 });
 const defaultIconProps = Object.freeze({
   ...defaultIconDimensions,
-  ...defaultIconTransformations
+  ...defaultIconTransformations,
 });
 const defaultExtendedIconProps = Object.freeze({
   ...defaultIconProps,
   body: "",
-  hidden: false
+  hidden: false,
 });
 function mergeIconTransformations(obj1, obj2) {
   const result = {};
@@ -1002,9 +1016,11 @@ function mergeIconData(parent, child) {
       if (key in parent && !(key in result)) {
         result[key] = defaultIconTransformations[key];
       }
-    } else if (key in child) {
+    }
+    else if (key in child) {
       result[key] = child[key];
-    } else if (key in parent) {
+    }
+    else if (key in parent) {
       result[key] = parent[key];
     }
   }
@@ -1038,7 +1054,7 @@ function internalGetIconData(data, name, tree) {
   function parse2(name2) {
     currentProps = mergeIconData(
       icons[name2] || aliases[name2],
-      currentProps
+      currentProps,
     );
   }
   parse2(name);
@@ -1050,7 +1066,7 @@ function parseIconSet(data, callback) {
   if (typeof data !== "object" || typeof data.icons !== "object") {
     return names;
   }
-  if (data.not_found instanceof Array) {
+  if (Array.isArray(data.not_found)) {
     data.not_found.forEach((name) => {
       callback(name, null);
       names.push(name);
@@ -1070,7 +1086,7 @@ const optionalPropertyDefaults = {
   provider: "",
   aliases: {},
   not_found: {},
-  ...defaultIconDimensions
+  ...defaultIconDimensions,
 };
 function checkOptionalProps(item, defaults) {
   for (const prop in defaults) {
@@ -1096,11 +1112,11 @@ function quicklyValidateIconSet(obj) {
     const icon = icons[name];
     if (
       // Name cannot be empty
-      !name || // Must have body
-      typeof icon.body !== "string" || // Check other props
-      !checkOptionalProps(
+      !name // Must have body
+      || typeof icon.body !== "string" // Check other props
+      || !checkOptionalProps(
         icon,
-        defaultExtendedIconProps
+        defaultExtendedIconProps,
       )
     ) {
       return null;
@@ -1112,11 +1128,11 @@ function quicklyValidateIconSet(obj) {
     const parent = icon.parent;
     if (
       // Name cannot be empty
-      !name || // Parent must be set and point to existing icon
-      typeof parent !== "string" || !icons[parent] && !aliases[parent] || // Check other props
-      !checkOptionalProps(
+      !name // Parent must be set and point to existing icon
+      || typeof parent !== "string" || !icons[parent] && !aliases[parent] // Check other props
+      || !checkOptionalProps(
         icon,
-        defaultExtendedIconProps
+        defaultExtendedIconProps,
       )
     ) {
       return null;
@@ -1130,7 +1146,7 @@ function newStorage(provider, prefix) {
     provider,
     prefix,
     icons: /* @__PURE__ */ Object.create(null),
-    missing: /* @__PURE__ */ new Set()
+    missing: /* @__PURE__ */ new Set(),
   };
 }
 function getStorage(provider, prefix) {
@@ -1144,7 +1160,8 @@ function addIconSet(storage2, data) {
   return parseIconSet(data, (name, icon) => {
     if (icon) {
       storage2.icons[name] = icon;
-    } else {
+    }
+    else {
       storage2.missing.add(name);
     }
   });
@@ -1166,23 +1183,25 @@ function getIconData(name) {
 }
 function getIcon(name) {
   const result = getIconData(name);
-  return result ? {
-    ...defaultIconProps,
-    ...result
-  } : result;
+  return result
+    ? {
+        ...defaultIconProps,
+        ...result,
+      }
+    : result;
 }
 const defaultIconSizeCustomisations = Object.freeze({
   width: null,
-  height: null
+  height: null,
 });
 const defaultIconCustomisations = Object.freeze({
   // Dimensions
   ...defaultIconSizeCustomisations,
   // Transformations
-  ...defaultIconTransformations
+  ...defaultIconTransformations,
 });
-const unitsSplit = /(-?[0-9.]*[0-9]+[0-9.]*)/g;
-const unitsTest = /^-?[0-9.]*[0-9]+[0-9.]*$/g;
+const unitsSplit = /(-?[0-9.]*\d[0-9.]*)/g;
+const unitsTest = /^-?\.*\d[\d.]*$/g;
 function calculateSize(size, ratio, precision) {
   if (ratio === 1) {
     return size;
@@ -1203,13 +1222,15 @@ function calculateSize(size, ratio, precision) {
   let isNumber = unitsTest.test(code);
   while (true) {
     if (isNumber) {
-      const num = parseFloat(code);
+      const num = Number.parseFloat(code);
       if (isNaN(num)) {
         newParts.push(code);
-      } else {
+      }
+      else {
         newParts.push(Math.ceil(num * ratio * precision) / precision);
       }
-    } else {
+    }
+    else {
       newParts.push(code);
     }
     code = oldParts.shift();
@@ -1221,10 +1242,10 @@ function calculateSize(size, ratio, precision) {
 }
 function splitSVGDefs(content, tag = "defs") {
   let defs = "";
-  const index = content.indexOf("<" + tag);
+  const index = content.indexOf(`<${tag}`);
   while (index >= 0) {
     const start = content.indexOf(">", index);
-    const end = content.indexOf("</" + tag);
+    const end = content.indexOf(`</${tag}`);
     if (start === -1 || end === -1) {
       break;
     }
@@ -1237,31 +1258,31 @@ function splitSVGDefs(content, tag = "defs") {
   }
   return {
     defs,
-    content
+    content,
   };
 }
 function mergeDefsAndContent(defs, content) {
-  return defs ? "<defs>" + defs + "</defs>" + content : content;
+  return defs ? `<defs>${defs}</defs>${content}` : content;
 }
 function wrapSVGContent(body, start, end) {
   const split = splitSVGDefs(body);
   return mergeDefsAndContent(split.defs, start + split.content + end);
 }
-const isUnsetKeyword = (value) => value === "unset" || value === "undefined" || value === "none";
+const isUnsetKeyword = value => value === "unset" || value === "undefined" || value === "none";
 function iconToSVG(icon, customisations) {
   const fullIcon = {
     ...defaultIconProps,
-    ...icon
+    ...icon,
   };
   const fullCustomisations = {
     ...defaultIconCustomisations,
-    ...customisations
+    ...customisations,
   };
   const box = {
     left: fullIcon.left,
     top: fullIcon.top,
     width: fullIcon.width,
-    height: fullIcon.height
+    height: fullIcon.height,
   };
   let body = fullIcon.body;
   [fullIcon, fullCustomisations].forEach((props) => {
@@ -1272,16 +1293,18 @@ function iconToSVG(icon, customisations) {
     if (hFlip) {
       if (vFlip) {
         rotation += 2;
-      } else {
+      }
+      else {
         transformations.push(
-          "translate(" + (box.width + box.left).toString() + " " + (0 - box.top).toString() + ")"
+          `translate(${(box.width + box.left).toString()} ${(0 - box.top).toString()})`,
         );
         transformations.push("scale(-1 1)");
         box.top = box.left = 0;
       }
-    } else if (vFlip) {
+    }
+    else if (vFlip) {
       transformations.push(
-        "translate(" + (0 - box.left).toString() + " " + (box.height + box.top).toString() + ")"
+        `translate(${(0 - box.left).toString()} ${(box.height + box.top).toString()})`,
       );
       transformations.push("scale(1 -1)");
       box.top = box.left = 0;
@@ -1295,18 +1318,18 @@ function iconToSVG(icon, customisations) {
       case 1:
         tempValue = box.height / 2 + box.top;
         transformations.unshift(
-          "rotate(90 " + tempValue.toString() + " " + tempValue.toString() + ")"
+          `rotate(90 ${tempValue.toString()} ${tempValue.toString()})`,
         );
         break;
       case 2:
         transformations.unshift(
-          "rotate(180 " + (box.width / 2 + box.left).toString() + " " + (box.height / 2 + box.top).toString() + ")"
+          `rotate(180 ${(box.width / 2 + box.left).toString()} ${(box.height / 2 + box.top).toString()})`,
         );
         break;
       case 3:
         tempValue = box.width / 2 + box.left;
         transformations.unshift(
-          "rotate(-90 " + tempValue.toString() + " " + tempValue.toString() + ")"
+          `rotate(-90 ${tempValue.toString()} ${tempValue.toString()})`,
         );
         break;
     }
@@ -1325,8 +1348,8 @@ function iconToSVG(icon, customisations) {
     if (transformations.length) {
       body = wrapSVGContent(
         body,
-        '<g transform="' + transformations.join(" ") + '">',
-        "</g>"
+        `<g transform="${transformations.join(" ")}">`,
+        "</g>",
       );
     }
   });
@@ -1339,7 +1362,8 @@ function iconToSVG(icon, customisations) {
   if (customisationsWidth === null) {
     height = customisationsHeight === null ? "1em" : customisationsHeight === "auto" ? boxHeight : customisationsHeight;
     width = calculateSize(height, boxWidth / boxHeight);
-  } else {
+  }
+  else {
     width = customisationsWidth === "auto" ? boxWidth : customisationsWidth;
     height = customisationsHeight === null ? calculateSize(width, boxHeight / boxWidth) : customisationsHeight === "auto" ? boxHeight : customisationsHeight;
   }
@@ -1356,11 +1380,11 @@ function iconToSVG(icon, customisations) {
   return {
     attributes,
     viewBox,
-    body
+    body,
   };
 }
 const regex = /\sid="(\S+)"/g;
-const randomPrefix = "IconifyId" + Date.now().toString(16) + (Math.random() * 16777216 | 0).toString(16);
+const randomPrefix = `IconifyId${Date.now().toString(16)}${(Math.random() * 16777216 | 0).toString(16)}`;
 let counter = 0;
 function replaceIDs(body, prefix = randomPrefix) {
   const ids = [];
@@ -1371,15 +1395,15 @@ function replaceIDs(body, prefix = randomPrefix) {
   if (!ids.length) {
     return body;
   }
-  const suffix = "suffix" + (Math.random() * 16777216 | Date.now()).toString(16);
+  const suffix = `suffix${(Math.random() * 16777216 | Date.now()).toString(16)}`;
   ids.forEach((id) => {
     const newID = typeof prefix === "function" ? prefix(id) : prefix + (counter++).toString();
     const escapedID = id.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
     body = body.replace(
       // Allowed characters before id: [#;"]
       // Allowed characters after id: [)"], .[a-z]
-      new RegExp('([#;"])(' + escapedID + ')([")]|\\.[a-z])', "g"),
-      "$1" + newID + suffix + "$3"
+      new RegExp(`([#;"])(${escapedID})([")]|\\.[a-z])`, "g"),
+      `$1${newID}${suffix}$3`,
     );
   });
   body = body.replace(new RegExp(suffix, "g"), "");
@@ -1396,9 +1420,10 @@ function createAPIConfig(source) {
   let resources;
   if (typeof source.resources === "string") {
     resources = [source.resources];
-  } else {
+  }
+  else {
     resources = source.resources;
-    if (!(resources instanceof Array) || !resources.length) {
+    if (!(Array.isArray(resources)) || !resources.length) {
       return null;
     }
   }
@@ -1418,29 +1443,31 @@ function createAPIConfig(source) {
     // Start index
     index: source.index || 0,
     // Receive data after time out (used if time out kicks in first, then API module sends data anyway).
-    dataAfterTimeout: source.dataAfterTimeout !== false
+    dataAfterTimeout: source.dataAfterTimeout !== false,
   };
   return result;
 }
 const configStorage = /* @__PURE__ */ Object.create(null);
 const fallBackAPISources = [
   "https://api.simplesvg.com",
-  "https://api.unisvg.com"
+  "https://api.unisvg.com",
 ];
 const fallBackAPI = [];
 while (fallBackAPISources.length > 0) {
   if (fallBackAPISources.length === 1) {
     fallBackAPI.push(fallBackAPISources.shift());
-  } else {
+  }
+  else {
     if (Math.random() > 0.5) {
       fallBackAPI.push(fallBackAPISources.shift());
-    } else {
+    }
+    else {
       fallBackAPI.push(fallBackAPISources.pop());
     }
   }
 }
 configStorage[""] = createAPIConfig({
-  resources: ["https://api.iconify.design"].concat(fallBackAPI)
+  resources: ["https://api.iconify.design"].concat(fallBackAPI),
 });
 function addAPIProvider(provider, customConfig) {
   const config = createAPIConfig(customConfig);
@@ -1456,16 +1483,17 @@ function getAPIConfig(provider) {
 function listAPIProviders() {
   return Object.keys(configStorage);
 }
-const detectFetch = () => {
+function detectFetch() {
   let callback;
   try {
     callback = fetch;
     if (typeof callback === "function") {
       return callback;
     }
-  } catch (err) {
   }
-};
+  catch (err) {
+  }
+}
 let fetchModule = detectFetch();
 function setFetch(fetch2) {
   fetchModule = fetch2;
@@ -1481,13 +1509,14 @@ function calculateMaxLength(provider, prefix) {
   let result;
   if (!config.maxURL) {
     result = 0;
-  } else {
+  }
+  else {
     let maxHostLength = 0;
     config.resources.forEach((item) => {
       const host = item;
       maxHostLength = Math.max(maxHostLength, host.length);
     });
-    const url = prefix + ".json?icons=";
+    const url = `${prefix}.json?icons=`;
     result = config.maxURL - maxHostLength - config.path.length - url.length;
   }
   return result;
@@ -1495,7 +1524,7 @@ function calculateMaxLength(provider, prefix) {
 function shouldAbort(status) {
   return status === 404;
 }
-const prepare = (provider, prefix, icons) => {
+function prepare(provider, prefix, icons) {
   const results = [];
   const maxLength = calculateMaxLength(provider, prefix);
   const type = "icons";
@@ -1503,7 +1532,7 @@ const prepare = (provider, prefix, icons) => {
     type,
     provider,
     prefix,
-    icons: []
+    icons: [],
   };
   let length = 0;
   icons.forEach((name, index) => {
@@ -1514,7 +1543,7 @@ const prepare = (provider, prefix, icons) => {
         type,
         provider,
         prefix,
-        icons: []
+        icons: [],
       };
       length = name.length;
     }
@@ -1522,7 +1551,7 @@ const prepare = (provider, prefix, icons) => {
   });
   results.push(item);
   return results;
-};
+}
 function getPath(provider) {
   if (typeof provider === "string") {
     const config = getAPIConfig(provider);
@@ -1532,7 +1561,7 @@ function getPath(provider) {
   }
   return "/";
 }
-const send = (host, params, callback) => {
+function send(host, params, callback) {
   if (!fetchModule) {
     callback("abort", 424);
     return;
@@ -1544,9 +1573,9 @@ const send = (host, params, callback) => {
       const icons = params.icons;
       const iconsList = icons.join(",");
       const urlParams = new URLSearchParams({
-        icons: iconsList
+        icons: iconsList,
       });
-      path += prefix + ".json?" + urlParams.toString();
+      path += `${prefix}.json?${urlParams.toString()}`;
       break;
     }
     case "custom": {
@@ -1574,7 +1603,8 @@ const send = (host, params, callback) => {
       setTimeout(() => {
         if (data === 404) {
           callback("abort", data);
-        } else {
+        }
+        else {
           callback("next", defaultError);
         }
       });
@@ -1586,16 +1616,16 @@ const send = (host, params, callback) => {
   }).catch(() => {
     callback("next", defaultError);
   });
-};
+}
 const fetchAPIModule = {
   prepare,
-  send
+  send,
 };
 function sortIcons(icons) {
   const result = {
     loaded: [],
     missing: [],
-    pending: []
+    pending: [],
   };
   const storage2 = /* @__PURE__ */ Object.create(null);
   icons.sort((a, b) => {
@@ -1610,7 +1640,7 @@ function sortIcons(icons) {
   let lastIcon = {
     provider: "",
     prefix: "",
-    name: ""
+    name: "",
   };
   icons.forEach((icon) => {
     if (lastIcon.name === icon.name && lastIcon.prefix === icon.prefix && lastIcon.provider === icon.provider) {
@@ -1625,15 +1655,17 @@ function sortIcons(icons) {
     let list;
     if (name in localStorage.icons) {
       list = result.loaded;
-    } else if (prefix === "" || localStorage.missing.has(name)) {
+    }
+    else if (prefix === "" || localStorage.missing.has(name)) {
       list = result.missing;
-    } else {
+    }
+    else {
       list = result.pending;
     }
     const item = {
       provider,
       prefix,
-      name
+      name,
     };
     list.push(item);
   });
@@ -1643,7 +1675,7 @@ function removeCallback(storages, id) {
   storages.forEach((storage2) => {
     const items = storage2.loaderCallbacks;
     if (items) {
-      storage2.loaderCallbacks = items.filter((row) => row.id !== id);
+      storage2.loaderCallbacks = items.filter(row => row.id !== id);
     }
   });
 }
@@ -1671,15 +1703,17 @@ function updateCallbacks(storage2) {
             icons.loaded.push({
               provider,
               prefix,
-              name
+              name,
             });
-          } else if (storage2.missing.has(name)) {
+          }
+          else if (storage2.missing.has(name)) {
             icons.missing.push({
               provider,
               prefix,
-              name
+              name,
             });
-          } else {
+          }
+          else {
             hasPending = true;
             return true;
           }
@@ -1693,7 +1727,7 @@ function updateCallbacks(storage2) {
             icons.loaded.slice(0),
             icons.missing.slice(0),
             icons.pending.slice(0),
-            item.abort
+            item.abort,
           );
         }
       });
@@ -1711,7 +1745,7 @@ function storeCallback(callback, icons, pendingSources) {
     id,
     icons,
     callback,
-    abort
+    abort,
   };
   pendingSources.forEach((storage2) => {
     (storage2.loaderCallbacks || (storage2.loaderCallbacks = [])).push(item);
@@ -1728,13 +1762,13 @@ function listToIcons(list, validate2 = true, simpleNames2 = false) {
   });
   return result;
 }
-var defaultConfig = {
+let defaultConfig = {
   resources: [],
   index: 0,
   timeout: 2e3,
   rotate: 750,
   random: false,
-  dataAfterTimeout: false
+  dataAfterTimeout: false,
 };
 function sendQuery(config, payload, query, done) {
   const resourcesCount = config.resources.length;
@@ -1749,7 +1783,8 @@ function sendQuery(config, payload, query, done) {
       list = list.slice(0, nextIndex).concat(list.slice(nextIndex + 1));
     }
     resources = resources.concat(list);
-  } else {
+  }
+  else {
     resources = config.resources.slice(startIndex).concat(config.resources.slice(0, startIndex));
   }
   const startTime = Date.now();
@@ -1796,7 +1831,7 @@ function sendQuery(config, payload, query, done) {
       queriesSent,
       queriesPending: queue.length,
       subscribe,
-      abort
+      abort,
     };
   }
   function failQuery() {
@@ -1815,7 +1850,7 @@ function sendQuery(config, payload, query, done) {
   }
   function moduleResponse(item, response, data) {
     const isError = response !== "success";
-    queue = queue.filter((queued) => queued !== item);
+    queue = queue.filter(queued => queued !== item);
     switch (status) {
       case "pending":
         break;
@@ -1837,7 +1872,8 @@ function sendQuery(config, payload, query, done) {
       if (!queue.length) {
         if (!resources.length) {
           failQuery();
-        } else {
+        }
+        else {
           execNext();
         }
       }
@@ -1881,7 +1917,7 @@ function sendQuery(config, payload, query, done) {
       resource,
       callback: (status2, data) => {
         moduleResponse(item, status2, data);
-      }
+      },
     };
     queue.push(item);
     queriesSent++;
@@ -1894,11 +1930,11 @@ function sendQuery(config, payload, query, done) {
 function initRedundancy(cfg) {
   const config = {
     ...defaultConfig,
-    ...cfg
+    ...cfg,
   };
   let queries = [];
   function cleanup() {
-    queries = queries.filter((item) => item().status === "pending");
+    queries = queries.filter(item => item().status === "pending");
   }
   function query(payload, queryCallback, doneCallback) {
     const query2 = sendQuery(
@@ -1910,7 +1946,7 @@ function initRedundancy(cfg) {
         if (doneCallback) {
           doneCallback(data, error);
         }
-      }
+      },
     );
     queries.push(query2);
     return query2;
@@ -1927,7 +1963,7 @@ function initRedundancy(cfg) {
       config.index = index;
     },
     getIndex: () => config.index,
-    cleanup
+    cleanup,
   };
   return instance;
 }
@@ -1943,7 +1979,7 @@ function getRedundancyCache(provider) {
     const redundancy = initRedundancy(config);
     const cachedReundancy = {
       config,
-      redundancy
+      redundancy,
     };
     redundancyCache[provider] = cachedReundancy;
   }
@@ -1963,7 +1999,8 @@ function sendAPIQuery(target, query, callback) {
     if (cached) {
       redundancy = cached.redundancy;
     }
-  } else {
+  }
+  else {
     const config = createAPIConfig(target);
     if (config) {
       redundancy = initRedundancy(config);
@@ -1999,7 +2036,7 @@ function checkIconNamesForAPI(icons) {
   });
   return {
     valid,
-    invalid
+    invalid,
   };
 }
 function parseLoaderResponse(storage2, icons, data) {
@@ -2021,7 +2058,8 @@ function parseLoaderResponse(storage2, icons, data) {
         checkMissing();
         return;
       }
-    } catch (err) {
+    }
+    catch (err) {
       console.error(err);
     }
   }
@@ -2035,14 +2073,16 @@ function parsePossiblyAsyncResponse(response, callback) {
     }).catch(() => {
       callback(null);
     });
-  } else {
+  }
+  else {
     callback(response);
   }
 }
 function loadNewIcons(storage2, icons) {
   if (!storage2.iconsToLoad) {
     storage2.iconsToLoad = icons;
-  } else {
+  }
+  else {
     storage2.iconsToLoad = storage2.iconsToLoad.concat(icons).sort();
   }
   if (!storage2.iconsQueueFlag) {
@@ -2061,7 +2101,7 @@ function loadNewIcons(storage2, icons) {
           storage2.loadIcons(icons2, prefix, provider),
           (data) => {
             parseLoaderResponse(storage2, icons2, data);
-          }
+          },
         );
         return;
       }
@@ -2069,12 +2109,14 @@ function loadNewIcons(storage2, icons) {
         icons2.forEach((name) => {
           const response = customIconLoader(name, prefix, provider);
           parsePossiblyAsyncResponse(response, (data) => {
-            const iconSet = data ? {
-              prefix,
-              icons: {
-                [name]: data
-              }
-            } : null;
+            const iconSet = data
+              ? {
+                  prefix,
+                  icons: {
+                    [name]: data,
+                  },
+                }
+              : null;
             parseLoaderResponse(storage2, [name], iconSet);
           });
         });
@@ -2101,7 +2143,7 @@ function loadNewIcons(storage2, icons) {
     });
   }
 }
-const loadIcons = (icons, callback) => {
+function loadIcons(icons, callback) {
   const cleanedIcons = listToIcons(icons, true, allowSimpleNames());
   const sortedIcons = sortIcons(cleanedIcons);
   if (!sortedIcons.pending.length) {
@@ -2113,7 +2155,7 @@ const loadIcons = (icons, callback) => {
             sortedIcons.loaded,
             sortedIcons.missing,
             sortedIcons.pending,
-            emptyCallback
+            emptyCallback,
           );
         }
       });
@@ -2154,8 +2196,8 @@ const loadIcons = (icons, callback) => {
     }
   });
   return callback ? storeCallback(callback, sortedIcons, sources) : emptyCallback;
-};
-const loadIcon = (icon) => {
+}
+function loadIcon(icon) {
   return new Promise((fulfill, reject) => {
     const iconObj = typeof icon === "string" ? stringToIcon(icon, true) : icon;
     if (!iconObj) {
@@ -2168,7 +2210,7 @@ const loadIcon = (icon) => {
         if (data) {
           fulfill({
             ...defaultIconProps,
-            ...data
+            ...data,
           });
           return;
         }
@@ -2176,13 +2218,13 @@ const loadIcon = (icon) => {
       reject(icon);
     });
   });
-};
+}
 function setCustomIconsLoader(loader, prefix, provider) {
   getStorage("", prefix).loadIcons = loader;
 }
 function mergeCustomisations(defaults, item) {
   const result = {
-    ...defaults
+    ...defaults,
   };
   for (const key in item) {
     const value = item[key];
@@ -2191,7 +2233,8 @@ function mergeCustomisations(defaults, item) {
       if (value === null || value && (valueType === "string" || valueType === "number")) {
         result[key] = value;
       }
-    } else if (valueType === typeof result[key]) {
+    }
+    else if (valueType === typeof result[key]) {
       result[key] = key === "rotate" ? value % 4 : value;
     }
   }
@@ -2220,9 +2263,10 @@ function rotateFromString(value, defaultValue = 0) {
     return value2 % 4;
   }
   if (units === "") {
-    const num = parseInt(value);
+    const num = Number.parseInt(value);
     return isNaN(num) ? 0 : cleanup(num);
-  } else if (units !== value) {
+  }
+  else if (units !== value) {
     let split = 0;
     switch (units) {
       case "%":
@@ -2232,7 +2276,7 @@ function rotateFromString(value, defaultValue = 0) {
         split = 90;
     }
     if (split) {
-      let num = parseFloat(value.slice(0, value.length - units.length));
+      let num = Number.parseFloat(value.slice(0, value.length - units.length));
       if (isNaN(num)) {
         return 0;
       }
@@ -2243,49 +2287,49 @@ function rotateFromString(value, defaultValue = 0) {
   return defaultValue;
 }
 function iconToHTML(body, attributes) {
-  let renderAttribsHTML = body.indexOf("xlink:") === -1 ? "" : ' xmlns:xlink="http://www.w3.org/1999/xlink"';
+  let renderAttribsHTML = !body.includes("xlink:") ? "" : " xmlns:xlink=\"http://www.w3.org/1999/xlink\"";
   for (const attr in attributes) {
-    renderAttribsHTML += " " + attr + '="' + attributes[attr] + '"';
+    renderAttribsHTML += ` ${attr}="${attributes[attr]}"`;
   }
-  return '<svg xmlns="http://www.w3.org/2000/svg"' + renderAttribsHTML + ">" + body + "</svg>";
+  return `<svg xmlns="http://www.w3.org/2000/svg"${renderAttribsHTML}>${body}</svg>`;
 }
 function encodeSVGforURL(svg) {
   return svg.replace(/"/g, "'").replace(/%/g, "%25").replace(/#/g, "%23").replace(/</g, "%3C").replace(/>/g, "%3E").replace(/\s+/g, " ");
 }
 function svgToData(svg) {
-  return "data:image/svg+xml," + encodeSVGforURL(svg);
+  return `data:image/svg+xml,${encodeSVGforURL(svg)}`;
 }
 function svgToURL(svg) {
-  return 'url("' + svgToData(svg) + '")';
+  return `url("${svgToData(svg)}")`;
 }
 const defaultExtendedIconCustomisations = {
   ...defaultIconCustomisations,
-  inline: false
+  inline: false,
 };
 const svgDefaults = {
   "xmlns": "http://www.w3.org/2000/svg",
   "xmlns:xlink": "http://www.w3.org/1999/xlink",
   "aria-hidden": true,
-  "role": "img"
+  "role": "img",
 };
 const commonProps = {
-  display: "inline-block"
+  display: "inline-block",
 };
 const monotoneProps = {
-  backgroundColor: "currentColor"
+  backgroundColor: "currentColor",
 };
 const coloredProps = {
-  backgroundColor: "transparent"
+  backgroundColor: "transparent",
 };
 const propsToAdd = {
   Image: "var(--svg)",
   Repeat: "no-repeat",
-  Size: "100% 100%"
+  Size: "100% 100%",
 };
 const propsToAddTo = {
   webkitMask: monotoneProps,
   mask: monotoneProps,
-  background: coloredProps
+  background: coloredProps,
 };
 for (const prefix in propsToAddTo) {
   const list = propsToAddTo[prefix];
@@ -2295,21 +2339,21 @@ for (const prefix in propsToAddTo) {
 }
 const customisationAliases = {};
 ["horizontal", "vertical"].forEach((prefix) => {
-  const attr = prefix.slice(0, 1) + "Flip";
-  customisationAliases[prefix + "-flip"] = attr;
-  customisationAliases[prefix.slice(0, 1) + "-flip"] = attr;
-  customisationAliases[prefix + "Flip"] = attr;
+  const attr = `${prefix.slice(0, 1)}Flip`;
+  customisationAliases[`${prefix}-flip`] = attr;
+  customisationAliases[`${prefix.slice(0, 1)}-flip`] = attr;
+  customisationAliases[`${prefix}Flip`] = attr;
 });
 function fixSize(value) {
   return value + (value.match(/^[-0-9.]+$/) ? "px" : "");
 }
-const render = (icon, props) => {
+function render(icon, props) {
   const customisations = mergeCustomisations(defaultExtendedIconCustomisations, props);
   const componentProps = { ...svgDefaults };
   const mode = props.mode || "svg";
   const style = {};
   const propsStyle = props.style;
-  const customStyle = typeof propsStyle === "object" && !(propsStyle instanceof Array) ? propsStyle : {};
+  const customStyle = typeof propsStyle === "object" && !(Array.isArray(propsStyle)) ? propsStyle : {};
   for (let key in props) {
     const value = props[key];
     if (value === void 0) {
@@ -2343,7 +2387,8 @@ const render = (icon, props) => {
       case "rotate":
         if (typeof value === "string") {
           customisations[key] = rotateFromString(value);
-        } else if (typeof value === "number") {
+        }
+        else if (typeof value === "number") {
           customisations[key] = value;
         }
         break;
@@ -2360,7 +2405,8 @@ const render = (icon, props) => {
           if (value === true || value === "true" || value === 1) {
             customisations[alias] = true;
           }
-        } else if (defaultExtendedIconCustomisations[key] === void 0) {
+        }
+        else if (defaultExtendedIconCustomisations[key] === void 0) {
           componentProps[key] = value;
         }
       }
@@ -2374,7 +2420,7 @@ const render = (icon, props) => {
   if (mode === "svg") {
     componentProps.style = {
       ...style,
-      ...customStyle
+      ...customStyle,
     };
     Object.assign(componentProps, renderAttribs);
     let localCounter = 0;
@@ -2382,15 +2428,15 @@ const render = (icon, props) => {
     if (typeof id === "string") {
       id = id.replace(/-/g, "_");
     }
-    componentProps["innerHTML"] = replaceIDs(item.body, id ? () => id + "ID" + localCounter++ : "iconifyVue");
+    componentProps.innerHTML = replaceIDs(item.body, id ? () => `${id}ID${localCounter++}` : "iconifyVue");
     return h("svg", componentProps);
   }
   const { body, width, height } = icon;
-  const useMask = mode === "mask" || (mode === "bg" ? false : body.indexOf("currentColor") !== -1);
+  const useMask = mode === "mask" || (mode === "bg" ? false : body.includes("currentColor"));
   const html = iconToHTML(body, {
     ...renderAttribs,
-    width: width + "",
-    height: height + ""
+    width: `${width}`,
+    height: `${height}`,
   });
   componentProps.style = {
     ...style,
@@ -2399,15 +2445,15 @@ const render = (icon, props) => {
     "height": fixSize(renderAttribs.height),
     ...commonProps,
     ...useMask ? monotoneProps : coloredProps,
-    ...customStyle
+    ...customStyle,
   };
   return h("span", componentProps);
-};
+}
 allowSimpleNames(true);
 setAPIModule("", fetchAPIModule);
 const emptyIcon = {
   ...defaultIconProps,
-  body: ""
+  body: "",
 };
 const Icon = defineComponent((props, { emit }) => {
   const loader = ref(null);
@@ -2425,7 +2471,7 @@ const Icon = defineComponent((props, { emit }) => {
     if (typeof icon === "object" && icon !== null && typeof icon.body === "string") {
       lastRenderedIconName.value = "";
       return {
-        data: icon
+        data: icon,
       };
     }
     let iconName;
@@ -2438,12 +2484,13 @@ const Icon = defineComponent((props, { emit }) => {
       if (!oldState || oldState.name !== icon) {
         if (data === null) {
           loader.value = {
-            name: icon
+            name: icon,
           };
-        } else {
+        }
+        else {
           loader.value = {
             name: icon,
-            abort: loadIcons([iconName], updateIconData)
+            abort: loadIcons([iconName], updateIconData),
           };
         }
       }
@@ -2466,10 +2513,10 @@ const Icon = defineComponent((props, { emit }) => {
     }
     const classes = ["iconify"];
     if (iconName.prefix !== "") {
-      classes.push("iconify--" + iconName.prefix);
+      classes.push(`iconify--${iconName.prefix}`);
     }
     if (iconName.provider !== "") {
-      classes.push("iconify--" + iconName.provider);
+      classes.push(`iconify--${iconName.provider}`);
     }
     return { data, classes };
   }
@@ -2477,7 +2524,8 @@ const Icon = defineComponent((props, { emit }) => {
     const icon = getIcon2();
     if (!icon) {
       iconData.value = null;
-    } else if (icon.data !== iconData.value?.data) {
+    }
+    else if (icon.data !== iconData.value?.data) {
       iconData.value = icon;
     }
   }
@@ -2494,12 +2542,12 @@ const Icon = defineComponent((props, { emit }) => {
     if (icon.classes) {
       newProps = {
         ...props,
-        class: icon.classes.join(" ")
+        class: icon.classes.join(" "),
       };
     }
     return render({
       ...defaultIconProps,
-      ...icon.data
+      ...icon.data,
     }, newProps);
   };
 }, {
@@ -2525,9 +2573,9 @@ const Icon = defineComponent((props, { emit }) => {
     "id",
     "ariaHidden",
     "customise",
-    "title"
+    "title",
   ],
-  emits: ["load"]
+  emits: ["load"],
 });
 const _api = {
   getAPIConfig,
@@ -2535,24 +2583,24 @@ const _api = {
   sendAPIQuery,
   setFetch,
   getFetch,
-  listAPIProviders
+  listAPIProviders,
 };
 const inlineConfig = {
-  "nuxt": {},
-  "icon": {
-    "provider": "server",
-    "class": "",
-    "aliases": {},
-    "iconifyApiEndpoint": "https://api.iconify.design",
-    "localApiEndpoint": "/api/_nuxt_icon",
-    "fallbackToApi": true,
-    "cssSelectorPrefix": "i-",
-    "cssWherePseudo": true,
-    "mode": "css",
-    "attrs": {
-      "aria-hidden": true
+  nuxt: {},
+  icon: {
+    provider: "server",
+    class: "",
+    aliases: {},
+    iconifyApiEndpoint: "https://api.iconify.design",
+    localApiEndpoint: "/api/_nuxt_icon",
+    fallbackToApi: true,
+    cssSelectorPrefix: "i-",
+    cssWherePseudo: true,
+    mode: "css",
+    attrs: {
+      "aria-hidden": true,
     },
-    "collections": [
+    collections: [
       "academicons",
       "akar-icons",
       "ant-design",
@@ -2729,10 +2777,10 @@ const inlineConfig = {
       "wi",
       "wpf",
       "zmdi",
-      "zondicons"
+      "zondicons",
     ],
-    "fetchTimeout": 1500
-  }
+    fetchTimeout: 1500,
+  },
 };
 const __appConfig = /* @__PURE__ */ defuFn(inlineConfig);
 function useAppConfig() {
@@ -2753,22 +2801,25 @@ const plugin_7AAaZBCw7do1cquNv9P4Wtvxr1v92i_tRhQwAH0Fon0 = /* @__PURE__ */ defin
       if (options.fallbackToApi === true || options.fallbackToApi === "client-only") {
         resources.push(options.iconifyApiEndpoint);
       }
-    } else if (options.provider === "none") {
+    }
+    else if (options.provider === "none") {
       _api.setFetch(() => Promise.resolve(new Response()));
-    } else {
+    }
+    else {
       resources.push(options.iconifyApiEndpoint);
     }
     async function customIconLoader(icons, prefix) {
       try {
-        const data = await $fetch(resources[0] + "/" + prefix + ".json", {
+        const data = await $fetch(`${resources[0]}/${prefix}.json`, {
           query: {
-            icons: icons.join(",")
-          }
+            icons: icons.join(","),
+          },
         });
         if (!data || data.prefix !== prefix || !data.icons)
-          throw new Error("Invalid data" + JSON.stringify(data));
+          throw new Error(`Invalid data${JSON.stringify(data)}`);
         return data;
-      } catch (e) {
+      }
+      catch (e) {
         console.error("Failed to load custom icons", e);
         return null;
       }
@@ -2778,7 +2829,7 @@ const plugin_7AAaZBCw7do1cquNv9P4Wtvxr1v92i_tRhQwAH0Fon0 = /* @__PURE__ */ defin
       if (prefix)
         setCustomIconsLoader(customIconLoader, prefix);
     }
-  }
+  },
   // For type portability
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
 });
@@ -2789,17 +2840,18 @@ function useRequestEvent(nuxtApp) {
 const CookieDefaults = {
   path: "/",
   watch: true,
-  decode: (val) => destr(decodeURIComponent(val)),
-  encode: (val) => encodeURIComponent(typeof val === "string" ? val : JSON.stringify(val))
+  decode: val => destr(decodeURIComponent(val)),
+  encode: val => encodeURIComponent(typeof val === "string" ? val : JSON.stringify(val)),
 };
 function useCookie(name, _opts) {
   const opts = { ...CookieDefaults, ..._opts };
-  opts.filter ??= (key) => key === name;
+  opts.filter ??= key => key === name;
   const cookies = readRawCookies(opts) || {};
   let delay;
   if (opts.maxAge !== void 0) {
     delay = opts.maxAge * 1e3;
-  } else if (opts.expires) {
+  }
+  else if (opts.expires) {
     delay = opts.expires.getTime() - Date.now();
   }
   const hasExpired = delay !== void 0 && delay <= 0;
@@ -2854,31 +2906,31 @@ const sidebarMenuButtonVariants = tv({
   variants: {
     variant: {
       default: "",
-      outline: ""
+      outline: "",
     },
     size: {
       default: "px-4 py-2 text-base",
       sm: "",
-      lg: "text-base"
-    }
+      lg: "text-base",
+    },
   },
   defaultVariants: {
     variant: "default",
-    size: "default"
-  }
+    size: "default",
+  },
 });
 const [useSidebar, provideSidebarContext] = createContext("Sidebar");
 function useAuthCookie() {
   const userAuthName = useCookie("userAuthName", {
     default: () => null,
-    maxAge: Number(SIDEBAR_COOKIE_MAX_AGE)
+    maxAge: Number(SIDEBAR_COOKIE_MAX_AGE),
   });
   const accessToken = useCookie(
     "authCookie",
     {
       default: () => null,
-      maxAge: Number(SIDEBAR_COOKIE_MAX_AGE)
-    }
+      maxAge: Number(SIDEBAR_COOKIE_MAX_AGE),
+    },
   );
   const setToken = (token) => {
     accessToken.value = token;
@@ -2886,7 +2938,7 @@ function useAuthCookie() {
   return {
     accessToken,
     setToken,
-    userAuthName
+    userAuthName,
   };
 }
 const api_84elem0X4yBmBiZUVE7UuQp73h8h21064ANeRANSla4 = /* @__PURE__ */ defineNuxtPlugin({
@@ -2896,12 +2948,12 @@ const api_84elem0X4yBmBiZUVE7UuQp73h8h21064ANeRANSla4 = /* @__PURE__ */ defineNu
       baseURL: (/* @__PURE__ */ useRuntimeConfig()).public.apiBase,
       headers: {
         "Content-Type": "application/json",
-        "ngrok-skip-browser-warning": "true"
+        "ngrok-skip-browser-warning": "true",
       },
       onRequest({ options }) {
         if (accessToken.value?.length) {
           options.headers = {
-            Authorization: `Bearer ${accessToken.value}`
+            Authorization: `Bearer ${accessToken.value}`,
           };
         }
       },
@@ -2915,12 +2967,12 @@ const api_84elem0X4yBmBiZUVE7UuQp73h8h21064ANeRANSla4 = /* @__PURE__ */ defineNu
           navigateTo({ name: "login" });
         }
         console.log(error);
-      }
+      },
     });
     return {
-      provide: { api }
+      provide: { api },
     };
-  }
+  },
 });
 const plugins = [
   unhead_0WJFFtb7G0zB0cpb9pfRa9bqtEz79cbzBVdolKtwPLo,
@@ -2928,34 +2980,34 @@ const plugins = [
   revive_payload_server__71TOahOdIhAJYvFbSxZjy8OvdNqgaqcfpL2HOTJ5dE,
   components_plugin_4kY4pyzJIYX99vmMAAIorFf3CnAaptHitJgf7JxiED8,
   plugin_7AAaZBCw7do1cquNv9P4Wtvxr1v92i_tRhQwAH0Fon0,
-  api_84elem0X4yBmBiZUVE7UuQp73h8h21064ANeRANSla4
+  api_84elem0X4yBmBiZUVE7UuQp73h8h21064ANeRANSla4,
 ];
 const layouts = {
-  auth: defineAsyncComponent(() => import('./auth-CljAbJFP.mjs').then((m) => m.default || m)),
-  dashboard: defineAsyncComponent(() => import('./dashboard-DWo10Cma.mjs').then((m) => m.default || m)),
-  default: defineAsyncComponent(() => import('./default-BqUnalLv.mjs').then((m) => m.default || m)),
-  homepage: defineAsyncComponent(() => import('./homepage-Bz12_19u.mjs').then((m) => m.default || m))
+  auth: defineAsyncComponent(() => import("./auth-CljAbJFP.mjs").then(m => m.default || m)),
+  dashboard: defineAsyncComponent(() => import("./dashboard-DWo10Cma.mjs").then(m => m.default || m)),
+  default: defineAsyncComponent(() => import("./default-BqUnalLv.mjs").then(m => m.default || m)),
+  homepage: defineAsyncComponent(() => import("./homepage-Bz12_19u.mjs").then(m => m.default || m)),
 };
 const LayoutLoader = defineComponent({
   name: "LayoutLoader",
   inheritAttrs: false,
   props: {
     name: String,
-    layoutProps: Object
+    layoutProps: Object,
   },
   setup(props, context) {
     return () => h(layouts[props.name], props.layoutProps, context.slots);
-  }
+  },
 });
 const nuxtLayoutProps = {
   name: {
     type: [String, Boolean, Object],
-    default: null
+    default: null,
   },
   fallback: {
     type: [String, Object],
-    default: null
-  }
+    default: null,
+  },
 };
 const __nuxt_component_0 = defineComponent({
   name: "NuxtLayout",
@@ -2998,41 +3050,41 @@ const __nuxt_component_0 = defineComponent({
               isRenderingNewLayout: (name) => {
                 return name !== previouslyRenderedLayout && name === layout.value;
               },
-              hasTransition: !!transitionProps
+              hasTransition: !!transitionProps,
             },
-            context.slots
-          )
-        })
+            context.slots,
+          ),
+        }),
       }).default();
     };
-  }
+  },
 });
 const LayoutProvider = defineComponent({
   name: "NuxtLayoutProvider",
   inheritAttrs: false,
   props: {
     name: {
-      type: [String, Boolean]
+      type: [String, Boolean],
     },
     layoutProps: {
-      type: Object
+      type: Object,
     },
     hasTransition: {
-      type: Boolean
+      type: Boolean,
     },
     shouldProvide: {
-      type: Boolean
+      type: Boolean,
     },
     isRenderingNewLayout: {
       type: Function,
-      required: true
-    }
+      required: true,
+    },
   },
   setup(props, context) {
     const name = props.name;
     if (props.shouldProvide) {
       provide(LayoutMetaSymbol, {
-        isCurrent: (route) => name === (route.meta.layout ?? "default")
+        isCurrent: route => name === (route.meta.layout ?? "default"),
       });
     }
     const injectedRoute = inject(PageRouteSymbol);
@@ -3046,7 +3098,7 @@ const LayoutProvider = defineComponent({
           enumerable: true,
           get: () => {
             return props.isRenderingNewLayout(props.name) ? vueRouterRoute[key] : injectedRoute[key];
-          }
+          },
         });
       }
       provide(PageRouteSymbol, shallowReactive(reactiveChildRoute));
@@ -3058,71 +3110,73 @@ const LayoutProvider = defineComponent({
       return h(
         LayoutLoader,
         { key: name, layoutProps: props.layoutProps, name },
-        context.slots
+        context.slots,
       );
     };
-  }
+  },
 });
 const __nuxt_component_16 = defineComponent({
   name: "ServerPlaceholder",
   render() {
     return createElementBlock("div");
-  }
-});
-const defineRouteProvider = (name = "RouteProvider") => defineComponent({
-  name,
-  props: {
-    route: {
-      type: Object,
-      required: true
-    },
-    vnode: Object,
-    vnodeRef: Object,
-    renderKey: String,
-    trackRootNodes: Boolean
   },
-  setup(props) {
-    const previousKey = props.renderKey;
-    const previousRoute = props.route;
-    const route = {};
-    for (const key in props.route) {
-      Object.defineProperty(route, key, {
-        get: () => previousKey === props.renderKey ? props.route[key] : previousRoute[key],
-        enumerable: true
-      });
-    }
-    provide(PageRouteSymbol, shallowReactive(route));
-    return () => {
-      if (!props.vnode) {
-        return props.vnode;
-      }
-      return h(props.vnode, { ref: props.vnodeRef });
-    };
-  }
 });
+function defineRouteProvider(name = "RouteProvider") {
+  return defineComponent({
+    name,
+    props: {
+      route: {
+        type: Object,
+        required: true,
+      },
+      vnode: Object,
+      vnodeRef: Object,
+      renderKey: String,
+      trackRootNodes: Boolean,
+    },
+    setup(props) {
+      const previousKey = props.renderKey;
+      const previousRoute = props.route;
+      const route = {};
+      for (const key in props.route) {
+        Object.defineProperty(route, key, {
+          get: () => previousKey === props.renderKey ? props.route[key] : previousRoute[key],
+          enumerable: true,
+        });
+      }
+      provide(PageRouteSymbol, shallowReactive(route));
+      return () => {
+        if (!props.vnode) {
+          return props.vnode;
+        }
+        return h(props.vnode, { ref: props.vnodeRef });
+      };
+    },
+  });
+}
 const RouteProvider = defineRouteProvider();
 const __nuxt_component_2 = defineComponent({
   name: "NuxtPage",
   inheritAttrs: false,
   props: {
     name: {
-      type: String
+      type: String,
     },
     transition: {
       type: [Boolean, Object],
-      default: void 0
+      default: void 0,
     },
     keepalive: {
       type: [Boolean, Object],
-      default: void 0
+      default: void 0,
     },
     route: {
-      type: Object
+      type: Object,
     },
     pageKey: {
       type: [Function, String],
-      default: null
-    }
+      default: null,
+    },
   },
   setup(props, { attrs, slots, expose }) {
     const nuxtApp = useNuxtApp();
@@ -3139,26 +3193,26 @@ const __nuxt_component_2 = defineComponent({
               return h(RouteProvider, {
                 vnode: slots.default ? normalizeSlot(slots.default, routeProps) : routeProps.Component,
                 route: routeProps.route,
-                vnodeRef: pageRef
+                vnodeRef: pageRef,
               });
-            }
+            },
           });
-        }
+        },
       });
     };
-  }
+  },
 });
 function normalizeSlot(slot, data) {
   const slotContent = slot(data);
   return slotContent.length === 1 ? h(slotContent[0]) : h(Fragment, void 0, slotContent);
 }
-const _export_sfc = (sfc, props) => {
+function _export_sfc(sfc, props) {
   const target = sfc.__vccOpts || sfc;
   for (const [key, val] of props) {
     target[key] = val;
   }
   return target;
-};
+}
 const _sfc_main$2 = {};
 function _sfc_ssrRender(_ctx, _push, _parent, _attrs) {
   const _component_NuxtLayout = __nuxt_component_0;
@@ -3171,15 +3225,16 @@ function _sfc_ssrRender(_ctx, _push, _parent, _attrs) {
         _push2(ssrRenderComponent(_component_NuxtRouteAnnouncer, null, null, _parent2, _scopeId));
         _push2(ssrRenderComponent(_component_NuxtPage, null, null, _parent2, _scopeId));
         _push2(ssrRenderComponent(_component_UiVueSonner, null, null, _parent2, _scopeId));
-      } else {
+      }
+      else {
         return [
           createVNode(_component_NuxtRouteAnnouncer),
           createVNode(_component_NuxtPage),
-          createVNode(_component_UiVueSonner)
+          createVNode(_component_UiVueSonner),
         ];
       }
     }),
-    _: 1
+    _: 1,
   }, _parent));
 }
 const _sfc_setup$2 = _sfc_main$2.setup;
@@ -3193,30 +3248,32 @@ const _sfc_main$1 = {
   __name: "nuxt-error-page",
   __ssrInlineRender: true,
   props: {
-    error: Object
+    error: Object,
   },
   setup(__props) {
     const props = __props;
     const _error = props.error;
-    _error.stack ? _error.stack.split("\n").splice(1).map((line) => {
-      const text = line.replace("webpack:/", "").replace(".vue", ".js").trim();
-      return {
-        text,
-        internal: line.includes("node_modules") && !line.includes(".cache") || line.includes("internal") || line.includes("new Promise")
-      };
-    }).map((i) => `<span class="stack${i.internal ? " internal" : ""}">${i.text}</span>`).join("\n") : "";
+    _error.stack
+      ? _error.stack.split("\n").splice(1).map((line) => {
+          const text = line.replace("webpack:/", "").replace(".vue", ".js").trim();
+          return {
+            text,
+            internal: line.includes("node_modules") && !line.includes(".cache") || line.includes("internal") || line.includes("new Promise"),
+          };
+        }).map(i => `<span class="stack${i.internal ? " internal" : ""}">${i.text}</span>`).join("\n")
+      : "";
     const statusCode = Number(_error.statusCode || 500);
     const is404 = statusCode === 404;
     const statusMessage = _error.statusMessage ?? (is404 ? "Page Not Found" : "Internal Server Error");
     const description = _error.message || _error.toString();
     const stack = void 0;
-    const _Error404 = defineAsyncComponent(() => import('./error-404-DXn4zMcn.mjs'));
-    const _Error = defineAsyncComponent(() => import('./error-500-BFu6dusf.mjs'));
+    const _Error404 = defineAsyncComponent(() => import("./error-404-DXn4zMcn.mjs"));
+    const _Error = defineAsyncComponent(() => import("./error-500-BFu6dusf.mjs"));
     const ErrorTemplate = is404 ? _Error404 : _Error;
     return (_ctx, _push, _parent, _attrs) => {
       _push(ssrRenderComponent(unref(ErrorTemplate), mergeProps({ statusCode: unref(statusCode), statusMessage: unref(statusMessage), description: unref(description), stack: unref(stack) }, _attrs), null, _parent));
     };
-  }
+  },
 };
 const _sfc_setup$1 = _sfc_main$1.setup;
 _sfc_main$1.setup = (props, ctx) => {
@@ -3234,11 +3291,11 @@ const _sfc_main = {
     nuxtApp.ssrContext.url;
     const SingleRenderer = false;
     provide(PageRouteSymbol, useRoute());
-    nuxtApp.hooks.callHookWith((hooks) => hooks.map((hook) => hook()), "vue:setup");
+    nuxtApp.hooks.callHookWith(hooks => hooks.map(hook => hook()), "vue:setup");
     const error = /* @__PURE__ */ useError();
     const abortRender = error.value && !nuxtApp.ssrContext.error;
     onErrorCaptured((err, target, info) => {
-      nuxtApp.hooks.callHook("vue:error", err, target, info).catch((hookError) => console.error("[nuxt] Error in `vue:error` hook", hookError));
+      nuxtApp.hooks.callHook("vue:error", err, target, info).catch(hookError => console.error("[nuxt] Error in `vue:error` hook", hookError));
       {
         const p = nuxtApp.runWithContext(() => showError(err));
         onServerPrefetch(() => p);
@@ -3251,20 +3308,24 @@ const _sfc_main = {
         default: () => {
           if (unref(abortRender)) {
             _push(`<div></div>`);
-          } else if (unref(error)) {
+          }
+          else if (unref(error)) {
             _push(ssrRenderComponent(unref(_sfc_main$1), { error: unref(error) }, null, _parent));
-          } else if (unref(islandContext)) {
+          }
+          else if (unref(islandContext)) {
             _push(ssrRenderComponent(unref(IslandRenderer), { context: unref(islandContext) }, null, _parent));
-          } else if (unref(SingleRenderer)) {
+          }
+          else if (unref(SingleRenderer)) {
             ssrRenderVNode(_push, createVNode(resolveDynamicComponent(unref(SingleRenderer)), null, null), _parent);
-          } else {
+          }
+          else {
             _push(ssrRenderComponent(unref(AppComponent), null, null, _parent));
           }
         },
-        _: 1
+        _: 1,
       });
     };
-  }
+  },
 };
 const _sfc_setup = _sfc_main.setup;
 _sfc_main.setup = (props, ctx) => {
@@ -3280,7 +3341,8 @@ let entry;
     try {
       await applyPlugins(nuxt, plugins);
       await nuxt.hooks.callHook("app:created", vueApp);
-    } catch (error) {
+    }
+    catch (error) {
       await nuxt.hooks.callHook("app:error", error);
       nuxt.payload.error ||= createError(error);
     }
@@ -3290,7 +3352,7 @@ let entry;
     return vueApp;
   };
 }
-const entry$1 = (ssrContext) => entry(ssrContext);
+const entry$1 = ssrContext => entry(ssrContext);
 
-export { Icon as I, SIDEBAR_WIDTH_ICON as S, _export_sfc as _, __nuxt_component_16 as a, useNuxtApp as b, useAuthCookie as c, useRouter as d, entry$1 as default, useRoute as e, defineNuxtRouteMiddleware as f, nuxtLinkDefaults as g, asyncDataDefaults as h, createError as i, useAppConfig as j, getIcon as k, loadIcon as l, useCookie as m, navigateTo as n, SIDEBAR_WIDTH as o, provideSidebarContext as p, SIDEBAR_COOKIE_MAX_AGE as q, resolveRouteObject as r, SIDEBAR_COOKIE_NAME as s, SIDEBAR_KEYBOARD_SHORTCUT as t, useRuntimeConfig as u, useSidebar as v, SIDEBAR_WIDTH_MOBILE as w, sidebarMenuButtonVariants as x };
-//# sourceMappingURL=server.mjs.map
+export { _export_sfc as _, __nuxt_component_16 as a, useNuxtApp as b, useAuthCookie as c, useRouter as d, entry$1 as default, useRoute as e, defineNuxtRouteMiddleware as f, nuxtLinkDefaults as g, asyncDataDefaults as h, Icon as I, createError as i, useAppConfig as j, getIcon as k, loadIcon as l, useCookie as m, navigateTo as n, SIDEBAR_WIDTH as o, provideSidebarContext as p, SIDEBAR_COOKIE_MAX_AGE as q, resolveRouteObject as r, SIDEBAR_WIDTH_ICON as S, SIDEBAR_COOKIE_NAME as s, SIDEBAR_KEYBOARD_SHORTCUT as t, useRuntimeConfig as u, useSidebar as v, SIDEBAR_WIDTH_MOBILE as w, sidebarMenuButtonVariants as x };
+// # sourceMappingURL=server.mjs.map

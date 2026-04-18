@@ -26,9 +26,9 @@ function applyFilter() {
     :tabindex="
       props.value === currentQueryParams?.category ? 0 : -1
     "
-    class="px-2 text-md font-light transition-all duration-300 cursor-pointer hover:underline"
+    class="font-fraunces text-app-secondary px-2 text-lg transition-all duration-300 cursor-pointer hover:underline"
     :class="{
-      'font-medium underline':
+      'font-semibold underline':
         props.value === currentQueryParams?.category,
     }"
     @click="applyFilter"

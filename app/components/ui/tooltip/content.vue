@@ -11,7 +11,7 @@ const props = withDefaults(
       to?: string | HTMLElement;
       class?: any;
     }
-    >(),
+  >(),
   {
     side: "top",
     sideOffset: 8,

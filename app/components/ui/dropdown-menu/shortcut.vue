@@ -9,7 +9,7 @@ const props = withDefaults(
       /** Custom class(es) to add to the parent */
       class?: any;
     }
-    >(),
+  >(),
   {
     as: "span",
   },

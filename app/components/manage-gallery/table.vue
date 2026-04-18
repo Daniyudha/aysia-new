@@ -27,12 +27,12 @@ async function handleDeleteGallery(title: string, id: string) {
 <template>
   <UiCardHeader class="flex md:!flex-row justify-between py-4 md:items-center">
     <h3 class="font-semibold text-lg text-dashboard-accent-50">
-      Manage Gallery
+      Manage Portfolio
     </h3>
     <div class="flex flex-col md:flex-row justify-end gap-4 items-center">
       <NuxtLink
         class="text-dashboard-primary-50 bg-dashboard-accent-50 inline-flex h-full py-2 px-6 rounded-lg w-full md:w-auto whitespace-nowrap justify-center"
-        to="/dashboard/gallery/add"
+        to="/dashboard/portfolio/add"
       >
         + Add
       </NuxtLink>
@@ -43,13 +43,14 @@ async function handleDeleteGallery(title: string, id: string) {
       :data="$props?.items ?? []"
       :is-loading="isLoading"
       :is-error="isError"
-      :header-count="5"
+      :header-count="6"
     >
       <template #head>
         <UiTableRow>
           <UiTableHead>No.</UiTableHead>
           <UiTableHead>Title</UiTableHead>
           <UiTableHead>Category</UiTableHead>
+          <UiTableHead>Tag</UiTableHead>
           <UiTableHead>Content</UiTableHead>
           <UiTableHead width="75" />
         </UiTableRow>
@@ -60,6 +61,7 @@ async function handleDeleteGallery(title: string, id: string) {
             <UiTableData>{{ index + 1 }}</UiTableData>
             <UiTableData>{{ item?.title }}</UiTableData>
             <UiTableData>{{ item?.gallery_category_name }}</UiTableData>
+            <UiTableData>{{ item?.tag }}</UiTableData>
             <UiTableData>
               <div class="line-clamp-2" v-html="item?.description" />
             </UiTableData>
@@ -67,7 +69,7 @@ async function handleDeleteGallery(title: string, id: string) {
               <div class="flex gap-2">
                 <NuxtLink
                   :to="{
-                    name: 'dashboard-gallery-galleryId',
+                    name: 'dashboard-portfolio-galleryId',
                     params: {
                       galleryId: item?.id,
                     },

@@ -12,7 +12,7 @@ const props = defineProps<
     /** The title text to display */
     title?: string;
   }
-  >();
+>();
 const emits = defineEmits<DropdownMenuCheckboxItemEmits>();
 const forwarded = useForwardPropsEmits(reactiveOmit(props, "title", "shortcut", "class"), emits);
 

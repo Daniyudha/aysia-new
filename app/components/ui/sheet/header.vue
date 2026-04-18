@@ -9,7 +9,7 @@ const props = withDefaults(
       /** Custom class(es) to add to parent element */
       class?: any;
     }
-    >(),
+  >(),
   {
     as: "div",
   },

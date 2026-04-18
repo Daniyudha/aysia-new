@@ -33,7 +33,7 @@ const props = withDefaults(
       /** The icon to display when the button is loading */
       loadingIcon?: string;
     }
-    >(),
+  >(),
   {
     type: "button",
     loadingIcon: "line-md:loading-loop",

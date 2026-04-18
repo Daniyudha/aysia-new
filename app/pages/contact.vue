@@ -1,28 +1,30 @@
 <script setup lang="ts">
-import { inject, watchEffect } from 'vue'
-import { useI18n } from '~/composables/useI18n'
-const { t, getCurrentLanguage } = useI18n()
+import { inject, watchEffect } from "vue";
 
-const sharedData = inject<SocialMediaResponse | null>('socialMedia')
+import { useI18n } from "~/composables/useI18n";
+
+const { t, getCurrentLanguage } = useI18n();
+
+const sharedData = inject<SocialMediaResponse | null>("socialMedia");
 
 // ✅ Gunakan meta dinamis tergantung bahasa aktif
 useHead(() => ({
-  title: `Aysia LinggarWati - ${t('contact.title')}`,
+  title: `Aysia LinggarWati - ${t("contact.title")}`,
   meta: [
     {
-      name: 'description',
-      content: t('contact.meta_description'),
+      name: "description",
+      content: t("contact.meta_description"),
     },
     {
-      name: 'keywords',
-      content: t('contact.meta_keywords'),
+      name: "keywords",
+      content: t("contact.meta_keywords"),
     },
     {
-      name: 'viewport',
-      content: 'width=device-width, initial-scale=1',
+      name: "viewport",
+      content: "width=device-width, initial-scale=1",
     },
   ],
-}))
+}));
 </script>
 
 <template>
@@ -37,7 +39,7 @@ useHead(() => ({
             width="530"
             height="707"
             class="w-full h-auto object-cover object-top rounded-lg"
-          />
+          >
         </div>
 
         <!-- ✅ Konten teks -->

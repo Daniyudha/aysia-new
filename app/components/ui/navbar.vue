@@ -11,7 +11,7 @@ const props = withDefaults(
       /** Whether the navbar should be sticky */
       sticky?: boolean;
     }
-    >(),
+  >(),
   {
     as: "header",
   },

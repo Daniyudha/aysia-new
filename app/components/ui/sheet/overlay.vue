@@ -8,7 +8,7 @@ const props = defineProps<
     /** Custom class(es) to add to parent element */
     class?: any;
   }
-  >();
+>();
 const forwarded = reactiveOmit(props, "class");
 const styles = tv({
   base: "fixed inset-0 z-50 bg-background/80 backdrop-blur-sm data-[state=closed]:animate-fadeOut data-[state=open]:animate-fadeIn",
