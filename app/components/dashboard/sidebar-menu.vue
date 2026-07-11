@@ -11,6 +11,7 @@ const menuItems: MenuItem[] = [
   { title: "Category", url: "/dashboard/categories", icon: "iconamoon:category-thin" },
   { title: "Portfolio", url: "/dashboard/portfolio", icon: "lucide:images" },
   { title: "Gallery", url: "/dashboard/explore", icon: "lucide:compass" },
+  { title: "Nature", url: "/dashboard/nature", icon: "lucide:leaf" },
   { title: "Journey", url: "/dashboard/journey", icon: "lucide:map" },
   {
     title: "Social Media",

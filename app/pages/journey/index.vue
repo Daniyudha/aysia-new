@@ -64,13 +64,35 @@ function loadMore() {
       </p>
     </div>
 
-    <div class="journey-grid">
+    <!-- Loading Skeleton -->
+    <div v-if="pending && !blogData" class="journey-grid journey-skeleton">
+      <div
+        v-for="i in 4"
+        :key="'skeleton-' + i"
+        class="card skeleton-card"
+        :class="{ offset: i % 2 === 1 }"
+      >
+        <div class="skeleton-image"></div>
+        <div class="skeleton-content">
+          <div class="skeleton-line skeleton-line-title"></div>
+          <div class="skeleton-line skeleton-line-tag"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Journey Grid -->
+    <div v-else class="journey-grid">
       <JourneyCard
         v-for="(item, index) in visibleJourneys"
         :key="item.journeyId"
         :data="item"
         :offset="index % 2 === 1"
       />
+    </div>
+
+    <!-- Error state -->
+    <div v-if="error && !pending" class="journey-error">
+      <p>Failed to load journeys. Please try again later.</p>
     </div>
 
     <div v-if="canLoadMore" class="journey-more">
@@ -98,21 +120,24 @@ function loadMore() {
 </template>
 
 <style scoped>
+/* ============================= */
+/* BASE (MOBILE FIRST)            */
+/* ============================= */
 .journey {
-  padding: 80px 24px 160px;
+  padding: 28px 16px 72px;
   background-color: #eae4d4;
+  min-height: 100vh;
 }
 
-/* HEADER */
 .journey-header {
   max-width: 720px;
-  margin: 0 auto 80px;
+  margin: 0 auto 64px;
   text-align: center;
 }
 
 .journey-header h1 {
   font-family: "Fraunces", serif;
-  font-size: 56px;
+  font-size: 42px;
   font-weight: 600;
   margin-bottom: 16px;
   color: #564614;
@@ -125,18 +150,16 @@ function loadMore() {
   color: #564614;
 }
 
-/* GRID BASE */
 .journey-grid {
   margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(1, minmax(0, 1fr));
-  column-gap: 200px;
-  row-gap: 100px;
+  row-gap: 56px;
+  column-gap: 32px;
 }
 
-/* LOAD MORE */
 .journey-more {
-  margin-top: 96px;
+  margin-top: 64px;
   text-align: center;
 }
 
@@ -164,47 +187,84 @@ function loadMore() {
   font-style: italic;
 }
 
-/* ============================= */
-/* BASE (MOBILE FIRST) */
-/* ============================= */
-
-.journey {
-  padding: 28px 16px 72px;
-  background-color: #eae4d4;
-}
-
-.journey-header {
-  margin-bottom: 64px;
+.journey-error {
   text-align: center;
-}
-
-.journey-header h1 {
-  font-family: "Fraunces", serif;
-  font-size: 42px;
-  font-weight: 600;
-  margin-bottom: 16px;
+  padding: 60px 20px;
   color: #564614;
-}
-
-.journey-header p {
   font-family: "Poppins", sans-serif;
   font-size: 16px;
-  line-height: 1.7;
-  color: #564614;
-}
-
-.journey-grid {
-  row-gap: 56px;
-  column-gap: 32px;
-}
-
-.journey-more {
-  margin-top: 64px;
-  text-align: center;
+  opacity: 0.7;
 }
 
 /* ============================= */
-/* md ≥ 768px  (tablet) */
+/* SKELETON LOADING              */
+/* ============================= */
+.journey-skeleton {
+  pointer-events: none;
+}
+
+.skeleton-card {
+  display: flex;
+  flex-direction: column;
+  height: fit-content;
+  background: #f5f2e9;
+  border: 1px solid #c8bda8;
+  padding: 36px 24px;
+}
+
+.skeleton-card.offset {
+  transform: translateY(80px);
+}
+
+@media (max-width: 767px) {
+  .skeleton-card.offset {
+    transform: translateY(0);
+  }
+}
+
+.skeleton-image {
+  width: 100%;
+  aspect-ratio: 1.5 / 1;
+  background: linear-gradient(90deg, #e0e0e0 25%, #d0d0d0 50%, #e0e0e0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite ease-in-out;
+}
+
+.skeleton-content {
+  padding-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.skeleton-line {
+  height: 14px;
+  border-radius: 4px;
+  background: linear-gradient(90deg, #e0e0e0 25%, #d0d0d0 50%, #e0e0e0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite ease-in-out;
+}
+
+.skeleton-line-title {
+  width: 60%;
+  height: 20px;
+}
+
+.skeleton-line-tag {
+  width: 40%;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* ============================= */
+/* md ≥ 768px  (tablet)          */
 /* ============================= */
 @media (min-width: 768px) {
   .journey {
@@ -215,6 +275,10 @@ function loadMore() {
     font-size: 48px;
   }
 
+  .journey-header {
+    margin-bottom: 80px;
+  }
+
   .journey-grid {
     row-gap: 72px;
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -222,12 +286,11 @@ function loadMore() {
 
   .journey-more {
     margin-top: 96px;
-    text-align: center;
   }
 }
 
 /* ============================= */
-/* lg ≥ 1024px  (laptop) */
+/* lg ≥ 1024px  (laptop)         */
 /* ============================= */
 @media (min-width: 1024px) {
   .journey {
@@ -242,12 +305,11 @@ function loadMore() {
 
   .journey-more {
     margin-top: 120px;
-    text-align: center;
   }
 }
 
 /* ============================= */
-/* xl ≥ 1280px  (desktop besar) */
+/* xl ≥ 1280px  (desktop besar)  */
 /* ============================= */
 @media (min-width: 1280px) {
   .journey-grid {
@@ -261,7 +323,6 @@ function loadMore() {
 
   .journey-more {
     margin-top: 120px;
-    text-align: center;
   }
 }
 </style>

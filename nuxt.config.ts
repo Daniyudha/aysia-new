@@ -5,7 +5,7 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       // eslint-disable-next-line node/no-process-env
-      apiBase: process.env.NUXT_PUBLIC_API_BASE || "https://aysia-be.gegacreative.com",
+      apiBase: process.env.NUXT_PUBLIC_API_BASE || "https://be.storytellingphotos.com",
       // eslint-disable-next-line node/no-process-env
       nodeEnv: process.env.NODE_ENV || "production",
     },
@@ -15,13 +15,26 @@ export default defineNuxtConfig({
   modules: [
     "@vueuse/nuxt",
     "@nuxt/icon",
-    "nuxt-tiptap-editor",
     "@nuxtjs/google-fonts",
     "@vee-validate/nuxt",
   ],
   css: ["~/assets/css/main.css"],
   vite: { plugins: [tailwindcss()], optimizeDeps: {
-    include: ["vee-validate", "@vee-validate/zod", "zod"],
+    include: [
+      "vee-validate",
+      "@vee-validate/zod",
+      "zod",
+      "@tiptap/core",
+      "@tiptap/vue-3",
+      "@tiptap/starter-kit",
+      "@tiptap/extension-link",
+      "@tiptap/extension-image",
+      "@tiptap/extension-underline",
+      "@tiptap/extension-text-style",
+      "@tiptap/extension-text-align",
+      "@tiptap/extension-highlight",
+      "@tiptap/extensions",
+    ],
   } },
   imports: {
     imports: [

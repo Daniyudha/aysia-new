@@ -32,7 +32,7 @@ definePageMeta({
         <span class="sr-only">Back</span>
       </NuxtLink>
       <h3 class="font-semibold text-lg text-dashboard-accent-50">
-        Add New Gallery
+        Add Portfolio
       </h3>
     </UiCardHeader>
     <ManageGalleryForm mode="create" />

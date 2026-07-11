@@ -24,6 +24,9 @@ export function galleryRepository<T>(fetch: FetchType<T>) {
       if (payload?.thumbnail) {
         formData.append("thumbnail", payload.thumbnail);
       }
+      if (payload?.music) {
+        formData.append("music", payload.music);
+      }
       return fetch(API_URL_LIST.JOURNEY, {
         method: "POST",
         headers: {
@@ -46,6 +49,9 @@ export function galleryRepository<T>(fetch: FetchType<T>) {
       }
       if (payload?.thumbnail) {
         formData.append("thumbnail", payload.thumbnail);
+      }
+      if (payload?.music) {
+        formData.append("music", payload.music);
       }
       // Log FormData entries for debugging
       for (const pair of formData.entries()) {

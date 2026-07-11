@@ -4,6 +4,7 @@ import type {
   PaginationParams,
   PaginationResponse,
   ExploreImagePayload,
+  ExploreImageTitlePayload,
   ExploreImageBulkPayload,
   ExploreImageBulkDeletePayload,
   ExploreImageResponse,
@@ -49,6 +50,16 @@ export function exploreImagesRepository<T>(fetch: FetchType<T>) {
           "Content-Type": "multipart/form-data",
         },
         body: formData,
+      });
+    },
+
+    async updateTitleById(id: string, payload: ExploreImageTitlePayload): Promise<ExploreImageResponse> {
+      return fetch(API_URL_LIST.EXPLORE_IMAGES_TITLE_BY_ID(id), {
+        method: "PUT",
+        body: JSON.stringify(payload),
+        headers: {
+          "Content-Type": "application/json",
+        },
       });
     },
 

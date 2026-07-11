@@ -12,7 +12,7 @@ const props = defineProps<{
 
 const isSubmitting = ref(false);
 const router = useRouter();
-const { handleSubmit, resetForm, setFieldValue, values, setValues } = useForm({
+const { handleSubmit, resetForm, setFieldValue, setValues, values } = useForm({
   validationSchema: toTypedSchema(JourneySchema),
   initialValues: {
     title: props?.defaultValue?.title ?? "",
@@ -22,6 +22,8 @@ const { handleSubmit, resetForm, setFieldValue, values, setValues } = useForm({
     gallery_category_name: props?.defaultValue?.gallery_category_name ?? "",
     image: undefined,
     imageUrl: props?.defaultValue?.thumbnail ?? "",
+    music: undefined,
+    musicUrl: props?.defaultValue?.music_url ?? "",
     mode: props?.mode || "create",
   },
 });
@@ -33,13 +35,17 @@ watch(props, () => {
       description: props?.defaultValue?.description ?? "",
       tag: props?.defaultValue?.tag ?? "",
       imageUrl: props?.defaultValue?.thumbnail ?? "",
+      musicUrl: props?.defaultValue?.music_url ?? "",
       gallery_category_id: props?.defaultValue?.gallery_category_id ?? "",
       gallery_category_name: props?.defaultValue?.gallery_category_name ?? "",
       image: undefined,
+      music: undefined,
       mode: props?.mode || "create",
     });
   }
 });
+
+const apiBase = useRuntimeConfig().public.apiBase;
 
 const thumbnailUrl = computed(() => {
   if (!values?.imageUrl?.length)
@@ -47,7 +53,16 @@ const thumbnailUrl = computed(() => {
   if (values?.imageUrl?.startsWith("blob")) {
     return values?.imageUrl;
   }
-  return useRuntimeConfig().public.apiBase + values?.imageUrl;
+  return apiBase + values?.imageUrl;
+});
+
+const musicUrl = computed(() => {
+  if (!values?.musicUrl?.length)
+    return "";
+  if (values?.musicUrl?.startsWith("blob")) {
+    return values?.musicUrl;
+  }
+  return apiBase + values?.musicUrl;
 });
 
 function resetImage() {
@@ -63,11 +78,12 @@ function createNewGallery(values: JourneySchemaFormType) {
       tag: values?.tag,
       gallery_category_id: values?.gallery_category_id,
       thumbnail: values?.image,
+      music: values?.music,
     })
     .then(() => {
       useSonner.success("Success to create new journey");
       resetForm();
-      router.push("/dashboard/gallery/");
+      router.push("/dashboard/portfolio");
     })
     .catch((err) => {
       useSonner.error(
@@ -87,6 +103,7 @@ function updateGallery(id: string, values: JourneySchemaFormType) {
       tag: values?.tag,
       gallery_category_id: values?.gallery_category_id,
       thumbnail: values?.image,
+      music: values?.music,
     })
     .then(() => {
       useSonner.success("Success to update journey");
@@ -143,10 +160,10 @@ function createImageUrl(file: any) {
         <Field v-slot="{ errorMessage }" name="gallery_category_id">
           <UiFormItem label="Category" class="mb-6">
             <UiCategorySelect
-            :default-value="{
-              value: values.gallery_category_id ?? '',
-              label: values.gallery_category_name ?? '',
-            }"
+             :default-value="{
+               value: values.gallery_category_id ?? '',
+               label: values.gallery_category_name ?? '',
+             }"
               :is-error="!!errorMessage"
               @on-select-option="(value) => {
                 setFieldValue('gallery_category_id', value?.value);
@@ -176,6 +193,45 @@ function createImageUrl(file: any) {
               @update:value="(value) => handleChange(value)"
               @on-blur="validate()"
             />
+          </UiFormItem>
+        </Field>
+        <Field v-slot="{ handleChange, errors }" name="music">
+          <UiFormItem label="Music (Background Audio)" class="mb-6">
+            <template v-if="!values?.musicUrl?.length">
+              <UiDropfile
+                :aria-invalid="!!errors?.length"
+                accept="audio/*"
+                @dropped="
+                  (value) => {
+                    const file = value?.[0];
+                    handleChange(value?.[0]);
+                    setFieldValue('musicUrl', createObjectURL(file) || '');
+                  }
+                "
+              />
+            </template>
+            <template v-else>
+              <div class="flex flex-col gap-2">
+                <div class="text-sm text-gray-600" v-if="values?.music?.name">
+                  {{ values?.music?.name }}
+                </div>
+                <div class="text-sm text-gray-500" v-else-if="props?.defaultValue?.music_name">
+                  {{ props?.defaultValue?.music_name }}
+                </div>
+                <div class="flex items-center gap-4">
+                  <audio :src="musicUrl" controls class="max-w-xs" />
+                  <UiButton
+                    type="button"
+                    variant="outline"
+                    size="sm"
+                    @click="() => { setFieldValue('music', undefined); setFieldValue('musicUrl', ''); }"
+                  >
+                    <Icon name="heroicons:trash" />
+                    Remove
+                  </UiButton>
+                </div>
+              </div>
+            </template>
           </UiFormItem>
         </Field>
       </div>

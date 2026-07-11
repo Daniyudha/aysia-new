@@ -25,6 +25,7 @@ export const API_URL_LIST = {
     `/journey-details/journey/${journeyId}`,
   JOURNEY_DETAIL_BY_ID: (id: string) =>
     `/journey-details/${id}`,
+  JOURNEY_DETAIL_SORT: "/journey-details/sort",
 
   // ===== BLOG =====
   BLOG: "/blogs",
@@ -42,4 +43,11 @@ export const API_URL_LIST = {
   EXPLORE_IMAGES: "/explore-images",
   EXPLORE_IMAGES_BULK: "/explore-images/bulk",
   EXPLORE_IMAGES_BY_ID: (id: string) => `/explore-images/${id}`,
+  EXPLORE_IMAGES_TITLE_BY_ID: (id: string) => `/explore-images/${id}/title`,
+
+  // ===== NATURE IMAGES =====
+  NATURE_IMAGES: "/nature-images",
+  NATURE_IMAGES_BULK: "/nature-images/bulk",
+  NATURE_IMAGES_BY_ID: (id: string) => `/nature-images/${id}`,
+  NATURE_IMAGES_TITLE_BY_ID: (id: string) => `/nature-images/${id}/title`,
 };

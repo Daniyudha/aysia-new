@@ -140,4 +140,8 @@ onBeforeUnmount(() => {
   transform: scale(1.01);
   transition: transform 0.3s ease;
 }
+
+.journey-content :deep(.image.image_resized) {
+  margin: auto;
+}
 </style>

@@ -120,7 +120,7 @@ onBeforeUnmount(() => {
   <section class="py-10">
     <div class="app-container">
       <h1 class="font-fraunces text-5xl font-normal text-app-secondary mb-8">
-        My Gallery
+        Selected Works
       </h1>
 
       <!-- SKELETON -->
@@ -216,12 +216,12 @@ onBeforeUnmount(() => {
       <!-- Image -->
       <div class="text-center">
         <img
-          :src="images[activeIndex].url"
+          :src="images[activeIndex]?.url"
           class="min-h-[80vh] max-w-[90vw] object-contain mx-auto"
         />
 
         <p class="text-white mt-4 text-lg">
-          {{ images[activeIndex].title }}
+          {{ images[activeIndex]?.title }}
         </p>
       </div>
 

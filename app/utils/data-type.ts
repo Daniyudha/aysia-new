@@ -155,6 +155,7 @@ export type JourneyPayload = {
   description: string;
   tag?: string;
   thumbnail?: File;
+  music?: File;
   gallery_category_id?: string;
 };
 
@@ -171,6 +172,8 @@ export type JourneyResponse = {
   description: string;
   tag: string;
   thumbnail: string;
+  music_url?: string;
+  music_name?: string;
   is_active: boolean;
   created_at: string;
   updated_at: string;
@@ -270,6 +273,7 @@ export type ExploreImageResponse = {
   id: string;
   url: string;
   name: string;
+  title?: string;
   size: number;
   type: string;
   created_at: string;
@@ -282,4 +286,8 @@ export type ExploreImageResponse = {
   alt_text?: string | null;
   sort_order?: number;
   is_active?: boolean;
+};
+
+export type ExploreImageTitlePayload = {
+  title: string;
 };

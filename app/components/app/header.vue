@@ -77,12 +77,12 @@ onUnmounted(() => {
     <div :class="enableHeroHeader
       ? 'bg-transparent shadow-none'
       : 'bg-[#F5F2E9] shadow'">
-      <div class="app-container py-4 flex items-center justify-between">
+      <div class="app-container py-2 flex items-center justify-between">
         <NuxtLink to="/" class="flex items-center gap-2">
           <img :src="headerLight
             ? '/images/AL-logo-light.png'
-            : '/images/AL-logo.png'" class="h-14">
-          <span class="font-cinzel-decorative text-2xl font-bold"
+            : '/images/AL-logo.png'" class="h-12">
+          <span class="font-cinzel-decorative text-xl font-bold"
             :class="headerLight ? 'text-[#F5F2E9]' : 'text-app-secondary'">
             Aysia <br> LinggarWati
           </span>
@@ -93,11 +93,6 @@ onUnmounted(() => {
           <li>
             <NuxtLink class="header-link" to="/">
               {{ t('navigation.home') }}
-            </NuxtLink>
-          </li>
-          <li>
-            <NuxtLink class="header-link" to="/about">
-              {{ t('navigation.about') }}
             </NuxtLink>
           </li>
           <li>
@@ -113,6 +108,16 @@ onUnmounted(() => {
           <li>
             <NuxtLink class="header-link" to="/explore">
               {{ t('navigation.explore') }}
+            </NuxtLink>
+          </li>
+          <li>
+            <NuxtLink class="header-link" to="/nature">
+              {{ t('navigation.nature') }}
+            </NuxtLink>
+          </li>
+          <li>
+            <NuxtLink class="header-link" to="/about">
+              {{ t('navigation.about') }}
             </NuxtLink>
           </li>
           <li>
@@ -134,12 +139,12 @@ onUnmounted(() => {
     <div :class="enableHeroHeader
       ? 'bg-transparent shadow-none'
       : 'bg-[#F5F2E9] shadow'">
-      <div class="app-container py-4 flex items-center justify-between">
+      <div class="app-container py-2 flex items-center justify-between">
         <NuxtLink to="/" class="flex items-center gap-2">
           <img :src="headerLight
             ? '/images/AL-logo-light.png'
-            : '/images/AL-logo.png'" class="h-14">
-          <span class="font-cinzel-decorative text-2xl font-bold"
+            : '/images/AL-logo.png'" class="h-12">
+          <span class="font-cinzel-decorative text-xl font-bold"
             :class="headerLight ? 'text-[#F5F2E9]' : 'text-app-secondary'">
             Aysia <br> LinggarWati
           </span>
@@ -167,6 +172,11 @@ onUnmounted(() => {
             </NuxtLink>
           </li>
           <li>
+            <NuxtLink class="header-link" to="/nature">
+              {{ t('navigation.nature') }}
+            </NuxtLink>
+          </li>
+          <li>
             <NuxtLink class="header-link" to="/about">
               {{ t('navigation.about') }}
             </NuxtLink>
@@ -190,10 +200,10 @@ onUnmounted(() => {
             ? 'opacity-100 translate-y-0'
             : 'opacity-0 -translate-y-10 pointer-events-none'">
     <div class="bg-[#F5F2E9] shadow">
-      <div class="app-container py-4 flex items-center justify-between">
+      <div class="app-container py-2 flex items-center justify-between">
         <NuxtLink to="/" class="flex items-center gap-2">
-          <img src="/images/AL-logo.png" class="h-14">
-          <span class="font-cinzel-decorative text-2xl font-bold text-app-secondary">
+          <img src="/images/AL-logo.png" class="h-12">
+          <span class="font-cinzel-decorative text-xl font-bold text-app-secondary">
             Aysia <br> LinggarWati
           </span>
         </NuxtLink>
@@ -217,6 +227,11 @@ onUnmounted(() => {
           <li>
             <NuxtLink class="header-link" to="/explore">
               {{ t('navigation.explore') }}
+            </NuxtLink>
+          </li>
+          <li>
+            <NuxtLink class="header-link" to="/nature">
+              {{ t('navigation.nature') }}
             </NuxtLink>
           </li>
           <li>
@@ -264,6 +279,11 @@ onUnmounted(() => {
         <li>
           <NuxtLink class="header-link" to="/explore" @click="isMenuOpen = false">
             Gallery
+          </NuxtLink>
+        </li>
+        <li>
+          <NuxtLink class="header-link" to="/nature" @click="isMenuOpen = false">
+            Nature
           </NuxtLink>
         </li>
         <li>

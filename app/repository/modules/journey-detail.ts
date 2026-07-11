@@ -81,6 +81,16 @@ export function journeyRepository<T>(fetch: FetchType<T>) {
         params,
       });
     },
+
+    async sort(payload: { ids: string[] }): Promise<{ success: boolean }> {
+      return fetch(API_URL_LIST.JOURNEY_DETAIL_SORT, {
+        method: "PUT",
+        body: JSON.stringify(payload),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+    },
   };
 }
 

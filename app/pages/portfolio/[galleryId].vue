@@ -35,6 +35,7 @@ const { data, pending } = useAsyncData("journey detail", async () => {
       journeyDetailFetcher().getByJourneyId({ journeyId: galleryId.value?.toString(), limit: 1000 }),
     ]);
     console.debug('[portfolio page] journeyData:', journeyData);
+    console.debug('[portfolio page] journeyData.music_url:', journeyData?.music_url);
     console.debug('[portfolio page] journeyDetailData:', journeyDetailData);
     // Reverse the journey detail array to show newest items at the bottom in public gallery
     const reversedJourneyDetailData = journeyDetailData ? [...journeyDetailData].reverse() : journeyDetailData;
@@ -57,5 +58,10 @@ const { data, pending } = useAsyncData("journey detail", async () => {
     :tag="data?.journey?.tag ?? ''"
     :description="data?.journey?.description ?? ''"
   />
-  <DetailImageGrid :journey-detail-items="data?.details ?? []" :pending="pending" />
+  <DetailImageGrid 
+    :journey-detail-items="data?.details ?? []" 
+    :pending="pending" 
+    :music-url="data?.journey?.music_url"
+    :music-name="data?.journey?.music_name"
+  />
 </template>

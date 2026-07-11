@@ -4671,7 +4671,7 @@ const _inlineRuntimeConfig = {
     },
   },
   public: {
-    apiBase: "https://aysia-be.gegacreative.com",
+    apiBase: "https://be.storytellingphotos.com",
     nodeEnv: "production",
   },
   icon: {

@@ -42,6 +42,8 @@ const { handleSubmit, setFieldValue, values } = useForm({
     thumbnail: props?.isHeader === true ? props?.defaultValue?.thumbnail || "" : props?.defaultValue?.thumbnail_url || "",
     thumbnailUrl: props?.isHeader === true ? props?.defaultValue?.thumbnail || "" : props?.defaultValue?.thumbnail_url || "",
     videoUrl: props?.defaultValue?.video_url || "",
+    music: undefined,
+    musicUrl: props?.isHeader === true ? props?.defaultValue?.music_url || "" : "",
   },
 });
 
@@ -65,6 +67,26 @@ const thumbnailUrl = computed(() => {
 
     // If it's a blob URL (new upload preview) or 'multiple' for multiple files, return as-is
     if (url.startsWith("blob:") || url === "multiple") {
+      return url;
+    }
+
+    // For server URLs, prepend the API base URL
+    return useRuntimeConfig().public.apiBase + url;
+  }
+  catch {
+    return "";
+  }
+});
+
+const musicUrl = computed(() => {
+  try {
+    const url = values?.musicUrl || "";
+    if (!url) {
+      return "";
+    }
+
+    // If it's a blob URL (new upload preview), return as-is
+    if (url.startsWith("blob:")) {
       return url;
     }
 
@@ -168,6 +190,11 @@ const handleSaveDetailJourney = handleSubmit((values) => {
 
     if (hasNewThumbnail) {
       payload.thumbnail = values?.thumbnail;
+    }
+
+    // Include music if a new file is provided
+    if (values?.music) {
+      payload.music = values?.music;
     }
 
     // For header updates, we use the journeyFetcher
@@ -425,6 +452,45 @@ function removeImage(index: number) {
                 @update:value="(value) => handleChange(value)"
                 @on-blur="validate()"
               />
+            </UiFormItem>
+          </Field>
+          <Field v-slot="{ handleChange, errors }" name="music">
+            <UiFormItem label="Music (Background Audio)" class="mb-6">
+              <template v-if="!values?.musicUrl?.length">
+                <UiDropfile
+                  :aria-invalid="!!errors?.length"
+                  accept="audio/*"
+                  @dropped="
+                    (value) => {
+                      const file = value?.[0];
+                      handleChange(value?.[0]);
+                      setFieldValue('musicUrl', createObjectURL(file) || '');
+                    }
+                  "
+                />
+              </template>
+              <template v-else>
+                <div class="flex flex-col gap-2">
+                  <div class="text-sm text-gray-600" v-if="values?.music?.name">
+                    {{ values?.music?.name }}
+                  </div>
+                  <div class="text-sm text-gray-500" v-else-if="props?.defaultValue?.music_name">
+                    {{ props?.defaultValue?.music_name }}
+                  </div>
+                  <div class="flex items-center gap-4">
+                    <audio :src="musicUrl" controls class="max-w-xs" />
+                    <UiButton
+                      type="button"
+                      variant="outline"
+                      size="sm"
+                      @click="() => { setFieldValue('music', undefined); setFieldValue('musicUrl', ''); }"
+                    >
+                      <Icon name="heroicons:trash" />
+                      Remove
+                    </UiButton>
+                  </div>
+                </div>
+              </template>
             </UiFormItem>
           </Field>
         </template>

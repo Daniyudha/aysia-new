@@ -26,6 +26,7 @@ export function useExploreImages() {
       }
     }
     // Ensure name
+    const title = item.title || ''
     const name = item.original_name || item.name || item.filename || ''
     // Ensure size and type
     const size = item.size || 0
@@ -48,6 +49,7 @@ export function useExploreImages() {
       id,
       url,
       name,
+      title,
       size,
       type,
       created_at,

@@ -12,6 +12,8 @@ export const JourneyGalleryDetailSchema = z.object({
   thumbnailUrl: z.string().optional(),
   thumbnail: z.any().optional(),
   videoUrl: z.string().optional(),
+  music: z.any().optional(),
+  musicUrl: z.string().optional(),
 }).superRefine(async (data, ctx) => {
   // For image type, require thumbnail only in create mode
   if (data.type === "image" && data.mode === "create") {
@@ -77,6 +79,20 @@ export const JourneyGalleryDetailSchema = z.object({
         }
       }
       // If it's a string (existing image URL), skip validation
+    }
+  }
+
+  // Validate music file if it's provided and it's a File object (new upload)
+  if (data.music) {
+    if (data.music instanceof File) {
+      const isValidAudio = data.music.type.startsWith("audio/");
+      if (!isValidAudio) {
+        ctx.addIssue({
+          code: "custom",
+          path: ["music"],
+          message: "Invalid audio file. Please upload an audio file.",
+        });
+      }
     }
   }
 });

@@ -7,6 +7,8 @@ import { computed, reactive, ref, onMounted, onUnmounted, watch } from "vue";
 const props = defineProps<{
   journeyDetailItems: JourneyDetailsResponse[];
   pending?: boolean;
+  musicUrl?: string;
+  musicName?: string;
 }>();
 
 const { t } = useI18n();
@@ -80,6 +82,19 @@ function handleImageLoad(event: Event) {
 const audioRef = ref<HTMLAudioElement | null>(null);
 const isPlaying = ref(false);
 const autoplayBlocked = ref(false);
+
+// Compute music source - use from props or fallback to default
+const musicSource = computed(() => {
+  if (props.musicUrl) {
+    // If musicUrl is a full URL, use it directly; otherwise prepend apiBase
+    if (props.musicUrl.startsWith("http")) {
+      return props.musicUrl;
+    }
+    return apiBase + props.musicUrl;
+  }
+  // Fallback to default music
+  return "/audio/Javanese\ Vibes\ Gamelan.mp3";
+});
 
 /** toggle manual */
 function toggleMusic() {
@@ -225,10 +240,10 @@ onMounted(() => {
     @update:model-value="(v) => { if (!v) closeDialog(); }"
   />
 
-  <!-- AUDIO -->
+  <!-- MUSIC -->
   <audio
     ref="audioRef"
-    src="/audio/Wonderland-Indonesia.mp3"
+    :src="musicSource"
     autoplay
     loop
     muted
@@ -256,7 +271,7 @@ onMounted(() => {
 
         <text font-size="10">
           <textPath href="#circlePath">
-            Now Playing • Journey Music • Now Playing •
+            {{ props.musicName ? `${props.musicName} • Now Playing •` : 'Javanese Vibes Gamelan • Now Playing • Journey Music • Now Playing •' }}
           </textPath>
         </text>
       </svg>

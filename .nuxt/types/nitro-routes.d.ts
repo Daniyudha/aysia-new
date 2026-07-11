@@ -10,13 +10,13 @@ declare module "nitropack/types" {
       'post': Simplify<Serialize<Awaited<ReturnType<typeof import('../../server/api/translate.post').default>>>>
     }
     '/__nuxt_error': {
-      'default': Simplify<Serialize<Awaited<ReturnType<typeof import('../../node_modules/.pnpm/nuxt@4.1.3_@parcel+watcher@2.5.1_@types+node@24.10.1_@vue+compiler-sfc@3.5.22_db0@0.3.4_5b4db39832caaa4fa6da828c9ba789fd/node_modules/nuxt/dist/core/runtime/nitro/handlers/renderer').default>>>>
-    }
-    '/api/_nuxt_icon/:collection': {
-      'default': Simplify<Serialize<Awaited<ReturnType<typeof import('../../node_modules/.pnpm/@nuxt+icon@1.15.0_magicast@0.3.5_vite@7.1.9_@types+node@24.10.1_jiti@2.6.1_lightningcss_d91a7470f0b7d900e7fd19ead4b8541a/node_modules/@nuxt/icon/dist/runtime/server/api').default>>>>
+      'default': Simplify<Serialize<Awaited<ReturnType<typeof import('../../node_modules/.pnpm/@nuxt+nitro-server@4.4.2_@babel+core@7.29.0_db0@0.3.4_ioredis@5.10.1_magicast@0.5.2_nux_8fcf2717b7e77f69d5b9607e14a0523c/node_modules/@nuxt/nitro-server/dist/runtime/handlers/renderer').default>>>>
     }
     '/__nuxt_island/**': {
       'default': Simplify<Serialize<Awaited<ReturnType<typeof import('../../server/#internal/nuxt/island-renderer').default>>>>
+    }
+    '/api/_nuxt_icon/:collection': {
+      'default': Simplify<Serialize<Awaited<ReturnType<typeof import('../../node_modules/.pnpm/@nuxt+icon@1.15.0_magicast@0.5.2_vite@7.3.2_@types+node@24.12.2_jiti@2.6.1_lightningcss_510fd0d9b07807002961d5e4f2b1d421/node_modules/@nuxt/icon/dist/runtime/server/api').default>>>>
     }
   }
 }

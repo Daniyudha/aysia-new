@@ -1,5 +1,7 @@
 import { z } from "zod";
 
+import { ImageUploadSchema } from "~/utils/file-upload";
+
 export const JourneySchema = z.object({
   mode: z.enum(["create", "update"]),
   title: z.string("Title is required.").min(1, "Title is required."),
@@ -9,6 +11,8 @@ export const JourneySchema = z.object({
   tag: z.string().optional(),
   imageUrl: z.string().optional(),
   image: z.any().optional(),
+  musicUrl: z.string().optional(),
+  music: z.any().optional(),
 }).superRefine(async (data, ctx) => {
   if (!data?.imageUrl) {
     ctx.addIssue({
@@ -26,6 +30,19 @@ export const JourneySchema = z.object({
         path: ["image"],
         message: isValidImage.error?.message || "Invalid image file.",
       });
+    }
+  }
+  if (data.music) {
+    const file = data.music as File;
+    if (file instanceof File) {
+      const isValidAudio = file.type.startsWith("audio/");
+      if (!isValidAudio) {
+        ctx.addIssue({
+          code: "custom",
+          path: ["music"],
+          message: "Invalid audio file. Please upload an audio file.",
+        });
+      }
     }
   }
 });
