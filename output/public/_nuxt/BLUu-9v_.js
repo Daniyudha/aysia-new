@@ -1,0 +1,1 @@
+import{k as s,u as t,o as a,c as o,a as c,I as n}from"./Cu7aISzK.js";const l={class:"py-10 flex-1 flex items-center"},r={class:"mx-auto w-10/12 md:w-7/12 lg:w-4/12"},u=s({__name:"auth",setup(m){return t({htmlAttrs:{class:"custom-font"}}),(e,_)=>(a(),o("main",l,[c("div",r,[n(e.$slots,"default")])]))}});export{u as default};
