@@ -4,6 +4,9 @@ node_modules/
 # environment variables
 .env
 
+# Nuxt build cache
+.nuxt/
+
 # logs
 logs
 *.log
