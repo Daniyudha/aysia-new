@@ -1,1 +1,0 @@
-import{n,z as a}from"./Cu7aISzK.js";function s(){const e=a(!1),o=a(void 0);function t(l){e.value=!0,l?.type==="UPDATE"&&(o.value=l.selectedItem)}function u(){e.value=!1,o.value=void 0}return n(()=>e.value,()=>{e.value||(o.value=void 0)}),{showModal:e,selectedItem:o,handleShowModal:t,handleCloseModal:u}}export{s as u};

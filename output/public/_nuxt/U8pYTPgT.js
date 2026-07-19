@@ -1,1 +1,0 @@
-import{R as y,m,A as f}from"./Cu7aISzK.js";function p(){const u=y(),s=m();function n(e){const t=u.query,o={};for(const r of e)t[r]&&(o[r]=t[r]);return o}function a(e){s.replace({query:e})}const c=f(()=>u.query);return{getCurrentQuery:n,updateQueryParams:a,currentQueryParams:c}}export{p as u};
