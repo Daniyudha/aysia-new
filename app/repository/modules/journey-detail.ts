@@ -17,11 +17,13 @@ export function journeyRepository<T>(fetch: FetchType<T>) {
       formData.append("content", payload.content);
       formData.append("description", payload.description);
 
-      // FIX for boolean → convert to string
-      formData.append("is_video", payload.is_video ? "1" : "0");
-
-      // FIX for string | null → fallback to empty string
-      formData.append("video_url", payload.video_url ?? "");
+      // Only send is_video and video_url when type is video
+      if (payload.is_video) {
+        formData.append("is_video", "1");
+        if (payload.video_url) {
+          formData.append("video_url", payload.video_url);
+        }
+      }
 
       if (payload?.thumbnail) {
         formData.append("thumbnail", payload.thumbnail);
@@ -46,9 +48,13 @@ export function journeyRepository<T>(fetch: FetchType<T>) {
       formData.append("content", payload.content);
       formData.append("description", payload.description);
 
-      // FIX
-      formData.append("is_video", payload.is_video ? "1" : "0");
-      formData.append("video_url", payload.video_url ?? "");
+      // Only send is_video and video_url when type is video
+      if (payload.is_video) {
+        formData.append("is_video", "1");
+        if (payload.video_url) {
+          formData.append("video_url", payload.video_url);
+        }
+      }
 
       if (payload?.thumbnail) {
         formData.append("thumbnail", payload.thumbnail);
