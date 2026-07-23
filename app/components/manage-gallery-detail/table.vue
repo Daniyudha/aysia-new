@@ -68,12 +68,17 @@ function onDragEnd() {
   dragOverIndex.value = null;
 }
 
+const route = useRoute();
+
 async function saveSortOrder(items: JourneyDetailsResponse[]) {
   isSorting.value = true;
   try {
     const sortedIds = items.map(item => item.id);
-    await journeyDetailFetcher().sort({ ids: sortedIds });
-    emits("onRefreshData");
+    const journeyId = route.params?.galleryId as string || items[0]?.journey_id || "";
+    console.debug('[save sort] sending ids:', sortedIds, 'journey_id:', journeyId);
+    // API requires journey_id along with sorted ids
+    const result = await journeyDetailFetcher().sort({ ids: sortedIds, journey_id: journeyId });
+    console.debug('[save sort] success:', result);
   } catch (err: any) {
     console.error("Failed to save sort order:", err);
   } finally {

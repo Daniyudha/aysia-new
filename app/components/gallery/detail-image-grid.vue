@@ -1,7 +1,9 @@
 <script setup lang="ts">
+import { Fancybox } from "@fancyapps/ui";
+import "@fancyapps/ui/dist/fancybox/fancybox.css";
 import { useRuntimeConfig } from "#app";
 import { useI18n } from "#imports";
-import { computed, reactive, ref, onMounted, onUnmounted, watch } from "vue";
+import { computed, ref, onMounted, onUnmounted } from "vue";
 
 /** ----- props ----- */
 const props = defineProps<{
@@ -12,34 +14,6 @@ const props = defineProps<{
 }>();
 
 const { t } = useI18n();
-
-console.debug('[detail-image-grid] props:', props.journeyDetailItems?.length, props.pending);
-
-onMounted(() => {
-  console.debug('[detail-image-grid] mounted, props:', props.journeyDetailItems?.length, props.pending);
-});
-
-/** ----- dialog ----- */
-const showDialogState = reactive({
-  openDialog: false,
-  selectedJourneyIndex: -1,
-});
-
-function closeDialog() {
-  showDialogState.openDialog = false;
-  showDialogState.selectedJourneyIndex = -1;
-}
-
-function openDialogAt(index: number) {
-  showDialogState.selectedJourneyIndex = index;
-  showDialogState.openDialog = true;
-}
-
-/** ----- selected item ----- */
-const selectedJourney = computed(() => {
-  if (showDialogState.selectedJourneyIndex < 0) return null;
-  return props.journeyDetailItems[showDialogState.selectedJourneyIndex] ?? null;
-});
 
 /** ----- runtime ----- */
 const apiBase = useRuntimeConfig().public?.apiBase ?? "";
@@ -69,13 +43,85 @@ onUnmounted(() => {
   clearInterval(interval);
 });
 
+/** ----- FANCYBOX ----- */
+function isYouTubeUrl(url: string) {
+  return /youtu\.be|youtube\.com/.test(url);
+}
+
+function buildFancyboxItems() {
+  return props.journeyDetailItems.map((item) => {
+    if (item.is_video && item.video_url) {
+      // YouTube video
+      if (isYouTubeUrl(item.video_url)) {
+        return {
+          src: item.video_url,
+          type: "video" as const,
+          thumb: item.thumbnail_url ? `${apiBase}${item.thumbnail_url}` : undefined,
+        };
+      }
+      // Direct video file
+      return {
+        src: item.video_url,
+        type: "video" as const,
+        thumb: item.thumbnail_url ? `${apiBase}${item.thumbnail_url}` : undefined,
+      };
+    }
+    // Image
+    return {
+      src: `${apiBase}${item.thumbnail_url}`,
+      type: "image" as const,
+    };
+  });
+}
+
+function openLightbox(index: number) {
+  const items = buildFancyboxItems();
+
+  Fancybox.show(items, {
+    startIndex: index,
+    groupAll: true,
+    animated: true,
+    showClass: "fancybox-fadeIn",
+    hideClass: "fancybox-fadeOut",
+    backdrop: {
+      background: "rgba(0,0,0,0.8)",
+      backdropFilter: "blur(12px)",
+    },
+    Toolbar: {
+      display: {
+        left: [],
+        middle: [],
+        right: ["close"],
+      },
+    },
+    Carousel: {
+      infinite: true,
+      transition: "classic",
+      padding: 0,
+      Navigation: {
+        PrevButton: {
+          render: false,
+        },
+        NextButton: {
+          render: false,
+        },
+      },
+    },
+    Images: {
+      zoom: true,
+      zoomMax: 5,
+      fit: "cover",
+    },
+    Video: {
+      autoplay: true,
+      preload: true,
+    },
+  } as any);
+}
+
 /** ----- IMAGE HANDLING ----- */
 function handleImageError(event: Event) {
   console.error('[detail-image-grid] image failed to load', event);
-}
-
-function handleImageLoad(event: Event) {
-  console.debug('[detail-image-grid] image loaded', event);
 }
 
 /** ----- MUSIC ----- */
@@ -93,7 +139,7 @@ const musicSource = computed(() => {
     return apiBase + props.musicUrl;
   }
   // Fallback to default music
-  return "/audio/Javanese\ Vibes\ Gamelan.mp3";
+  return "/audio/Javanese Vibes Gamelan.mp3";
 });
 
 /** toggle manual */
@@ -168,7 +214,7 @@ onMounted(() => {
 
 <template>
   <section class="pt-0 pb-16">
-    <div class="lg:app-container max-w-5xl mx-auto px-8 lg:px-0">
+    <div class="lg:app-container max-w-4xl mx-auto px-8 lg:px-0">
 
       <!-- LOADING -->
       <template v-if="props.pending">
@@ -179,7 +225,7 @@ onMounted(() => {
 
       <!-- SLIDER -->
       <template v-else-if="props.journeyDetailItems?.length">
-        <div class="relative w-full aspect-[16/9] overflow-hidden rounded-xl">
+        <div class="relative w-full aspect-[3/2] overflow-hidden rounded-xl">
 
           <div
             v-for="(item, index) in props.journeyDetailItems"
@@ -192,7 +238,6 @@ onMounted(() => {
               :src="`${apiBase}${item.thumbnail_url}`"
               class="w-full h-full object-cover"
               @error="handleImageError"
-              @load="handleImageLoad"
             >
 
             <video
@@ -205,14 +250,14 @@ onMounted(() => {
               class="w-full h-full object-cover"
             />
 
-            <button class="absolute inset-0" @click="openDialogAt(index)" />
+            <button class="absolute inset-0 cursor-pointer" @click="openLightbox(index)" />
           </div>
 
-          <button class="absolute left-4 top-1/2 -translate-y-1/2 z-20 text-white text-3xl" @click="prevSlide">
+          <button class="absolute left-4 top-1/2 -translate-y-1/2 z-20 text-white text-3xl hover:text-gray-300 transition-colors" @click="prevSlide">
             ‹
           </button>
 
-          <button class="absolute right-4 top-1/2 -translate-y-1/2 z-20 text-white text-3xl" @click="nextSlide">
+          <button class="absolute right-4 top-1/2 -translate-y-1/2 z-20 text-white text-3xl hover:text-gray-300 transition-colors" @click="nextSlide">
             ›
           </button>
         </div>
@@ -226,19 +271,6 @@ onMounted(() => {
       </template>
     </div>
   </section>
-
-  <!-- DIALOG -->
-  <GalleryDetailDialog
-    v-if="showDialogState.selectedJourneyIndex > -1"
-    :image="selectedJourney?.thumbnail_url ?? ''"
-    :title="selectedJourney?.title ?? ''"
-    :content="selectedJourney?.description ?? ''"
-    :is-video="selectedJourney?.is_video ?? false"
-    :video-url="selectedJourney?.video_url ?? ''"
-    :collections="[]"
-    :model-value="showDialogState.openDialog"
-    @update:model-value="(v) => { if (!v) closeDialog(); }"
-  />
 
   <!-- MUSIC -->
   <audio
@@ -292,6 +324,85 @@ onMounted(() => {
     </div>
   </div>
 </template>
+
+<style>
+/* Fancybox custom styling - global to override defaults */
+.fancybox__button--arrow {
+  width: 48px;
+  height: 48px;
+  border: none !important;
+  border-radius: 0 !important;
+  background: rgba(255, 255, 255, 0.15) !important;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: background 0.2s ease;
+}
+
+.fancybox__button--arrow:hover {
+  background: rgba(255, 255, 255, 0.3) !important;
+}
+
+.fancybox__button--arrow svg {
+  width: 24px;
+  height: 24px;
+}
+
+/* Backdrop blur */
+.fancybox__backdrop {
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+}
+
+/* Maximize image - fill entire viewport */
+.fancybox__container {
+  padding: 0 !important;
+}
+
+.fancybox__slide {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.fancybox__content {
+  padding: 0 !important;
+  margin: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  max-width: 100vw !important;
+  max-height: 100vh !important;
+}
+
+.fancybox__image {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+}
+
+/* Hide infobar counter */
+.fancybox__infobar {
+  display: none !important;
+}
+
+/* Hide caption */
+.fancybox__caption {
+  display: none !important;
+}
+
+/* Make toolbar float on top - no space taken */
+.fancybox__toolbar {
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  background: transparent !important;
+  pointer-events: none;
+  padding: 0 !important;
+}
+
+.fancybox__toolbar button {
+  pointer-events: auto;
+}
+</style>
 
 <style scoped>
 .music-player {

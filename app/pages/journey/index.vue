@@ -59,8 +59,9 @@ function loadMore() {
     <div class="journey-header">
       <h1>Journey</h1>
       <p>
-        I have traveled to over 27 countries in my career and am always adding more to my list.
-        Check out my current journey list and top favorite locations
+        I’ve explored many countries throughout my journey, and the list keeps growing.
+        Here are the places I’ve been 
+        and the ones that left the deepest impression.
       </p>
     </div>
 

@@ -213,23 +213,24 @@ const handleSaveDetailJourney = handleSubmit((values) => {
 
     // Create multiple journey details for each file
     if (Array.isArray(values?.thumbnail) && values.thumbnail.length > 0) {
-      // Create a journey detail for each file using the no-emit version
-      const createPromises = thumbnailFiles.map((file) => {
-        const payload = {
-          journey_id: galleryId,
-          is_video: values?.type === "video",
-          title: values?.title,
-          description: values?.description,
-          content: values?.description,
-          thumbnail: file,
-          video_url: values?.videoUrl,
-        } as JourneyDetailsPayload;
+      // Upload files SEQUENTIALLY (one by one) to preserve order
+      const uploadSequentially = async () => {
+        for (const file of thumbnailFiles) {
+          const payload = {
+            journey_id: galleryId,
+            is_video: values?.type === "video",
+            title: values?.title,
+            description: values?.description,
+            content: values?.description,
+            thumbnail: file,
+            video_url: values?.videoUrl,
+          } as JourneyDetailsPayload;
+          
+          await createJourneyDetailNoEmit(payload);
+        }
+      };
 
-        return createJourneyDetailNoEmit(payload);
-      });
-
-      // Wait for all uploads to complete
-      Promise.all(createPromises)
+      uploadSequentially()
         .then(() => {
           useSonner.success(`Successfully uploaded ${thumbnailFiles.length} files`);
           emits("onRefreshData");

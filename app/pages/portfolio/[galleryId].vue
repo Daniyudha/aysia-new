@@ -37,9 +37,7 @@ const { data, pending } = useAsyncData("journey detail", async () => {
     console.debug('[portfolio page] journeyData:', journeyData);
     console.debug('[portfolio page] journeyData.music_url:', journeyData?.music_url);
     console.debug('[portfolio page] journeyDetailData:', journeyDetailData);
-    // Reverse the journey detail array to show newest items at the bottom in public gallery
-    const reversedJourneyDetailData = journeyDetailData ? [...journeyDetailData].reverse() : journeyDetailData;
-    return { journey: journeyData, details: reversedJourneyDetailData };
+    return { journey: journeyData, details: journeyDetailData };
   } catch (error) {
     console.error('[portfolio page] error fetching data:', error);
     throw error;

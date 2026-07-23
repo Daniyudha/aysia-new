@@ -81,20 +81,21 @@ export function journeyRepository<T>(fetch: FetchType<T>) {
       journeyId: string;
       page?: number;
       limit?: number;
+      orderByField?: string;
+      orderBy?: "asc" | "desc";
     }): Promise<JourneyDetailsResponse[]> {
       return fetch(API_URL_LIST.JOURNEY_DETAIL_BY_JOURNEY_ID(journeyId), {
         method: "GET",
-        params,
+        params: {
+          ...params,
+        },
       });
     },
 
-    async sort(payload: { ids: string[] }): Promise<{ success: boolean }> {
+    async sort(payload: { ids: string[]; journey_id: string }): Promise<{ success: boolean }> {
       return fetch(API_URL_LIST.JOURNEY_DETAIL_SORT, {
         method: "PUT",
-        body: JSON.stringify(payload),
-        headers: {
-          "Content-Type": "application/json",
-        },
+        body: JSON.stringify({ ids: payload.ids, journey_id: payload.journey_id }),
       });
     },
   };
